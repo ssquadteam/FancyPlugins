@@ -7,11 +7,11 @@ plugins {
     id("java-library")
     id("maven-publish")
 
-    id("xyz.jpenilla.run-paper") version "2.3.1"
-    id("com.gradleup.shadow") version "8.3.6"
-    id("net.minecrell.plugin-yml.paper") version "0.6.0"
-    id("io.papermc.hangar-publish-plugin") version "0.1.2"
-    id("com.modrinth.minotaur") version "2.+"
+    id("xyz.jpenilla.run-paper")
+    id("com.gradleup.shadow")
+    id("net.minecrell.plugin-yml.paper")
+    id("io.papermc.hangar-publish-plugin")
+    id("com.modrinth.minotaur")
 }
 
 runPaper.folia.registerTask()
@@ -63,7 +63,7 @@ dependencies {
     implementation(project(":plugins:fancyholograms::implementation_1_20_1", configuration = "reobf"))
     implementation(project(":plugins:fancyholograms::implementation_1_19_4", configuration = "reobf"))
 
-    implementation("de.oliver:FancyLib:35")
+    implementation(project(":libraries:common"))
     implementation("de.oliver:FancySitula:0.0.13")
     implementation("de.oliver.FancyAnalytics:api:0.1.6")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")
