@@ -1,4 +1,4 @@
-package de.oliver.fancylib.jdb;
+package de.oliver.jdb;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

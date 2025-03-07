@@ -1,4 +1,4 @@
-package de.oliver.fancylib.jdb;
+package de.oliver.jdb;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
