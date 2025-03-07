@@ -21,12 +21,12 @@ class ClientboundTeleportEntityPacketImplTest {
         ClientboundTeleportEntityPacket createdPacket = (ClientboundTeleportEntityPacket) packet.createPacket();
 
         assert createdPacket != null;
-        assert createdPacket.getId() == entityId;
-        assert createdPacket.getX() == x;
-        assert createdPacket.getY() == y;
-        assert createdPacket.getZ() == z;
-        assert createdPacket.getyRot() == AngelConverter.degreesToVanillaByte(yaw);
-        assert createdPacket.getxRot() == AngelConverter.degreesToVanillaByte(pitch);
-        assert createdPacket.isOnGround() == onGround;
+        assert createdPacket.id() == entityId;
+        assert createdPacket.change().position().x == x;
+        assert createdPacket.change().position().y == y;
+        assert createdPacket.change().position().z == z;
+        assert createdPacket.change().xRot() == pitch;
+        assert createdPacket.change().yRot() == yaw;
+        assert createdPacket.onGround() == onGround;
     }
 }

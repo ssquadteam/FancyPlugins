@@ -3,7 +3,7 @@ package de.oliver.fancyholograms.tests;
 import de.oliver.fancyholograms.tests.api.HologramBuilderTest;
 import de.oliver.fancyholograms.tests.api.HologramControllerTest;
 import de.oliver.fancyholograms.tests.api.HologramRegistryTest;
-import de.oliver.fancylib.tests.FPTestClass;
+import de.oliver.plugintests.FPTestClass;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

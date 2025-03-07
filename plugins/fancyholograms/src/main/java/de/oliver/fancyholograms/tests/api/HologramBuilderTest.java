@@ -11,7 +11,7 @@ import de.oliver.fancyholograms.api.data.property.Visibility;
 import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.api.hologram.HologramType;
 import de.oliver.fancyholograms.main.FancyHologramsPlugin;
-import de.oliver.fancylib.tests.annotations.FPTest;
+import de.oliver.plugintests.annotations.FPTest;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Display;
@@ -23,7 +23,7 @@ import org.joml.Vector3f;
 import java.util.List;
 import java.util.UUID;
 
-import static de.oliver.fancylib.tests.Expectable.expect;
+import static de.oliver.plugintests.Expectable.expect;
 
 public class HologramBuilderTest {
 

@@ -1,4 +1,4 @@
-package de.oliver.fancylib.tests;
+package de.oliver.plugintests;
 
 /**
  * A generic class for making assertions on the expected values.

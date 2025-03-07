@@ -1,8 +1,8 @@
-package de.oliver.fancylib.tests;
+package de.oliver.plugintests;
 
-import de.oliver.fancylib.tests.annotations.FPAfterEach;
-import de.oliver.fancylib.tests.annotations.FPBeforeEach;
-import de.oliver.fancylib.tests.annotations.FPTest;
+import de.oliver.plugintests.annotations.FPAfterEach;
+import de.oliver.plugintests.annotations.FPBeforeEach;
+import de.oliver.plugintests.annotations.FPTest;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 

@@ -7,7 +7,7 @@ import de.oliver.fancyholograms.api.data.ItemHologramData;
 import de.oliver.fancyholograms.api.data.TextHologramData;
 import de.oliver.fancyholograms.storage.HologramStorage;
 import de.oliver.fancyholograms.storage.json.model.JsonDataUnion;
-import de.oliver.fancylib.jdb.JDB;
+import de.oliver.jdb.JDB;
 
 import java.io.IOException;
 import java.util.ArrayList;

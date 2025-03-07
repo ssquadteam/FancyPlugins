@@ -64,6 +64,8 @@ dependencies {
     implementation(project(":plugins:fancyholograms::implementation_1_19_4", configuration = "reobf"))
 
     implementation(project(":libraries:common"))
+    implementation(project(":libraries:plugin-tests"))
+    implementation(project(":libraries:jdb"))
     implementation("de.oliver:FancySitula:0.0.13")
     implementation("de.oliver.FancyAnalytics:api:0.1.6")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")

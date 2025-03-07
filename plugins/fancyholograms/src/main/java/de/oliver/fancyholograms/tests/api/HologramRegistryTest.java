@@ -5,13 +5,13 @@ import de.oliver.fancyholograms.api.data.TextHologramData;
 import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.registry.HologramRegistryImpl;
 import de.oliver.fancyholograms.tests.mocks.HologramMock;
-import de.oliver.fancylib.tests.annotations.FPBeforeEach;
-import de.oliver.fancylib.tests.annotations.FPTest;
+import de.oliver.plugintests.annotations.FPBeforeEach;
+import de.oliver.plugintests.annotations.FPTest;
 import org.bukkit.entity.Player;
 
 import java.util.Optional;
 
-import static de.oliver.fancylib.tests.Expectable.expect;
+import static de.oliver.plugintests.Expectable.expect;
 
 public class HologramRegistryTest {
 

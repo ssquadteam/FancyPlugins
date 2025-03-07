@@ -1,4 +1,4 @@
-package de.oliver.fancylib.tests.annotations;
+package de.oliver.plugintests.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

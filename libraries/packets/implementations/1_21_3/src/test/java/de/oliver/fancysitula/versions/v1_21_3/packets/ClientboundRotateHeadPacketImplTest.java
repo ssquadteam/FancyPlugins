@@ -17,6 +17,6 @@ class ClientboundRotateHeadPacketImplTest {
         ClientboundRotateHeadPacket createdPacket = (ClientboundRotateHeadPacket) packet.createPacket();
 
         assert ReflectionUtils.getField(createdPacket, "entityId").equals(entityId);
-        assert createdPacket.getYHeadRot() == AngelConverter.degreesToVanillaByte(headYaw);
+        assert createdPacket.getYHeadRot() == headYaw;
     }
 }
