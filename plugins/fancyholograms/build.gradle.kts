@@ -57,11 +57,11 @@ allprojects {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
 
-    implementation(project(":plugins:fancyholograms::api"))
-    implementation(project(":plugins:fancyholograms::implementation_1_20_4", configuration = "reobf"))
-    implementation(project(":plugins:fancyholograms::implementation_1_20_2", configuration = "reobf"))
-    implementation(project(":plugins:fancyholograms::implementation_1_20_1", configuration = "reobf"))
-    implementation(project(":plugins:fancyholograms::implementation_1_19_4", configuration = "reobf"))
+    implementation(project(":plugins:fancyholograms:api"))
+    implementation(project(":plugins:fancyholograms:implementation_1_20_4", configuration = "reobf"))
+    implementation(project(":plugins:fancyholograms:implementation_1_20_2", configuration = "reobf"))
+    implementation(project(":plugins:fancyholograms:implementation_1_20_1", configuration = "reobf"))
+    implementation(project(":plugins:fancyholograms:implementation_1_19_4", configuration = "reobf"))
 
     implementation(project(":libraries:common"))
     implementation(project(":libraries:plugin-tests"))
@@ -128,7 +128,7 @@ tasks {
     shadowJar {
         archiveClassifier.set("")
 
-        dependsOn(":api:shadowJar")
+        dependsOn(":plugins:fancyholograms:api:shadowJar")
     }
 
     publishing {
@@ -209,29 +209,11 @@ java {
 }
 
 fun getCurrentCommitHash(): String {
-    val process = ProcessBuilder("git", "rev-parse", "HEAD").start()
-    val reader = BufferedReader(InputStreamReader(process.inputStream))
-    val commitHash = reader.readLine()
-    reader.close()
-    process.waitFor()
-    if (process.exitValue() == 0) {
-        return commitHash ?: ""
-    } else {
-        throw IllegalStateException("Failed to retrieve the commit hash.")
-    }
+    return ""
 }
 
 fun getLastCommitMessage(): String {
-    val process = ProcessBuilder("git", "log", "-1", "--pretty=%B").start()
-    val reader = BufferedReader(InputStreamReader(process.inputStream))
-    val commitMessage = reader.readLine()
-    reader.close()
-    process.waitFor()
-    if (process.exitValue() == 0) {
-        return commitMessage ?: ""
-    } else {
-        throw IllegalStateException("Failed to retrieve the commit message.")
-    }
+    return ""
 }
 
 hangarPublish {
