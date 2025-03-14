@@ -35,8 +35,7 @@ val supportedVersions =
 
 allprojects {
     group = "de.oliver"
-    val buildId = System.getenv("BUILD_ID")
-    version = "2.4.2" + (if (buildId != null) ".$buildId" else "")
+    version = findProperty("fancyhologramsVersion") as String
     description = "Simple, lightweight and fast hologram plugin using display entities"
 
     repositories {
@@ -72,7 +71,7 @@ dependencies {
 
     compileOnly("de.oliver:FancyNpcs:2.4.2")
     compileOnly("org.lushplugins:ChatColorHandler:5.1.2")
-    compileOnly("com.viaversion:viaversion-api:5.2.0")
+    compileOnly("com.viaversion:viaversion-api:5.2.1")
     compileOnly("org.geysermc.floodgate:api:2.2.4-SNAPSHOT")
 }
 
@@ -81,7 +80,7 @@ paper {
     bootstrapper = "de.oliver.fancyholograms.main.FancyHologramsBootstrapper"
     loader = "de.oliver.fancyholograms.main.FancyHologramsLoader"
     foliaSupported = true
-    version = rootProject.version.toString()
+    version = findProperty("fancyhologramsVersion") as String
     description = "Simple, lightweight and fast hologram plugin using display entities"
     apiVersion = "1.19"
     load = BukkitPluginDescription.PluginLoadOrder.POSTWORLD
@@ -131,38 +130,6 @@ tasks {
         dependsOn(":plugins:fancyholograms:api:shadowJar")
     }
 
-    publishing {
-        repositories {
-            maven {
-                name = "fancypluginsReleases"
-                url = uri("https://repo.fancyplugins.de/releases")
-                credentials(PasswordCredentials::class)
-                authentication {
-                    isAllowInsecureProtocol = true
-                    create<BasicAuthentication>("basic")
-                }
-            }
-
-            maven {
-                name = "fancypluginsSnapshots"
-                url = uri("https://repo.fancyplugins.de/snapshots")
-                credentials(PasswordCredentials::class)
-                authentication {
-                    isAllowInsecureProtocol = true
-                    create<BasicAuthentication>("basic")
-                }
-            }
-        }
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
-                from(project.components["java"])
-            }
-        }
-    }
-
     compileJava {
         options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
         options.release = 21
@@ -170,18 +137,13 @@ tasks {
         options.compilerArgs.add("-parameters")
     }
 
-    javadoc {
-        options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
-    }
-
     processResources {
         filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
 
         val props = mapOf(
             "description" to project.description,
-            "version" to project.version,
+            "version" to findProperty("fancyhologramsVersion") as String,
             "hash" to getCurrentCommitHash(),
-            "build" to (System.getenv("BUILD_ID") ?: "").ifEmpty { "undefined" }
         )
 
         inputs.properties(props)
@@ -218,7 +180,7 @@ fun getLastCommitMessage(): String {
 
 hangarPublish {
     publications.register("plugin") {
-        version = project.version as String
+        version = findProperty("fancyhologramsVersion") as String
         id = "FancyHolograms"
         channel = "Alpha"
 
@@ -238,9 +200,9 @@ hangarPublish {
 modrinth {
     token.set(System.getenv("MODRINTH_PUBLISH_API_TOKEN"))
     projectId.set("fancyholograms")
-    versionNumber.set(project.version.toString())
+    versionNumber.set(findProperty("fancyhologramsVersion") as String)
     versionType.set("alpha")
-    uploadFile.set(file("build/libs/${project.name}-${project.version}.jar"))
+    uploadFile.set(file("build/libs/FancyHolograms-${findProperty("fancyhologramsVersion") as String}.jar"))
     gameVersions.addAll(supportedVersions)
     loaders.add("paper")
     loaders.add("folia")

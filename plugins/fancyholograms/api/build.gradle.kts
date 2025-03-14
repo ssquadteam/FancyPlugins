@@ -46,9 +46,9 @@ tasks {
         }
         publications {
             create<MavenPublication>("maven") {
-                groupId = rootProject.group.toString()
-                artifactId = rootProject.name
-                version = rootProject.version.toString()
+                groupId = "de.oliver"
+                artifactId = "fancyholograms"
+                version = findProperty("fancyhologramsVersion") as String
                 from(project.components["java"])
             }
         }
