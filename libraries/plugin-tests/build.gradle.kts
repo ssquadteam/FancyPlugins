@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.0"
+version = findProperty("plugintestsVersion") as String
 description = "Library for defining and running tests in a Minecraft server environment"
 
 java {
@@ -53,9 +53,9 @@ tasks {
         }
         publications {
             create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
+                groupId = "de.oliver"
+                artifactId = "plugin-tests"
+                version = findProperty("plugintestsVersion") as String
                 from(project.components["java"])
             }
         }
