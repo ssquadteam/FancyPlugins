@@ -2,7 +2,7 @@
 title: FancyNpcs
 icon: accessibility
 expanded: true
-order: 2
+order: 10
 ---
 
 #
