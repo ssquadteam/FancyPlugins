@@ -39,8 +39,7 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion(findProperty("minecraftVersion").toString())
-//        minecraftVersion("1.20.4")
+        minecraftVersion("1.21.4")
     }
 
     shadowJar {

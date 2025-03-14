@@ -6,7 +6,7 @@ plugins {
 
 allprojects {
     group = "de.oliver"
-    version = "0.0.13"
+    version = findProperty("fancysitulaVersion") as String
     description = "Simple, lightweight and fast library for minecraft internals"
 
     repositories {
@@ -61,8 +61,8 @@ tasks {
         }
         publications {
             create<MavenPublication>("shadow") {
-                groupId = project.group.toString()
-                version = project.version.toString()
+                groupId = "de.oliver"
+                version = findProperty("fancysitulaVersion") as String
                 artifact(shadowJar)
             }
         }
