@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "35"
+version = findProperty("fancylibVersion") as String
 description = "Library for all Fancy plugins"
 
 java {
@@ -57,9 +57,9 @@ tasks {
         }
         publications {
             create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
+                groupId = "de.oliver"
+                artifactId = "FancyLib"
+                version = findProperty("fancylibVersion") as String
                 from(project.components["java"])
             }
         }
