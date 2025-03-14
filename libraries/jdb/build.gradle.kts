@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.0"
+version = findProperty("jdbVersion") as String
 description = "Library for storing JSON data locally"
 
 java {
@@ -52,9 +52,9 @@ tasks {
         }
         publications {
             create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
+                groupId = "de.oliver"
+                artifactId = "JDB"
+                version = findProperty("jdbVersion") as String
                 from(project.components["java"])
             }
         }
