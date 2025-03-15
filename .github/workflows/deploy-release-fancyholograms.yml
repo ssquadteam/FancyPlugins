@@ -37,3 +37,9 @@ jobs:
         run:
           cd tools/deployment/build/libs &&
           java -jar deployment.jar ../../../../plugins/fancyholograms/release_deployment_config.json
+
+      - name: Publish to reposilite (releases)
+        run: ./gradlew :plugins:fancyholograms:api:publishAllPublicationsToFancypluginsReleasesRepository
+
+      - name: Publish to reposilite (snapshots)
+        run: ./gradlew :plugins:fancyholograms:api:publishAllPublicationsToFancypluginsSnapshotsRepository
