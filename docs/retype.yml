@@ -6,9 +6,6 @@ branding:
   logo: /static/favicon.png
 favicon: /static/favicon.png
 links:
-- text: Home
-  icon: home
-  link: /
 - text: Website
   icon: globe
   link: https://fancyinnovations.com
