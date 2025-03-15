@@ -1,5 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.ShadowJavaPlugin.Companion.shadowJar
-
 plugins {
     id("java")
     id("maven-publish")
@@ -57,9 +55,5 @@ tasks {
     }
     processResources {
         filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
-    }
-
-    test {
-        useJUnitPlatform()
     }
 }
