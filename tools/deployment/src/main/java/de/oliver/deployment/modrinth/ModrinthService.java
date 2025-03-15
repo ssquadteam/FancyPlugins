@@ -29,6 +29,7 @@ public class ModrinthService {
                 config.channel(),
                 config.loaders(),
                 config.featured(),
+                "draft",
                 config.projectID(),
                 new String[]{"plugin"},
                 "plugin"

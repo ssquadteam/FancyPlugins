@@ -10,6 +10,7 @@ public record CreateVersionRequest(
         @SerializedName("version_type") String versionType,
         String[] loaders,
         boolean featured,
+        String status,
         @SerializedName("project_id") String projectId,
         @SerializedName("file_parts") String[] fileParts,
         @SerializedName("primary_file") String primaryFile
