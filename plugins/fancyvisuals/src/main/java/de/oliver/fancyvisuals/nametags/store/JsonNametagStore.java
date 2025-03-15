@@ -1,10 +1,10 @@
 package de.oliver.fancyvisuals.nametags.store;
 
-import de.oliver.fancylib.jdb.JDB;
 import de.oliver.fancyvisuals.FancyVisuals;
 import de.oliver.fancyvisuals.api.Context;
 import de.oliver.fancyvisuals.api.nametags.Nametag;
 import de.oliver.fancyvisuals.api.nametags.NametagStore;
+import de.oliver.jdb.JDB;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

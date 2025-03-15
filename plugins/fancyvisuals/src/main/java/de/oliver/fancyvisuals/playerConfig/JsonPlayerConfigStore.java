@@ -1,7 +1,7 @@
 package de.oliver.fancyvisuals.playerConfig;
 
-import de.oliver.fancylib.jdb.JDB;
 import de.oliver.fancyvisuals.FancyVisuals;
+import de.oliver.jdb.JDB;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;

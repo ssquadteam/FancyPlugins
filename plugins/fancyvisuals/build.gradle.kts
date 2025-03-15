@@ -28,10 +28,11 @@ allprojects {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
 
-    implementation(project(":plugins:fancyvisuals:api"))
-
-    compileOnly("de.oliver:FancyLib:33") // loaded in FancyVisualLoader
-    compileOnly("de.oliver:FancySitula:0.0.13") // loaded in FancyVisualLoader
+    implementation(project(":libraries:common"))
+    implementation(project(":libraries:plugin-tests"))
+    implementation(project(":libraries:jdb"))
+    implementation(project(":libraries:packets:api"))
+    implementation(project(":libraries:packets:factories"))
     compileOnly("de.oliver.FancyAnalytics:api:0.0.8") // loaded in FancyVisualLoader
     compileOnly("de.oliver.FancyAnalytics:logger:0.0.5") // loaded in FancyVisualLoader
 
@@ -87,7 +88,6 @@ tasks {
 
     shadowJar {
         archiveClassifier.set("")
-        dependsOn(":plugins:fancyvisuals:api:jar")
     }
 
     compileJava {

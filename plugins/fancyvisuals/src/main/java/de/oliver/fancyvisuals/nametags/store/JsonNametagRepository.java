@@ -1,11 +1,11 @@
 package de.oliver.fancyvisuals.nametags.store;
 
-import de.oliver.fancylib.jdb.JDB;
 import de.oliver.fancyvisuals.api.Context;
 import de.oliver.fancyvisuals.api.nametags.Nametag;
 import de.oliver.fancyvisuals.api.nametags.NametagRepository;
 import de.oliver.fancyvisuals.api.nametags.NametagStore;
 import de.oliver.fancyvisuals.utils.VaultHelper;
+import de.oliver.jdb.JDB;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
