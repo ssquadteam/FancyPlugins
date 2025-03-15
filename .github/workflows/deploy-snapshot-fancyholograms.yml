@@ -1,4 +1,4 @@
-name: Deploy FancyHolograms (release)
+name: Deploy FancyHolograms (snapshot)
 
 on:
   workflow_dispatch:
@@ -35,5 +35,5 @@ jobs:
 
       - name: Deploy
         run:
-          - cd tools/deployment/build/libs
-          - java -jar deployment.jar ../../../../plugins/fancyholograms/deploymentConfig.json
+          cd tools/deployment/build/libs &&
+          java -jar deployment.jar ../../../../plugins/fancyholograms/snapshot_deployment_config.json
