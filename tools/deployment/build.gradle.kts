@@ -26,10 +26,6 @@ dependencies {
 
     implementation("de.oliver.FancyAnalytics:java-sdk:0.0.2")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.3")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.1")
-    testImplementation("com.google.code.gson:gson:2.11.0")
 }
 
 tasks {
