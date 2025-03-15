@@ -33,7 +33,7 @@ val supportedVersions =
 
 allprojects {
     group = "de.oliver"
-    version = findProperty("fancyhologramsVersion") as String
+    version = getFHVersion()
     description = "Simple, lightweight and fast hologram plugin using display entities"
 
     repositories {
@@ -78,7 +78,7 @@ paper {
     bootstrapper = "de.oliver.fancyholograms.main.FancyHologramsBootstrapper"
     loader = "de.oliver.fancyholograms.main.FancyHologramsLoader"
     foliaSupported = true
-    version = findProperty("fancyhologramsVersion") as String
+    version = getFHVersion()
     description = "Simple, lightweight and fast hologram plugin using display entities"
     apiVersion = "1.19"
     load = BukkitPluginDescription.PluginLoadOrder.POSTWORLD
@@ -141,7 +141,7 @@ tasks {
 
         val props = mapOf(
             "description" to project.description,
-            "version" to findProperty("fancyhologramsVersion") as String,
+            "version" to getFHVersion(),
             "hash" to getCurrentCommitHash(),
         )
 
@@ -177,9 +177,13 @@ fun getLastCommitMessage(): String {
     return ""
 }
 
+fun getFHVersion(): String {
+    return file("VERSION").readText()
+}
+
 hangarPublish {
     publications.register("plugin") {
-        version = findProperty("fancyhologramsVersion") as String
+        version = getFHVersion()
         id = "FancyHolograms"
         channel = "Alpha"
 
@@ -199,9 +203,9 @@ hangarPublish {
 modrinth {
     token.set(System.getenv("MODRINTH_PUBLISH_API_TOKEN"))
     projectId.set("fancyholograms")
-    versionNumber.set(findProperty("fancyhologramsVersion") as String)
+    versionNumber.set(getFHVersion())
     versionType.set("alpha")
-    uploadFile.set(file("build/libs/FancyHolograms-${findProperty("fancyhologramsVersion") as String}.jar"))
+    uploadFile.set(file("build/libs/FancyHolograms-${getFHVersion()}.jar"))
     gameVersions.addAll(supportedVersions)
     loaders.add("paper")
     loaders.add("folia")

@@ -48,7 +48,7 @@ tasks {
             create<MavenPublication>("maven") {
                 groupId = "de.oliver"
                 artifactId = "FancyHolograms"
-                version = findProperty("fancyhologramsVersion") as String
+                version = getFHVersion()
                 from(project.components["java"])
             }
         }
@@ -68,4 +68,8 @@ tasks {
 
         options.release.set(17)
     }
+}
+
+fun getFHVersion(): String {
+    return file("../VERSION").readText()
 }
