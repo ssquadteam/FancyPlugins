@@ -12,7 +12,7 @@ runPaper.folia.registerTask()
 
 allprojects {
     group = "de.oliver"
-    version = findProperty("fancyvisualsVersion") as String
+    version = getFVVersion()
     description = "Simple, lightweight and fast visual plugin using packets"
 
     repositories {
@@ -51,7 +51,7 @@ paper {
     bootstrapper = "de.oliver.fancyvisuals.loaders.FancyVisualsBootstrapper"
     loader = "de.oliver.fancyvisuals.loaders.FancyVisualsLoader"
     foliaSupported = true
-    version = findProperty("fancyvisualsVersion") as String
+    version = getFVVersion()
     description = "Simple, lightweight and fast visuals plugin using packets"
     apiVersion = "1.19"
     serverDependencies {
@@ -128,4 +128,8 @@ java {
 
 fun getCurrentCommitHash(): String {
     return ""
+}
+
+fun getFVVersion(): String {
+    return file("VERSION").readText()
 }
