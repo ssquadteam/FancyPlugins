@@ -30,113 +30,17 @@ jobs:
       - name: Modify gradlew permissions
         run: chmod +x ./gradlew
 
-      - name: Build plugin
+      - name: Build FancyHolograms
         run: ./gradlew :plugins:fancyholograms:shadowJar
 
-  build-common:
-    runs-on: ubuntu-latest
+      - name: Build common
+        run: ./gradlew :libraries:common:jar
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Build jdb
+        run: ./gradlew :libraries:jdb:jar
 
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      - name: Build plugin-tests
+        run: ./gradlew :libraries:plugin-tests:jar
 
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '21'
-
-      - name: Modify gradlew permissions
-        run: chmod +x ./gradlew
-
-      - name: Build plugin
-        run: ./gradlew :libraries:common:shadowJar
-
-  build-jdb:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '21'
-
-      - name: Modify gradlew permissions
-        run: chmod +x ./gradlew
-
-      - name: Build plugin
-        run: ./gradlew :libraries:jdb:shadowJar
-
-  build-plugin-tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '21'
-
-      - name: Modify gradlew permissions
-        run: chmod +x ./gradlew
-
-      - name: Build plugin
-        run: ./gradlew :libraries:plugin-tests:shadowJar
-
-  build-packets:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '21'
-
-      - name: Modify gradlew permissions
-        run: chmod +x ./gradlew
-
-      - name: Build plugin
+      - name: Build packets
         run: ./gradlew :libraries:packets:shadowJar
