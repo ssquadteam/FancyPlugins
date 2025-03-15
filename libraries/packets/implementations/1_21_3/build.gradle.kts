@@ -12,8 +12,9 @@ dependencies {
     compileOnly(project(":libraries:packets:api"))
 
     testImplementation(project(":libraries:packets:api"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.12.1")
+    testImplementation("org.junit.platform:junit-platform-console-standalone:1.12.1")
 }
 
 tasks {
