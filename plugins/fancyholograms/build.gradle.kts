@@ -1,7 +1,5 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 import net.minecrell.pluginyml.paper.PaperPluginDescription
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 plugins {
     id("java-library")
@@ -125,6 +123,7 @@ tasks {
     }
 
     shadowJar {
+        archiveBaseName.set("FancyHolograms")
         archiveClassifier.set("")
 
         dependsOn(":plugins:fancyholograms:api:shadowJar")
