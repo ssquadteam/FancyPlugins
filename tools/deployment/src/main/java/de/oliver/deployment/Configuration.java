@@ -6,7 +6,7 @@ public record Configuration(
         @SerializedName("project_id") String projectID,
         @SerializedName("plugin_jar_path") String pluginJarPath,
         @SerializedName("changelog_path") String changeLogPath,
-        String version,
+        @SerializedName("version_path") String versionPath,
         @SerializedName("supported_versions") String[] supportedVersions,
         String channel,
         @SerializedName("loaders") String[] loaders,

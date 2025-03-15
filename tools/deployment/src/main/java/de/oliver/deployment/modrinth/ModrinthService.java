@@ -20,10 +20,11 @@ public class ModrinthService {
 
     public void deployPlugin(Configuration config) throws IOException {
         String changelog = Files.readString(Path.of(config.changeLogPath()));
+        String version = Files.readString(Path.of(config.versionPath()));
 
         CreateVersionRequest req = new CreateVersionRequest(
-                config.version(),
-                config.version(),
+                version,
+                version,
                 changelog,
                 config.supportedVersions(),
                 config.channel(),
