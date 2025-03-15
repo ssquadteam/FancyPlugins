@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     compileOnly("com.google.code.gson:gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.jetbrains:annotations:26.0.2")
 
     implementation("de.oliver.FancyAnalytics:java-sdk:0.0.2")

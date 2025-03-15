@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public record Configuration(
         @SerializedName("project_id") String projectID,
         @SerializedName("plugin_jar_path") String pluginJarPath,
+        @SerializedName("changelog_path") String changeLogPath,
         String version,
         @SerializedName("supported_versions") String[] supportedVersions,
         String channel,
