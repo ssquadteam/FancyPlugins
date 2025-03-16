@@ -1,20 +1,20 @@
 input: src
 output: .retype
-url: https://fancyinnovations.com
+url: https://fancyplugins.de
 branding:
-  title: Fancy Innovations
+  title: Fancy Plugins
   logo: /static/favicon.png
 favicon: /static/favicon.png
 links:
 - text: Website
   icon: globe
-  link: https://fancyinnovations.com
+  link: https://fancyplugins.de
 - text: Download
   icon: download
   link: https://modrinth.com/user/oliver
 - text: GitHub
   icon: mark-github
-  link: https://github.com/fancyinnovations
+  link: https://github.com/fancymcplugins
 - text: Discord
   icon: megaphone
   link: https://discord.gg/ZUgYCEJUEx
@@ -26,10 +26,10 @@ footer:
   links:
     - text: Website
       icon: globe
-      link: https://fancyinnovations.com
+      link: https://fancyplugins.de
     - text: GitHub
       icon: mark-github
-      link: https://github.com/fancyinnovations
+      link: https://github.com/fancymcplugins
     - text: Discord
       icon: megaphone
       link: https://discord.gg/ZUgYCEJUEx
