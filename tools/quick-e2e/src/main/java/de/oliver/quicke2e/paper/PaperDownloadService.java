@@ -1,6 +1,7 @@
 package de.oliver.quicke2e.paper;
 
 import com.google.gson.Gson;
+import de.oliver.quicke2e.config.Context;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -21,23 +22,26 @@ public class PaperDownloadService {
         this.client = HttpClient.newHttpClient();
     }
 
-    public void downloadServerFile(
-            String project,
-            String version,
-            String build
-    ) {
-        Path folderPath = Paths.get(String.format("%s/%s_%s_%s/", destination, project, version, build));
+    public void downloadServerFile(Context context) {
+        final String type = context.configuration().type();
+        final String version = context.configuration().version();
+        final String build = context.configuration().build();
+
+        Path folderPath = Paths.get(String.format("%s/%s_%s_%s/", destination, type, version, build));
         if (!folderPath.toFile().exists()) {
             folderPath.toFile().mkdirs();
         }
+        context.setServerEnvPath(folderPath);
 
-        String buildNumber = build.equals("latest") ? getLatestBuildNumber(project, version) : build;
+        String buildNumber = build.equals("latest") ? getLatestBuildNumber(type, version) : build;
+        context.setActualBuildNumber(buildNumber);
 
-        Path filePath = Paths.get(String.format("%s/%s_%s_%s/%s-%s-%s.jar", destination, project, version, build, project, version, buildNumber));
+        Path filePath = Paths.get(String.format("%s/%s_%s_%s/%s-%s-%s.jar", destination, type, version, build, type, version, buildNumber));
+        context.setServerJarPath(filePath);
 
         HttpRequest req = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(String.format("%s/projects/%s/versions/%s/builds/%s/downloads/%s-%s-%s.jar", BASE_URL, project, version, buildNumber, project, version, buildNumber)))
+                .uri(URI.create(String.format("%s/projects/%s/versions/%s/builds/%s/downloads/%s-%s-%s.jar", BASE_URL, type, version, buildNumber, type, version, buildNumber)))
                 .build();
 
         client.sendAsync(req, HttpResponse.BodyHandlers.ofFile(filePath))

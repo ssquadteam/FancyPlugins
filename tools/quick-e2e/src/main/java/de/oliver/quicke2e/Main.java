@@ -22,11 +22,11 @@ public class Main {
         Context context = new Context(config);
 
         PaperDownloadService paper = new PaperDownloadService();
-//        paper.downloadServerFile(config.type(), config.version(), config.build());
+        paper.downloadServerFile(context);
 
         EulaService eula = new EulaService();
         if (config.eula()) {
-            eula.setEulaToTrue(String.format("servers/%s_%s_%s/eula.txt", config.type(), config.version(), config.build()));
+            eula.setEulaToTrue(String.format("%s/eula.txt", context.serverEnvPath().toString()));
         }
 
         StartScriptService startScript = new StartScriptService();
