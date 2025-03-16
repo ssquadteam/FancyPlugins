@@ -1,5 +1,12 @@
 # Quick E2E environment setup
 
+## TODOs
+
+- [ ] Add system to load configuration from file / command line arguments
+- [ ] Add services to install plugins
+- [ ] Add option to update an existing E2E environment
+- [ ] Add option to delete an existing E2E environment
+
 ## Features
 
 Generate a new E2E environment with the following options:
