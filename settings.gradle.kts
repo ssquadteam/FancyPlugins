@@ -25,3 +25,4 @@ include(":libraries:packets:test_plugin")
 
 
 include(":tools:deployment")
+include(":tools:quick-e2e")
