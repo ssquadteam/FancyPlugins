@@ -1,6 +1,7 @@
 package de.oliver.quicke2e;
 
 import de.oliver.quicke2e.config.Configuration;
+import de.oliver.quicke2e.eula.EulaService;
 import de.oliver.quicke2e.paper.PaperDownloadService;
 
 public class Main {
@@ -17,7 +18,12 @@ public class Main {
         );
 
         PaperDownloadService paper = new PaperDownloadService();
-        paper.downloadServerFile(config.type(), config.version(), config.build());
+//        paper.downloadServerFile(config.type(), config.version(), config.build());
+
+        EulaService eula = new EulaService();
+        if (config.eula()) {
+            eula.setEulaToTrue(String.format("servers/%s_%s_%s/eula.txt", config.type(), config.version(), config.build()));
+        }
     }
 
 }
