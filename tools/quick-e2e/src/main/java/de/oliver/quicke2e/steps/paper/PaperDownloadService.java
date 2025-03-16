@@ -50,7 +50,7 @@ public class PaperDownloadService {
                 .build();
 
         client.sendAsync(req, HttpResponse.BodyHandlers.ofFile(filePath))
-                .thenAccept(_ -> System.out.println("Downloaded server file to " + filePath))
+                .thenAccept(r -> System.out.println("Downloaded server file to " + filePath))
                 .join();
     }
 
