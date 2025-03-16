@@ -6,9 +6,12 @@ public class Context {
 
     private final Configuration configuration;
     private String actualBuildNumber;
+
     private Path serverEnvPath;
     private Path serverJarPath;
     private Path startScriptPath;
+
+    private Process serverProcess;
 
     public Context(Configuration configuration) {
         this.configuration = configuration;
@@ -53,5 +56,13 @@ public class Context {
 
     public void setStartScriptPath(Path startScriptPath) {
         this.startScriptPath = startScriptPath;
+    }
+
+    public Process serverProcess() {
+        return serverProcess;
+    }
+
+    public void setServerProcess(Process serverProcess) {
+        this.serverProcess = serverProcess;
     }
 }

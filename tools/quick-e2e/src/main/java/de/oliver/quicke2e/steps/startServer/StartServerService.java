@@ -10,7 +10,7 @@ public class StartServerService {
 
         try {
             Process process = processBuilder.start();
-            process.waitFor();
+            context.setServerProcess(process);
         } catch (Exception e) {
             e.printStackTrace();
         }

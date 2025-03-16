@@ -49,6 +49,20 @@ public class Main {
 
         StartServerService startServer = new StartServerService();
         startServer.startServer(context);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (context.serverProcess().isAlive()) {
+                context.serverProcess().destroy();
+            }
+        }));
+
+        if (context.serverProcess() != null && context.serverProcess().isAlive()) {
+            try {
+                context.serverProcess().waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
