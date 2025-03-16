@@ -88,6 +88,7 @@ tasks {
 
     shadowJar {
         archiveClassifier.set("")
+        archiveBaseName.set("FancyVisuals")
     }
 
     compileJava {
