@@ -39,6 +39,11 @@ public class PaperDownloadService {
         Path filePath = Paths.get(String.format("%s/%s_%s_%s/%s-%s-%s.jar", destination, type, version, build, type, version, buildNumber));
         context.setServerJarPath(filePath);
 
+        if (filePath.toFile().exists()) {
+            System.out.println("Server file already exists, skipping download");
+            return;
+        }
+
         HttpRequest req = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(String.format("%s/projects/%s/versions/%s/builds/%s/downloads/%s-%s-%s.jar", BASE_URL, type, version, buildNumber, type, version, buildNumber)))

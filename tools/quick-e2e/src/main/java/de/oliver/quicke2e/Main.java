@@ -5,6 +5,7 @@ import de.oliver.quicke2e.config.Context;
 import de.oliver.quicke2e.steps.eula.EulaService;
 import de.oliver.quicke2e.steps.paper.PaperDownloadService;
 import de.oliver.quicke2e.steps.startScript.StartScriptService;
+import de.oliver.quicke2e.steps.startServer.StartServerService;
 
 public class Main {
 
@@ -31,6 +32,9 @@ public class Main {
 
         StartScriptService startScript = new StartScriptService();
         startScript.writeStartScript(context);
+
+        StartServerService startServer = new StartServerService();
+        startServer.startServer(context);
     }
 
 }
