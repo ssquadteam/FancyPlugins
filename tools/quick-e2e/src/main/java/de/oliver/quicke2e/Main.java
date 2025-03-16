@@ -2,6 +2,7 @@ package de.oliver.quicke2e;
 
 import de.oliver.quicke2e.config.Configuration;
 import de.oliver.quicke2e.config.Context;
+import de.oliver.quicke2e.steps.copyFile.CopyFileService;
 import de.oliver.quicke2e.steps.eula.EulaService;
 import de.oliver.quicke2e.steps.gradle.GradleService;
 import de.oliver.quicke2e.steps.ops.OPsService;
@@ -40,6 +41,11 @@ public class Main {
 
         GradleService gradle = new GradleService();
         gradle.runTask(":plugins:fancyholograms:shadowJar");
+        gradle.runTask(":plugins:fancyvisuals:shadowJar");
+
+        CopyFileService copyFile = new CopyFileService();
+        copyFile.copyFile(context, "plugins/fancyholograms/build/libs", "FancyHolograms-.*\\.jar", "plugins");
+        copyFile.copyFile(context, "plugins/fancyvisuals/build/libs", "FancyVisuals-.*\\.jar", "plugins");
 
         StartServerService startServer = new StartServerService();
         startServer.startServer(context);

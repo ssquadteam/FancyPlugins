@@ -14,7 +14,8 @@ public class GradleService {
         processBuilder.redirectError(ProcessBuilder.Redirect.INHERIT);
 
         try {
-            processBuilder.start();
+            Process process = processBuilder.start();
+            process.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }
