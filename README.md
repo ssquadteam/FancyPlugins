@@ -26,3 +26,9 @@ Future packages that are planned to be added to the monorepo:
 - fancynpcs: https://github.com/FancyMcPlugins/FancyNpcs
 - fancywebsite: https://github.com/FancyMcPlugins/FancyWebsite
 - (fancymorphs: https://github.com/FancyMcPlugins/FancyMorphs)
+
+## Usage
+
+The monorepo uses Gradle as build system. See [monorepo.md](docs/src/development-guidelines/monorepo.md) for more information.
+
+To see specific usage for each package, see the README.md in the respective package directory.
