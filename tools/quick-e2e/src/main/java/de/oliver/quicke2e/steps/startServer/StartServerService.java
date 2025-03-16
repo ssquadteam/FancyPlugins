@@ -7,12 +7,10 @@ public class StartServerService {
     public void startServer(Context context) {
         ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", context.serverFileName());
         processBuilder.directory(context.serverEnvPath().toFile());
-        processBuilder.redirectErrorStream(true);
-        processBuilder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-        processBuilder.redirectError(ProcessBuilder.Redirect.INHERIT);
 
         try {
-            processBuilder.start();
+            Process process = processBuilder.start();
+            process.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }

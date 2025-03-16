@@ -40,8 +40,8 @@ public class Main {
         startScript.writeStartScript(context);
 
         GradleService gradle = new GradleService();
-        gradle.runTask(":plugins:fancyholograms:shadowJar");
-        gradle.runTask(":plugins:fancyvisuals:shadowJar");
+//        gradle.runTask(":plugins:fancyholograms:shadowJar");
+//        gradle.runTask(":plugins:fancyvisuals:shadowJar");
 
         CopyFileService copyFile = new CopyFileService();
         copyFile.copyFile(context, "plugins/fancyholograms/build/libs", "FancyHolograms-.*\\.jar", "plugins");
