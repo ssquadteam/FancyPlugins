@@ -3,6 +3,7 @@ package de.oliver.quicke2e;
 import de.oliver.quicke2e.config.Configuration;
 import de.oliver.quicke2e.config.Context;
 import de.oliver.quicke2e.steps.eula.EulaService;
+import de.oliver.quicke2e.steps.gradle.GradleService;
 import de.oliver.quicke2e.steps.ops.OPsService;
 import de.oliver.quicke2e.steps.paper.PaperDownloadService;
 import de.oliver.quicke2e.steps.startScript.StartScriptService;
@@ -36,6 +37,9 @@ public class Main {
 
         StartScriptService startScript = new StartScriptService();
         startScript.writeStartScript(context);
+
+        GradleService gradle = new GradleService();
+        gradle.runTask(":plugins:fancyholograms:shadowJar");
 
         StartServerService startServer = new StartServerService();
         startServer.startServer(context);

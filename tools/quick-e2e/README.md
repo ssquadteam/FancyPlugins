@@ -4,6 +4,7 @@
 
 - [ ] Add system to load configuration from file / command line arguments
 - [ ] Add services to install plugins
+- [ ] Add service to set port
 - [ ] Add option to update an existing E2E environment
 - [ ] Add option to delete an existing E2E environment
 
