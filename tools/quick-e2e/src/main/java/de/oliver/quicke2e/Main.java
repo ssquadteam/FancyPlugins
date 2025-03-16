@@ -3,6 +3,7 @@ package de.oliver.quicke2e;
 import de.oliver.quicke2e.config.Configuration;
 import de.oliver.quicke2e.config.Context;
 import de.oliver.quicke2e.steps.eula.EulaService;
+import de.oliver.quicke2e.steps.ops.OPsService;
 import de.oliver.quicke2e.steps.paper.PaperDownloadService;
 import de.oliver.quicke2e.steps.startScript.StartScriptService;
 import de.oliver.quicke2e.steps.startServer.StartServerService;
@@ -29,6 +30,9 @@ public class Main {
         if (config.eula()) {
             eula.setEulaToTrue(String.format("%s/eula.txt", context.serverEnvPath().toString()));
         }
+
+        OPsService ops = new OPsService();
+        ops.makePlayersOP(context);
 
         StartScriptService startScript = new StartScriptService();
         startScript.writeStartScript(context);
