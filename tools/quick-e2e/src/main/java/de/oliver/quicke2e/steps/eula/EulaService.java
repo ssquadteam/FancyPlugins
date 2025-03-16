@@ -1,4 +1,4 @@
-package de.oliver.quicke2e.eula;
+package de.oliver.quicke2e.steps.eula;
 
 import java.io.IOException;
 import java.nio.file.Files;

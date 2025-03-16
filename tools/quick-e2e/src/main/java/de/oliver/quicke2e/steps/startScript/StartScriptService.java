@@ -1,4 +1,4 @@
-package de.oliver.quicke2e.startScript;
+package de.oliver.quicke2e.steps.startScript;
 
 import de.oliver.quicke2e.config.Context;
 

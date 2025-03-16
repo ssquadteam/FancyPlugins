@@ -1,4 +1,4 @@
-package de.oliver.quicke2e.paper;
+package de.oliver.quicke2e.steps.paper;
 
 import com.google.gson.annotations.SerializedName;
 
