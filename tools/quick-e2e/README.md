@@ -1,5 +1,9 @@
 # Quick E2E environment setup
 
+A tool to generate a new E2E environment for Minecraft servers. Can be used to quickly setup a new environment for testing plugins on multiple server types and versions.
+
+In the future, this tool can also be using in a CI/CD pipeline to automatically run tests on new builds or plugin versions.
+
 ## TODOs
 
 - [ ] Add system to load configuration from file / command line arguments
