@@ -26,6 +26,8 @@ Future packages that are planned to be added to the monorepo:
 - fancynpcs: https://github.com/FancyMcPlugins/FancyNpcs
 - fancywebsite: https://github.com/FancyMcPlugins/FancyWebsite
 - (fancymorphs: https://github.com/FancyMcPlugins/FancyMorphs)
+- modrinth-sdk: an SDK for the modrinth API (which then can be used in the deployment and quick-e2e tool)
+- minecraft-client: a lightweight Minecraft client for testing
 
 ## Usage
 
