@@ -41,3 +41,13 @@ FancyNpcs does not require ANY dependencies other than Paper.
 
 The plugin has a lot of features to offer. You can customize the NPCs in many ways and create unique NPCs for your server.
 We are constantly working on new innovative features and improvements. If you have any suggestions, feel free to share them with us.
+
+## Download
+
+You can download the latest version of FancyNpcs from the following platforms:
+
+[!button size="s" icon="download" iconAlign="left" text="Download from Modrinth" target="blank"](https://modrinth.com/plugin/fancynpcs/versions)
+
+[!button size="s" icon="download" iconAlign="left" text="Download from Hangar" target="blank"](https://hangar.papermc.io/Oliver/FancyNpcs/versions)
+
+How to get started with FancyNpcs? Check out the [this page](getting-started.md).

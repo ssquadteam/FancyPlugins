@@ -12,7 +12,6 @@ Be aware, that only Paper and Folia is supported, but the plugin should work on 
 
 To install FancyNpcs, you need to download the latest version from one of the following sources:
 
-
 [!button size="s" icon="download" iconAlign="left" text="Modrinth" target="blank"](https://modrinth.com/plugin/fancynpcs/versions)
 
 [!button size="s" icon="download" iconAlign="left" text="Hangar" target="blank"](https://hangar.papermc.io/Oliver/FancyNpcs/versions)
