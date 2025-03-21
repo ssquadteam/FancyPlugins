@@ -3,16 +3,21 @@ order: 9
 ---
 # Versioning
 
+We use [Semantic Versioning](https://semver.org/) (Semver) for versioning.
+
 The version is structured as follows: `major.minor.patch.<build id>`. The build id is optional and is only used for
 development builds.
+
+!!! warning
+This versioning system is not getting used yet. We will start applying the rules in the version 3.0.0 of all plugins.
+!!!
 
 ## Semver
 
 ### Major
 
-The major version is increased when there are very significant changes to the codebase. This could be a complete rewrite
-of the codebase or a major change in the way the plugin works. This is usually not done very often. When the major
-version is increased, the minor and patch versions are reset to 0.
+The major version is increased when there are very significant changes to the codebase. This can be breaking changes to the API and/or major changes to the behavior of the plugin. 
+When the major version is increased, the minor and patch versions are reset to 0.
 
 Data might be lost when updating to a new major version.
 
@@ -26,7 +31,7 @@ minor version is increased, the patch version is reset to 0.
 
 Data will not be lost when updating to a new minor version.
 
-Breaking changes in the API are expected when updating to a new minor version.
+No breaking changes in the API are expected when updating to a new minor version.
 
 ### Patch
 
@@ -41,6 +46,9 @@ Breaking changes in the API are not expected when updating to a new patch versio
 The build id is optional and is only used for development builds. The build id is increased every time a new build is
 created.
 
+The build id is not reset when increasing the major, minor or patch version - it is completely independent.
+
+Disclaimers for development builds:
 - Development builds are not recommended for production use.
 - Development builds might contain bugs.
 - Development builds might contain incomplete features.
@@ -64,6 +72,5 @@ changelog should contain the following information:
 - A list of changes that were made in this release
 - A list of bug fixes that were made in this release
 - A list of new features that were added in this release
-
-There are mostly changes list that are important to server admins. Breaking changes to the API might not be listed in
-the changelog.
+- A list of changes to the API that were made in this release
+- A list of breaking changes that were made in this release
