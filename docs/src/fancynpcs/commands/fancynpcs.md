@@ -2,6 +2,8 @@
 order: 9
 ---
 
+![](../../static/commands.png)
+
 # /FancyNpcs
 
 ### Version

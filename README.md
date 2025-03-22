@@ -1,5 +1,7 @@
 # FancyPlugins
 
+![](docs/src/static/fancyplugins-banner.png)
+
 This repository contains a collection of plugins, libraries and tools for Minecraft servers.
 
 The monorepo is still work in progress and will be expanded over time.

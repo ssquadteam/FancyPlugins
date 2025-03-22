@@ -2,6 +2,8 @@
 order: 10
 ---
 
+![](../../static/commands.png)
+
 # /Npc
 
 The `/npc` command is the main command for managing NPCs. It allows you to create, modify, and remove NPCs. You can also customize NPCs by changing their type, skin, equipment, and more.

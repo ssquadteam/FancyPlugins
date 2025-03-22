@@ -1,7 +1,10 @@
 ---
 order: 8
 ---
-# Monorepo
+
+![](../static/monorepo.png)
+
+#
 
 ## What is a monorepo?
 

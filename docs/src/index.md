@@ -1,7 +1,9 @@
 ---
 icon: home
 ---
-# Welcome
+#
+
+![](static/fancyplugins-banner.png)
 
 Welcome to the FancyPlugins documentation! Here you'll find documentation about how to use the plugins, including installation, commands and API.
 

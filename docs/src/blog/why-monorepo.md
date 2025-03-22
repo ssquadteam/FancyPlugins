@@ -8,6 +8,8 @@ authors:
 description: The reasons why we switched to a monorepo for our Minecraft plugins and libraries.
 ---
 
+![](../static/monorepo.png)
+
 # Why We Switched to a Monorepo
 
 ## Introduction
