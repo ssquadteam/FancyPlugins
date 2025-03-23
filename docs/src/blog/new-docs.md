@@ -6,12 +6,12 @@ authors:
   avatar: https://avatars.githubusercontent.com/u/79666085?v=4
 
 date: 2025-03-14
-description: The reasons why we switched to a monorepo for our Minecraft plugins and libraries.
+description: New and reworked documentation for FancyPlugins.
 ---
 
 ![](../static/new-documentation.png)
 
-# New and reworked documentation
+# New and Reworked Documentation
 
 We are happy to announce that we have reworked our documentation.
 With the new monorepo, the docs are now even closer to the code, which makes it easier to keep them up to date.
