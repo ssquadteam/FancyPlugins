@@ -7,8 +7,6 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.util.function.Function;
-
 public class VersionConfig {
 
     private final Plugin plugin;
@@ -30,9 +28,9 @@ public class VersionConfig {
             e.printStackTrace();
         }
 
-        version = config.getString("version");
-        build = config.getString("build");
-        hash = config.getString("hash");
+        version = config.getString("version", "undefined");
+        build = config.getString("build", "undefined");
+        hash = config.getString("hash", "undefined");
     }
 
     public void checkVersionAndDisplay(CommandSender sender, boolean displayOnlyIfOutdated) {
