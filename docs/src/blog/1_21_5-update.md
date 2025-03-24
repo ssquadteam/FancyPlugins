@@ -41,7 +41,7 @@ Removed packets:
 
 Added packets:
 - `ClientboundTestInstanceBlocksStatus`
-- `ServerboundSetTestBlockP`
+- `ServerboundSetTestBlock`
 - `ServerboundTestInstanceBlockAction`
 
 ## Changes in the plugins :icon-megaphone:
