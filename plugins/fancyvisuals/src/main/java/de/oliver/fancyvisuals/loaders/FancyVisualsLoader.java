@@ -16,8 +16,8 @@ public class FancyVisualsLoader implements PluginLoader {
         MavenLibraryResolver resolver = new MavenLibraryResolver();
         resolver.addRepository(new RemoteRepository.Builder("fancyplugins", "default", "https://repo.fancyplugins.de/releases").build());
 //        resolver.addRepository(new RemoteRepository.Builder("mavencentral", "default", "https://repo1.maven.org/maven2/").build());
-        resolver.addDependency(new Dependency(new DefaultArtifact("de.oliver.FancyAnalytics:api:0.0.5"), "compile"));
-        resolver.addDependency(new Dependency(new DefaultArtifact("de.oliver.FancyAnalytics:logger:0.0.5"), "compile"));
+        resolver.addDependency(new Dependency(new DefaultArtifact("de.oliver.FancyAnalytics:api:0.1.6"), "compile"));
+        resolver.addDependency(new Dependency(new DefaultArtifact("de.oliver.FancyAnalytics:logger:0.0.6"), "compile"));
 
         classpathBuilder.addLibrary(resolver);
     }

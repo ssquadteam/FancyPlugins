@@ -1,9 +1,9 @@
 plugins {
-    id("com.gradleup.shadow") version "9.0.0-beta10" apply false
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.15" apply false
+    id("com.gradleup.shadow") version "9.0.0-beta11" apply false
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.16" apply false
     id("xyz.jpenilla.run-paper") version "2.3.1" apply false
     id("net.minecrell.plugin-yml.paper") version "0.6.0" apply false
-    id("io.papermc.hangar-publish-plugin") version "0.1.2" apply false
+    id("io.papermc.hangar-publish-plugin") version "0.1.3" apply false
     id("com.modrinth.minotaur") version "2.+" apply false
 }
 
