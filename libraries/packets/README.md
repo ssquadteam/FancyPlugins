@@ -34,6 +34,9 @@ More packets will be added when needed / requested (contributions are welcome).
 FancySitula will support the latest Minecraft version and additional older versions. The following versions are
 supported:
 
+- [x] 1.21.5
+- [x] 1.21.4
+- [x] 1.21.2 / 1.21.3
 - [x] 1.21.1
 - [x] 1.21
 - [x] 1.20.6

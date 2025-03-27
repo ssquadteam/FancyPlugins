@@ -21,6 +21,7 @@ include(":libraries:packets:implementations:1_21")
 include(":libraries:packets:implementations:1_21_1")
 include(":libraries:packets:implementations:1_21_3")
 include(":libraries:packets:implementations:1_21_4")
+include(":libraries:packets:implementations:1_21_5")
 include(":libraries:packets:test_plugin")
 
 

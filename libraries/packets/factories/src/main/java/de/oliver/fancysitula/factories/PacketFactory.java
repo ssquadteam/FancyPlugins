@@ -26,6 +26,9 @@ public class PacketFactory {
             ServerVersion serverVersion, EnumSet<FS_ClientboundPlayerInfoUpdatePacket.Action> actions,
             List<FS_ClientboundPlayerInfoUpdatePacket.Entry> entries) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundPlayerInfoUpdatePacketImpl(actions, entries);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundPlayerInfoUpdatePacketImpl(actions, entries);
             }
@@ -74,6 +77,9 @@ public class PacketFactory {
             int velocityZ,
             int data) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundAddEntityPacketImpl(entityId, entityUUID, entityType, x, y, z, yaw, pitch, headYaw, velocityX, velocityY, velocityZ, data);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundAddEntityPacketImpl(entityId, entityUUID, entityType, x, y, z, yaw, pitch, headYaw, velocityX, velocityY, velocityZ, data);
             }
@@ -118,6 +124,9 @@ public class PacketFactory {
      */
     public FS_ClientboundPlayerInfoRemovePacket createPlayerInfoRemovePacket(ServerVersion serverVersion, List<UUID> uuids) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundPlayerInfoRemovePacketImpl(uuids);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundPlayerInfoRemovePacketImpl(uuids);
             }
@@ -165,6 +174,9 @@ public class PacketFactory {
      */
     public FS_ClientboundRemoveEntitiesPacket createRemoveEntitiesPacket(ServerVersion serverVersion, List<Integer> entityIds) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundRemoveEntitiesPacketImpl(entityIds);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundRemoveEntitiesPacketImpl(entityIds);
             }
@@ -209,6 +221,9 @@ public class PacketFactory {
             boolean onGround
     ) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundTeleportEntityPacketImpl(entityId, x, y, z, yaw, pitch, onGround);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundTeleportEntityPacketImpl(entityId, x, y, z, yaw, pitch, onGround);
             }
@@ -253,6 +268,9 @@ public class PacketFactory {
      */
     public FS_ClientboundRotateHeadPacket createRotateHeadPacket(ServerVersion serverVersion, int entityId, float headYaw) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundRotateHeadPacketImpl(entityId, headYaw);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundRotateHeadPacketImpl(entityId, headYaw);
             }
@@ -285,6 +303,9 @@ public class PacketFactory {
     public FS_ClientboundSetEntityDataPacket createSetEntityDataPacket(
             ServerVersion serverVersion, int entityId, List<FS_ClientboundSetEntityDataPacket.EntityData> entityData) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundSetEntityDataPacketImpl(entityId, entityData);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundSetEntityDataPacketImpl(entityId, entityData);
             }
@@ -316,6 +337,9 @@ public class PacketFactory {
      */
     public FS_ClientboundSetEquipmentPacket createSetEquipmentPacket(ServerVersion serverVersion, int entityId, Map<FS_EquipmentSlot, ItemStack> equipment) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundSetEquipmentPacketImpl(entityId, equipment);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundSetEquipmentPacketImpl(entityId, equipment);
             }
@@ -348,6 +372,9 @@ public class PacketFactory {
     public FS_ClientboundSetPassengersPacket createSetPassengersPacket(
             ServerVersion serverVersion, int entityId, List<Integer> passengers) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundSetPassengersPacketImpl(entityId, passengers);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundSetPassengersPacketImpl(entityId, passengers);
             }
@@ -383,6 +410,9 @@ public class PacketFactory {
      */
     public FS_ClientboundCreateOrUpdateTeamPacket createCreateOrUpdateTeamPacket(ServerVersion serverVersion, String teamName, FS_ClientboundCreateOrUpdateTeamPacket.CreateTeam createTeam) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, createTeam);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, createTeam);
             }
@@ -418,6 +448,9 @@ public class PacketFactory {
      */
     public FS_ClientboundCreateOrUpdateTeamPacket createCreateOrUpdateTeamPacket(ServerVersion serverVersion, String teamName, FS_ClientboundCreateOrUpdateTeamPacket.RemoveTeam removeTeam) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, removeTeam);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, removeTeam);
             }
@@ -453,6 +486,9 @@ public class PacketFactory {
      */
     public FS_ClientboundCreateOrUpdateTeamPacket createCreateOrUpdateTeamPacket(ServerVersion serverVersion, String teamName, FS_ClientboundCreateOrUpdateTeamPacket.UpdateTeam updateTeam) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, updateTeam);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, updateTeam);
             }
@@ -488,6 +524,9 @@ public class PacketFactory {
      */
     public FS_ClientboundCreateOrUpdateTeamPacket createCreateOrUpdateTeamPacket(ServerVersion serverVersion, String teamName, FS_ClientboundCreateOrUpdateTeamPacket.AddEntity addEntity) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, addEntity);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, addEntity);
             }
@@ -523,6 +562,9 @@ public class PacketFactory {
      */
     public FS_ClientboundCreateOrUpdateTeamPacket createCreateOrUpdateTeamPacket(ServerVersion serverVersion, String teamName, FS_ClientboundCreateOrUpdateTeamPacket.RemoveEntity removeEntity) {
         switch (serverVersion) {
+            case v1_21_5 -> {
+                return new de.oliver.fancysitula.versions.v1_21_5.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, removeEntity);
+            }
             case v1_21_4 -> {
                 return new de.oliver.fancysitula.versions.v1_21_4.packets.ClientboundCreateOrUpdateTeamPacketImpl(teamName, removeEntity);
             }
