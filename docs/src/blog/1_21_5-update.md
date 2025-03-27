@@ -1,5 +1,5 @@
 ---
-visibility: public
+visibility: hidden
 authors:
 - name: Oliver Schlüter
   email: oliver@fancyplugins.de
