@@ -36,3 +36,43 @@ Future packages that are planned to be added to the monorepo:
 The monorepo uses Gradle as build system. See [monorepo.md](docs/src/development-guidelines/monorepo.md) for more information.
 
 To see specific usage for each package, see the README.md in the respective package directory.
+
+## Contributors
+
+Since this is a new repository, the list of contributors didn't get migrated from the previous repositories.
+Here is a list of contributors to the previous repositories:
+
+- [Grabsky](https://github.com/Grabsky)
+- [OakLoaf](https://github.com/OakLoaf)
+- [Matt-MX](https://github.com/MattMX)
+- [Sxtanna](https://github.com/Sxtanna)
+- [airoons](https://github.com/airoons)
+- [BitByLogics](https://github.com/BitByLogics)
+- [devpeaqe](https://github.com/devpeaqe)
+- [NonSwag](https://github.com/NonSwag)
+- [FrezzyDev](https://github.com/FrezzyDev)
+- [perkojack](https://github.com/perkojack)
+- [BigTowns](https://github.com/BigTowns)
+- [kforbro](https://github.com/kforbro)
+- [Kamillaova](https://github.com/Kamillaova)
+- [Emibergo02](https://github.com/Emibergo02)
+- [bridgelol](https://github.com/bridgelol)
+- [Seshpenguin](https://github.com/Seshpenguin)
+- [UltraFaceguy](https://github.com/UltraFaceguy)
+- [4drian3d](https://github.com/4drian3d)
+- [Zemux1613](https://github.com/Zemux1613)
+- [Yive](https://github.com/Yive)
+- [UsainSrht](https://github.com/UsainSrht)
+- [killerprojecte](https://github.com/killerprojecte)
+- [SirSalad](https://github.com/SirSalad)
+- [yukisnowflake](https://github.com/yukisnowflake)
+- [BiFTHg](https://github.com/BiFTHg)
+- [alexcastro1919](https://github.com/alexcastro1919)
+- [FrinshHD](https://github.com/FrinshHD)
+- [xii69](https://github.com/xii69)
+- [ruViolence](https://github.com/ruViolence)
+- [JonasDevDE](https://github.com/JonasDevDE)
+
+*(Taken from https://github.com/FancyMcPlugins/FancyNpcs/graphs/contributors and https://github.com/FancyMcPlugins/FancyHolograms/graphs/contributors)*
+
+If you contributed to the previous repositories and want to be listed here, please open an issue or a pull request.
