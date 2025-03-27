@@ -1,4 +1,4 @@
-# FancyPlugins
+# 
 
 ![](docs/src/static/fancyplugins-banner.png)
 
@@ -6,17 +6,17 @@ This repository contains a collection of plugins, libraries and tools for Minecr
 
 The monorepo is still work in progress and will be expanded over time.
 
-## Packages
+## Modules
 
 Plugins:
 - fancyholograms (v3): create fancy looking holograms
 - fancyvisuals: plugin to customize all visual components of the game
 
 Libraries:
-- common: common classes and utilities
-- packets: packet handling library
-- jdb: json database library
-- plugin-tests: testing library for plugins
+- common: common classes and utilities (FancyLib previously)
+- jdb: json database library (included in FancyLib previously)
+- plugin-tests: testing library for plugins (included in FancyLib previously)
+- packets: packet handling library (FancySitula previously)
 
 Tools:
 - deployment: deploy plugins to platforms like modrinth
