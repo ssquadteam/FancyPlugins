@@ -1,7 +1,7 @@
 package de.oliver.fancyvisuals.analytics;
 
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
-import de.oliver.fancyanalytics.api.MetricSupplier;
+import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
 import de.oliver.fancyvisuals.FancyVisuals;
 import de.oliver.fancyvisuals.api.Context;
 import de.oliver.fancyvisuals.api.nametags.NametagRepository;
@@ -12,14 +12,14 @@ public class AnalyticsManager {
 
     private final FancyAnalyticsAPI fa;
 
-    public AnalyticsManager(String userId, String projectId, String apiKey) {
-        this.fa = new FancyAnalyticsAPI(userId, projectId, apiKey);
+    public AnalyticsManager(String projectId, String apiKey) {
+        this.fa = new FancyAnalyticsAPI(projectId, apiKey);
     }
 
     public void init() {
-        fa.registerDefaultPluginMetrics(FancyVisuals.get());
-        fa.registerLogger(FancyVisuals.get().getLogger());
-        fa.registerLogger(Logger.getGlobal());
+        fa.registerMinecraftPluginMetrics(FancyVisuals.get());
+        fa.getExceptionHandler().registerLogger(FancyVisuals.get().getLogger());
+        fa.getExceptionHandler().registerLogger(Logger.getGlobal());
 
         registerNametagMetrics();
 
