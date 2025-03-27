@@ -4,11 +4,11 @@
 
 ![](docs/src/static/fancyplugins-banner.png)
 
-[![Lines of Code](https://tokei.rs/b1/github/fancymcplugins/fancyplugins?category=code)](https://github.com/fancymcplugins/fancyplugins)
-[![Discord](https://img.shields.io/discord/899740810956910683?cacheSeconds=3600&logo=discord&logoColor=white&label=%20&labelColor=%235865F2&color=%23707BF4)](https://discord.gg/ZUgYCEJUEx)
-
 [![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/user/Oliver)
 [![Hangar](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/hangar_vector.svg)](https://hangar.papermc.io/Oliver)
+
+[![Lines of Code](https://tokei.rs/b1/github/fancymcplugins/fancyplugins?category=code)](https://github.com/fancymcplugins/fancyplugins)
+[![Discord](https://img.shields.io/discord/899740810956910683?cacheSeconds=3600&logo=discord&logoColor=white&label=%20&labelColor=%235865F2&color=%23707BF4)](https://discord.gg/ZUgYCEJUEx)
 
 <br />
 
