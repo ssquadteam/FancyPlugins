@@ -16,10 +16,10 @@ Simple, lightweight and feature-rich plugins for Minecraft servers.
 
 </div>
 
-> [!CAUTION]
-> The monorepo is still work in progress and will be expanded over time.
-
 ## Modules
+
+> [!CAUTION]
+> The monorepo is still work in progress. Expect breaking changes and incomplete documentation.
 
 Plugins:
 - fancyholograms (v3): create fancy looking holograms
