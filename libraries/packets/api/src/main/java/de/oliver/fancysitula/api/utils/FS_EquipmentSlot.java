@@ -8,6 +8,7 @@ public enum FS_EquipmentSlot {
     CHEST,
     HEAD,
     BODY,
+    SADDLE, // Added in 1.21.5
     ;
 
     public static FS_EquipmentSlot fromBukkit(org.bukkit.inventory.EquipmentSlot equipmentSlot) {
@@ -19,6 +20,7 @@ public enum FS_EquipmentSlot {
             case CHEST -> CHEST;
             case HEAD -> HEAD;
             case BODY -> BODY;
+            case SADDLE -> SADDLE;
         };
     }
 }
