@@ -190,6 +190,11 @@ Adds an action to the specified NPC's trigger.
 - **Syntax**: `/npc action (npc) (trigger) add (actionType) [value]`
 - **Permissions**: `fancynpcs.command.npc.action.add`
 
+!!!
+You can use any placeholder by PlaceholderAPI in the action value.
+The `{player}` placeholder can be used in `console_command` actions without needing PlaceholderAPI.
+!!!
+
 ### Add action before
 
 Adds an action before the specified index in the NPC's action list for the given trigger.
