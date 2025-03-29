@@ -1,74 +1,64 @@
 package de.oliver.deployment.modrinth;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import de.oliver.deployment.Configuration;
-import okhttp3.*;
+import masecla.modrinth4j.client.agent.UserAgent;
+import masecla.modrinth4j.endpoints.version.CreateVersion;
+import masecla.modrinth4j.main.ModrinthAPI;
+import masecla.modrinth4j.model.version.ProjectVersion;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class ModrinthService {
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final String BASE_URL = "https://api.modrinth.com/version";
-    private final OkHttpClient client = new OkHttpClient(
-            new OkHttpClient.Builder()
-                    .connectTimeout(60, TimeUnit.SECONDS)
-                    .callTimeout(60, TimeUnit.SECONDS)
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .writeTimeout(60, TimeUnit.SECONDS)
-    );
-    private final String apiKey;
+
+    private final ModrinthAPI api;
 
     public ModrinthService(String apiKey) {
-        this.apiKey = apiKey;
+        this.api = ModrinthAPI.rateLimited(
+                UserAgent.builder()
+                        .authorUsername("Oliver")
+                        .contact("oliver@fancyplugins.de")
+                        .build(),
+                apiKey
+        );
     }
 
     public void deployPlugin(Configuration config) throws IOException {
         String changelog = Files.readString(Path.of(config.changeLogPath()));
         String version = Files.readString(Path.of(config.versionPath()));
 
-        CreateVersionRequest req = new CreateVersionRequest(
-                version,
-                version,
-                changelog,
-                new String[0],
-                config.supportedVersions(),
-                config.channel(),
-                config.loaders(),
-                config.featured(),
-                "draft",
-                "draft",
-                config.projectID(),
-                new String[]{"plugin", "data"},
-                "plugin"
-        );
-
         String pluginJarPath = config.pluginJarPath().replace("%VERSION%", version);
         File pluginFile = new File(pluginJarPath);
 
-        String jsonData = GSON.toJson(req);
+        InputStream pluginJarFileStream = Files.newInputStream(pluginFile.toPath());
 
-        RequestBody body = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("data", jsonData)
-                .addFormDataPart("plugin", pluginFile.getName(),
-                        RequestBody.create(pluginFile, MediaType.parse("application/java-archive")))
-                .build();
+        CreateVersion.CreateVersionRequest request = new CreateVersion.CreateVersionRequest(
+                version,
+                version,
+                changelog,
+                new ArrayList<>(),
+                Arrays.asList(config.supportedVersions()),
+                ProjectVersion.VersionType.ALPHA,
+                Arrays.asList(config.loaders()),
+                config.featured(),
+                config.projectID(),
+                pluginJarPath,
+                List.of(pluginFile.getName()),
+                List.of(pluginJarFileStream)
+        );
 
-        System.out.println(jsonData);
+        System.out.println("Creating version: " + request);
 
-        Request request = new Request.Builder()
-                .url(BASE_URL)
-                .post(body)
-                .addHeader("Authorization", apiKey)
-                .build();
+        CompletableFuture<ProjectVersion> resp = api.versions().createProjectVersion(request);
+        ProjectVersion createdVersion = resp.join();
 
-        try (Response response = client.newCall(request).execute()) {
-            System.out.println("Response: " + response.code() + " - " + response.body().string());
-        }
+        System.out.println("Version created: " + createdVersion);
     }
 }
