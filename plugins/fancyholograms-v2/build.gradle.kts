@@ -1,7 +1,5 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 import net.minecrell.pluginyml.paper.PaperPluginDescription
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 plugins {
     id("java-library")
@@ -31,12 +29,12 @@ val supportedVersions =
         "1.21.2",
         "1.21.3",
         "1.21.4",
+        "1.21.5",
     )
 
 allprojects {
     group = "de.oliver"
-    val buildId = System.getenv("BUILD_ID")
-    version = "2.4.2" + (if (buildId != null) ".$buildId" else "")
+    version = getFHVersion()
     description = "Simple, lightweight and fast hologram plugin using display entities"
 
     repositories {
@@ -83,7 +81,7 @@ paper {
     bootstrapper = "de.oliver.fancyholograms.loaders.FancyHologramsBootstrapper"
     loader = "de.oliver.fancyholograms.loaders.FancyHologramsLoader"
     foliaSupported = true
-    version = rootProject.version.toString()
+    version = getFHVersion()
     description = "Simple, lightweight and fast hologram plugin using display entities"
     apiVersion = "1.19"
     load = BukkitPluginDescription.PluginLoadOrder.POSTWORLD
@@ -145,7 +143,7 @@ tasks {
 
         val props = mapOf(
             "description" to project.description,
-            "version" to project.version,
+            "version" to getFHVersion(),
             "hash" to gitCommitHash.get(),
             "build" to (System.getenv("BUILD_ID") ?: "").ifEmpty { "undefined" }
         )
@@ -182,6 +180,10 @@ val gitCommitMessage: Provider<String> = providers.exec {
     commandLine("git", "log", "-1", "--pretty=%B")
 }.standardOutput.asText.map { it.trim() }
 
+fun getFHVersion(): String {
+    return file("VERSION").readText()
+}
+
 hangarPublish {
     publications.register("plugin") {
         version = project.version as String
@@ -204,9 +206,9 @@ hangarPublish {
 modrinth {
     token.set(System.getenv("MODRINTH_PUBLISH_API_TOKEN"))
     projectId.set("fancyholograms")
-    versionNumber.set(project.version.toString())
+    versionNumber.set(getFHVersion())
     versionType.set("alpha")
-    uploadFile.set(file("build/libs/${project.name}-${project.version}.jar"))
+    uploadFile.set(file("build/libs/${project.name}-${getFHVersion()}.jar"))
     gameVersions.addAll(supportedVersions)
     loaders.add("paper")
     loaders.add("folia")
