@@ -11,7 +11,7 @@ dependencies {
     paperweight.paperDevBundle("$minecraftVersion-R0.1-SNAPSHOT")
 
     implementation(project(":plugins:fancyholograms-v2:api"))
-    implementation("de.oliver:FancyLib:36")
+    implementation(project(":libraries:common"))
     compileOnly("com.viaversion:viaversion-api:5.2.1")
 }
 
