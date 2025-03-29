@@ -183,17 +183,16 @@ Teleports you to the specified NPC.
 
 ## Manage interactions
 
+!!!
+Learn more about actions and triggers in the [Action System](../tutorials/action-system.md) tutorial.
+!!!
+
 ### Add action
 
 Adds an action to the specified NPC's trigger.
 
 - **Syntax**: `/npc action (npc) (trigger) add (actionType) [value]`
 - **Permissions**: `fancynpcs.command.npc.action.add`
-
-!!!
-You can use any placeholder by PlaceholderAPI in the action value.
-The `{player}` placeholder can be used in `console_command` actions without needing PlaceholderAPI.
-!!!
 
 ### Add action before
 
