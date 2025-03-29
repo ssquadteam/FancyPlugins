@@ -1,6 +1,7 @@
 package de.oliver.deployment.modrinth;
 
 import de.oliver.deployment.Configuration;
+import de.oliver.deployment.git.GitService;
 import masecla.modrinth4j.client.agent.UserAgent;
 import masecla.modrinth4j.endpoints.version.CreateVersion;
 import masecla.modrinth4j.main.ModrinthAPI;
@@ -32,6 +33,9 @@ public class ModrinthService {
 
     public void deployPlugin(Configuration config) throws IOException {
         String changelog = Files.readString(Path.of(config.changeLogPath()));
+        changelog = changelog.replaceAll("%COMMIT_HASH%", GitService.getCommitHash());
+        changelog = changelog.replaceAll("%COMMIT_MESSAGE%", GitService.getCommitMessage());
+
         String version = Files.readString(Path.of(config.versionPath()));
 
         String pluginJarPath = config.pluginJarPath().replace("%VERSION%", version);
