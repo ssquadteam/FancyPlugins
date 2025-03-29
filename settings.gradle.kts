@@ -1,12 +1,6 @@
 rootProject.name = "minecraft-plugins"
 
-include(":plugins:fancyholograms")
-include(":plugins:fancyholograms:api")
-include(":plugins:fancyholograms:implementation_1_20_4")
-include(":plugins:fancyholograms:implementation_1_20_2")
-include(":plugins:fancyholograms:implementation_1_20_1")
-include(":plugins:fancyholograms:implementation_1_19_4")
-
+include(":plugins:fancynpcs:")
 include(":plugins:fancynpcs:api")
 include(":plugins:fancynpcs:implementation_1_21_5")
 include(":plugins:fancynpcs:implementation_1_21_4")
@@ -19,6 +13,19 @@ include(":plugins:fancynpcs:implementation_1_20_1")
 include(":plugins:fancynpcs:implementation_1_20")
 include(":plugins:fancynpcs:implementation_1_19_4")
 
+include(":plugins:fancyholograms-v2")
+include(":plugins:fancyholograms-v2:api")
+include(":plugins:fancyholograms-v2:implementation_1_20_4")
+include(":plugins:fancyholograms-v2:implementation_1_20_2")
+include(":plugins:fancyholograms-v2:implementation_1_20_1")
+include(":plugins:fancyholograms-v2:implementation_1_19_4")
+
+include(":plugins:fancyholograms")
+include(":plugins:fancyholograms:api")
+include(":plugins:fancyholograms:implementation_1_20_4")
+include(":plugins:fancyholograms:implementation_1_20_2")
+include(":plugins:fancyholograms:implementation_1_20_1")
+include(":plugins:fancyholograms:implementation_1_19_4")
 
 include(":plugins:fancyvisuals")
 
@@ -40,3 +47,9 @@ include(":libraries:packets:test_plugin")
 
 include(":tools:deployment")
 include(":tools:quick-e2e")
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
