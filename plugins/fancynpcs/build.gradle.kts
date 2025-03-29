@@ -118,6 +118,7 @@ tasks {
         relocate("org.incendo", "de.oliver")
         relocate("org.lushplugins.chatcolorhandler", "de.oliver.fancynpcs.libs.chatcolorhandler")
         archiveClassifier.set("")
+        archiveBaseName.set("FancyNpcs")
         dependsOn(":plugins:fancynpcs:api:shadowJar")
     }
 

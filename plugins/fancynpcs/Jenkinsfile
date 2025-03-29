@@ -45,7 +45,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: '**/build/libs/FancyNpcs-*.jar', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'plugins/fancynpcs/build/libs/FancyNpcs-*.jar', allowEmptyArchive: true
         }
         success {
             withCredentials([
