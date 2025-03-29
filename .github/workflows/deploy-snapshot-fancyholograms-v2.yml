@@ -1,4 +1,4 @@
-name: Deploy FancyHolograms (snapshot)
+name: Deploy FancyHolograms v2 (snapshot)
 
 on:
   workflow_dispatch:
