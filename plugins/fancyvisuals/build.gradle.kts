@@ -28,6 +28,9 @@ allprojects {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
 
+    rootProject.subprojects
+        .filter { it.path.startsWith(":libraries:packets:implementations") }
+        .forEach { implementation(project(it.path)) }
     implementation(project(":libraries:common"))
     implementation(project(":libraries:plugin-tests"))
     implementation(project(":libraries:jdb"))
