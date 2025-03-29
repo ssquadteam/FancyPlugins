@@ -85,6 +85,7 @@ Here is a list of contributors to the previous repositories:
 - [xii69](https://github.com/xii69)
 - [ruViolence](https://github.com/ruViolence)
 - [JonasDevDE](https://github.com/JonasDevDE)
+- [CloveTwilight3](https://github.com/CloveTwilight3)
 
 *(Taken from https://github.com/FancyMcPlugins/FancyNpcs/graphs/contributors and https://github.com/FancyMcPlugins/FancyHolograms/graphs/contributors)*
 
