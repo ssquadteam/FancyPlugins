@@ -23,6 +23,7 @@ Simple, lightweight and feature-rich plugins for Minecraft servers.
 
 Plugins:
 - fancynpcs: create and manage fancy looking npcs ([old repository](https://github.com/FancyMcPlugins/FancyNpcs))
+- fancyholograms (v2): create fancy looking holograms ([old repository](https://github.com/FancyMcPlugins/FancyHolograms))
 - fancyholograms (v3): create fancy looking holograms
 - fancyvisuals: plugin to customize all visual components of the game
 
