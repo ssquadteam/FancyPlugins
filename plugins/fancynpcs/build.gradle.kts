@@ -32,8 +32,7 @@ val supportedVersions =
 
 allprojects {
     group = "de.oliver"
-    val buildId = System.getenv("BUILD_ID")
-    version = "2.4.4" + (if (buildId != null) ".$buildId" else "")
+    version = getFNVersion()
     description = "Simple, lightweight and fast NPC plugin using packets"
 
     repositories {
@@ -88,7 +87,7 @@ paper {
     bootstrapper = "de.oliver.fancynpcs.loaders.FancyNpcsBootstrapper"
     loader = "de.oliver.fancynpcs.loaders.FancyNpcsLoader"
     foliaSupported = true
-    version = rootProject.version.toString()
+    version = getFNVersion()
     description = "Simple, lightweight and fast NPC plugin using packets"
     apiVersion = "1.19"
     serverDependencies {
@@ -175,7 +174,7 @@ tasks {
 
         val props = mapOf(
             "description" to project.description,
-            "version" to project.version,
+            "version" to getFNVersion(),
             "hash" to gitCommitHash.get(),
             "build" to (System.getenv("BUILD_ID") ?: "").ifEmpty { "undefined" }
         )
@@ -212,9 +211,13 @@ val gitCommitMessage: Provider<String> = providers.exec {
     commandLine("git", "log", "-1", "--pretty=%B")
 }.standardOutput.asText.map { it.trim() }
 
+fun getFNVersion(): String {
+    return file("VERSION").readText()
+}
+
 hangarPublish {
     publications.register("plugin") {
-        version = project.version as String
+        version = getFNVersion()
         id = "FancyNpcs"
         channel = "Alpha"
 
@@ -234,9 +237,9 @@ hangarPublish {
 modrinth {
     token.set(System.getenv("MODRINTH_PUBLISH_API_TOKEN"))
     projectId.set("fancynpcs")
-    versionNumber.set(project.version.toString())
+    versionNumber.set(getFNVersion())
     versionType.set("alpha")
-    uploadFile.set(file("build/libs/${project.name}-${project.version}.jar"))
+    uploadFile.set(file("build/libs/${project.name}-${getFNVersion()}.jar"))
     gameVersions.addAll(supportedVersions)
     loaders.add("paper")
     loaders.add("folia")

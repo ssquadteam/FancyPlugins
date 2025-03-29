@@ -48,7 +48,7 @@ tasks {
             create<MavenPublication>("maven") {
                 groupId = "de.oliver"
                 artifactId = "FancyNpcs"
-                version = project.version.toString()
+                version = getFNVersion()
                 from(project.components["java"])
             }
         }
@@ -68,4 +68,8 @@ tasks {
         options.release = 17
 
     }
+}
+
+fun getFNVersion(): String {
+    return file("../VERSION").readText()
 }
