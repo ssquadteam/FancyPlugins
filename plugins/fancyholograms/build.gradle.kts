@@ -60,10 +60,15 @@ dependencies {
     implementation(project(":plugins:fancyholograms:implementation_1_20_1", configuration = "reobf"))
     implementation(project(":plugins:fancyholograms:implementation_1_19_4", configuration = "reobf"))
 
+
+    rootProject.subprojects
+        .filter { it.path.startsWith(":libraries:packets:implementations") }
+        .forEach { implementation(project(it.path)) }
     implementation(project(":libraries:common"))
     implementation(project(":libraries:plugin-tests"))
     implementation(project(":libraries:jdb"))
-    implementation("de.oliver:FancySitula:0.0.13")
+    implementation(project(":libraries:packets:packets-api"))
+    implementation(project(":libraries:packets:factories"))
     implementation("de.oliver.FancyAnalytics:api:0.1.6")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")
 
