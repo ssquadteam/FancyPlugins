@@ -1,4 +1,4 @@
-package de.oliver.fancynpcs.commands.npc;
+package de.oliver.fancynpcs.commands;
 
 import de.oliver.fancylib.translations.Translator;
 import de.oliver.fancynpcs.FancyNpcs;
