@@ -22,6 +22,7 @@ Simple, lightweight and feature-rich plugins for Minecraft servers.
 > The monorepo is still work in progress. Expect breaking changes and incomplete documentation.
 
 Plugins:
+- fancynpcs: create and manage fancy looking npcs ([old repository](https://github.com/FancyMcPlugins/FancyNpcs))
 - fancyholograms (v3): create fancy looking holograms
 - fancyvisuals: plugin to customize all visual components of the game
 
@@ -38,7 +39,6 @@ Tools:
 Docs: documentation for all plugins, libraries and tools.
 
 Future packages that are planned to be added to the monorepo:
-- fancynpcs: https://github.com/FancyMcPlugins/FancyNpcs
 - fancywebsite: https://github.com/FancyMcPlugins/FancyWebsite
 - (fancymorphs: https://github.com/FancyMcPlugins/FancyMorphs)
 - modrinth-sdk: an SDK for the modrinth API (which then can be used in the deployment and quick-e2e tool)
