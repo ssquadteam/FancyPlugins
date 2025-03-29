@@ -151,6 +151,13 @@ Changes whether the NPC should turn to the player when in range.
 - **Syntax**:  `/npc turn_to_player (npc) [state]`
 - **Permissions**: `fancynpcs.command.npc.turn_to_player`
 
+### Turn npc to player distance
+
+Changes the distance at which the NPC should turn to the player.
+
+- **Syntax**:  `/npc turn_to_player_distance (npc) [distance]`
+- **Permissions**: `fancynpcs.command.npc.turn_to_player_distance`
+
 ### Move npc to your location
 
 Teleports specified NPC to your location.
@@ -164,6 +171,13 @@ Teleports NPC to specified location.
 
 - **Syntax**:  `/npc move_to (npc) (x) (y) (z) [world] [--look-in-my-direction]`
 - **Permissions**: `fancynpcs.command.npc.move_to`
+
+### Center npc location
+
+Centers the NPC to the specified location.
+
+- **Syntax**:  `/npc center (npc)`
+- **Permissions**: `fancynpcs.command.npc.center`
 
 ### Show nearby npcs
 
