@@ -30,6 +30,9 @@ jobs:
       - name: Modify gradlew permissions
         run: chmod +x ./gradlew
 
+      - name: Build FancyNpcs
+        run: ./gradlew :plugins:fancynpcs:shadowJar
+
       - name: Build FancyHolograms
         run: ./gradlew :plugins:fancyholograms:shadowJar
 
