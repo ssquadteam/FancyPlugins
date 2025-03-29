@@ -62,9 +62,10 @@ dependencies {
     implementation(project(":plugins:fancynpcs:implementation_1_20", configuration = "reobf"))
     implementation(project(":plugins:fancynpcs:implementation_1_19_4", configuration = "reobf"))
 
-    implementation("de.oliver:FancyLib:37")
-    implementation("de.oliver:plugin-tests:1.0.0")
-    implementation("de.oliver:JDB:1.0.0")
+    implementation(project(":libraries:common"))
+    implementation(project(":libraries:jdb"))
+    implementation(project(":libraries:plugin-tests"))
+    implementation(project(":libraries:packets"))
     compileOnly("org.lushplugins:ChatColorHandler:5.1.3")
     implementation("de.oliver.FancyAnalytics:api:0.1.6")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")

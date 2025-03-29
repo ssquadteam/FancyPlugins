@@ -9,7 +9,7 @@ dependencies {
     paperweight.paperDevBundle("1.21.5-no-moonrise-SNAPSHOT")
 
     compileOnly(project(":plugins:fancynpcs:api"))
-    compileOnly("de.oliver:FancyLib:37")
+    compileOnly(project(":libraries:common"))
     compileOnly("org.lushplugins:ChatColorHandler:5.1.3")
 }
 
