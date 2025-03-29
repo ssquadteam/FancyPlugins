@@ -45,7 +45,7 @@ public class ModrinthService {
                 changelog,
                 new ArrayList<>(),
                 Arrays.asList(config.supportedVersions()),
-                ProjectVersion.VersionType.ALPHA,
+                ProjectVersion.VersionType.valueOf(config.channel()),
                 Arrays.asList(config.loaders()),
                 config.featured(),
                 config.projectID(),

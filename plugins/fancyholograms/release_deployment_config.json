@@ -18,7 +18,7 @@
     "1.21.3",
     "1.21.4"
   ],
-  "channel": "release",
+  "channel": "RELEASE",
   "loaders": [
     "paper",
     "folia"

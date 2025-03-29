@@ -34,6 +34,8 @@ jobs:
         run: ./gradlew :tools:deployment:shadowJar
 
       - name: Deploy
+        env:
+          MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
         run:
           cd tools/deployment/build/libs &&
           java -jar deployment.jar ../../../../plugins/fancyholograms/snapshot_deployment_config.json
