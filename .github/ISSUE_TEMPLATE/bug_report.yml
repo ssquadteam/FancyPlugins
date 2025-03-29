@@ -3,6 +3,17 @@ description: File a bug report.
 title: "Bug: "
 labels: ["bug"]
 body:
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: In which plugin has the error occurred?
+      multiple: false
+      options:
+        - FancyNpcs
+        - FancyHolograms
+        - Other
+    validations:
+      required: true
   - type: textarea
     id: what-happened
     attributes:

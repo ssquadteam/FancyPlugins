@@ -3,6 +3,17 @@ description: Suggest a new Feature.
 title: "Feature: "
 labels: ["feature"]
 body:
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: For which plugin is the feature?
+      multiple: false
+      options:
+        - FancyNpcs
+        - FancyHolograms
+        - Other
+    validations:
+      required: true
   - type: textarea
     id: description
     attributes:
