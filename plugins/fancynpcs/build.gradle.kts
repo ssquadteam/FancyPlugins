@@ -1,6 +1,4 @@
 import net.minecrell.pluginyml.paper.PaperPluginDescription
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 plugins {
     id("java-library")
@@ -28,7 +26,8 @@ val supportedVersions =
         "1.21.1",
         "1.21.2",
         "1.21.3",
-        "1.21.4"
+        "1.21.4",
+        "1.21.5"
     )
 
 allprojects {
@@ -103,11 +102,11 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.5")
+        minecraftVersion("1.21.4")
 
         downloadPlugins {
-            hangar("ViaVersion", "5.2.1")
-            hangar("ViaBackwards", "5.2.1")
+            hangar("ViaVersion", "5.3.0")
+            hangar("ViaBackwards", "5.3.0")
             hangar("PlaceholderAPI", "2.11.6")
 //            modrinth("multiverse-core", "4.3.11")
         }
@@ -117,7 +116,7 @@ tasks {
         relocate("org.incendo", "de.oliver")
         relocate("org.lushplugins.chatcolorhandler", "de.oliver.fancynpcs.libs.chatcolorhandler")
         archiveClassifier.set("")
-        dependsOn(":api:shadowJar")
+        dependsOn(":plugins:fancynpcs:api:shadowJar")
     }
 
     publishing {
@@ -169,7 +168,7 @@ tasks {
         val props = mapOf(
             "description" to project.description,
             "version" to project.version,
-            "hash" to getCurrentCommitHash(),
+            "hash" to gitCommitHash.get(),
             "build" to (System.getenv("BUILD_ID") ?: "").ifEmpty { "undefined" }
         )
 
@@ -186,43 +185,24 @@ tasks {
 }
 
 tasks.publishAllPublicationsToHangar {
-    dependsOn("shadowJar")
+    dependsOn(":plugins:fancynpcs:shadowJar")
 }
 
 tasks.modrinth {
-    dependsOn("shadowJar")
+    dependsOn(":plugins:fancynpcs:shadowJar")
 }
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
-fun getCurrentCommitHash(): String {
-    val process = ProcessBuilder("git", "rev-parse", "HEAD").start()
-    val reader = BufferedReader(InputStreamReader(process.inputStream))
-    val commitHash = reader.readLine()
-    reader.close()
-    process.waitFor()
-    if (process.exitValue() == 0) {
-        return commitHash ?: ""
-    } else {
-        throw IllegalStateException("Failed to retrieve the commit hash.")
-    }
-}
+val gitCommitHash: Provider<String> = providers.exec {
+    commandLine("git", "rev-parse", "HEAD")
+}.standardOutput.asText.map { it.trim() }
 
-fun getLastCommitMessage(): String {
-    val process = ProcessBuilder("git", "log", "-1", "--pretty=%B").start()
-    val reader = BufferedReader(InputStreamReader(process.inputStream))
-    val commitMessage = reader.readLine()
-    reader.close()
-    process.waitFor()
-    if (process.exitValue() == 0) {
-        println("Commit message: $commitMessage")
-        return commitMessage ?: ""
-    } else {
-        throw IllegalStateException("Failed to retrieve the commit message.")
-    }
-}
+val gitCommitMessage: Provider<String> = providers.exec {
+    commandLine("git", "log", "-1", "--pretty=%B")
+}.standardOutput.asText.map { it.trim() }
 
 hangarPublish {
     publications.register("plugin") {
@@ -239,7 +219,7 @@ hangarPublish {
             }
         }
 
-        changelog = getLastCommitMessage()
+        changelog = gitCommitMessage.get()
     }
 }
 
@@ -252,5 +232,5 @@ modrinth {
     gameVersions.addAll(supportedVersions)
     loaders.add("paper")
     loaders.add("folia")
-    changelog.set(getLastCommitMessage())
+    changelog.set(gitCommitMessage.get())
 }

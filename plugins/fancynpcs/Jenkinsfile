@@ -14,14 +14,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/FancyMcPlugins/FancyNpcs', branch: 'main'
+                git url: 'https://github.com/FancyMcPlugins/fancyplugins', branch: 'main'
             }
         }
 
         stage('Build') {
             steps {
                 sh 'chmod +x gradlew'
-                sh './gradlew clean shadowJar'
+                sh './gradlew clean :plugins:fancynpcs:shadowJar'
                 echo 'Built the plugin!'
             }
         }
@@ -33,10 +33,10 @@ pipeline {
                     string(credentialsId: 'MODRINTH_PUBLISH_API_TOKEN', variable: 'MODRINTH_PUBLISH_API_TOKEN'),
                     string(credentialsId: 'HANGAR_PUBLISH_API_TOKEN', variable: 'HANGAR_PUBLISH_API_TOKEN')
                 ]) {
-                    sh 'export MODRINTH_PUBLISH_API_TOKEN=${MODRINTH_PUBLISH_API_TOKEN} && ./gradlew modrinth'
+                    sh 'export MODRINTH_PUBLISH_API_TOKEN=${MODRINTH_PUBLISH_API_TOKEN} && ./gradlew :plugins:fancynpcs:modrinth'
                     echo 'Published to Modrinth!'
 
-                    sh 'export HANGAR_PUBLISH_API_TOKEN=${HANGAR_PUBLISH_API_TOKEN} && ./gradlew publishAllPublicationsToHangar'
+                    sh 'export HANGAR_PUBLISH_API_TOKEN=${HANGAR_PUBLISH_API_TOKEN} && ./gradlew :plugins:fancynpcs:publishAllPublicationsToHangar'
                     echo 'Published to Hangar!'
                 }
             }
