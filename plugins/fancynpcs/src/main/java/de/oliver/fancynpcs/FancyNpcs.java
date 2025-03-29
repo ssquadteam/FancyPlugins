@@ -35,6 +35,7 @@ import de.oliver.fancynpcs.skins.SkinManagerImpl;
 import de.oliver.fancynpcs.skins.SkinUtils;
 import de.oliver.fancynpcs.skins.cache.SkinCacheFile;
 import de.oliver.fancynpcs.skins.cache.SkinCacheMemory;
+import de.oliver.fancynpcs.tests.PlaceholderApiEnv;
 import de.oliver.fancynpcs.tracker.TurnToPlayerTracker;
 import de.oliver.fancynpcs.tracker.VisibilityTracker;
 import de.oliver.fancynpcs.utils.OldSkinCacheMigrator;
@@ -318,6 +319,10 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
                     .registerCommands();
         } else {
             getLogger().warning("Commands and related components have not been registered. This can be changed by setting 'register_commands' to true, and restarting the server.");
+        }
+
+        if (ENABLE_DEBUG_MODE_FEATURE_FLAG.isEnabled()) {
+            PlaceholderApiEnv.registerPlaceholders();
         }
 
         fancyLogger.info("FancyNpcs (" + versionConfig.getVersion() + ") has been enabled.");

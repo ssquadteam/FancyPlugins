@@ -1,5 +1,7 @@
 package de.oliver.fancynpcs.api.skins;
 
+import org.lushplugins.chatcolorhandler.ChatColorHandler;
+
 public class SkinData {
 
     private String identifier;
@@ -32,6 +34,14 @@ public class SkinData {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
+    }
+
+    public String getParsedIdentifier() {
+        if (identifier.startsWith("%") && identifier.endsWith("%") || identifier.startsWith("{") && identifier.endsWith("}")) {
+            return ChatColorHandler.translate(identifier);
+        } else {
+            return identifier;
+        }
     }
 
     public SkinVariant getVariant() {

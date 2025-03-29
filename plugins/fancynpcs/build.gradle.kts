@@ -43,6 +43,7 @@ allprojects {
         maven(url = "https://repo.fancyplugins.de/releases")
         maven(url = "https://repo.lushplugins.org/releases")
         maven(url = "https://repo.inventivetalent.org/repository/maven-snapshots/")
+        maven(url = "https://repo.extendedclip.com/releases/")
     }
 }
 
@@ -73,6 +74,7 @@ dependencies {
     annotationProcessor("org.incendo:cloud-annotations:2.1.0-SNAPSHOT")
     implementation("org.mineskin:java-client-jsoup:3.0.3-SNAPSHOT")
 
+    compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.intellectualsites.plotsquared:plotsquared-core:7.5.1")
 }
 

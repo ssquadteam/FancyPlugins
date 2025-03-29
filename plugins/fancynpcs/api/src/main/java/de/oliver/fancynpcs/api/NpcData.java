@@ -163,6 +163,7 @@ public class NpcData {
      */
     public NpcData setSkin(String skin, SkinData.SkinVariant variant) {
         SkinData data = FancyNpcsPlugin.get().getSkinManager().getByIdentifier(skin, variant);
+        data.setIdentifier(skin);
         return setSkinData(data);
     }
 

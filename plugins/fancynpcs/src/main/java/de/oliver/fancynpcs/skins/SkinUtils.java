@@ -17,4 +17,8 @@ public class SkinUtils {
     public static boolean isFile(String identifier) {
         return identifier.endsWith(".png") || identifier.endsWith(".jpg") || identifier.endsWith(".jpeg");
     }
+
+    public static boolean isUsername(String identifier) {
+        return !identifier.isEmpty() && !isUUID(identifier) && !isURL(identifier) && !isFile(identifier);
+    }
 }

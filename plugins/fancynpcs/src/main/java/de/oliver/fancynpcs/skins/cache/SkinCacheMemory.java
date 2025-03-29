@@ -32,7 +32,7 @@ public class SkinCacheMemory implements SkinCache {
     @Override
     public void addSkin(SkinData skin) {
         SkinCacheData skinCacheData = new SkinCacheData(skin, System.currentTimeMillis(), CACHE_TIME);
-        cache.put(skin.getIdentifier(), skinCacheData);
+        cache.put(skin.getParsedIdentifier(), skinCacheData);
     }
 
     @Override
