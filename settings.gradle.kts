@@ -33,7 +33,7 @@ include(":libraries:common")
 include(":libraries:jdb")
 include(":libraries:plugin-tests")
 
-include(":libraries:packets:api")
+include(":libraries:packets:packets-api")
 include(":libraries:packets:factories")
 include(":libraries:packets:implementations")
 include(":libraries:packets:implementations:1_20_6")
