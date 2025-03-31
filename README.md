@@ -6,10 +6,15 @@
 
 [![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/user/Oliver)
 [![Hangar](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/hangar_vector.svg)](https://hangar.papermc.io/Oliver)
+![Unsupported spigot](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/unsupported/spigot_vector.svg)
 
+[![Website](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/documentation/website_vector.svg)](https://fancyplugins.de)
+[![Documentation](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/documentation/ghpages_vector.svg)](https://docs.fancyplugins.de)
+[![discord-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/social/discord-plural_46h.png)](https://discord.gg/ZUgYCEJUEx)
+
+
+[![CodeFactor](https://www.codefactor.io/repository/github/fancymcplugins/fancyplugins/badge)](https://www.codefactor.io/repository/github/fancymcplugins/fancyplugins)
 [![Lines of Code](https://tokei.rs/b1/github/fancymcplugins/fancyplugins?category=code)](https://github.com/fancymcplugins/fancyplugins)
-[![Discord](https://img.shields.io/discord/899740810956910683?cacheSeconds=3600&logo=discord&logoColor=white&label=%20&labelColor=%235865F2&color=%23707BF4)](https://discord.gg/ZUgYCEJUEx)
-
 <br />
 
 Simple, lightweight and feature-rich plugins for Minecraft servers.
