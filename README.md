@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![](docs/src/static/fancyplugins-banner.png)
+![](docs/src/static/logos-and-banners/fancyplugins-banner.png)
 
 [![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/user/Oliver)
 [![Hangar](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/hangar_vector.svg)](https://hangar.papermc.io/Oliver)

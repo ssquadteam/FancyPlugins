@@ -1,6 +1,6 @@
 <div align="center">
 
-![Banner](https://github.com/FancyMcPlugins/FancyHolograms/blob/main/images/banner.png?raw=true)
+![Banner](../../docs/src/static/logos-and-banners/fancyholograms-banner.png)
 
 [![GitHub Release](https://img.shields.io/github/v/release/FancyMcPlugins/FancyHolograms?logo=github&labelColor=%2324292F&color=%23454F5A)](https://github.com/FancyMcPlugins/FancyHolograms/releases/latest)
 [![Supports Folia](https://img.shields.io/badge/folia-supported-%23F9D879?labelColor=%2313154E&color=%234A44A6)](https://papermc.io/software/folia)
