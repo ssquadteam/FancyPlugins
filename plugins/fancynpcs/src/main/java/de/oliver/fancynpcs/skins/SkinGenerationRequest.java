@@ -3,6 +3,8 @@ package de.oliver.fancynpcs.skins;
 import de.oliver.fancynpcs.api.skins.SkinData;
 import org.mineskin.request.GenerateRequest;
 
+import java.util.Objects;
+
 public class SkinGenerationRequest {
 
     private final String id;
@@ -31,5 +33,28 @@ public class SkinGenerationRequest {
 
     public GenerateRequest getMineskinRequest() {
         return mineskinRequest;
+    }
+
+    @Override
+    public String toString() {
+        return "SkinGenerationRequest{" +
+                "id='" + id + '\'' +
+                ", variant=" + variant +
+                ", mineskinRequest=" + mineskinRequest +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        SkinGenerationRequest that = (SkinGenerationRequest) o;
+        return Objects.equals(id, that.id) &&
+                variant == that.variant &&
+                Objects.equals(mineskinRequest, that.mineskinRequest);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, variant, mineskinRequest);
     }
 }
