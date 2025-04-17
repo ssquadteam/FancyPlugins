@@ -1,6 +1,7 @@
 package de.oliver.fancynpcs.tests.skins;
 
 import de.oliver.fancynpcs.api.skins.SkinData;
+import de.oliver.fancynpcs.api.skins.SkinLoadException;
 import de.oliver.fancynpcs.skins.SkinGenerationRequest;
 import de.oliver.fancynpcs.skins.SkinManagerImpl;
 import de.oliver.fancynpcs.skins.cache.SkinCache;
@@ -124,6 +125,29 @@ public class SkinManagerTest {
 
             tearDown(player);
         }
+    }
+
+    @FPTest(name = "SkinManagerImpl#getByUsername valid")
+    public void testGetByUsernameValid(Player player) {
+        String username = "OliverHD";
+        SkinData.SkinVariant variant = SkinData.SkinVariant.SLIM;
+
+        SkinData got = manager.getByUsername(username, variant);
+        expect(got).toBeDefined();
+        expect(got.getIdentifier()).toEqual(username);
+        expect(got.getVariant()).toEqual(variant);
+    }
+
+    @FPTest(name = "SkinManagerImpl#getByUsername invalid")
+    public void testGetByUsernameInvalid(Player player) {
+        String username = "._.";
+        SkinData.SkinVariant variant = SkinData.SkinVariant.SLIM;
+
+        Runnable runnable = () -> manager.getByUsername(username, variant);
+        SkinLoadException ex = expect(runnable).toThrow(SkinLoadException.class);
+
+        expect(ex).toBeDefined();
+        expect(ex.getReason()).toBe(SkinLoadException.Reason.INVALID_USERNAME);
     }
 
 }
