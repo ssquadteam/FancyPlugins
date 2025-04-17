@@ -321,7 +321,7 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
             getLogger().warning("Commands and related components have not been registered. This can be changed by setting 'register_commands' to true, and restarting the server.");
         }
 
-        if (ENABLE_DEBUG_MODE_FEATURE_FLAG.isEnabled()) {
+        if (ENABLE_DEBUG_MODE_FEATURE_FLAG.isEnabled() && Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             PlaceholderApiEnv.registerPlaceholders();
         }
 
