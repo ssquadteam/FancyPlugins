@@ -140,6 +140,7 @@ messages:
   fancynpcs_test_success: "<dark_gray>› {successColor}All {count} tests have passed successfully (ran by {player} at {time})."
   fancynpcs_test_failure: "<dark_gray>› {errorColor}Some tests have failed (ran by {player} at {time})."
   fancynpcs_skin_system_restart_schedulers_success: "<dark_gray>› {successColor}Skin schedulers have been restarted."
+  fancynpcs_skin_system_scheduler_status: "<dark_gray>› {successColor}Status ({scheduler}): {status}"
   fancynpcs_skin_system_clear_queues_success: "<dark_gray>› {successColor}Skin generation queues have been cleared."
   fancynpcs_skin_system_clear_cache_success: "<dark_gray>› {successColor}Skin cache has been cleared."
 
