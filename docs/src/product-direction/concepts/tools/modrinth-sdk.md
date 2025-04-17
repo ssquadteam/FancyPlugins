@@ -1,3 +1,0 @@
-# Modrinth SDK
-
-TODO

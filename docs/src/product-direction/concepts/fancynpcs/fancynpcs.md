@@ -1,5 +1,5 @@
 ---
-redirect: custom-models.md
+redirect: action-scripting
 ---
 
 # FancyNpcs
