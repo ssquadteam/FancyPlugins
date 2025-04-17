@@ -72,13 +72,7 @@ public class SkinManagerImpl implements SkinManager, Listener {
             return getByIdentifier(parsed, variant);
         }
 
-        // is username
-        UUID uuid = UUIDFetcher.getUUID(identifier);
-        if (uuid == null) {
-            throw new SkinLoadException(SkinLoadException.Reason.INVALID_USERNAME, "(USERNAME = '" + identifier + "')");
-        }
-
-        return getByUUID(uuid, variant);
+        return getByUsername(identifier, variant);
     }
 
     @Override
@@ -98,12 +92,18 @@ public class SkinManagerImpl implements SkinManager, Listener {
 
     @Override
     public SkinData getByUsername(String username, SkinData.SkinVariant variant) throws SkinLoadException {
+        SkinData cached = tryToGetFromCache(username, variant);
+        if (cached != null) {
+            return cached;
+        }
+
         UUID uuid = UUIDFetcher.getUUID(username);
         if (uuid == null) {
             throw new SkinLoadException(SkinLoadException.Reason.INVALID_USERNAME, "(USERNAME = '" + username + "')");
         }
+        SkinData dataByUUID = getByUUID(uuid, variant);
 
-        return getByUUID(uuid, variant);
+        return new SkinData(username, dataByUUID.getVariant(), dataByUUID.getTextureValue(), dataByUUID.getTextureSignature());
     }
 
     @Override
