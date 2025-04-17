@@ -136,6 +136,12 @@ public class SkinManagerTest {
         expect(got).toBeDefined();
         expect(got.getIdentifier()).toEqual(username);
         expect(got.getVariant()).toEqual(variant);
+
+        expect(mojangQueue.getQueue().size()).toBe(1);
+        SkinGenerationRequest queued = mojangQueue.getQueue().getFirst();
+        expect(queued).toBeDefined();
+        expect(queued.getID()).toHaveLength(UUID.randomUUID().toString().length());
+        expect(queued.getVariant()).toEqual(variant);
     }
 
     @FPTest(name = "SkinManagerImpl#getByUsername invalid")
@@ -150,4 +156,33 @@ public class SkinManagerTest {
         expect(ex.getReason()).toBe(SkinLoadException.Reason.INVALID_USERNAME);
     }
 
+    @FPTest(name = "SkinManagerImpl#getByURL valid")
+    public void testGetByURLValid(Player player) {
+        String url = "https://example.com/skin.png";
+        SkinData.SkinVariant variant = SkinData.SkinVariant.SLIM;
+
+        SkinData got = manager.getByURL(url, variant);
+        expect(got).toBeDefined();
+        expect(got.getIdentifier()).toEqual(url);
+        expect(got.getVariant()).toEqual(variant);
+
+        expect(mineSkinQueue.getQueue().size()).toBe(1);
+        SkinGenerationRequest queued = mineSkinQueue.getQueue().getFirst();
+        expect(queued).toBeDefined();
+        expect(queued.getID()).toEqual(url);
+        expect(queued.getVariant()).toEqual(variant);
+        expect(queued.getMineskinRequest()).toBeDefined();
+    }
+
+    @FPTest(name = "SkinManagerImpl#getByURL invalid")
+    public void testGetByURLInvalid(Player player) {
+        String url = "invalid-url!";
+        SkinData.SkinVariant variant = SkinData.SkinVariant.SLIM;
+
+        Runnable runnable = () -> manager.getByURL(url, variant);
+        SkinLoadException ex = expect(runnable).toThrow(SkinLoadException.class);
+
+        expect(ex).toBeDefined();
+        expect(ex.getReason()).toBe(SkinLoadException.Reason.INVALID_URL);
+    }
 }
