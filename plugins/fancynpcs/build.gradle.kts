@@ -109,11 +109,11 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.4")
+        minecraftVersion("1.21.5")
 
         downloadPlugins {
-            hangar("ViaVersion", "5.3.0")
-            hangar("ViaBackwards", "5.3.0")
+            hangar("ViaVersion", "5.3.2")
+            hangar("ViaBackwards", "5.3.2")
             hangar("PlaceholderAPI", "2.11.6")
 //            modrinth("multiverse-core", "4.3.11")
         }
