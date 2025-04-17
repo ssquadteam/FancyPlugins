@@ -185,4 +185,16 @@ public class SkinManagerTest {
         expect(ex).toBeDefined();
         expect(ex.getReason()).toBe(SkinLoadException.Reason.INVALID_URL);
     }
+
+    @FPTest(name = "SkinManagerImpl#getByFile invalid")
+    public void testGetByFileInvalid(Player player) {
+        String filePath = "invalid-file-path-" + System.currentTimeMillis() + ".html";
+        SkinData.SkinVariant variant = SkinData.SkinVariant.SLIM;
+
+        Runnable runnable = () -> manager.getByFile(filePath, variant);
+        SkinLoadException ex = expect(runnable).toThrow(SkinLoadException.class);
+
+        expect(ex).toBeDefined();
+        expect(ex.getReason()).toBe(SkinLoadException.Reason.INVALID_FILE);
+    }
 }
