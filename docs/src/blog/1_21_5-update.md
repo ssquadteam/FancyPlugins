@@ -5,6 +5,7 @@ authors:
     link: https://github.com/OliverSchlueter
     avatar: https://avatars.githubusercontent.com/u/79666085?v=4
 
+date: 2025-04-19
 title: 1.21.5 Update (Spring to Life)
 description: Everything you need to know about the 1.21.5 update.
 visibility: hidden
