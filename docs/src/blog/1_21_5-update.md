@@ -7,6 +7,7 @@ authors:
 
 title: 1.21.5 Update (Spring to Life)
 description: Everything you need to know about the 1.21.5 update.
+visibility: hidden
 ---
 
 ![](../static/1_21_5-update.png)
