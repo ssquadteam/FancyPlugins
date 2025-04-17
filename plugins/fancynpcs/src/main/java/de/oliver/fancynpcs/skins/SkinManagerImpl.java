@@ -37,10 +37,14 @@ public class SkinManagerImpl implements SkinManager, Listener {
 
     private final SkinCache fileCache;
     private final SkinCache memCache;
+    private final SkinGenerationQueue<MojangQueue.SkinRequest> mojangQueue;
+    private final SkinGenerationQueue<MineSkinQueue.SkinRequest> mineSkinQueue;
 
-    public SkinManagerImpl(SkinCache fileCache, SkinCache memCache) {
+    public SkinManagerImpl(SkinCache fileCache, SkinCache memCache, SkinGenerationQueue<MojangQueue.SkinRequest> mojangQueue, SkinGenerationQueue<MineSkinQueue.SkinRequest> mineSkinQueue) {
         this.fileCache = fileCache;
         this.memCache = memCache;
+        this.mojangQueue = mojangQueue;
+        this.mineSkinQueue = mineSkinQueue;
 
         File skinsDir = new File(SKINS_DIRECTORY);
         if (!skinsDir.exists()) {
@@ -82,11 +86,11 @@ public class SkinManagerImpl implements SkinManager, Listener {
             return cached;
         }
 
-        MojangQueue.get().add(new MojangQueue.SkinRequest(uuid.toString(), variant));
+        mojangQueue.add(new MojangQueue.SkinRequest(uuid.toString(), variant));
 
 //        GenerateRequest genReq = GenerateRequest.user(uuid);
 //        genReq.variant(Variant.valueOf(variant.name()));
-//        MineSkinQueue.get().add(new MineSkinQueue.SkinRequest(uuid.toString(), genReq));
+//        mineSkinQueue.add(new MineSkinQueue.SkinRequest(uuid.toString(), genReq));
         return new SkinData(uuid.toString(), variant);
     }
 
@@ -120,7 +124,7 @@ public class SkinManagerImpl implements SkinManager, Listener {
             throw new SkinLoadException(SkinLoadException.Reason.INVALID_URL, "(URL = '" + url + "')");
         }
         genReq.variant(Variant.valueOf(variant.name()));
-        MineSkinQueue.get().add(new MineSkinQueue.SkinRequest(url, genReq));
+        mineSkinQueue.add(new MineSkinQueue.SkinRequest(url, genReq));
         return new SkinData(url, variant);
     }
 
@@ -138,7 +142,7 @@ public class SkinManagerImpl implements SkinManager, Listener {
 
         GenerateRequest genReq = GenerateRequest.upload(file);
         genReq.variant(Variant.valueOf(variant.name()));
-        MineSkinQueue.get().add(new MineSkinQueue.SkinRequest(filePath, genReq));
+        mineSkinQueue.add(new MineSkinQueue.SkinRequest(filePath, genReq));
         return new SkinData(filePath, variant);
     }
 

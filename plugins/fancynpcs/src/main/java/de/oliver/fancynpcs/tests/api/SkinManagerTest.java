@@ -4,6 +4,8 @@ import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.fancynpcs.api.skins.SkinData;
 import de.oliver.fancynpcs.skins.SkinManagerImpl;
 import de.oliver.fancynpcs.skins.cache.SkinCacheMemory;
+import de.oliver.fancynpcs.skins.mineskin.MineSkinQueue;
+import de.oliver.fancynpcs.skins.mojang.MojangQueue;
 import de.oliver.plugintests.annotations.FPBeforeEach;
 import de.oliver.plugintests.annotations.FPTest;
 import org.bukkit.entity.Player;
@@ -19,7 +21,7 @@ public class SkinManagerTest {
     @FPBeforeEach
     public void setUp(Player player) {
 
-        skinFetcher = new SkinManagerImpl(new SkinCacheMemory(), new SkinCacheMemory());
+        skinFetcher = new SkinManagerImpl(new SkinCacheMemory(), new SkinCacheMemory(), MojangQueue.get(), MineSkinQueue.get());
     }
 
     @FPTest(name = "Test fetch skin by UUID")

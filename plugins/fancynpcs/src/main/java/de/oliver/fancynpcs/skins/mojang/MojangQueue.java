@@ -3,6 +3,7 @@ package de.oliver.fancynpcs.skins.mojang;
 import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.fancynpcs.api.skins.SkinData;
 import de.oliver.fancynpcs.api.skins.SkinGeneratedEvent;
+import de.oliver.fancynpcs.skins.SkinGenerationQueue;
 import de.oliver.fancynpcs.skins.SkinManagerImpl;
 import de.oliver.fancynpcs.skins.mineskin.RatelimitException;
 
@@ -11,7 +12,7 @@ import java.util.Queue;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class MojangQueue {
+public class MojangQueue implements SkinGenerationQueue<MojangQueue.SkinRequest> {
 
     private static MojangQueue INSTANCE;
 

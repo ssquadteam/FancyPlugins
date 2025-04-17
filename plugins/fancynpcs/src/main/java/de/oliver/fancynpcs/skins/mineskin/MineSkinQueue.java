@@ -3,6 +3,7 @@ package de.oliver.fancynpcs.skins.mineskin;
 import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.fancynpcs.api.skins.SkinData;
 import de.oliver.fancynpcs.api.skins.SkinGeneratedEvent;
+import de.oliver.fancynpcs.skins.SkinGenerationQueue;
 import de.oliver.fancynpcs.skins.SkinManagerImpl;
 import org.mineskin.data.SkinInfo;
 import org.mineskin.data.Variant;
@@ -13,7 +14,7 @@ import java.util.Queue;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class MineSkinQueue {
+public class MineSkinQueue implements SkinGenerationQueue<MineSkinQueue.SkinRequest> {
     private static MineSkinQueue INSTANCE;
 
     private final MineSkinAPI api;
