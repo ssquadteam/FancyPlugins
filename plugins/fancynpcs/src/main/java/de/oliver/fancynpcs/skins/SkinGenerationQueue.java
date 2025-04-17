@@ -2,11 +2,13 @@ package de.oliver.fancynpcs.skins;
 
 import java.util.concurrent.ScheduledFuture;
 
-public interface SkinGenerationQueue<R> {
+public interface SkinGenerationQueue {
 
     void run();
 
-    void add(R request);
+    void add(SkinGenerationRequest request);
+
+    void clear();
 
     ScheduledFuture<?> getScheduler();
 }

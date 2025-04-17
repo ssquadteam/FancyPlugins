@@ -4,6 +4,7 @@ import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.fancynpcs.api.skins.SkinData;
 import de.oliver.fancynpcs.api.skins.SkinGeneratedEvent;
 import de.oliver.fancynpcs.skins.SkinGenerationQueue;
+import de.oliver.fancynpcs.skins.SkinGenerationRequest;
 import de.oliver.fancynpcs.skins.SkinManagerImpl;
 import de.oliver.fancynpcs.skins.mineskin.RatelimitException;
 
@@ -12,11 +13,11 @@ import java.util.Queue;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class MojangQueue implements SkinGenerationQueue<MojangQueue.SkinRequest> {
+public class MojangQueue implements SkinGenerationQueue {
 
     private static MojangQueue INSTANCE;
 
-    private final Queue<SkinRequest> queue;
+    private final Queue<SkinGenerationRequest> queue;
     private final MojangAPI api;
     private ScheduledFuture<?> scheduler;
     private long nextRequestTime = System.currentTimeMillis();
@@ -36,6 +37,7 @@ public class MojangQueue implements SkinGenerationQueue<MojangQueue.SkinRequest>
         return INSTANCE;
     }
 
+    @Override
     public void run() {
         scheduler = SkinManagerImpl.EXECUTOR.scheduleWithFixedDelay(this::pollMany, 5, 1, TimeUnit.SECONDS);
     }
@@ -56,15 +58,15 @@ public class MojangQueue implements SkinGenerationQueue<MojangQueue.SkinRequest>
             return;
         }
 
-        SkinRequest req = this.queue.poll();
+        SkinGenerationRequest req = this.queue.poll();
         if (req == null) {
             return;
         }
 
         try {
-            FancyNpcs.getInstance().getFancyLogger().debug("Fetching skin from Mojang: " + req.uuid());
-            SkinData skinData = this.api.fetchSkin(req.uuid(), req.variant());
-            new SkinGeneratedEvent(req.uuid(), skinData).callEvent();
+            FancyNpcs.getInstance().getFancyLogger().debug("Fetching skin from Mojang: " + req.getID());
+            SkinData skinData = this.api.fetchSkin(req.getID(), req.getVariant());
+            new SkinGeneratedEvent(req.getID(), skinData).callEvent();
         } catch (RatelimitException e) {
             this.nextRequestTime = e.getNextRequestTime();
             this.queue.add(req);
@@ -75,10 +77,11 @@ public class MojangQueue implements SkinGenerationQueue<MojangQueue.SkinRequest>
         this.nextRequestTime = System.currentTimeMillis();
     }
 
-    public void add(SkinRequest req) {
+    @Override
+    public void add(SkinGenerationRequest req) {
         // check if request is already in queue
-        for (SkinRequest r : this.queue) {
-            if (r.uuid().equals(req.uuid())) {
+        for (SkinGenerationRequest r : this.queue) {
+            if (r.getID().equals(req.getID())) {
                 return;
             }
         }
@@ -86,15 +89,14 @@ public class MojangQueue implements SkinGenerationQueue<MojangQueue.SkinRequest>
         this.queue.add(req);
     }
 
+    @Override
     public void clear() {
         this.queue.clear();
     }
 
+    @Override
     public ScheduledFuture<?> getScheduler() {
         return scheduler;
-    }
-
-    public record SkinRequest(String uuid, SkinData.SkinVariant variant) {
     }
 
 }

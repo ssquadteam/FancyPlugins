@@ -10,8 +10,6 @@ import de.oliver.fancynpcs.api.skins.SkinLoadException;
 import de.oliver.fancynpcs.api.skins.SkinManager;
 import de.oliver.fancynpcs.skins.cache.SkinCache;
 import de.oliver.fancynpcs.skins.cache.SkinCacheData;
-import de.oliver.fancynpcs.skins.mineskin.MineSkinQueue;
-import de.oliver.fancynpcs.skins.mojang.MojangQueue;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.lushplugins.chatcolorhandler.ChatColorHandler;
@@ -37,10 +35,10 @@ public class SkinManagerImpl implements SkinManager, Listener {
 
     private final SkinCache fileCache;
     private final SkinCache memCache;
-    private final SkinGenerationQueue<MojangQueue.SkinRequest> mojangQueue;
-    private final SkinGenerationQueue<MineSkinQueue.SkinRequest> mineSkinQueue;
+    private final SkinGenerationQueue mojangQueue;
+    private final SkinGenerationQueue mineSkinQueue;
 
-    public SkinManagerImpl(SkinCache fileCache, SkinCache memCache, SkinGenerationQueue<MojangQueue.SkinRequest> mojangQueue, SkinGenerationQueue<MineSkinQueue.SkinRequest> mineSkinQueue) {
+    public SkinManagerImpl(SkinCache fileCache, SkinCache memCache, SkinGenerationQueue mojangQueue, SkinGenerationQueue mineSkinQueue) {
         this.fileCache = fileCache;
         this.memCache = memCache;
         this.mojangQueue = mojangQueue;
@@ -86,7 +84,7 @@ public class SkinManagerImpl implements SkinManager, Listener {
             return cached;
         }
 
-        mojangQueue.add(new MojangQueue.SkinRequest(uuid.toString(), variant));
+        mojangQueue.add(new SkinGenerationRequest(uuid.toString(), variant));
 
 //        GenerateRequest genReq = GenerateRequest.user(uuid);
 //        genReq.variant(Variant.valueOf(variant.name()));
@@ -124,7 +122,7 @@ public class SkinManagerImpl implements SkinManager, Listener {
             throw new SkinLoadException(SkinLoadException.Reason.INVALID_URL, "(URL = '" + url + "')");
         }
         genReq.variant(Variant.valueOf(variant.name()));
-        mineSkinQueue.add(new MineSkinQueue.SkinRequest(url, genReq));
+        mineSkinQueue.add(new SkinGenerationRequest(url, variant, genReq));
         return new SkinData(url, variant);
     }
 
@@ -142,7 +140,7 @@ public class SkinManagerImpl implements SkinManager, Listener {
 
         GenerateRequest genReq = GenerateRequest.upload(file);
         genReq.variant(Variant.valueOf(variant.name()));
-        mineSkinQueue.add(new MineSkinQueue.SkinRequest(filePath, genReq));
+        mineSkinQueue.add(new SkinGenerationRequest(filePath, variant, genReq));
         return new SkinData(filePath, variant);
     }
 
