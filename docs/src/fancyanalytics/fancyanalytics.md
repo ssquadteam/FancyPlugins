@@ -1,7 +1,6 @@
 ---
 title: FancyAnalytics
 icon: graph
-expanded: true
 order: 90
 ---
 

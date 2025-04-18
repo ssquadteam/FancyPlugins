@@ -1,5 +1,6 @@
 ---
 icon: info
+order: 400
 ---
 
 There are multiple ways to send data to FancyAnalytics.
