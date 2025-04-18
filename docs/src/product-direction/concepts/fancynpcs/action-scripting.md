@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Action Scripting
 
 Currently, the npc action system is quite limited with the available action types. There is no way to create conditional actions or to have loops.

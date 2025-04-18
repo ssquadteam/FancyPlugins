@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # FancyVisuals
 
 TODO

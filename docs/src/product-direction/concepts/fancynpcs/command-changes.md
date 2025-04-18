@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Command Changes
 
 Some commands need to be refactored to be more consistent with the new system.

@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Getting started
 
 ## Include the API in your project

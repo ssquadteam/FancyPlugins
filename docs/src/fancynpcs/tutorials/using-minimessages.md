@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Using MiniMessages
 
 Everywhere, where you can set a text (e.g. npc display_name or hologram lines), you can either use legacy color codes (

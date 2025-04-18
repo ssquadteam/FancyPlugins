@@ -1,4 +1,5 @@
 ---
+icon: dot
 redirect: action-scripting
 ---
 

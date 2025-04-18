@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Plugin Testing Framework
 
 The Plugin Testing Framework is a tool that allows developers to test their plugins in a controlled environment. 

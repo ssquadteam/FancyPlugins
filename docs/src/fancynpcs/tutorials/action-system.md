@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Action system
 
 The NPC Action System in FancyNPCs allows server administrators to create interactive and engaging NPCs by assigning actions that trigger based on player interactions or custom events. 

@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Multiple display name lines
 
 To have multiple lines as the display name of an NPC follow the following steps:

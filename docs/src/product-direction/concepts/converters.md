@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Converters
 
 There should be converters for other popular npc / hologram plugins to our plugin. 

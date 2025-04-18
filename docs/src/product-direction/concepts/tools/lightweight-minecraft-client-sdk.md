@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Lightweight Minecraft Client SDK
 
 ## Problem

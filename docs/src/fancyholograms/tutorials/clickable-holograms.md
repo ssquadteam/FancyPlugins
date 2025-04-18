@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Clickable holograms
 
 Interactions with holograms is not a feature of FancyHolograms yet, but there is a workaround for this.

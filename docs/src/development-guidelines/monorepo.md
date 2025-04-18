@@ -1,5 +1,6 @@
 ---
 order: 8
+icon: dot
 ---
 
 ![](../static/monorepo.png)

@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Release Workflow
 
 This document describes the steps to be taken when releasing a new version of a plugin.

@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # Sitting NPCs
 
 You can make a NPC sit by following these steps:

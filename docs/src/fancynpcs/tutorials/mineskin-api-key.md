@@ -1,3 +1,7 @@
+---
+icon: dot
+---
+
 # MineSkin API Key
 
 When you have many npcs with skins (especially skins by file or url), you will notice that it takes a while once they
