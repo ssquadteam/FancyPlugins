@@ -5,7 +5,13 @@ order: 400
 
 # Minecraft Plugins
 
-This guide will help you set up FancyAnalytics in your Minecraft plugin. The API is very easy to use and has many default metrics. You can also define your own metrics and events.
+!!! danger
+The FancyAnalytics platform is still in development. Expect breaking changes in the future.
+!!!
+
+If you are a Minecraft plugin developer, you might want to track metrics about your plugin usage.
+So you know how many people are using your plugin and how they are using it.
+We provide a Java SDK which is specifically designed for Minecraft plugins.
 
 ## Include the FancyAnalytics API
 

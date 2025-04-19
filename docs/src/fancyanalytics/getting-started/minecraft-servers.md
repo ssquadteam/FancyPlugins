@@ -5,7 +5,12 @@ order: 500
 
 # Minecraft Servers
 
-This guide will help you set up FancyAnalytics on your Minecraft server. The plugin already has many default metrics.
+!!! danger
+The FancyAnalytics platform is still in development. Expect breaking changes in the future.
+!!!
+
+If you run a Minecraft server, you might want to track metrics about your players and server performance.
+We provide a Minecraft plugin which can be installed on your server to send data to FancyAnalytics.
 
 ## Installation
 

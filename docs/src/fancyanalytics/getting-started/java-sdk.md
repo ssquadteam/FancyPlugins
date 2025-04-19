@@ -5,7 +5,12 @@ order: 300
 
 # Java SDK
 
-This guide will help you set up FancyAnalytics in your general Java application.
+!!! danger
+The FancyAnalytics platform is still in development. Expect breaking changes in the future.
+!!!
+
+If you are a Java developer, who wants to track metrics about your Java application, without being in the Minecraft ecosystem, you can use our Java SDK.
+The Java SDK is a general purpose SDK which can be used to track metrics about any Java application.
 
 ## Include the Java SDK
 
