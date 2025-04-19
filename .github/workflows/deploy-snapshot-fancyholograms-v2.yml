@@ -36,6 +36,7 @@ jobs:
       - name: Deploy
         env:
           MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run:
           cd tools/deployment/build/libs &&
           java -jar deployment.jar ../../../../plugins/fancyholograms-v2/snapshot_deployment_config.json
