@@ -39,9 +39,9 @@ public class Main {
                                     **Download:** %s
                                     """.formatted(
                                             configuration.readVersion(),
+                                            configuration.channel(),
                                             GitService.getCommitHash().substring(0, 7),
                                             GitService.getCommitHash(),
-                                            configuration.channel(),
                                             "https://modrinth.com/plugin/"+configuration.projectName()+"/version/"+configuration.readVersion()),
 
                             0x00FF00
