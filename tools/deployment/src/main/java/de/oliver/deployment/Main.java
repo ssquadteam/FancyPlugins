@@ -40,6 +40,7 @@ public class Main {
                                     """.formatted(
                                             configuration.readVersion(),
                                             GitService.getCommitHash().substring(0, 7),
+                                            GitService.getCommitHash(),
                                             configuration.channel(),
                                             "https://modrinth.com/plugin/"+configuration.projectName()+"/version/"+configuration.readVersion()),
 
