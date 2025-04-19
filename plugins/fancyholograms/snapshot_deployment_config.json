@@ -1,4 +1,5 @@
 {
+  "project_name": "FancyHolograms",
   "project_id": "5QNgOj66",
   "plugin_jar_path": "../../../../plugins/fancyholograms/build/libs/FancyHolograms-%VERSION%.jar",
   "changelog_path": "../../../../plugins/fancyholograms/CHANGELOG-SNAPSHOT.md",

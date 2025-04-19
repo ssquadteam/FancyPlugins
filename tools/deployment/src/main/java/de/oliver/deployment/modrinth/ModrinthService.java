@@ -36,7 +36,7 @@ public class ModrinthService {
         changelog = changelog.replaceAll("%COMMIT_HASH%", GitService.getCommitHash());
         changelog = changelog.replaceAll("%COMMIT_MESSAGE%", GitService.getCommitMessage());
 
-        String version = Files.readString(Path.of(config.versionPath()));
+        String version = config.readVersion();
 
         String pluginJarPath = config.pluginJarPath().replace("%VERSION%", version);
         File pluginFile = new File(pluginJarPath);

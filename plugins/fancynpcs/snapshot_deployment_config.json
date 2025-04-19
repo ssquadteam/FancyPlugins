@@ -1,4 +1,5 @@
 {
+  "project_name": "FancyNpcs",
   "project_id": "EeyAn23L",
   "plugin_jar_path": "../../../../plugins/fancynpcs/build/libs/FancyNpcs-%VERSION%.jar",
   "changelog_path": "../../../../plugins/fancynpcs/CHANGELOG-SNAPSHOT.md",
