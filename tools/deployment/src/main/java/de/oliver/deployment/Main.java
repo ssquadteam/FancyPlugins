@@ -34,14 +34,15 @@ public class Main {
                             "New version of "+configuration.projectName(),
                             """
                                     **Version:** %s
-                                    **Commit:** %s
                                     **Channel:** %s
+                                    **Commit:** [%s](https://github.com/FancyMcPlugins/fancyplugins/commit/%s)
                                     **Download:** %s
                                     """.formatted(
                                             configuration.readVersion(),
-                                            GitService.getCommitHash(),
+                                            GitService.getCommitHash().substring(0, 7),
                                             configuration.channel(),
-                                            "https://modrinth.com/plugin/"+configuration.projectName()+"/versions/"+configuration.readVersion()),
+                                            "https://modrinth.com/plugin/"+configuration.projectName()+"/version/"+configuration.readVersion()),
+
                             0x00FF00
                     )
             ));
