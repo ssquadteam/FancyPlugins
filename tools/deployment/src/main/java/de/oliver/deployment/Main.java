@@ -35,10 +35,12 @@ public class Main {
                             """
                                     **Version:** %s
                                     **Commit:** %s
+                                    **Channel:** %s
                                     **Download:** %s
                                     """.formatted(
                                             configuration.readVersion(),
                                             GitService.getCommitHash(),
+                                            configuration.channel(),
                                             "https://modrinth.com/plugin/"+configuration.projectName()+"/versions/"+configuration.readVersion()),
                             0x00FF00
                     )
