@@ -28,6 +28,7 @@ import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.NpcData;
 import de.oliver.fancynpcs.api.NpcManager;
 import de.oliver.fancynpcs.api.actions.types.*;
+import de.oliver.fancynpcs.api.skins.SkinData;
 import de.oliver.fancynpcs.api.skins.SkinManager;
 import de.oliver.fancynpcs.commands.CloudCommandManager;
 import de.oliver.fancynpcs.listeners.*;
@@ -296,15 +297,20 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
         npcThread.scheduleAtFixedRate(() -> {
             List<Npc> npcs = new ArrayList<>(npcManager.getAllNpcs());
             for (Npc npc : npcs) {
+                String skinID = npc.getData().getSkinData().getIdentifier();
                 boolean skinUpdated = npc.getData().getSkinData() != null &&
-                        !npc.getData().getSkinData().getIdentifier().isEmpty() &&
-                        SkinUtils.isPlaceholder(npc.getData().getSkinData().getIdentifier());
+                        !skinID.isEmpty() &&
+                        SkinUtils.isPlaceholder(skinID);
 
                 boolean displayNameUpdated = npc.getData().getDisplayName() != null &&
                         !npc.getData().getDisplayName().isEmpty() &&
                         SkinUtils.isPlaceholder(npc.getData().getDisplayName());
 
                 if (skinUpdated || displayNameUpdated) {
+                    SkinData skinData = skinManager.getByIdentifier(skinID, npc.getData().getSkinData().getVariant());
+                    skinData.setIdentifier(skinID);
+                    npc.getData().setSkinData(skinData);
+
                     npc.removeForAll();
                     npc.create();
                     npc.spawnForAll();
