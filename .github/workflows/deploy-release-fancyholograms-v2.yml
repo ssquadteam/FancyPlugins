@@ -28,7 +28,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build FancyHolograms v2
-        run: ./gradlew :plugins:fancyholograms:shadowJar
+        run: ./gradlew :plugins:fancyholograms-v2:shadowJar
 
       - name: Build deployment tool
         run: ./gradlew :tools:deployment:shadowJar
