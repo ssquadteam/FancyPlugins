@@ -1,2 +1,3 @@
-- Updated MiniMessage version (now supports [text shadow with custom colors](https://docs.advntr.dev/minimessage/format.html#shadow-color))
+- Added support for Minecraft 1.21.5
 - Refactored config structure
+- Added `update_visibility_interval` config option
