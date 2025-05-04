@@ -154,7 +154,7 @@ public final class FancyHologramsConfiguration implements HologramConfiguration 
         // options
         defaultVisibilityDistance = (int) ConfigHelper.getOrDefault(config, CONFIG_VISIBILITY_DISTANCE, 20);
         registerCommands = (boolean) ConfigHelper.getOrDefault(config, CONFIG_REGISTER_COMMANDS, true);
-        updateVisibilityInterval = (int) ConfigHelper.getOrDefault(config, CONFIG_UPDATE_VISIBILITY_INTERVAL, 100);
+        updateVisibilityInterval = (int) ConfigHelper.getOrDefault(config, CONFIG_UPDATE_VISIBILITY_INTERVAL, 20);
 
         config.set(CONFIG_REPORT_ERRORS_TO_SENTRY, null);
     }
