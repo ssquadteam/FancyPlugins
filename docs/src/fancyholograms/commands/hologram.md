@@ -193,7 +193,7 @@ Permission: ``FancyHolograms.admin``
 
 ### textAlignment
 
-Description: Enables/disables the text shadow<br/>
+Description: Sets the alignment of the text<br/>
 Syntax: ``/Hologram edit (hologram) textAlignment (center | left | right)``<br/>
 Permission: ``FancyHolograms.admin``
 
