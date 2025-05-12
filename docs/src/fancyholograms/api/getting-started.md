@@ -77,7 +77,7 @@ manager.addHologram(hologram);
 ```
 
 !!!
-If you don't want to persist the npc, you can do the following: `npc.setPersistent(false);`
+If you don't want to persist the hologram, you can do the following: `hologram.setPersistent(false);`
 !!!
 
 ## Modify an existing hologram
