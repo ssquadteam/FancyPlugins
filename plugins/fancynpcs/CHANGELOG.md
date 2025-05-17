@@ -1,7 +1,0 @@
-- Added support for Minecraft 1.21.5
-- Added `turn_to_player_distance` command
-- Added `center` command
-- Added `variant` attribute for pig, cow and chicken 
-- Added `collar_color` attribute for wolves and cats
-- Fixed wolf variant attribute
-- Many fixes and improvements for the skin system

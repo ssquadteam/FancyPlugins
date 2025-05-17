@@ -1,3 +1,0 @@
-- Added support for Minecraft 1.21.5
-- Refactored config structure
-- Added `update_visibility_interval` config option
