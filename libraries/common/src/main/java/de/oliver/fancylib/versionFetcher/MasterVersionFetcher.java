@@ -14,8 +14,8 @@ public class MasterVersionFetcher implements VersionFetcher{
         this.pluginName = pluginName;
         this.fetchers = new LinkedList<>();
         fetchers.push(new ReposiliteVersionFetcher(pluginName));
-        fetchers.push(new ModrinthVersionFetcher(pluginName));
         fetchers.push(new HangarVersionFetcher(pluginName));
+        fetchers.push(new ModrinthVersionFetcher(pluginName));
     }
 
     @Override
