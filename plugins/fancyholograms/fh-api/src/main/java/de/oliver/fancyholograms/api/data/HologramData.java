@@ -23,6 +23,7 @@ public class HologramData implements YamlData {
 
     private final String name;
     private final HologramType type;
+    private  String filePath;
     private Location location;
     private boolean hasChanges = false;
     private int visibilityDistance = DEFAULT_VISIBILITY_DISTANCE;
@@ -48,6 +49,16 @@ public class HologramData implements YamlData {
 
     public @NotNull HologramType getType() {
         return type;
+    }
+
+    @ApiStatus.Internal
+    public String getFilePath() {
+        return filePath;
+    }
+
+    @ApiStatus.Internal
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public @NotNull Location getLocation() {

@@ -7,8 +7,6 @@ import de.oliver.fancyholograms.converter.FHConversionRegistry;
 import de.oliver.fancyholograms.converter.HologramConversionSession;
 import de.oliver.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancylib.MessageHelper;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -48,12 +46,10 @@ public final class FancyHologramsCMD extends Command {
                 this.plugin.getHologramConfiguration().reload(plugin);
 
                 this.plugin.getRegistry().clear();
-                for (World world : Bukkit.getWorlds()) {
-                    Collection<HologramData> hologramData = this.plugin.getStorage().loadAll("worlds/"+world.getName());
-                    for (HologramData data : hologramData) {
-                        Hologram hologram = this.plugin.getHologramFactory().apply(data);
-                        this.plugin.getRegistry().register(hologram);
-                    }
+                Collection<HologramData> hologramData = this.plugin.getStorage().loadAll();
+                for (HologramData data : hologramData) {
+                    Hologram hologram = this.plugin.getHologramFactory().apply(data);
+                    this.plugin.getRegistry().register(hologram);
                 }
 
                 MessageHelper.success(sender, "Reloaded config and holograms");

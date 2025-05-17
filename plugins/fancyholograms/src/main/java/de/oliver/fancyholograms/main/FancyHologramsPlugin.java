@@ -41,7 +41,6 @@ import de.oliver.fancysitula.api.IFancySitula;
 import de.oliver.fancysitula.api.utils.ServerVersion;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -193,12 +192,10 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
         new StorageMigrator().migrate();
 
-        for (World world : Bukkit.getWorlds()) {
-            Collection<HologramData> data = storage.loadAll("worlds/"+world.getName());
-            for (HologramData d : data) {
-                Hologram hologram = hologramFactory.apply(d);
-                registry.register(hologram);
-            }
+        Collection<HologramData> data = storage.loadAll();
+        for (HologramData d : data) {
+            Hologram hologram = hologramFactory.apply(d);
+            registry.register(hologram);
         }
 
         controller.initRefreshTask();

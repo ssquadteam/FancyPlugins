@@ -28,10 +28,17 @@ public interface HologramStorage {
     void delete(HologramData hologram);
 
     /**
-     * Loads all holograms from a specific world
+     * Loads all holograms from the specified path (recursive).
      *
-     * @param world The world to load the holograms from.
+     * @param path The relative path to the plugin/FancyHolograms/data/holograms directory.
      * @return A collection of all loaded holograms.
      */
-    Collection<HologramData> loadAll(String world);
+    Collection<HologramData> loadAll(String path);
+
+    /**
+     * Loads all holograms from the default path
+     */
+    default Collection<HologramData> loadAll() {
+        return loadAll("");
+    }
 }

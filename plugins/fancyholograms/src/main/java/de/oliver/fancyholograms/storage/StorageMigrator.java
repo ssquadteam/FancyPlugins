@@ -3,8 +3,6 @@ package de.oliver.fancyholograms.storage;
 import de.oliver.fancyholograms.api.data.HologramData;
 import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.main.FancyHologramsPlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 
 import java.util.Collection;
 
@@ -19,13 +17,12 @@ public class StorageMigrator {
         FancyHologramsPlugin.get().getFancyLogger().info("Migrating holograms.yml to JSON format...");
 
         HologramStorage yamlStorage = new YamlHologramStorage();
-        for (World world : Bukkit.getWorlds()) {
-            Collection<HologramData> data = yamlStorage.loadAll(world.getName());
-            for (HologramData d : data) {
-                Hologram hologram = FancyHologramsPlugin.get().getHologramFactory().apply(d);
-                FancyHologramsPlugin.get().getRegistry().register(hologram);
-                FancyHologramsPlugin.get().getFancyLogger().info("Migrated hologram " + hologram.getData().getName());
-            }
+        Collection<HologramData> data = yamlStorage.loadAll();
+        for (HologramData d : data) {
+            d.setFilePath("migrated/" + d.getName());
+            Hologram hologram = FancyHologramsPlugin.get().getHologramFactory().apply(d);
+            FancyHologramsPlugin.get().getRegistry().register(hologram);
+            FancyHologramsPlugin.get().getFancyLogger().info("Migrated hologram " + hologram.getData().getName());
         }
 
         if (!YamlHologramStorage.HOLOGRAMS_CONFIG_FILE.renameTo(YamlHologramStorage.HOLOGRAMS_CONFIG_FILE.getParentFile().toPath().resolve("holograms-old.yml").toFile())) {

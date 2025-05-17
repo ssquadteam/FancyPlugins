@@ -73,6 +73,7 @@ public class CreateCMD implements Subcommand {
                 displayData.setBillboard(Display.Billboard.FIXED);
             }
         }
+        displayData.setFilePath(name);
 
         final var holo = FancyHologramsPlugin.get().getHologramFactory().apply(displayData);
         if (!new HologramCreateEvent(holo, player).callEvent()) {
