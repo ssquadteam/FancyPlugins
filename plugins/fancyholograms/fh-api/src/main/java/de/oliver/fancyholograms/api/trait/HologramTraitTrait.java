@@ -138,7 +138,15 @@ public class HologramTraitTrait extends HologramTrait {
         }
     }
 
-    record Configuration(
+    public List<HologramTrait> getTraits() {
+        return traits;
+    }
+
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public record Configuration(
             List<String> traits
     ) {
 
