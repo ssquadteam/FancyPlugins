@@ -27,7 +27,8 @@ import de.oliver.fancyholograms.listeners.WorldListener;
 import de.oliver.fancyholograms.metrics.FHMetrics;
 import de.oliver.fancyholograms.registry.HologramRegistryImpl;
 import de.oliver.fancyholograms.storage.HologramStorage;
-import de.oliver.fancyholograms.storage.YamlHologramStorage;
+import de.oliver.fancyholograms.storage.StorageMigrator;
+import de.oliver.fancyholograms.storage.json.JsonStorage;
 import de.oliver.fancyholograms.trait.HologramTraitRegistryImpl;
 import de.oliver.fancyholograms.trait.builtin.MultiplePagesTrait;
 import de.oliver.fancyholograms.util.PluginUtils;
@@ -141,7 +142,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         fancyLogger.setCurrentLevel(logLevel);
         IFancySitula.LOGGER.setCurrentLevel(logLevel);
 
-        storage = new YamlHologramStorage();
+        storage = new JsonStorage();
         registry = new HologramRegistryImpl();
         controller = new HologramControllerImpl();
         traitRegistry = new HologramTraitRegistryImpl();
@@ -190,6 +191,8 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         metrics.register();
         metrics.registerLegacy();
 
+        new StorageMigrator().migrate();
+
         for (World world : Bukkit.getWorlds()) {
             Collection<HologramData> data = storage.loadAll(world.getName());
             for (HologramData d : data) {
@@ -218,6 +221,8 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
     @Override
     public void onDisable() {
+        savePersistentHolograms();
+
         hologramThread.shutdown();
         storageThread.shutdown();
 

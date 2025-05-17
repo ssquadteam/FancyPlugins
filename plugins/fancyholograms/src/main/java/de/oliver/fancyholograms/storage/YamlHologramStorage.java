@@ -20,8 +20,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class YamlHologramStorage implements HologramStorage {
 
+    public static final File HOLOGRAMS_CONFIG_FILE = new File("plugins/FancyHolograms/holograms.yml");
     private static final ReadWriteLock lock = new ReentrantReadWriteLock();
-    private static final File HOLOGRAMS_CONFIG_FILE = new File("plugins/FancyHolograms/holograms.yml");
 
     public void saveBatch(Collection<HologramData> holograms) {
         lock.readLock().lock();
