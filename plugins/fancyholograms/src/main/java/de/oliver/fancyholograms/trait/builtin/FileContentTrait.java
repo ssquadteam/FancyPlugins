@@ -2,6 +2,7 @@ package de.oliver.fancyholograms.trait.builtin;
 
 import de.oliver.fancyholograms.api.data.TextHologramData;
 import de.oliver.fancyholograms.api.trait.HologramTrait;
+import de.oliver.fancyholograms.api.trait.HologramTraitClass;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @ApiStatus.Experimental
+@HologramTraitClass(traitName = "file_content_trait")
 public class FileContentTrait extends HologramTrait {
 
     private static final Configuration DEFAULT_CONFIG = new Configuration(
@@ -19,10 +21,6 @@ public class FileContentTrait extends HologramTrait {
     );
 
     private Configuration config;
-
-    public FileContentTrait() {
-        super("file_content");
-    }
 
     @Override
     public void onAttach() {

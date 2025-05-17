@@ -22,7 +22,6 @@ import java.util.concurrent.ScheduledExecutorService;
 @ApiStatus.Experimental
 public abstract class HologramTrait {
 
-    protected final String name;
     protected final FancyHolograms api = FancyHolograms.get();
     protected final ExtendedFancyLogger logger = api.getFancyLogger();
     protected final HologramController controller = api.getController();
@@ -31,25 +30,13 @@ public abstract class HologramTrait {
     protected Hologram hologram;
     protected JDB storage;
 
-    /**
-     * Creates a new hologram trait with the given name.
-     * @param name the name of the trait
-     */
-    public HologramTrait(String name) {
-        this.name = name;
-    }
-
-    public HologramTrait() {
-        this.name = getClass().getSimpleName();
-    }
-
     public void attachHologram(Hologram hologram) {
         if (this.hologram != null) {
             throw new IllegalStateException("Trait is already attached to a hologram");
         }
 
         this.hologram = hologram;
-        this.storage = new JDB("plugins/FancyHolograms/data/traits/" + name);
+        this.storage = new JDB("plugins/FancyHolograms/data/traits/" + getName());
 
         onAttach();
     }
@@ -100,7 +87,11 @@ public abstract class HologramTrait {
     }
 
     public String getName() {
-        return name;
+        if (getClass().isAnnotationPresent(HologramTraitClass.class)) {
+            return getClass().getAnnotation(HologramTraitClass.class).traitName();
+        }
+
+        throw new IllegalArgumentException("Trait class " + getClass() + " is not annotated with HologramTraitClass");
     }
 
     public Hologram getHologram() {

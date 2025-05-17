@@ -2,6 +2,7 @@ package de.oliver.fancyholograms.trait.builtin;
 
 import de.oliver.fancyholograms.api.data.TextHologramData;
 import de.oliver.fancyholograms.api.trait.HologramTrait;
+import de.oliver.fancyholograms.api.trait.HologramTraitClass;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @ApiStatus.Experimental
+@HologramTraitClass(traitName = "multiple_pages_trait")
 public class MultiplePagesTrait extends HologramTrait {
 
     private static final Configuration DEFAULT_CONFIG = new Configuration(
@@ -24,7 +26,6 @@ public class MultiplePagesTrait extends HologramTrait {
     private int currentPageIdx;
 
     public MultiplePagesTrait() {
-        super("multiple_pages");
         this.currentPageIdx = 0;
     }
 

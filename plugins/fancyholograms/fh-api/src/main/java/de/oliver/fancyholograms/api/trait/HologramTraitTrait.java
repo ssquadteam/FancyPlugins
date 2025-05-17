@@ -6,14 +6,13 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
+@HologramTraitClass(traitName = "trait_trait")
 public class HologramTraitTrait extends HologramTrait {
 
     private final List<HologramTrait> traits;
 
     public HologramTraitTrait(Hologram hologram) {
-        super("trait");
         this.traits = new ArrayList<>();
         attachHologram(hologram);
     }
@@ -30,14 +29,14 @@ public class HologramTraitTrait extends HologramTrait {
     @Override
     public void onAttach() {
         // Attach all default traits to the hologram
-        Set<Class<? extends HologramTrait>> registeredTraits = api.getTraitRegistry().getRegisteredTraits();
-        for (Class<? extends HologramTrait> traitClass : registeredTraits) {
-            if (!traitClass.isAnnotationPresent(DefaultTrait.class)) {
+        List<HologramTraitRegistry.TraitInfo> registeredTraits = api.getTraitRegistry().getTraits();
+        for (HologramTraitRegistry.TraitInfo ti : registeredTraits) {
+            if (!ti.isDefault()) {
                 continue;
             }
 
             try {
-                HologramTrait trait = traitClass.getConstructor().newInstance();
+                HologramTrait trait = ti.clazz().getConstructor().newInstance();
                 if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
                     continue;
                 }
@@ -45,11 +44,11 @@ public class HologramTraitTrait extends HologramTrait {
                 trait.attachHologram(hologram);
                 this.traits.add(trait);
             } catch (Exception e) {
-                logger.error("Failed to instantiate trait " + traitClass.getName());
+                logger.error("Failed to instantiate trait " + ti.name());
                 logger.error(e);
             }
 
-            logger.debug("Attached default trait " + traitClass.getName() + " to hologram " + hologram.getData().getName());
+            logger.debug("Attached default trait " + ti.name() + " to hologram " + hologram.getData().getName());
         }
     }
 
