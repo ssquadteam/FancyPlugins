@@ -2,10 +2,10 @@ package de.oliver.fancyholograms.storage.json.model;
 
 public record JsonLocation(
         String world,
-        double x,
-        double y,
-        double z,
-        float yaw,
-        float pitch
+        Double x,
+        Double y,
+        Double z,
+        Float yaw,
+        Float pitch
 ) {
 }

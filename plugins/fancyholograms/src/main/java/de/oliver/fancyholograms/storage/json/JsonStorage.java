@@ -55,9 +55,14 @@ public class JsonStorage implements HologramStorage {
         List<HologramData> holograms = new ArrayList<>();
 
         try {
-            holograms.addAll(jdb.getAll("worlds/" + world + "/text", TextHologramData.class));
-            holograms.addAll(jdb.getAll("worlds/" + world + "/item", ItemHologramData.class));
-            holograms.addAll(jdb.getAll("worlds/" + world + "/block", BlockHologramData.class));
+            List<JsonDataUnion> allTextUnions = jdb.getAll("worlds/" + world + "/text", JsonDataUnion.class);
+            allTextUnions.forEach(u -> holograms.add(JsonAdapter.fromJson(u)));
+
+            List<JsonDataUnion> allItemUnions = jdb.getAll("worlds/" + world + "/item", JsonDataUnion.class);
+            allItemUnions.forEach(u -> holograms.add(JsonAdapter.fromJson(u)));
+
+            List<JsonDataUnion> allBlockUnions = jdb.getAll("worlds/" + world + "/block", JsonDataUnion.class);
+            allBlockUnions.forEach(u -> holograms.add(JsonAdapter.fromJson(u)));
         } catch (IOException e) {
             FancyHolograms.get().getFancyLogger().error("Failed to load all holograms from world " + world);
             FancyHolograms.get().getFancyLogger().error(e);

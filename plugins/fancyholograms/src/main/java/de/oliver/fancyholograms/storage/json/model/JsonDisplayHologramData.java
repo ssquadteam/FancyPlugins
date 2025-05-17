@@ -5,8 +5,8 @@ import org.bukkit.entity.Display;
 public record JsonDisplayHologramData(
     JsonVec3f scale,
     JsonVec3f translation,
-    float shadow_radius,
-    float shadow_strength,
+    Float shadow_radius,
+    Float shadow_strength,
     JsonBrightness brightness,
     Display.Billboard billboard
 ) {

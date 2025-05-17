@@ -88,6 +88,16 @@ public class TextHologramData extends DisplayHologramData {
         return this;
     }
 
+    public TextHologramData setBackground(String background) {
+        if (background == null || background.equalsIgnoreCase("")) {
+            return this;
+        }
+
+        String hex = background.substring(1);
+        int argb = (int) Long.parseLong(hex, 16);
+        return setBackground(Color.fromARGB(argb));
+    }
+
     public TextDisplay.TextAlignment getTextAlignment() {
         return textAlignment;
     }
