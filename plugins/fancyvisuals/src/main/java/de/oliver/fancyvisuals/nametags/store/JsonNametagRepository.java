@@ -76,19 +76,19 @@ public class JsonNametagRepository implements NametagRepository {
 
         NametagStore worldStore = getStore(Context.WORLD);
         worldStore.setNametag("world", new Nametag(
-                List.of("Overworld", "%player%"),
+                List.of("Overworld", "%player_name%"),
                 "#C800AA00",
                 true,
                 Nametag.TextAlignment.CENTER
         ));
         worldStore.setNametag("world_nether", new Nametag(
-                List.of("Nether", "%player%"),
+                List.of("Nether", "%player_name%"),
                 "#C8AA0000",
                 true,
                 Nametag.TextAlignment.CENTER
         ));
         worldStore.setNametag("world_the_end", new Nametag(
-                List.of("The End", "%player%"),
+                List.of("The End", "%player_name%"),
                 "#C80000AA",
                 true,
                 Nametag.TextAlignment.CENTER
@@ -96,13 +96,13 @@ public class JsonNametagRepository implements NametagRepository {
 
         NametagStore groupStore = getStore(Context.GROUP);
         groupStore.setNametag("admin", new Nametag(
-                List.of("Admin", "%player%"),
+                List.of("Admin", "%player_name%"),
                 "#C8FF0000",
                 true,
                 Nametag.TextAlignment.CENTER
         ));
         groupStore.setNametag("moderator", new Nametag(
-                List.of("Mod", "%player%"),
+                List.of("Mod", "%player_name%"),
                 "#C8FFAA00",
                 true,
                 Nametag.TextAlignment.CENTER
@@ -110,7 +110,7 @@ public class JsonNametagRepository implements NametagRepository {
 
         NametagStore playerStore = getStore(Context.PLAYER);
         playerStore.setNametag(UUID.randomUUID().toString(), new Nametag(
-                List.of("Player", "%player%"),
+                List.of("Player", "%player_name%"),
                 "#C800FF00",
                 true,
                 Nametag.TextAlignment.CENTER
