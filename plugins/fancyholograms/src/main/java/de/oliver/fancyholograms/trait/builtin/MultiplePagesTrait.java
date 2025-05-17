@@ -1,7 +1,6 @@
 package de.oliver.fancyholograms.trait.builtin;
 
 import de.oliver.fancyholograms.api.data.TextHologramData;
-import de.oliver.fancyholograms.api.trait.DefaultTrait;
 import de.oliver.fancyholograms.api.trait.HologramTrait;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @ApiStatus.Experimental
-@DefaultTrait
 public class MultiplePagesTrait extends HologramTrait {
 
     private static final Configuration DEFAULT_CONFIG = new Configuration(
