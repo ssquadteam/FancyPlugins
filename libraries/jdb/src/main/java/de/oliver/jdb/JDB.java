@@ -17,7 +17,6 @@ import java.util.Map;
  */
 public class JDB {
     private final static Gson GSON = new GsonBuilder()
-            .serializeNulls()
             .setPrettyPrinting()
             .create();
 
