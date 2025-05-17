@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class HologramTraitTrait extends HologramTrait {
 
@@ -12,8 +13,9 @@ public class HologramTraitTrait extends HologramTrait {
 
     public HologramTraitTrait(Hologram hologram) {
         super("trait");
-        attachHologram(hologram);
         this.traits = new ArrayList<>();
+        attachHologram(hologram);
+        onAttach();
     }
 
     public void addTrait(HologramTrait trait) {
@@ -24,7 +26,7 @@ public class HologramTraitTrait extends HologramTrait {
 
     @Override
     public void onAttach() {
-        List<Class<? extends HologramTrait>> registeredTraits = api.getTraitRegistry().getRegisteredTraits();
+        Set<Class<? extends HologramTrait>> registeredTraits = api.getTraitRegistry().getRegisteredTraits();
         for (Class<? extends HologramTrait> traitClass : registeredTraits) {
             if (!traitClass.isAnnotationPresent(DefaultTrait.class)) {
                 continue;
@@ -32,13 +34,15 @@ public class HologramTraitTrait extends HologramTrait {
 
             try {
                 HologramTrait trait = traitClass.getConstructor().newInstance();
-                this.traits.add(trait);
-                logger.debug("Attached default trait " + traitClass.getName() + " to hologram " + hologram.getData().getName());
+                trait.attachHologram(hologram);
                 trait.onAttach();
+                this.traits.add(trait);
             } catch (Exception e) {
                 logger.error("Failed to instantiate trait " + traitClass.getName());
                 logger.error(e);
             }
+
+            logger.debug("Attached default trait " + traitClass.getName() + " to hologram " + hologram.getData().getName());
         }
     }
 

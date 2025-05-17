@@ -49,7 +49,7 @@ public abstract class HologramTrait {
         }
 
         this.hologram = hologram;
-        this.storage = new JDB("plugins/FancyHolograms/data/traits/" + name + "/" + hologram.getData().getName());
+        this.storage = new JDB("plugins/FancyHolograms/data/traits/" + name);
     }
 
     /**
