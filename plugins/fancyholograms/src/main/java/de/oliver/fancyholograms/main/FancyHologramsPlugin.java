@@ -194,7 +194,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         new StorageMigrator().migrate();
 
         for (World world : Bukkit.getWorlds()) {
-            Collection<HologramData> data = storage.loadAll(world.getName());
+            Collection<HologramData> data = storage.loadAll("worlds/"+world.getName());
             for (HologramData d : data) {
                 Hologram hologram = hologramFactory.apply(d);
                 registry.register(hologram);

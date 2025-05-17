@@ -49,7 +49,7 @@ public final class FancyHologramsCMD extends Command {
 
                 this.plugin.getRegistry().clear();
                 for (World world : Bukkit.getWorlds()) {
-                    Collection<HologramData> hologramData = this.plugin.getStorage().loadAll(world.getName());
+                    Collection<HologramData> hologramData = this.plugin.getStorage().loadAll("worlds/"+world.getName());
                     for (HologramData data : hologramData) {
                         Hologram hologram = this.plugin.getHologramFactory().apply(data);
                         this.plugin.getRegistry().register(hologram);

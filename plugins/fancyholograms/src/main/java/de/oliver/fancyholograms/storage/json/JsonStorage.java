@@ -51,20 +51,14 @@ public class JsonStorage implements HologramStorage {
     }
 
     @Override
-    public Collection<HologramData> loadAll(String world) {
+    public Collection<HologramData> loadAll(String subdir) {
         List<HologramData> holograms = new ArrayList<>();
 
         try {
-            List<JsonDataUnion> allTextUnions = jdb.getAll("worlds/" + world + "/text", JsonDataUnion.class);
+            List<JsonDataUnion> allTextUnions = jdb.getAll(subdir, JsonDataUnion.class);
             allTextUnions.forEach(u -> holograms.add(JsonAdapter.fromJson(u)));
-
-            List<JsonDataUnion> allItemUnions = jdb.getAll("worlds/" + world + "/item", JsonDataUnion.class);
-            allItemUnions.forEach(u -> holograms.add(JsonAdapter.fromJson(u)));
-
-            List<JsonDataUnion> allBlockUnions = jdb.getAll("worlds/" + world + "/block", JsonDataUnion.class);
-            allBlockUnions.forEach(u -> holograms.add(JsonAdapter.fromJson(u)));
         } catch (IOException e) {
-            FancyHolograms.get().getFancyLogger().error("Failed to load all holograms from world " + world);
+            FancyHolograms.get().getFancyLogger().error("Failed to load all holograms from " + subdir);
             FancyHolograms.get().getFancyLogger().error(e);
         }
 
@@ -72,6 +66,6 @@ public class JsonStorage implements HologramStorage {
     }
 
     public String getKey(HologramData data) {
-        return "worlds/" + data.getLocation().getWorld().getName() + "/" + data.getType().toString().toLowerCase() + "/" + data.getName();
+        return "worlds/" + data.getLocation().getWorld().getName() + "/" + data.getName();
     }
 }

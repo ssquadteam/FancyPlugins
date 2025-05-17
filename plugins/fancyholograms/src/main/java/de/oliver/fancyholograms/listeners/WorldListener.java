@@ -18,7 +18,7 @@ public class WorldListener implements Listener {
         FancyHologramsPlugin.get().getHologramThread().submit(() -> {
             FancyHologramsPlugin.get().getFancyLogger().info("Loading holograms for world " + event.getWorld().getName());
 
-            Collection<HologramData> data = FancyHologramsPlugin.get().getStorage().loadAll(event.getWorld().getName());
+            Collection<HologramData> data = FancyHologramsPlugin.get().getStorage().loadAll("worlds/"+event.getWorld().getName());
             for (HologramData d : data) {
                 Hologram hologram = FancyHologramsPlugin.get().getHologramFactory().apply(d);
                 FancyHologramsPlugin.get().getRegistry().register(hologram);
