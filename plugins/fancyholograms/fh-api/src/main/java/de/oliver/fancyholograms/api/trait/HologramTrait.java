@@ -5,6 +5,7 @@ import de.oliver.fancyholograms.api.FancyHolograms;
 import de.oliver.fancyholograms.api.HologramController;
 import de.oliver.fancyholograms.api.HologramRegistry;
 import de.oliver.fancyholograms.api.hologram.Hologram;
+import de.oliver.jdb.JDB;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -28,7 +29,7 @@ public abstract class HologramTrait {
     protected final HologramRegistry registry = api.getRegistry();
     protected final ScheduledExecutorService hologramThread = api.getHologramThread();
     protected Hologram hologram;
-
+    protected JDB storage;
 
     /**
      * Creates a new hologram trait with the given name.
@@ -48,6 +49,7 @@ public abstract class HologramTrait {
         }
 
         this.hologram = hologram;
+        this.storage = new JDB("plugins/FancyHolograms/data/traits/" + name + "/" + hologram.getData().getName());
     }
 
     /**
