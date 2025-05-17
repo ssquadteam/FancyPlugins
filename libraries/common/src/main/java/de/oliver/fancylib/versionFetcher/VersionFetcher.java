@@ -1,5 +1,6 @@
 package de.oliver.fancylib.versionFetcher;
 
+import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 
 import java.io.IOException;
@@ -10,8 +11,7 @@ import java.util.Scanner;
 
 public interface VersionFetcher {
 
-    ComparableVersion fetchNewestVersion();
-    String getDownloadUrl();
+    ExtendedFancyLogger LOGGER = new ExtendedFancyLogger("VersionFetcher");
 
     static String getDataFromUrl(String urlString) {
         try {
@@ -23,9 +23,13 @@ public interface VersionFetcher {
 
             return scanner.hasNext() ? scanner.next() : "";
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.warn("Could not fetch data from URL: " + urlString);
         }
 
         return "";
     }
+
+    ComparableVersion fetchNewestVersion();
+
+    String getDownloadUrl();
 }
