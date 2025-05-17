@@ -157,8 +157,11 @@ public class SkinManagerImpl implements SkinManager, Listener {
                 continue;
 
             String id = skin.getParsedIdentifier();
-            if(SkinUtils.isUsername(id)) {
-                id = UUIDFetcher.getUUID(id).toString();
+            if (SkinUtils.isUsername(id)) {
+                String uuid = UUIDFetcher.getUUID(id).toString();
+                if (uuid != null) {
+                    id = uuid;
+                }
             }
             if (id.equals(event.getId())) {
                 event.getSkin().setIdentifier(skin.getIdentifier());
