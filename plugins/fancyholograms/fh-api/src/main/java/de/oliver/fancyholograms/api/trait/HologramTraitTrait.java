@@ -4,6 +4,7 @@ import de.oliver.fancyholograms.api.events.HologramTraitAttachedEvent;
 import de.oliver.fancyholograms.api.hologram.Hologram;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,10 @@ import java.util.List;
 public class HologramTraitTrait extends HologramTrait {
 
     private final List<HologramTrait> traits;
+    private Configuration configuration;
 
     public HologramTraitTrait(Hologram hologram) {
+        this.configuration = new Configuration(new ArrayList<>());
         this.traits = new ArrayList<>();
         attachHologram(hologram);
     }
@@ -24,6 +27,13 @@ public class HologramTraitTrait extends HologramTrait {
 
         trait.attachHologram(hologram);
         this.traits.add(trait);
+        this.configuration.traits().add(trait.getName());
+        try {
+            storage.set(hologram.getData().getName(), configuration);
+        } catch (IOException e) {
+            logger.error("Failed to save configuration for HologramTraitTrait");
+            logger.error(e);
+        }
     }
 
     @Override
@@ -37,18 +47,52 @@ public class HologramTraitTrait extends HologramTrait {
 
             try {
                 HologramTrait trait = ti.clazz().getConstructor().newInstance();
-                if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
+                if (!new HologramTraitAttachedEvent(hologram, trait, true).callEvent()) {
                     continue;
                 }
 
                 trait.attachHologram(hologram);
                 this.traits.add(trait);
             } catch (Exception e) {
-                logger.error("Failed to instantiate trait " + ti.name());
+                logger.error("Failed to instantiate default trait " + ti.name());
                 logger.error(e);
             }
 
             logger.debug("Attached default trait " + ti.name() + " to hologram " + hologram.getData().getName());
+        }
+
+        // Attach all traits that are already attached to the hologram
+        try {
+            configuration = storage.get(hologram.getData().getName(), Configuration.class);
+        } catch (IOException e) {
+            logger.error("Failed to load configuration for HologramTraitTrait");
+            logger.error(e);
+            return;
+        }
+        if (configuration == null) {
+            return;
+        }
+
+        for (String traitName : configuration.traits()) {
+            HologramTraitRegistry.TraitInfo traitInfo = api.getTraitRegistry().getTrait(traitName);
+            if (traitInfo == null) {
+                logger.warn("Trait " + traitName + " is not registered");
+                continue;
+            }
+
+            try {
+                HologramTrait trait = traitInfo.clazz().getConstructor().newInstance();
+
+                if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
+                    return;
+                }
+
+                trait.attachHologram(hologram);
+                this.traits.add(trait);
+            } catch (Exception e) {
+                logger.error("Failed to instantiate trait " + traitName);
+                logger.error(e);
+            }
         }
     }
 
@@ -92,5 +136,11 @@ public class HologramTraitTrait extends HologramTrait {
         for (HologramTrait trait : this.traits) {
             trait.save();
         }
+    }
+
+    record Configuration(
+            List<String> traits
+    ) {
+
     }
 }
