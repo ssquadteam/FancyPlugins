@@ -56,7 +56,7 @@ public class ListCMD implements Subcommand {
                     .limit(10)
                     .forEach(holo -> {
                         final var location = holo.getData().getLocation();
-                        if (location == null || location.getWorld() == null) {
+                        if (location == null || holo.getData().getWorldName() == null) {
                             return;
                         }
 
@@ -67,7 +67,7 @@ public class ListCMD implements Subcommand {
                                                 Formats.DECIMAL.format(location.x()),
                                                 Formats.DECIMAL.format(location.y()),
                                                 Formats.DECIMAL.format(location.z()),
-                                                location.getWorld().getName()
+                                                holo.getData().getWorldName()
                                         ));
                     });
 

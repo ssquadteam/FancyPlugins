@@ -7,6 +7,7 @@ public record JsonHologramData(
         String name,
         HologramType type,
         JsonLocation location,
+        String worldName,
         Integer visibilityDistance,
         Visibility visibility,
         String linkedNpcName

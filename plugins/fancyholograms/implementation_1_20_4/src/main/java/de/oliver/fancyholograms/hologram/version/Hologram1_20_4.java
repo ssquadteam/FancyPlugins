@@ -185,7 +185,7 @@ public final class Hologram1_20_4 extends Hologram {
             return; // could not be created, nothing to show
         }
 
-        if (!data.getLocation().getWorld().getName().equals(player.getLocation().getWorld().getName())) {
+        if (!data.getWorldName().equals(player.getLocation().getWorld().getName())) {
             return;
         }
 

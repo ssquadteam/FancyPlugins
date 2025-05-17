@@ -150,6 +150,7 @@ public class YamlHologramStorage implements HologramStorage {
                     case ITEM -> displayData = new ItemHologramData(name, new Location(null, 0, 0, 0));
                     case BLOCK -> displayData = new BlockHologramData(name, new Location(null, 0, 0, 0));
                 }
+                displayData.setWorldName(holoSection.getString("location.world"));
 
                 if (!displayData.read(holoSection, name)) {
                     FancyHologramsPlugin.get().getFancyLogger().warn("Could not read hologram data - skipping hologram");

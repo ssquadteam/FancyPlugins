@@ -44,7 +44,8 @@ public final class HologramImpl extends Hologram {
             return; // could not be created, nothing to show
         }
 
-        if (!data.getLocation().getWorld().getName().equals(player.getLocation().getWorld().getName())) {
+        // this implies that the world is loaded
+        if (!data.getWorldName().equals(player.getLocation().getWorld().getName())) {
             return;
         }
 
@@ -67,12 +68,16 @@ public final class HologramImpl extends Hologram {
 
     @Override
     public void despawnFrom(@NotNull final Player player) {
-        if (!new HologramDespawnEvent(this, player).callEvent()) {
+        if (fsDisplay == null) {
+            return; // doesn't exist, nothing to hide
+        }
+
+        if (!data.getWorldName().equals(player.getLocation().getWorld().getName())) {
             return;
         }
 
-        if (fsDisplay == null) {
-            return; // doesn't exist, nothing to hide
+        if (!new HologramDespawnEvent(this, player).callEvent()) {
+            return;
         }
 
         FS_RealPlayer fsPlayer = new FS_RealPlayer(player);
@@ -88,6 +93,10 @@ public final class HologramImpl extends Hologram {
     public void updateFor(@NotNull final Player player) {
         if (fsDisplay == null) {
             return; // doesn't exist, nothing to refresh
+        }
+
+        if (!data.getWorldName().equals(player.getLocation().getWorld().getName())) {
+            return;
         }
 
         syncWithData();
@@ -123,9 +132,6 @@ public final class HologramImpl extends Hologram {
 
         // location data
         final var location = data.getLocation();
-        if (location.getWorld() == null || !location.isWorldLoaded()) {
-            return;
-        }
         fsDisplay.setLocation(location);
 
         if (fsDisplay instanceof FS_TextDisplay textDisplay && data instanceof TextHologramData textData) {

@@ -1,7 +1,7 @@
 package de.oliver.fancyholograms.commands.hologram;
 
-import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.api.data.*;
+import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.commands.Subcommand;
 import de.oliver.fancylib.MessageHelper;
 import org.bukkit.command.CommandSender;
@@ -31,7 +31,7 @@ public class InfoCMD implements Subcommand {
         MessageHelper.info(player, "<b>Information about the " + hologram.getData().getName() + " hologram:");
         MessageHelper.info(player, "Name: <gray>" + hologram.getData().getName());
         MessageHelper.info(player, "Type: <gray>" + hologram.getData().getType().name());
-        MessageHelper.info(player, "Location: <gray>" + data.getLocation().getWorld().getName() + " " + data.getLocation().getX() + " / " + data.getLocation().getY() + " / " + data.getLocation().getZ());
+        MessageHelper.info(player, "Location: <gray>" + data.getWorldName() + " " + data.getLocation().getX() + " / " + data.getLocation().getY() + " / " + data.getLocation().getZ());
         MessageHelper.info(player, "Visibility distance: <gray>" + data.getVisibilityDistance() + " blocks");
 
         if (data instanceof DisplayHologramData displayData) {

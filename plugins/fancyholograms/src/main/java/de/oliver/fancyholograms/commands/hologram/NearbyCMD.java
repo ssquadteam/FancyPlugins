@@ -58,7 +58,7 @@ public class NearbyCMD implements Subcommand {
             .getRegistry()
             .getAllPersistent()
             .stream()
-            .filter((holo) -> holo.getData().getLocation().getWorld() == playerLocation.getWorld())
+            .filter((holo) -> holo.getData().getWorldName().equals(playerLocation.getWorld().getName()))
             .map((holo) -> Map.entry(holo, holo.getData().getLocation().distance(playerLocation)))
             .filter((entry) -> entry.getValue() <= range.get())
             .sorted(Comparator.comparingInt(a -> a.getValue().intValue()))

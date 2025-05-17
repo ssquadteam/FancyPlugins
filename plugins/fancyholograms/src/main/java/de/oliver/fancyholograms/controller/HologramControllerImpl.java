@@ -9,6 +9,7 @@ import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -82,8 +83,8 @@ public class HologramControllerImpl implements HologramController {
     }
 
     private boolean isWithinVisibilityDistance(@NotNull final Hologram hologram, @NotNull final Player player) {
-        final var location = hologram.getData().getLocation();
-        if (!location.getWorld().equals(player.getWorld())) {
+        final Location location = hologram.getData().getLocation();
+        if (!hologram.getData().getWorldName().equals(player.getWorld().getName())) {
             return false;
         }
 

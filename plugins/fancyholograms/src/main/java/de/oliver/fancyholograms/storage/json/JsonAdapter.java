@@ -16,13 +16,14 @@ public class JsonAdapter {
                 data.getName(),
                 data.getType(),
                 new JsonLocation(
-                        data.getLocation().getWorld().getName(),
+                        data.getWorldName(),
                         data.getLocation().getX(),
                         data.getLocation().getY(),
                         data.getLocation().getZ(),
                         data.getLocation().getYaw(),
                         data.getLocation().getPitch()
                 ),
+                data.getWorldName(),
                 data.getVisibilityDistance(),
                 data.getVisibility(),
                 data.getLinkedNpcName()
@@ -118,7 +119,7 @@ public class JsonAdapter {
 
     public static HologramData fromJson(JsonDataUnion data) {
         Location loc = new Location(
-                Bukkit.getWorld(data.hologram_data().location().world()),
+                Bukkit.getWorld(data.hologram_data().worldName()),
                 data.hologram_data().location().x(),
                 data.hologram_data().location().y(),
                 data.hologram_data().location().z()
@@ -156,7 +157,8 @@ public class JsonAdapter {
                     .setBrightness(brightness)
                     .setShadowRadius(data.display_data().shadow_radius())
                     .setShadowStrength(data.display_data().shadow_strength())
-                    .setVisibilityDistance(data.hologram_data().visibilityDistance()) // hologram data
+                    .setWorldName(data.hologram_data().worldName())// hologram data
+                    .setVisibilityDistance(data.hologram_data().visibilityDistance())
                     .setVisibility(data.hologram_data().visibility())
                     .setLinkedNpcName(data.hologram_data().linkedNpcName());
 
@@ -168,7 +170,8 @@ public class JsonAdapter {
                     .setBrightness(brightness)
                     .setShadowRadius(data.display_data().shadow_radius())
                     .setShadowStrength(data.display_data().shadow_strength())
-                    .setVisibilityDistance(data.hologram_data().visibilityDistance()) // hologram data
+                    .setWorldName(data.hologram_data().worldName())// hologram data
+                    .setVisibilityDistance(data.hologram_data().visibilityDistance())
                     .setVisibility(data.hologram_data().visibility())
                     .setLinkedNpcName(data.hologram_data().linkedNpcName());
             case BLOCK -> new BlockHologramData(data.hologram_data().name(), loc)
@@ -179,7 +182,8 @@ public class JsonAdapter {
                     .setBrightness(brightness)
                     .setShadowRadius(data.display_data().shadow_radius())
                     .setShadowStrength(data.display_data().shadow_strength())
-                    .setVisibilityDistance(data.hologram_data().visibilityDistance()) // hologram data
+                    .setWorldName(data.hologram_data().worldName())// hologram data
+                    .setVisibilityDistance(data.hologram_data().visibilityDistance())
                     .setVisibility(data.hologram_data().visibility())
                     .setLinkedNpcName(data.hologram_data().linkedNpcName());
         };

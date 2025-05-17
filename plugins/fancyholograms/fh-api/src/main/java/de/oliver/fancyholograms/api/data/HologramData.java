@@ -25,6 +25,7 @@ public class HologramData implements YamlData {
     private final HologramType type;
     private  String filePath;
     private Location location;
+    private String worldName;
     private boolean hasChanges = false;
     private int visibilityDistance = DEFAULT_VISIBILITY_DISTANCE;
     private Visibility visibility = DEFAULT_VISIBILITY;
@@ -41,6 +42,11 @@ public class HologramData implements YamlData {
         this.name = name;
         this.type = type;
         this.location = location;
+        if (location != null && location.getWorld() != null) {
+            this.worldName = location.getWorld().getName();
+        } else {
+            this.worldName = null;
+        }
     }
 
     public @NotNull String getName() {
@@ -66,7 +72,32 @@ public class HologramData implements YamlData {
     }
 
     public HologramData setLocation(@Nullable Location location) {
-        this.location = location != null ? location.clone() : null;
+        if (location == null) {
+            this.location = null;
+            this.worldName = null;
+        } else {
+            this.location = location.clone();
+            if (this.location.getWorld() == null) {
+                this.worldName = null;
+            }
+        }
+
+        setHasChanges(true);
+        return this;
+    }
+
+    public String getWorldName() {
+        return worldName;
+    }
+
+    public HologramData setWorldName(String worldName) {
+        this.worldName = worldName;
+        if (this.location != null) {
+            World world = Bukkit.getWorld(worldName);
+            if (world != null) {
+                this.location.setWorld(world);
+            }
+        }
         setHasChanges(true);
         return this;
     }
