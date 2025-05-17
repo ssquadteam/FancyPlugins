@@ -1,5 +1,6 @@
 package de.oliver.fancyholograms.api.trait;
 
+import de.oliver.fancyholograms.api.events.HologramTraitAttachedEvent;
 import de.oliver.fancyholograms.api.hologram.Hologram;
 import org.bukkit.entity.Player;
 
@@ -15,17 +16,20 @@ public class HologramTraitTrait extends HologramTrait {
         super("trait");
         this.traits = new ArrayList<>();
         attachHologram(hologram);
-        onAttach();
     }
 
     public void addTrait(HologramTrait trait) {
-        this.traits.add(trait);
+        if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
+            return;
+        }
+
         trait.attachHologram(hologram);
-        trait.onAttach();
+        this.traits.add(trait);
     }
 
     @Override
     public void onAttach() {
+        // Attach all default traits to the hologram
         Set<Class<? extends HologramTrait>> registeredTraits = api.getTraitRegistry().getRegisteredTraits();
         for (Class<? extends HologramTrait> traitClass : registeredTraits) {
             if (!traitClass.isAnnotationPresent(DefaultTrait.class)) {
@@ -34,8 +38,11 @@ public class HologramTraitTrait extends HologramTrait {
 
             try {
                 HologramTrait trait = traitClass.getConstructor().newInstance();
+                if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
+                    continue;
+                }
+
                 trait.attachHologram(hologram);
-                trait.onAttach();
                 this.traits.add(trait);
             } catch (Exception e) {
                 logger.error("Failed to instantiate trait " + traitClass.getName());

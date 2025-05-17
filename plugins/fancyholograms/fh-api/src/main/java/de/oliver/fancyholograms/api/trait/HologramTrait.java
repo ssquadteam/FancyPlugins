@@ -50,6 +50,8 @@ public abstract class HologramTrait {
 
         this.hologram = hologram;
         this.storage = new JDB("plugins/FancyHolograms/data/traits/" + name);
+
+        onAttach();
     }
 
     /**
@@ -75,7 +77,6 @@ public abstract class HologramTrait {
      * Called when the hologram is registered in the registry.
      */
     public void onRegister() {
-
     }
 
     /**
