@@ -189,6 +189,8 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         metrics.register();
         metrics.registerLegacy();
 
+        traitRegistry.register(MultiplePagesTrait.class);
+
         new StorageMigrator().migrate();
 
         Collection<HologramData> data = storage.loadAll();
@@ -209,8 +211,6 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         }
 
         FHConversionRegistry.registerBuiltInConverters();
-
-        traitRegistry.register(MultiplePagesTrait.class);
 
         fancyLogger.info("Successfully enabled FancyHolograms version %s".formatted(getDescription().getVersion()));
     }

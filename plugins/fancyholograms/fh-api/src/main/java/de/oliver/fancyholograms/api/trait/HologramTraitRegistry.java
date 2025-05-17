@@ -2,7 +2,7 @@ package de.oliver.fancyholograms.api.trait;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.List;
+import java.util.Set;
 
 @ApiStatus.Experimental
 public interface HologramTraitRegistry {
@@ -17,5 +17,5 @@ public interface HologramTraitRegistry {
     boolean isRegistered(Class<? extends HologramTrait> trait);
 
     @ApiStatus.Experimental
-    List<Class<? extends HologramTrait>> getRegisteredTraits();
+    Set<Class<? extends HologramTrait>> getRegisteredTraits();
 }
