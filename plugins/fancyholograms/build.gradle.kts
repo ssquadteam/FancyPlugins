@@ -29,6 +29,7 @@ val supportedVersions =
         "1.21.2",
         "1.21.3",
         "1.21.4",
+        "1.21.5",
     )
 
 allprojects {
@@ -116,12 +117,12 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.4")
+        minecraftVersion("1.21.5")
 
         downloadPlugins {
-            modrinth("fancynpcs", "2.4.0")
-            hangar("ViaVersion", "5.2.0")
-            hangar("ViaBackwards", "5.2.0")
+            modrinth("fancynpcs", "2.5.0")
+            hangar("ViaVersion", "5.3.2")
+            hangar("ViaBackwards", "5.3.2")
 //            modrinth("multiverse-core", "4.3.11")
             hangar("PlaceholderAPI", "2.11.6")
 //            modrinth("DecentHolograms", "2.8.12")
