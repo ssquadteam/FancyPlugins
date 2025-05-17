@@ -8,7 +8,7 @@ val minecraftVersion = "1.20"
 dependencies {
     paperweight.paperDevBundle("$minecraftVersion-R0.1-SNAPSHOT")
 
-    compileOnly(project(":plugins:fancynpcs:api"))
+    compileOnly(project(":plugins:fancynpcs:fn-api"))
     compileOnly(project(":libraries:common"))
     compileOnly("org.lushplugins:ChatColorHandler:5.1.3")
 }

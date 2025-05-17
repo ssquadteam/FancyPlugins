@@ -8,7 +8,7 @@ paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArt
 dependencies {
     paperweight.paperDevBundle("1.21.5-no-moonrise-SNAPSHOT")
 
-    compileOnly(project(":plugins:fancynpcs:api"))
+    compileOnly(project(":plugins:fancynpcs:fn-api"))
     compileOnly(project(":libraries:common"))
     compileOnly("org.lushplugins:ChatColorHandler:5.1.3")
 }

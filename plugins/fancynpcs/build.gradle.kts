@@ -49,7 +49,7 @@ allprojects {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
 
-    implementation(project(":plugins:fancynpcs:api"))
+    implementation(project(":plugins:fancynpcs:fn-api"))
     implementation(project(":plugins:fancynpcs:implementation_1_21_5"))
     implementation(project(":plugins:fancynpcs:implementation_1_21_4"))
     implementation(project(":plugins:fancynpcs:implementation_1_21_3"))
@@ -124,7 +124,7 @@ tasks {
         relocate("org.lushplugins.chatcolorhandler", "de.oliver.fancynpcs.libs.chatcolorhandler")
         archiveClassifier.set("")
         archiveBaseName.set("FancyNpcs")
-        dependsOn(":plugins:fancynpcs:api:shadowJar")
+        dependsOn(":plugins:fancynpcs:fn-api:shadowJar")
     }
 
     publishing {
