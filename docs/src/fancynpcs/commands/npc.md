@@ -133,6 +133,10 @@ Changes whether the NPC can collide with other entities.
 
 Changes the scale of the size of the NPC.
 
+!!!warning
+Only available for 1.20.5 or newer.
+!!!
+
 - **Syntax**:  `/npc scale (npc) (factor)`
 - **Permissions**: `fancynpcs.command.npc.scale`
 
