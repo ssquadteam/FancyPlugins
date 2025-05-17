@@ -28,8 +28,8 @@ public class StorageMigrator {
             }
         }
 
-        if (!YamlHologramStorage.HOLOGRAMS_CONFIG_FILE.renameTo(YamlHologramStorage.HOLOGRAMS_CONFIG_FILE.getParentFile().toPath().resolve("holograms-old.yaml").toFile())) {
-            FancyHologramsPlugin.get().getFancyLogger().error("Failed to rename holograms.yml to holograms-old.yaml");
+        if (!YamlHologramStorage.HOLOGRAMS_CONFIG_FILE.renameTo(YamlHologramStorage.HOLOGRAMS_CONFIG_FILE.getParentFile().toPath().resolve("holograms-old.yml").toFile())) {
+            FancyHologramsPlugin.get().getFancyLogger().error("Failed to rename holograms.yml to holograms-old.yml");
         }
 
         FancyHologramsPlugin.get().getFancyLogger().info("Migration completed");
