@@ -10,7 +10,7 @@ val minecraftVersion = "1.20.2"
 dependencies {
     paperweight.paperDevBundle("$minecraftVersion-R0.1-SNAPSHOT")
 
-    implementation(project(":plugins:fancyholograms:api"))
+    implementation(project(":plugins:fancyholograms:fh-api"))
     implementation(project(":libraries:common"))
     compileOnly("com.viaversion:viaversion-api:5.2.1")
 }
