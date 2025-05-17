@@ -10,6 +10,7 @@ import de.oliver.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
@@ -43,6 +44,21 @@ public class HologramControllerImpl implements HologramController {
             }
 
             hologram.despawnFrom(player);
+        }
+    }
+
+    @Override
+    @ApiStatus.Internal
+    public void updateHologramData(@NotNull final Hologram hologram, @NotNull final Player ...players) {
+        for (Player player : players) {
+            boolean isVisible = hologram.isViewer(player);
+            boolean shouldSee = shouldSeeHologram(hologram, player);
+
+            if (!isVisible || !shouldSee) {
+                continue;
+            }
+
+            hologram.updateFor(player);
         }
     }
 

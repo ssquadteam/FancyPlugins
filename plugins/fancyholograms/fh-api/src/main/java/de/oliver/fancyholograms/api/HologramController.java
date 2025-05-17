@@ -31,6 +31,13 @@ public interface HologramController {
     boolean shouldSeeHologram(@NotNull final Hologram hologram, @NotNull final Player player);
 
     /**
+     * Updates hologram data such as text, background, etc. for the given players.
+     * Be aware that some data changes require the hologram to be fully respawned.
+     */
+    @ApiStatus.Internal
+    void updateHologramData(@NotNull final Hologram hologram, @NotNull final Player ...players);;
+
+    /**
      * Spawns the hologram to the given players, if they should see it, and it is not already shown to them.
      * Hide the hologram from the players that should not see it.
      */
