@@ -27,6 +27,7 @@ public class HologramData implements YamlData {
     private Location location;
     private String worldName;
     private boolean hasChanges = false;
+    private Runnable onModify;
     private int visibilityDistance = DEFAULT_VISIBILITY_DISTANCE;
     private Visibility visibility = DEFAULT_VISIBILITY;
     private boolean persistent = DEFAULT_PERSISTENCE;
@@ -114,6 +115,13 @@ public class HologramData implements YamlData {
      */
     public final void setHasChanges(boolean hasChanges) {
         this.hasChanges = hasChanges;
+        if (hasChanges && onModify != null) {
+            onModify.run();
+        }
+    }
+
+    public void setOnModify(Runnable onModify) {
+        this.onModify = onModify;
     }
 
     public int getVisibilityDistance() {

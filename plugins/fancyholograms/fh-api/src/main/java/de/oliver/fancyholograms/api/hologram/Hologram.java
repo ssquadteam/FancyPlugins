@@ -38,6 +38,7 @@ public abstract class Hologram {
         this.data = data;
         this.viewers = new HashSet<>();
         this.traitTrait = new HologramTraitTrait(this);
+        this.data.setOnModify(this.traitTrait::onModify);
     }
 
     /**

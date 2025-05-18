@@ -111,6 +111,13 @@ public class HologramTraitTrait extends HologramTrait {
     }
 
     @Override
+    public void onModify() {
+        for (HologramTrait trait : this.traits) {
+            trait.onModify();
+        }
+    }
+
+    @Override
     public void onRegister() {
         for (HologramTrait trait : this.traits) {
             trait.onRegister();

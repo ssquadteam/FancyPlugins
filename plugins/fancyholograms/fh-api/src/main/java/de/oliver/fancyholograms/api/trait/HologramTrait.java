@@ -61,6 +61,12 @@ public abstract class HologramTrait {
     }
 
     /**
+     * Called when the hologram is modified.
+     */
+    public void onModify() {
+    }
+
+    /**
      * Called when the hologram is registered in the registry.
      */
     public void onRegister() {
