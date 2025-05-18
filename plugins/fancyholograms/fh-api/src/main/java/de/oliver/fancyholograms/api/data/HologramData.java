@@ -91,6 +91,10 @@ public class HologramData implements YamlData {
         return worldName;
     }
 
+    /**
+     * Use setLocation instead of this method.
+     */
+    @ApiStatus.Internal
     public HologramData setWorldName(String worldName) {
         this.worldName = worldName;
         if (this.location != null) {
@@ -106,6 +110,7 @@ public class HologramData implements YamlData {
     /**
      * @return Whether the hologram needs to send an update to players
      */
+    @ApiStatus.Internal
     public final boolean hasChanges() {
         return hasChanges;
     }
@@ -113,6 +118,7 @@ public class HologramData implements YamlData {
     /**
      * @param hasChanges Whether the hologram needs to send an update to players
      */
+    @ApiStatus.Internal
     public final void setHasChanges(boolean hasChanges) {
         this.hasChanges = hasChanges;
         if (hasChanges && onModify != null) {
@@ -120,6 +126,7 @@ public class HologramData implements YamlData {
         }
     }
 
+    @ApiStatus.Internal
     public void setOnModify(Runnable onModify) {
         this.onModify = onModify;
     }
