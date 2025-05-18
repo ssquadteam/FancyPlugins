@@ -28,7 +28,8 @@ public class HologramControllerTest {
                 new TextHologramData("Test", player.getLocation().clone()),
                 () -> spawnTo++,
                 () -> despawnFrom++,
-                () -> {}
+                () -> {
+                }
         );
 
         this.spawnTo = 0;
@@ -52,7 +53,7 @@ public class HologramControllerTest {
         expect(hologram.isViewer(player)).toBe(true);
 
 
-        hologram.getData().setLocation(new Location(player.getWorld(),0,10000, 0));
+        hologram.getData().setLocation(new Location(player.getWorld(), 0, 10000, 0));
 
         controller.hideHologramFrom(hologram, player);
         expect(despawnFrom).toBe(1);

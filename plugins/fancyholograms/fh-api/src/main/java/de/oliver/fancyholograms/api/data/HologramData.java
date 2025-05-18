@@ -23,7 +23,7 @@ public class HologramData implements YamlData {
 
     private final String name;
     private final HologramType type;
-    private  String filePath;
+    private String filePath;
     private Location location;
     private String worldName;
     private boolean hasChanges = false;

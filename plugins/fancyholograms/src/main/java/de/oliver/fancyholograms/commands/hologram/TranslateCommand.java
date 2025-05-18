@@ -45,8 +45,8 @@ public class TranslateCommand implements Subcommand {
         }
 
         if (Float.compare(translateX, displayData.getTranslation().x()) == 0 &&
-            Float.compare(translateY, displayData.getTranslation().y()) == 0 &&
-            Float.compare(translateZ, displayData.getTranslation().z()) == 0) {
+                Float.compare(translateY, displayData.getTranslation().y()) == 0 &&
+                Float.compare(translateZ, displayData.getTranslation().z()) == 0) {
             MessageHelper.warning(player, "This hologram is already at this translation");
             return false;
         }
@@ -59,16 +59,16 @@ public class TranslateCommand implements Subcommand {
         }
 
         if (Float.compare(copied.getTranslation().x(), displayData.getTranslation().x()) == 0 &&
-            Float.compare(copied.getTranslation().y(), displayData.getTranslation().y()) == 0 &&
-            Float.compare(copied.getTranslation().z(), displayData.getTranslation().z()) == 0) {
+                Float.compare(copied.getTranslation().y(), displayData.getTranslation().y()) == 0 &&
+                Float.compare(copied.getTranslation().z(), displayData.getTranslation().z()) == 0) {
             MessageHelper.warning(player, "This hologram is already at this translation");
             return false;
         }
 
         displayData.setTranslation(new Vector3f(
-            copied.getTranslation().x(),
-            copied.getTranslation().y(),
-            copied.getTranslation().z()));
+                copied.getTranslation().x(),
+                copied.getTranslation().y(),
+                copied.getTranslation().z()));
 
         if (FancyHologramsPlugin.get().getHologramConfiguration().isSaveOnChangedEnabled()) {
             FancyHologramsPlugin.get().getStorage().save(hologram.getData());

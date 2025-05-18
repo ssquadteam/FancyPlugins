@@ -25,27 +25,27 @@ public class FHConversionRegistry {
 
     public static <T extends HologramConverter> @NotNull Optional<T> getConverter(@NotNull String id) {
         return getConverterById(id)
-            .map((converter) -> {
-                try {
-                    return (T) converter;
-                } catch (ClassCastException ignored) {
-                    return null;
-                }
-            });
+                .map((converter) -> {
+                    try {
+                        return (T) converter;
+                    } catch (ClassCastException ignored) {
+                        return null;
+                    }
+                });
     }
 
     public static <T extends HologramConverter> @NotNull Optional<T> getConverter(@NotNull Class<T> clazz) {
         return converters.values()
-            .stream()
-            .filter(clazz::isInstance)
-            .findFirst()
-            .map((converter) -> {
-                try {
-                    return (T) converter;
-                } catch (ClassCastException ignored) {
-                    return null;
-                }
-            });
+                .stream()
+                .filter(clazz::isInstance)
+                .findFirst()
+                .map((converter) -> {
+                    try {
+                        return (T) converter;
+                    } catch (ClassCastException ignored) {
+                        return null;
+                    }
+                });
     }
 
     public static @NotNull Set<String> getAllConverterIds() {
@@ -54,10 +54,10 @@ public class FHConversionRegistry {
 
     public static @NotNull Set<String> getAllUsableConverterIds() {
         return converters
-            .entrySet()
-            .stream()
-            .filter((entry) -> entry.getValue().canRunConverter())
-            .map(Map.Entry::getKey)
-            .collect(Collectors.toSet());
+                .entrySet()
+                .stream()
+                .filter((entry) -> entry.getValue().canRunConverter())
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
     }
 }

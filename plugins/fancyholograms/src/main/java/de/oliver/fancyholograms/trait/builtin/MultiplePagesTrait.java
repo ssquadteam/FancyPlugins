@@ -16,10 +16,10 @@ public class MultiplePagesTrait extends HologramTrait {
 
     private static final Configuration DEFAULT_CONFIG = new Configuration(
             Mode.CYCLE,
-                    1000,
+            1000,
             List.of(
                     new Page(List.of("Page 1", "Line 1", "Line 2")),
-            new Page(List.of("Page 2", "Line 1", "Line 2"))
+                    new Page(List.of("Page 2", "Line 1", "Line 2"))
             ));
 
     private Configuration config;
@@ -43,7 +43,7 @@ public class MultiplePagesTrait extends HologramTrait {
 
             currentPageIdx = switch (config.mode()) {
                 case CYCLE -> (currentPageIdx + 1) % config.pages().size();
-                case RANDOM ->(int) (Math.random() * config.pages().size());
+                case RANDOM -> (int) (Math.random() * config.pages().size());
                 default -> currentPageIdx;
             };
         }, 0, config.cycleDelay(), TimeUnit.MILLISECONDS);
@@ -80,9 +80,9 @@ public class MultiplePagesTrait extends HologramTrait {
     }
 
     record Configuration(
-        Mode mode,
-        long cycleDelay,
-        List<Page> pages
+            Mode mode,
+            long cycleDelay,
+            List<Page> pages
     ) {
 
     }

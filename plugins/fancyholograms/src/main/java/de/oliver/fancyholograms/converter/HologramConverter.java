@@ -15,6 +15,7 @@ public abstract class HologramConverter {
 
     /**
      * Returns a list of converted holograms
+     *
      * @param spec Configuration of the hologram conversion
      * @return A list of converted holograms.
      */
@@ -23,6 +24,7 @@ public abstract class HologramConverter {
 
     /**
      * Returns a list of converted holograms
+     *
      * @param spec Configuration of the hologram conversion
      * @return A list of converted holograms.
      */

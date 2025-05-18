@@ -28,7 +28,7 @@ public class JsonStorage implements HologramStorage {
     @Override
     public void saveBatch(Collection<HologramData> holograms) {
         for (HologramData hologram : holograms) {
-           save(hologram);
+            save(hologram);
         }
     }
 

@@ -15,15 +15,15 @@ public class HologramConversionSession {
     private final String[] arguments;
 
     public HologramConversionSession(
-        @NotNull ConverterTarget target
+            @NotNull ConverterTarget target
     ) {
         this(target, Bukkit.getConsoleSender(), new String[0]);
     }
 
     public HologramConversionSession(
-        @NotNull ConverterTarget target,
-        @NotNull CommandSender invoker,
-        @NotNull String[] arguments
+            @NotNull ConverterTarget target,
+            @NotNull CommandSender invoker,
+            @NotNull String[] arguments
     ) {
         this.target = target;
         this.invoker = invoker;
@@ -45,13 +45,13 @@ public class HologramConversionSession {
     public void logUnsuccessfulConversion(@NotNull String oldHologram, @Nullable String message) {
         if (message != null) {
             MessageHelper.error(
-                getInvoker(),
-                String.format("There was an issue converting %s: %s", oldHologram, message)
+                    getInvoker(),
+                    String.format("There was an issue converting %s: %s", oldHologram, message)
             );
         } else {
             MessageHelper.error(
-                getInvoker(),
-                String.format("There was an issue converting %s!", oldHologram)
+                    getInvoker(),
+                    String.format("There was an issue converting %s!", oldHologram)
             );
         }
     }
@@ -62,14 +62,14 @@ public class HologramConversionSession {
 
     public void logSuccessfulConversion(@NotNull String oldHologram, @NotNull List<HologramData> results) {
         MessageHelper.info(
-            getInvoker(),
-            String.format("Successfully converted %s to %s hologram(s).", oldHologram, results.size())
+                getInvoker(),
+                String.format("Successfully converted %s to %s hologram(s).", oldHologram, results.size())
         );
 
         for (@NotNull HologramData data : results) {
             MessageHelper.info(
-                getInvoker(),
-                String.format(" - %s type: %s", data.getName(), data.getType().name())
+                    getInvoker(),
+                    String.format(" - %s type: %s", data.getName(), data.getType().name())
             );
         }
     }

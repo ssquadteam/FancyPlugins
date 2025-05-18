@@ -17,7 +17,7 @@ public enum Visibility {
      * The player needs permission to see a specific hologram.
      */
     PERMISSION_REQUIRED(
-        (player, hologram) -> player.hasPermission("fancyholograms.viewhologram." + hologram.getData().getName())
+            (player, hologram) -> player.hasPermission("fancyholograms.viewhologram." + hologram.getData().getName())
     ),
     /**
      * The player needs to be added manually through the API
@@ -32,8 +32,8 @@ public enum Visibility {
 
     public static Optional<Visibility> byString(String value) {
         return Arrays.stream(Visibility.values())
-            .filter(visibility -> visibility.toString().equalsIgnoreCase(value))
-            .findFirst();
+                .filter(visibility -> visibility.toString().equalsIgnoreCase(value))
+                .findFirst();
     }
 
     public boolean canSee(Player player, Hologram hologram) {

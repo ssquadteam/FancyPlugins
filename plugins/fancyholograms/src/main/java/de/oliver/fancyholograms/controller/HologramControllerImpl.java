@@ -52,7 +52,7 @@ public class HologramControllerImpl implements HologramController {
 
     @Override
     @ApiStatus.Internal
-    public void updateHologramData(@NotNull final Hologram hologram, @NotNull final Player ...players) {
+    public void updateHologramData(@NotNull final Hologram hologram, @NotNull final Player... players) {
         for (Player player : players) {
             boolean isVisible = hologram.isViewer(player);
             boolean shouldSee = shouldSeeHologram(hologram, player);

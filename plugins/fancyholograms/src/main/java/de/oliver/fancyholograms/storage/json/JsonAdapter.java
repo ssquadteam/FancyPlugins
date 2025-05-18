@@ -59,7 +59,7 @@ public class JsonAdapter {
                 data.isSeeThrough(),
                 data.getTextAlignment(),
                 data.getTextUpdateInterval(),
-                data.getBackground() == null ? "" : "#"+Integer.toHexString(data.getBackground().asARGB())
+                data.getBackground() == null ? "" : "#" + Integer.toHexString(data.getBackground().asARGB())
         );
     }
 

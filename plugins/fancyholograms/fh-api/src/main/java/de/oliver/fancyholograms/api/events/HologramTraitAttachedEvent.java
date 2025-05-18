@@ -10,7 +10,8 @@ public class HologramTraitAttachedEvent extends HologramEvent {
 
     private static final HandlerList handlerList = new HandlerList();
 
-    @NotNull private final HologramTrait trait;
+    @NotNull
+    private final HologramTrait trait;
     private final boolean isDefaultTrait;
 
 

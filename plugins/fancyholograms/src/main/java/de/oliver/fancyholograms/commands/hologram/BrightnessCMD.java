@@ -27,28 +27,28 @@ public class BrightnessCMD implements Subcommand {
             return false;
         }
 
-        if(args.length < 5) {
+        if (args.length < 5) {
             MessageHelper.error(player, "You must provide a brightness type and value.");
             return false;
         }
 
         final var brightnessType = args[3];
 
-        if(!brightnessType.equalsIgnoreCase("block") && !brightnessType.equalsIgnoreCase("sky")) {
+        if (!brightnessType.equalsIgnoreCase("block") && !brightnessType.equalsIgnoreCase("sky")) {
             MessageHelper.error(player, "Invalid brightness type, valid options are BLOCK or SKY");
             return false;
         }
 
         final var parsedNumber = NumberHelper.parseInt(args[4]);
 
-        if(parsedNumber.isEmpty()) {
+        if (parsedNumber.isEmpty()) {
             MessageHelper.error(player, "Invalid brightness value.");
             return false;
         }
 
         final var brightnessValue = parsedNumber.get();
 
-        if(brightnessValue < 0 || brightnessValue > 15) {
+        if (brightnessValue < 0 || brightnessValue > 15) {
             MessageHelper.error(player, "Invalid brightness value, must be between 0 and 15");
             return false;
         }

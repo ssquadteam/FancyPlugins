@@ -116,7 +116,7 @@ public abstract class HologramTrait {
         return false;
     }
 
-    protected  <T extends HologramTrait> T getTrait(Class<T> trait) {
+    protected <T extends HologramTrait> T getTrait(Class<T> trait) {
         for (HologramTrait hologramTrait : hologram.getTraitTrait().getTraits()) {
             if (hologramTrait.getClass().equals(trait)) {
                 return (T) hologramTrait;

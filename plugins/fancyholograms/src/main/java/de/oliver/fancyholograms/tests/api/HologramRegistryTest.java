@@ -26,10 +26,13 @@ public class HologramRegistryTest {
     public void testRegister(Player player) {
         Hologram hologram = new HologramMock(
                 new TextHologramData("Test", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         registry.register(hologram);
 
@@ -42,10 +45,13 @@ public class HologramRegistryTest {
     public void testUnregister(Player player) {
         Hologram hologram = new HologramMock(
                 new TextHologramData("Test", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         registry.register(hologram);
         expect(registry.get("Test").isPresent()).toBe(true);
@@ -60,10 +66,13 @@ public class HologramRegistryTest {
     public void testContains(Player player) {
         Hologram hologram = new HologramMock(
                 new TextHologramData("Test", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         registry.register(hologram);
         expect(registry.contains("Test")).toBe(true);
@@ -73,10 +82,13 @@ public class HologramRegistryTest {
     public void testGet(Player player) {
         Hologram hologram = new HologramMock(
                 new TextHologramData("Test", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         registry.register(hologram);
 
@@ -89,16 +101,22 @@ public class HologramRegistryTest {
     public void testGetAll(Player player) {
         Hologram hologram1 = new HologramMock(
                 new TextHologramData("Test1", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
         Hologram hologram2 = new HologramMock(
                 new TextHologramData("Test2", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         registry.register(hologram1);
         registry.register(hologram2);
@@ -112,19 +130,25 @@ public class HologramRegistryTest {
     public void testGetAllPersistent(Player player) {
         Hologram hologram1 = new HologramMock(
                 new TextHologramData("Test1", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         TextHologramData data2 = new TextHologramData("Test2", player.getLocation());
         data2.setPersistent(false);
         Hologram hologram2 = new HologramMock(
                 data2,
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         registry.register(hologram1);
         registry.register(hologram2);
@@ -138,10 +162,13 @@ public class HologramRegistryTest {
     public void testMustGet(Player player) {
         Hologram hologram = new HologramMock(
                 new TextHologramData("Test", player.getLocation()),
-                () -> {},
-                () -> {},
-                () -> {}
-            );
+                () -> {
+                },
+                () -> {
+                },
+                () -> {
+                }
+        );
 
         registry.register(hologram);
 

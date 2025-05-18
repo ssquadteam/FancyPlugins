@@ -43,20 +43,20 @@ public class DecentHologramsConverter extends HologramConverter {
 
         if (processIcons) {
             MessageHelper.warning(
-                spec.getInvoker(),
-                "--processIcons argument is experimental and may produce unexpected results."
+                    spec.getInvoker(),
+                    "--processIcons argument is experimental and may produce unexpected results."
             );
         } else {
             MessageHelper.info(
-                spec.getInvoker(),
-                "Any lines containing an #ICON will be removed. You may run with --processIcons to attempt conversion, but this is experimental."
+                    spec.getInvoker(),
+                    "Any lines containing an #ICON will be removed. You may run with --processIcons to attempt conversion, but this is experimental."
             );
         }
 
         final List<String> targetHolograms = getConvertableHolograms()
-            .stream()
-            .filter((id) -> spec.getTarget().matches(id))
-            .toList();
+                .stream()
+                .filter((id) -> spec.getTarget().matches(id))
+                .toList();
 
         if (targetHolograms.isEmpty()) {
             throw new RuntimeException("The provided target matches no holograms.");
@@ -88,14 +88,14 @@ public class DecentHologramsConverter extends HologramConverter {
         }
 
         return Arrays.stream(files)
-            .map((file) -> file.getName().replace(".yml", ""))
-            .toList();
+                .map((file) -> file.getName().replace(".yml", ""))
+                .toList();
     }
 
     private @NotNull List<HologramData> convert(@NotNull String hologramId, boolean processIcons) {
         final File file = DECENT_HOLOGRAMS_DATA.toPath()
-            .resolve(hologramId.endsWith(".yml") ? hologramId : hologramId + ".yml")
-            .toFile();
+                .resolve(hologramId.endsWith(".yml") ? hologramId : hologramId + ".yml")
+                .toFile();
 
         if (!file.exists() || !file.canRead()) {
             throw new RuntimeException("File does not exist or is not readable.");
@@ -110,10 +110,10 @@ public class DecentHologramsConverter extends HologramConverter {
 
         // TODO handle exceptions here
         final Object firstPage = data.getMapList("pages")
-            .stream()
-            .findFirst()
-            .orElseThrow(() -> new RuntimeException(String.format("There are no pages for %s!", hologramId)))
-            .get("lines");
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException(String.format("There are no pages for %s!", hologramId)))
+                .get("lines");
 
         Objects.requireNonNull(firstPage, String.format("There is no first page for %s!", hologramId));
 
@@ -126,14 +126,14 @@ public class DecentHologramsConverter extends HologramConverter {
         }
 
         List<String> lines = firstPageSections
-            .stream()
-            .map((line) -> (String) line.get("content"))
-            .toList();
+                .stream()
+                .map((line) -> (String) line.get("content"))
+                .toList();
 
         if (!processIcons) {
             lines = lines.stream()
-                .map((line) -> line.startsWith(ICON_PREFIX) ? "" : line)
-                .toList();
+                    .map((line) -> line.startsWith(ICON_PREFIX) ? "" : line)
+                    .toList();
         }
 
         final TextHologramData hologram = new TextHologramData(hologramId, location);
@@ -163,10 +163,10 @@ public class DecentHologramsConverter extends HologramConverter {
      * it should be enough to give users an idea of what it would look
      * like.
      *
-     * @author MattMX
-     * @param base The root hologram (background)
+     * @param base  The root hologram (background)
      * @param lines lines from the DecentHolograms hologram's first page.
      * @return A list of created [HologramData] children.
+     * @author MattMX
      */
     private @NotNull List<HologramData> convertSplitLines(@NotNull TextHologramData base, @NotNull List<Map<String, ?>> lines) {
         final List<HologramData> stack = new ArrayList<>();
@@ -224,11 +224,11 @@ public class DecentHologramsConverter extends HologramConverter {
         for (@NotNull HologramData holo : stack) {
             if (holo instanceof ItemHologramData itemHolo) {
                 itemHolo.setTranslation(
-                    new Vector3f(
-                        itemHolo.getTranslation().x,
-                        totalHeight - itemHolo.getTranslation().y - 0.25f,
-                        itemHolo.getTranslation().z
-                    )
+                        new Vector3f(
+                                itemHolo.getTranslation().x,
+                                totalHeight - itemHolo.getTranslation().y - 0.25f,
+                                itemHolo.getTranslation().z
+                        )
                 );
             }
         }

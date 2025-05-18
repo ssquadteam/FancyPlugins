@@ -200,7 +200,7 @@ public class YamlHologramStorage implements HologramStorage {
                 lock.writeLock().unlock();
             }
 
-            if(!FancyHologramsPlugin.canGet()) {
+            if (!FancyHologramsPlugin.canGet()) {
                 return;
             }
 

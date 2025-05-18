@@ -55,14 +55,14 @@ public class NearbyCMD implements Subcommand {
         Location playerLocation = ((Player) player).getLocation().clone();
 
         List<Map.Entry<Hologram, Double>> nearby = FancyHologramsPlugin.get()
-            .getRegistry()
-            .getAllPersistent()
-            .stream()
-            .filter((holo) -> holo.getData().getWorldName().equals(playerLocation.getWorld().getName()))
-            .map((holo) -> Map.entry(holo, holo.getData().getLocation().distance(playerLocation)))
-            .filter((entry) -> entry.getValue() <= range.get())
-            .sorted(Comparator.comparingInt(a -> a.getValue().intValue()))
-            .toList();
+                .getRegistry()
+                .getAllPersistent()
+                .stream()
+                .filter((holo) -> holo.getData().getWorldName().equals(playerLocation.getWorld().getName()))
+                .map((holo) -> Map.entry(holo, holo.getData().getLocation().distance(playerLocation)))
+                .filter((entry) -> entry.getValue() <= range.get())
+                .sorted(Comparator.comparingInt(a -> a.getValue().intValue()))
+                .toList();
 
         if (nearby.isEmpty()) {
             MessageHelper.error(player, "There are no nearby holograms in a radius of %s blocks.".formatted(range.get()));
@@ -80,16 +80,16 @@ public class NearbyCMD implements Subcommand {
             }
 
             MessageHelper.info(player,
-                "<hover:show_text:'<gray><i>Click to teleport</i></gray>'><click:run_command:'%s'> - %s (%s/%s/%s in %s, %s blocks away)</click></hover>"
-                    .formatted(
-                        "/hologram teleport " + holo.getData().getName(),
-                        holo.getData().getName(),
-                        Formats.DECIMAL.format(location.x()),
-                        Formats.DECIMAL.format(location.y()),
-                        Formats.DECIMAL.format(location.z()),
-                        location.getWorld().getName(),
-                        Formats.DECIMAL.format(distance)
-                    ));
+                    "<hover:show_text:'<gray><i>Click to teleport</i></gray>'><click:run_command:'%s'> - %s (%s/%s/%s in %s, %s blocks away)</click></hover>"
+                            .formatted(
+                                    "/hologram teleport " + holo.getData().getName(),
+                                    holo.getData().getName(),
+                                    Formats.DECIMAL.format(location.x()),
+                                    Formats.DECIMAL.format(location.y()),
+                                    Formats.DECIMAL.format(location.z()),
+                                    location.getWorld().getName(),
+                                    Formats.DECIMAL.format(distance)
+                            ));
         });
         return true;
     }

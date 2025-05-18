@@ -45,7 +45,7 @@ public class HologramBuilderTest {
                 .text("Custom line")
                 .build();
 
-        if(!(hologram.getData() instanceof TextHologramData data)) {
+        if (!(hologram.getData() instanceof TextHologramData data)) {
             throw new AssertionError("Hologram is not a text hologram");
         }
 
@@ -59,7 +59,7 @@ public class HologramBuilderTest {
                 .text("Custom line", "Another line", "Yet another line")
                 .build();
 
-        if(!(hologram.getData() instanceof TextHologramData data)) {
+        if (!(hologram.getData() instanceof TextHologramData data)) {
             throw new AssertionError("Hologram is not a text hologram");
         }
 
@@ -75,7 +75,7 @@ public class HologramBuilderTest {
                 .text(List.of("Custom line", "Another line", "Yet another line"))
                 .build();
 
-        if(!(hologram.getData() instanceof TextHologramData data)) {
+        if (!(hologram.getData() instanceof TextHologramData data)) {
             throw new AssertionError("Hologram is not a text hologram");
         }
 
@@ -99,15 +99,15 @@ public class HologramBuilderTest {
                 .persistent(false)
                 .linkedNpcName("TestNPC")
                 .billboard(Display.Billboard.FIXED)
-                .scale(3,5,6)
-                .translation(1,2,3)
+                .scale(3, 5, 6)
+                .translation(1, 2, 3)
                 .brightness(7, 3)
                 .shadowRadius(0.5f)
                 .shadowStrength(0.7f)
                 .interpolationDuration(100)
                 .build();
 
-        if(!(hologram.getData() instanceof TextHologramData data)) {
+        if (!(hologram.getData() instanceof TextHologramData data)) {
             throw new AssertionError("Hologram is not a text hologram");
         }
 
@@ -123,9 +123,9 @@ public class HologramBuilderTest {
         expect(data.isPersistent()).toBe(false);
         expect(data.getLinkedNpcName()).toEqual("TestNPC");
         expect(data.getBillboard()).toEqual(Display.Billboard.FIXED);
-        expect(data.getScale()).toEqual(new Vector3f(3,5,6));
-        expect(data.getTranslation()).toEqual(new Vector3f(1,2,3));
-        expect(data.getBrightness()).toEqual(new Display.Brightness(7,3));
+        expect(data.getScale()).toEqual(new Vector3f(3, 5, 6));
+        expect(data.getTranslation()).toEqual(new Vector3f(1, 2, 3));
+        expect(data.getBrightness()).toEqual(new Display.Brightness(7, 3));
         expect(data.getShadowRadius()).toEqual(0.5f);
         expect(data.getShadowStrength()).toEqual(0.7f);
         expect(data.getInterpolationDuration()).toEqual(100);
@@ -145,14 +145,14 @@ public class HologramBuilderTest {
         expect(hologram.getData().getLocation()).toEqual(player.getLocation());
         expect(hologram.getData().getType()).toEqual(HologramType.ITEM);
 
-        if(!(hologram.getData() instanceof ItemHologramData data)) {
+        if (!(hologram.getData() instanceof ItemHologramData data)) {
             throw new AssertionError("Hologram is not an item hologram");
         }
 
         expect(data.getItemStack()).toEqual(item);
     }
 
-   @FPTest(name = "Test block hologram builder")
+    @FPTest(name = "Test block hologram builder")
     public void testBlockHologramBuilder(Player player) {
         Hologram hologram = BlockHologramBuilder.create("Test", player.getLocation())
                 .block(Material.DIRT)
@@ -164,7 +164,7 @@ public class HologramBuilderTest {
         expect(hologram.getData().getLocation()).toEqual(player.getLocation());
         expect(hologram.getData().getType()).toEqual(HologramType.BLOCK);
 
-        if(!(hologram.getData() instanceof BlockHologramData data)) {
+        if (!(hologram.getData() instanceof BlockHologramData data)) {
             throw new AssertionError("Hologram is not a block hologram");
         }
 

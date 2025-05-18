@@ -160,7 +160,7 @@ public class DisplayHologramData extends HologramData {
         int blockBrightness = Math.min(15, section.getInt("block_brightness", -1));
         int skyBrightness = Math.min(15, section.getInt("sky_brightness", -1));
 
-        if(blockBrightness > -1 || skyBrightness > -1) {
+        if (blockBrightness > -1 || skyBrightness > -1) {
             brightness = new Display.Brightness(
                     Math.max(0, blockBrightness),
                     Math.max(0, skyBrightness)
@@ -183,7 +183,7 @@ public class DisplayHologramData extends HologramData {
         section.set("shadow_radius", shadowRadius);
         section.set("shadow_strength", shadowStrength);
 
-        if(brightness != null) {
+        if (brightness != null) {
             section.set("block_brightness", brightness.getBlockLight());
             section.set("sky_brightness", brightness.getSkyLight());
         }

@@ -309,12 +309,12 @@ public final class HologramCMD extends Command {
             return suggestions;
         }
 
-        if(args[2].equalsIgnoreCase("brightness")) {
-            if(args.length == 4) {
+        if (args[2].equalsIgnoreCase("brightness")) {
+            if (args.length == 4) {
                 return List.of("block", "sky");
             }
 
-            if(args.length > 5) {
+            if (args.length > 5) {
                 return Collections.emptyList();
             }
 

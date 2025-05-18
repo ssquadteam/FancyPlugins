@@ -32,7 +32,7 @@ public class FancyHologramsTestCMD extends Command {
         Player p = (Player) commandSender;
 
         FHTests tests = new FHTests();
-        if(tests.runAllTests(p)) {
+        if (tests.runAllTests(p)) {
             MessageHelper.success(p, "All tests have been successfully run!");
         } else {
             MessageHelper.error(p, "There was an issue running the tests!");

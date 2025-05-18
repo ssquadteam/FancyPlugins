@@ -29,9 +29,9 @@ public class CenterCMD implements Subcommand {
         Location location = hologram.getData().getLocation();
 
         location.set(
-            Math.floor(location.x()) + 0.5,
-            location.y(),
-            Math.floor(location.z()) + 0.5
+                Math.floor(location.x()) + 0.5,
+                location.y(),
+                Math.floor(location.z()) + 0.5
         );
 
         hologram.getData().setLocation(location);
@@ -41,11 +41,11 @@ public class CenterCMD implements Subcommand {
         }
 
         MessageHelper.success(player, "Centered the hologram to %s/%s/%s %s\u00B0 %s\u00B0".formatted(
-            Formats.COORDINATES_DECIMAL.format(location.x()),
-            Formats.COORDINATES_DECIMAL.format(location.y()),
-            Formats.COORDINATES_DECIMAL.format(location.z()),
-            Formats.COORDINATES_DECIMAL.format((location.getYaw() + 180f) % 360f),
-            Formats.COORDINATES_DECIMAL.format((location.getPitch()) % 360f)
+                Formats.COORDINATES_DECIMAL.format(location.x()),
+                Formats.COORDINATES_DECIMAL.format(location.y()),
+                Formats.COORDINATES_DECIMAL.format(location.z()),
+                Formats.COORDINATES_DECIMAL.format((location.getYaw() + 180f) % 360f),
+                Formats.COORDINATES_DECIMAL.format((location.getPitch()) % 360f)
         ));
         return true;
     }

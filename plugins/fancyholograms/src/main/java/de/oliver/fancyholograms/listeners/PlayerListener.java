@@ -29,7 +29,7 @@ public final class PlayerListener implements Listener {
             event.getClass().getMethod("getID");
             return event.getID();
         } catch (final @NotNull NoSuchMethodException e) {
-            return new UUID(0,0);
+            return new UUID(0, 0);
         }
     }
 
@@ -81,7 +81,7 @@ public final class PlayerListener implements Listener {
         // Adding accepted resource-pack to the list of currently loading resource-packs for that player.
         if (event.getStatus() == Status.ACCEPTED)
             loadingResourcePacks.computeIfAbsent(playerUniqueId, (___) -> new ArrayList<>()).add(packUniqueId);
-        // Once successfully loaded (or failed to download), removing resource-pack from the map.
+            // Once successfully loaded (or failed to download), removing resource-pack from the map.
         else if (event.getStatus() == Status.SUCCESSFULLY_LOADED || event.getStatus() == Status.FAILED_DOWNLOAD) {
             loadingResourcePacks.computeIfAbsent(playerUniqueId, (___) -> new ArrayList<>()).removeIf(uuid -> uuid.equals(packUniqueId));
             // Refreshing holograms once (possibly) all resource-packs are loaded.

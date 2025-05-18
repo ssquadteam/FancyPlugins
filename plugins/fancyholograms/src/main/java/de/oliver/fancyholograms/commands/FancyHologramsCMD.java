@@ -67,36 +67,36 @@ public final class FancyHologramsCMD extends Command {
 
                 final String converterId = args[1];
                 FHConversionRegistry.getConverterById(converterId)
-                    .ifPresentOrElse((converter) -> {
-                        final String[] converterArgs = Arrays.asList(args)
-                            .subList(2, args.length)
-                            .toArray(String[]::new);
+                        .ifPresentOrElse((converter) -> {
+                            final String[] converterArgs = Arrays.asList(args)
+                                    .subList(2, args.length)
+                                    .toArray(String[]::new);
 
-                        final ConverterTarget target = ConverterTarget.ofStringNullable(args[2]);
+                            final ConverterTarget target = ConverterTarget.ofStringNullable(args[2]);
 
-                        if (target == null) {
-                            MessageHelper.error(sender, "Invalid regex for your conversion target!");
-                            return;
-                        }
-
-                        final HologramConversionSession session = new HologramConversionSession(target, sender, converterArgs);
-
-                        try {
-                            final List<HologramData> holograms = converter.convert(session);
-
-                            for (final HologramData data : holograms) {
-                                final Hologram hologram = this.plugin.getHologramFactory().apply(data);
-                                this.plugin.getRegistry().register(hologram);
+                            if (target == null) {
+                                MessageHelper.error(sender, "Invalid regex for your conversion target!");
+                                return;
                             }
 
-                            this.plugin.savePersistentHolograms();
-                            // TODO(matt): Give options to delete them or teleport and a list of IDs please
+                            final HologramConversionSession session = new HologramConversionSession(target, sender, converterArgs);
 
-                            MessageHelper.success(sender, String.format("Converted successfully, produced %s total holograms!", holograms.size()));
-                        } catch (Exception error) {
-                            MessageHelper.error(sender, error.getMessage());
-                        }
-                    }, () -> MessageHelper.error(sender, "That converter is not registered. Look at the developer documentation if you are adding converters."));
+                            try {
+                                final List<HologramData> holograms = converter.convert(session);
+
+                                for (final HologramData data : holograms) {
+                                    final Hologram hologram = this.plugin.getHologramFactory().apply(data);
+                                    this.plugin.getRegistry().register(hologram);
+                                }
+
+                                this.plugin.savePersistentHolograms();
+                                // TODO(matt): Give options to delete them or teleport and a list of IDs please
+
+                                MessageHelper.success(sender, String.format("Converted successfully, produced %s total holograms!", holograms.size()));
+                            } catch (Exception error) {
+                                MessageHelper.error(sender, error.getMessage());
+                            }
+                        }, () -> MessageHelper.error(sender, "That converter is not registered. Look at the developer documentation if you are adding converters."));
             }
             default -> {
                 MessageHelper.info(sender, FH_COMMAND_USAGE);
@@ -125,10 +125,10 @@ public final class FancyHologramsCMD extends Command {
                 } else if (args.length == 3) {
                     final String converterId = args[1];
                     FHConversionRegistry.getConverterById(converterId)
-                        .ifPresent((converter) -> {
-                            suggestions.addAll(converter.getConvertableHolograms());
-                            suggestions.add("*");
-                        });
+                            .ifPresent((converter) -> {
+                                suggestions.addAll(converter.getConvertableHolograms());
+                                suggestions.add("*");
+                            });
                 }
             }
         }
@@ -136,7 +136,7 @@ public final class FancyHologramsCMD extends Command {
         String lastArgument = args[args.length - 1];
 
         return suggestions.stream()
-            .filter(alias -> alias.startsWith(lastArgument.toLowerCase(Locale.ROOT)))
-            .toList();
+                .filter(alias -> alias.startsWith(lastArgument.toLowerCase(Locale.ROOT)))
+                .toList();
     }
 }

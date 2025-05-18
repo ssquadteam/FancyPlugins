@@ -7,7 +7,7 @@ import org.bukkit.entity.TextDisplay;
 
 import java.util.List;
 
-public class TextHologramBuilder extends HologramBuilder{
+public class TextHologramBuilder extends HologramBuilder {
 
     private TextHologramBuilder(String name, Location location) {
         super();
@@ -17,7 +17,7 @@ public class TextHologramBuilder extends HologramBuilder{
     /**
      * Creates a new instance of TextHologramBuilder with the specified name and location.
      *
-     * @param name the name of the text hologram
+     * @param name     the name of the text hologram
      * @param location the location of the text hologram
      * @return a new instance of TextHologramBuilder
      */
@@ -34,7 +34,7 @@ public class TextHologramBuilder extends HologramBuilder{
         return text(List.of(text));
     }
 
-    public TextHologramBuilder text(String ... text) {
+    public TextHologramBuilder text(String... text) {
         return text(List.of(text));
     }
 
