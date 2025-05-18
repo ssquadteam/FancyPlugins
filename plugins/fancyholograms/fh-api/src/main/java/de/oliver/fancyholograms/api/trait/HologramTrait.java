@@ -61,6 +61,12 @@ public abstract class HologramTrait {
     }
 
     /**
+     * Called when the trait is updated to a player.
+     */
+    public void onUpdate(Player player) {
+    }
+
+    /**
      * Called when the hologram is modified.
      */
     public void onModify() {
