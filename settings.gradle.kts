@@ -33,16 +33,15 @@ include(":libraries:common")
 include(":libraries:jdb")
 include(":libraries:plugin-tests")
 
+include(":libraries:packets")
 include(":libraries:packets:packets-api")
-include(":libraries:packets:factories")
-include(":libraries:packets:implementations")
+include(":libraries:packets:test-plugin")
 include(":libraries:packets:implementations:1_20_6")
 include(":libraries:packets:implementations:1_21")
 include(":libraries:packets:implementations:1_21_1")
 include(":libraries:packets:implementations:1_21_3")
 include(":libraries:packets:implementations:1_21_4")
 include(":libraries:packets:implementations:1_21_5")
-include(":libraries:packets:test_plugin")
 
 
 include(":tools:deployment")

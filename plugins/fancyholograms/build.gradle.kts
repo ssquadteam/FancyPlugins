@@ -68,8 +68,8 @@ dependencies {
     implementation(project(":libraries:common"))
     implementation(project(":libraries:plugin-tests"))
     implementation(project(":libraries:jdb"))
+    implementation(project(":libraries:packets"))
     implementation(project(":libraries:packets:packets-api"))
-    implementation(project(":libraries:packets:factories"))
     implementation("de.oliver.FancyAnalytics:api:0.1.6")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")
 

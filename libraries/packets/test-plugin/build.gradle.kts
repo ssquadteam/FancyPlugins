@@ -19,8 +19,8 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
 
+    implementation(project(":libraries:packets"))
     implementation(project(":libraries:packets:packets-api"))
-    implementation(project(":libraries:packets:factories"))
     implementation(project(":libraries:packets:implementations:1_20_6"))
     implementation(project(":libraries:packets:implementations:1_21_3"))
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")
