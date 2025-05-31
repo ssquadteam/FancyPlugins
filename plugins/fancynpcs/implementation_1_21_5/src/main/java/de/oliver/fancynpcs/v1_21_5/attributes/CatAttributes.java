@@ -6,12 +6,12 @@ import de.oliver.fancynpcs.v1_21_5.ReflectionHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.Level;
 import org.bukkit.entity.EntityType;
 
 import java.util.ArrayList;
@@ -24,10 +24,19 @@ public class CatAttributes {
 
         attributes.add(new NpcAttribute(
                 "variant",
-                getCatVariantRegistry()
-                        .listElementIds()
-                        .map(id -> id.location().getPath())
-                        .toList(),
+                List.of(
+                        "tabby",
+                        "black",
+                        "red",
+                        "siamese",
+                        "british_shorthair",
+                        "calico",
+                        "persian",
+                        "ragdoll",
+                        "white",
+                        "jellie",
+                        "all_black"
+                ),
                 List.of(EntityType.CAT),
                 CatAttributes::setVariant
         ));
@@ -52,12 +61,11 @@ public class CatAttributes {
     private static void setVariant(Npc npc, String value) {
         final Cat cat = ReflectionHelper.getEntity(npc);
 
-        Holder<CatVariant> variant = getCatVariantRegistry()
-                .get(ResourceKey.create(
-                        Registries.CAT_VARIANT,
-                        ResourceLocation.withDefaultNamespace(value.toLowerCase())
-                ))
-                .orElseThrow();
+        HolderLookup.RegistryLookup<CatVariant> registry = getCatVariantRegistry(cat.level());
+        Holder.Reference<CatVariant> variant = registry.get(ResourceKey.create(
+                Registries.CAT_VARIANT,
+                ResourceLocation.withDefaultNamespace(value.toLowerCase())
+        )).orElseThrow();
 
         cat.setVariant(variant);
     }
@@ -81,11 +89,8 @@ public class CatAttributes {
         }
     }
 
-    private static HolderLookup.RegistryLookup<CatVariant> getCatVariantRegistry() {
-        return VanillaRegistries
-                .createLookup()
-                .lookup(Registries.CAT_VARIANT)
-                .orElseThrow();
+    private static HolderLookup.RegistryLookup<CatVariant> getCatVariantRegistry(Level world) {
+        return world.registryAccess().lookup(Registries.CAT_VARIANT).orElseThrow();
     }
 
     private static void setCollarColor(Npc npc, String value) {
@@ -99,7 +104,7 @@ public class CatAttributes {
 
         try {
             DyeColor color = DyeColor.valueOf(value.toUpperCase());
-            if (!cat.isTame()){
+            if (!cat.isTame()) {
                 cat.setTame(true, false);
             }
             cat.setCollarColor(color);
