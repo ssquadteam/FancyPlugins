@@ -7,11 +7,11 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.registries.VanillaRegistries;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.animal.wolf.Wolf;
 import net.minecraft.world.entity.animal.wolf.WolfVariant;
+import net.minecraft.world.item.DyeColor;
 import org.bukkit.entity.EntityType;
 
 import java.util.ArrayList;
@@ -112,7 +112,7 @@ public class WolfAttributes {
 
         try {
             DyeColor color = DyeColor.valueOf(value.toUpperCase());
-            if (!wolf.isTame()){
+            if (!wolf.isTame()) {
                 wolf.setTame(true, false);
             }
             wolf.setCollarColor(color);
@@ -122,9 +122,6 @@ public class WolfAttributes {
     }
 
     private static HolderLookup.RegistryLookup<WolfVariant> getWolfVariantRegistry() {
-        return VanillaRegistries
-                .createLookup()
-                .lookup(Registries.WOLF_VARIANT)
-                .orElseThrow();
+        return MinecraftServer.getServer().registryAccess().lookupOrThrow(Registries.WOLF_VARIANT);
     }
 }
