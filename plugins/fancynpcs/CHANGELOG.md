@@ -1,0 +1,2 @@
+- Fixed some attributes kicking players from the server (only in 1.21.5)
+- Fixed NPE related to the skin system
