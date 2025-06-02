@@ -316,7 +316,7 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
                     npc.spawnForAll();
                 }
             }
-        }, 3, npcUpdateInterval, TimeUnit.MINUTES);
+        }, 30, npcUpdateInterval, TimeUnit.SECONDS);
 
         // Creating new instance of CloudCommandManager and registering all needed components.
         // NOTE: Brigadier is disabled by default. More detailed information about that can be found in CloudCommandManager class.

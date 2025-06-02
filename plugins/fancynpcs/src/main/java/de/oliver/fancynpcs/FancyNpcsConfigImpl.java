@@ -115,8 +115,8 @@ public class FancyNpcsConfigImpl implements FancyNpcsConfig {
         autoSaveInterval = (int) ConfigHelper.getOrDefault(config, "autosave_interval", 15);
         config.setInlineComments("autosave_interval", List.of("The interval at which autosave is performed in minutes."));
 
-        npcUpdateInterval = (int) ConfigHelper.getOrDefault(config, "npc_update_interval", 30);
-        config.setInlineComments("npc_update_skin_interval", List.of("The interval at which the NPC is updated (in minutes). Only if the skin or displayName is a placeholder."));
+        npcUpdateInterval = (int) ConfigHelper.getOrDefault(config, "npc_update_interval", 60);
+        config.setInlineComments("npc_update_skin_interval", List.of("The interval at which the NPC is updated (in seconds). Only if the skin or displayName is a placeholder."));
 
         npcUpdateVisibilityInterval = (int) ConfigHelper.getOrDefault(config, "npc_update_visibility_interval", 20);
         config.setInlineComments("npc_update_visibility_interval", List.of("The interval at which the NPC visibility is updated (in ticks)."));
@@ -211,15 +211,15 @@ public class FancyNpcsConfigImpl implements FancyNpcsConfig {
         if (distance <= 0 && distance != -1) {
             return false;
         }
-        
+
         // Update the config value in memory
         this.turnToPlayerDistance = distance;
-        
+
         // Persist to config file
         FileConfiguration config = FancyNpcs.getInstance().getConfig();
         config.set("turn_to_player_distance", distance);
         FancyNpcs.getInstance().saveConfig();
-        
+
         return true;
     }
 
