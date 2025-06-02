@@ -42,6 +42,7 @@ public class Attributes_1_21_5 {
         attributes.addAll(BeeAttributes.getAllAttributes());
         attributes.addAll(VexAttributes.getAllAttributes());
         attributes.addAll(ArmadilloAttributes.getAllAttributes());
+        attributes.addAll(SnifferAttributes.getAllAttributes());
 
         attributes.addAll(DisplayAttributes.getAllAttributes());
         attributes.addAll(TextDisplayAttributes.getAllAttributes());
