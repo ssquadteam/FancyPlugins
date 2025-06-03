@@ -2,19 +2,18 @@ package de.oliver.fancyholograms.listeners;
 
 import de.oliver.fancyholograms.FancyHolograms;
 import de.oliver.fancyholograms.api.hologram.Hologram;
+import io.papermc.paper.event.player.PlayerClientLoadedWorldEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 public final class PlayerListener implements Listener {
 
@@ -27,14 +26,21 @@ public final class PlayerListener implements Listener {
         this.loadingResourcePacks = new HashMap<>();
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onJoin(@NotNull final PlayerJoinEvent event) {
-        for (final var hologram : this.plugin.getHologramsManager().getHolograms()) {
-            hologram.updateShownStateFor(event.getPlayer());
+    // For 1.20.2 and higher this method returns actual pack identifier, while for older versions, the identifier is a dummy UUID full of zeroes.
+    // Versions prior 1.20.2 supports sending and receiving only one resource-pack and a dummy, constant identifier can be used as a key.
+    private static @NotNull UUID getResourcePackID(final @NotNull PlayerResourcePackStatusEvent event) {
+        try {
+            event.getClass().getMethod("getID");
+            return event.getID();
+        } catch (final @NotNull NoSuchMethodException e) {
+            return new UUID(0, 0);
         }
+    }
 
-        if (!this.plugin.getHologramConfiguration().areVersionNotificationsEnabled() && event.getPlayer().hasPermission("fancyholograms.admin")) {
-            FancyHolograms.get().getHologramThread().submit(() -> FancyHolograms.get().getVersionConfig().checkVersionAndDisplay(event.getPlayer(), true));
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerLoaded(@NotNull final PlayerClientLoadedWorldEvent event) {
+        for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
+            hologram.forceUpdateShownStateFor(event.getPlayer());
         }
     }
 
@@ -50,14 +56,14 @@ public final class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onTeleport(@NotNull final PlayerTeleportEvent event) {
         for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
-            hologram.updateShownStateFor(event.getPlayer());
+            hologram.forceUpdateShownStateFor(event.getPlayer());
         }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onWorldChange(@NotNull final PlayerChangedWorldEvent event) {
         for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
-            hologram.updateShownStateFor(event.getPlayer());
+            hologram.forceUpdateShownStateFor(event.getPlayer());
         }
     }
 
@@ -72,7 +78,7 @@ public final class PlayerListener implements Listener {
         // Adding accepted resource-pack to the list of currently loading resource-packs for that player.
         if (event.getStatus() == Status.ACCEPTED)
             loadingResourcePacks.computeIfAbsent(playerUniqueId, (___) -> new ArrayList<>()).add(packUniqueId);
-        // Once successfully loaded (or failed to download), removing resource-pack from the map.
+            // Once successfully loaded (or failed to download), removing resource-pack from the map.
         else if (event.getStatus() == Status.SUCCESSFULLY_LOADED || event.getStatus() == Status.FAILED_DOWNLOAD) {
             loadingResourcePacks.computeIfAbsent(playerUniqueId, (___) -> new ArrayList<>()).removeIf(uuid -> uuid.equals(packUniqueId));
             // Refreshing holograms once (possibly) all resource-packs are loaded.
@@ -84,17 +90,6 @@ public final class PlayerListener implements Listener {
                     hologram.refreshHologram(event.getPlayer());
                 }
             }
-        }
-    }
-
-    // For 1.20.2 and higher this method returns actual pack identifier, while for older versions, the identifier is a dummy UUID full of zeroes.
-    // Versions prior 1.20.2 supports sending and receiving only one resource-pack and a dummy, constant identifier can be used as a key.
-    private static @NotNull UUID getResourcePackID(final @NotNull PlayerResourcePackStatusEvent event) {
-        try {
-            event.getClass().getMethod("getID");
-            return event.getID();
-        } catch (final @NotNull NoSuchMethodException e) {
-            return new UUID(0,0);
         }
     }
 
