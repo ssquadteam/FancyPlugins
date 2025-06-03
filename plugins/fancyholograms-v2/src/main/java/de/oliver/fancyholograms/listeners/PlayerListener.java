@@ -2,15 +2,11 @@ package de.oliver.fancyholograms.listeners;
 
 import de.oliver.fancyholograms.FancyHolograms;
 import de.oliver.fancyholograms.api.hologram.Hologram;
-import io.papermc.paper.event.player.PlayerClientLoadedWorldEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerResourcePackStatusEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
-import org.bukkit.event.player.PlayerTeleportEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -38,19 +34,20 @@ public final class PlayerListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerLoaded(@NotNull final PlayerClientLoadedWorldEvent event) {
-        for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
-            hologram.forceUpdateShownStateFor(event.getPlayer());
-        }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
     public void onQuit(@NotNull final PlayerQuitEvent event) {
         FancyHolograms.get().getHologramThread().submit(() -> {
             for (final var hologram : this.plugin.getHologramsManager().getHolograms()) {
-                hologram.hideHologram(event.getPlayer());
+                hologram.forceHideHologram(event.getPlayer());
             }
         });
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onJoin(@NotNull final PlayerJoinEvent event) {
+        for (final var hologram : this.plugin.getHologramsManager().getHolograms()) {
+            hologram.forceHideHologram(event.getPlayer());
+            hologram.forceUpdateShownStateFor(event.getPlayer());
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
