@@ -23,6 +23,7 @@ import de.oliver.fancyholograms.hologram.version.*;
 import de.oliver.fancyholograms.listeners.BedrockPlayerListener;
 import de.oliver.fancyholograms.listeners.NpcListener;
 import de.oliver.fancyholograms.listeners.PlayerListener;
+import de.oliver.fancyholograms.listeners.PlayerLoadedListener;
 import de.oliver.fancyholograms.metrics.FHMetrics;
 import de.oliver.fancyholograms.registry.HologramRegistryImpl;
 import de.oliver.fancyholograms.storage.HologramStorage;
@@ -266,6 +267,10 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+
+        if (Bukkit.getMinecraftVersion().equals("1.21.4") || Bukkit.getMinecraftVersion().equals("1.21.5")) {
+            getServer().getPluginManager().registerEvents(new PlayerLoadedListener(), this);
+        }
 
         if (PluginUtils.isFancyNpcsEnabled()) {
             getServer().getPluginManager().registerEvents(new NpcListener(this), this);
