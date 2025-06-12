@@ -33,8 +33,8 @@ public class UUIDFetcher {
      */
     public static final long FEBRUARY_2015 = 1422748800000L;
     private static final ExtendedFancyLogger LOGGER = new ExtendedFancyLogger("UUIDFetcher");
-    private static final String UUID_URL = "https://api.mojang.com/users/profiles/minecraft/%s?at=%d";
-    private static final String NAME_URL = "https://api.mojang.com/user/profile/%s";
+    private static final String UUID_URL = "https://api.minecraftservices.com/users/profiles/minecraft/%s?at=%d";
+    private static final String NAME_URL = "https://api.minecraftservices.com/user/profile/%s";
     private static Gson gson = new GsonBuilder().registerTypeAdapter(UUID.class, new UUIDTypeAdapter()).create();
     private static Map<String, UUID> uuidCache = new HashMap<String, UUID>();
     private static Map<UUID, String> nameCache = new HashMap<UUID, String>();
