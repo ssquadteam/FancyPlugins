@@ -238,7 +238,9 @@ public class Npc_1_20_1 extends Npc {
                 actions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED);
             }
 
-            ClientboundPlayerInfoUpdatePacket playerInfoPacket = new ClientboundPlayerInfoUpdatePacket(actions, getEntry(npcPlayer, serverPlayer));
+            ClientboundPlayerInfoUpdatePacket playerInfoPacket = new ClientboundPlayerInfoUpdatePacket(actions, List.of(npcPlayer)); // KEEP
+            List<ClientboundPlayerInfoUpdatePacket.Entry> entries = List.of(getEntry(npcPlayer, serverPlayer)); // KEEP
+            ReflectionUtils.setValue(playerInfoPacket, MappingKeys1_20_1.CLIENTBOUND_PLAYER_INFO_UPDATE_PACKET__ENTRIES.getMapping(), entries); // KEEP
             serverPlayer.connection.send(playerInfoPacket);
         }
 
