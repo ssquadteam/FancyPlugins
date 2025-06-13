@@ -1,0 +1,9 @@
+- Fixed skins set to username or uuid not working sometimes (403 http status code)
+- Npcs should now spawn instantly when a player teleports
+- Added support for [text shadow color](https://docs.advntr.dev/minimessage/format.html#shadow-color) (updated ChatColorHandler)
+- Changed npc update interval (the config option) to seconds
+- Added sniffer state attribute
+- Fixed NPE in SkinManager
+- Fixed issue with the copy command
+- Fixed exception with the npc update method when using 1.20
+- Fixed NpcsLoadedEvent not being called when no npcs exist
