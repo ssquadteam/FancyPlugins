@@ -22,9 +22,14 @@ dependencies {
     compileOnly("dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT")
     compileOnly("de.oliver.FancyAnalytics:logger:0.0.6")
 
-    // database drivers
+    // database drivers and connection pooling
     compileOnly("org.xerial:sqlite-jdbc:3.49.1.0")
     compileOnly("mysql:mysql-connector-java:8.0.33")
+    compileOnly("org.postgresql:postgresql:42.7.4")
+    compileOnly("com.zaxxer:HikariCP:6.2.1")
+
+    // JSON processing
+    compileOnly("com.google.code.gson:gson:2.13.1")
 
     // testing
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.2")

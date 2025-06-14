@@ -3,39 +3,44 @@ package de.oliver.fancylib.databases;
 import org.bukkit.Bukkit;
 
 import java.io.File;
-import java.sql.DriverManager;
 
+/**
+ * SQLite database implementation
+ */
 public class SqliteDatabase extends MySqlDatabase {
 
-    protected final String path;
-    protected File file;
-
-    public SqliteDatabase(String path) {
-        super(null, null, null, null, null);
-        this.path = path;
-        this.file = new File(path);
+    public SqliteDatabase(DatabaseConfig config) {
+        super(config);
+        if (config.getType() != DatabaseConfig.DatabaseType.SQLITE) {
+            throw new IllegalArgumentException("SQLite database requires SQLite configuration");
+        }
     }
 
     @Override
     public boolean connect() {
-        try {
-            if (isConnected()) {
-                return true;
+        // Ensure the database file directory exists
+        File file = new File(config.getFilePath());
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            if (!parentDir.mkdirs()) {
+                Bukkit.getLogger().warning("Could not create database directory: " + parentDir.getPath());
+                return false;
             }
-
-            if (!file.exists()) {
-                if (!file.createNewFile()) {
-                    Bukkit.getLogger().warning("Could not create database file.");
-                    return false;
-                }
-            }
-
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:" + file.getPath());
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         }
+
+        return super.connect();
+    }
+
+    @Override
+    public String getDatabaseType() {
+        return "sqlite";
+    }
+
+    @Override
+    public boolean initializeSchema() {
+        // SQLite-specific schema initialization if needed
+        // Enable foreign keys for SQLite
+        executeNonQuery("PRAGMA foreign_keys = ON;");
+        return super.initializeSchema();
     }
 }
