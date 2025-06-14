@@ -51,11 +51,6 @@ public final class FHConfiguration implements HologramConfiguration {
      */
     private String logLevel;
 
-    /**
-     * Storage configuration
-     */
-    private de.oliver.fancylib.storage.config.StorageConfig storageConfig;
-
     @Override
     public void reload(@NotNull FancyHolograms plugin) {
         FancyHologramsPlugin pluginImpl = (FancyHologramsPlugin) plugin;
@@ -86,16 +81,6 @@ public final class FHConfiguration implements HologramConfiguration {
 
         config.setInlineComments("log_level", List.of("The log level for the plugin (DEBUG, INFO, WARN, ERROR)."));
         logLevel = (String) ConfigHelper.getOrDefault(config, "log_level", "INFO");
-
-        // Load storage configuration
-        if (storageConfig == null) {
-            storageConfig = new de.oliver.fancylib.storage.config.StorageConfig();
-        }
-        storageConfig.loadFromConfig(config);
-
-        // Save storage configuration with defaults if not present
-        storageConfig.saveToConfig(config);
-        addStorageConfigComments(config);
 
         if (pluginImpl.isEnabled()) {
             plugin.getHologramThread().submit(pluginImpl::saveConfig);
