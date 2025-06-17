@@ -31,6 +31,12 @@ public class CustomClickActionPacketListener {
         if (!packet.getId().namespace().equals("fancysitula") && !packet.getId().namespace().equals("fancydialogs_dialog_action")) {
             return; // Ignore packets not related to FancyDialogs
         }
+
+        String dialogId = packet.getPayload().get("dialog_id");
+        String actionId = packet.getPayload().get("action_id");
+        String actionData = packet.getPayload().get("action_data");
+
+        // TODO process the dialog action
     }
 
     public FS_PacketListener getPacketListener() {

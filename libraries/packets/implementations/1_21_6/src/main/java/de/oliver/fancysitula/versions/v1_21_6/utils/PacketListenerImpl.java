@@ -13,8 +13,9 @@ import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 public class PacketListenerImpl extends FS_PacketListener {
 
@@ -75,12 +76,16 @@ public class PacketListenerImpl extends FS_PacketListener {
         switch (type) {
             case CUSTOM_CLICK_ACTION -> {
                 ServerboundCustomClickActionPacket customClickActionPacket = (ServerboundCustomClickActionPacket) packet;
+
+                Map<String, String> payload = new HashMap<>();
+                customClickActionPacket.payload().get().asCompound().get().forEach((k, t) -> {
+                    payload.put(k, t.asString().get());
+                });
+
                 return new FS_ServerboundCustomClickActionPacket(
                         type,
                         PaperAdventure.asAdventure(customClickActionPacket.id()),
-                        customClickActionPacket.payload().isPresent() ?
-                                customClickActionPacket.payload().get().asCompound().get().getString("data") :
-                                Optional.empty()
+                        payload
                 );
             }
             // Add more cases for other packet types as needed

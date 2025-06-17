@@ -245,7 +245,7 @@ public class ClientboundShowDialogPacketImpl extends FS_ClientboundShowDialogPac
             Optional<CompoundTag> additions;
             if (customAction.getAdditions() != null) {
                 CompoundTag tag = new CompoundTag();
-                tag.putString("data", customAction.getAdditions());
+                customAction.getAdditions().forEach(tag::putString);
                 additions = Optional.of(tag);
             } else {
                 additions = Optional.empty();

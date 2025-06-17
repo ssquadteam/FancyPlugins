@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DialogImpl extends Dialog {
 
@@ -46,7 +47,14 @@ public class DialogImpl extends Dialog {
                             button.tooltip(),
                             150 // default button width
                     ),
-                    new FS_DialogCustomAction("fancydialogs_dialog_action", button.action())
+                    new FS_DialogCustomAction(
+                            "fancydialogs_dialog_action",
+                            Map.of(
+                                    "dialog_id", id,
+                                    "action_id", button.action(),
+                                    "action_data", button.actionData()
+                            )
+                    )
             );
             actions.add(fsDialogActionButton);
         }

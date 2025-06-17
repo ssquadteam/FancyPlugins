@@ -35,12 +35,14 @@ public class ConfirmationDialog {
                         new DialogButton(
                                 this.confirmText,
                                 this.confirmText,
-                                "confirm"
+                                "confirm",
+                                ""
                         ),
                         new DialogButton(
                                 this.cancelText,
                                 this.cancelText,
-                                "cancel"
+                                "cancel",
+                                ""
                         )
                 )
         );

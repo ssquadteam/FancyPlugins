@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class FancySitulaCMD extends Command {
@@ -105,7 +106,7 @@ public class FancySitulaCMD extends Command {
                         ),
                         new FS_DialogCustomAction(
                                 "my-custom-action-1",
-                                "someAdditionalData1"
+                                Map.of("foo", "bar")
                         )
                 )
         );
