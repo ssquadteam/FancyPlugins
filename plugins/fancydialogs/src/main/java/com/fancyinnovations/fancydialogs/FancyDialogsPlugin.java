@@ -141,7 +141,9 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
         registerCommands();
 
         // FancyNpcs actions
-        new OpenDialogNpcAction().register();
+        if (Bukkit.getPluginManager().isPluginEnabled("FancyNpcs")) {
+            new OpenDialogNpcAction().register();
+        }
 
         fancyLogger.info("Successfully enabled FancyDialogs version %s".formatted(getDescription().getVersion()));
     }
