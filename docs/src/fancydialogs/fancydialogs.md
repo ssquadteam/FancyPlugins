@@ -1,8 +1,7 @@
 ---
-title: FancyDialogs
+title: FancyDialogs [WIP] 
 icon: browser
 order: 90
-visibility: hidden
 ---
 
 #
@@ -20,6 +19,11 @@ FancyDialogs uses the new dialog feature, Minecraft introduced in **1.21.6** and
 
 !!!warning
 The plugin will only for **Paper** servers on **1.21.6** or newer!
+!!!
+
+!!!warning
+FancyDialogs is still in development and some features are not yet implemented.
+See the [TODO](#todo) section for more information.
 !!!
 
 **Core advantages of FancyDialogs:**
@@ -48,3 +52,16 @@ Common use cases are:
 - Confirmation dialogs for critical actions
 - Shop UIs (replacing inventories UIs)
 - Dialogs for quests
+
+## TODO
+
+- [X] Create dialogs in JSON format
+- [X] Create dialogs in code
+- [X] Customize dialog content and buttons
+- [X] Open dialogs for players (via commands or code)
+- [X] Welcome dialog for new players
+- [X] FancyNpcs integration (open_dialog action)
+- [ ] Add support for the quick action hotkey
+- [ ] Add tutorial features
+- [ ] Add input controls
+- [ ] Add button action system
