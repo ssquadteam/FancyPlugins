@@ -6,11 +6,13 @@ import com.fancyinnovations.fancydialogs.registry.DialogRegistry;
 import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.autocomplete.SuggestionProvider;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
+import revxrsal.commands.bukkit.exception.BukkitExceptionHandler;
+import revxrsal.commands.exception.InvalidValueException;
 import revxrsal.commands.node.ExecutionContext;
 import revxrsal.commands.parameter.ParameterType;
 import revxrsal.commands.stream.MutableStringStream;
 
-public class DialogCommandType implements ParameterType<BukkitCommandActor, Dialog> {
+public class DialogCommandType extends BukkitExceptionHandler implements ParameterType<BukkitCommandActor, Dialog> {
 
     public static final DialogCommandType INSTANCE = new DialogCommandType();
     private static final DialogRegistry REGISTRY = FancyDialogsPlugin.get().getDialogRegistry();
@@ -28,12 +30,15 @@ public class DialogCommandType implements ParameterType<BukkitCommandActor, Dial
             return dialog;
         }
 
+        throw new InvalidDialogException(id);
+    }
+
+    @HandleException
+    public void onInvalidDialog(InvalidDialogException e, BukkitCommandActor actor) {
         FancyDialogsPlugin.get().getTranslator()
                 .translate("dialog.not_found")
-                .replace("id", id)
-                .send(context.actor().sender());
-
-        return null;
+                .replace("id", e.input())
+                .send(actor.sender());
     }
 
     @Override
@@ -41,5 +46,11 @@ public class DialogCommandType implements ParameterType<BukkitCommandActor, Dial
         return (ctx) -> REGISTRY.getAll().stream()
                 .map(Dialog::getId)
                 .toList();
+    }
+
+    static class InvalidDialogException extends InvalidValueException {
+        public InvalidDialogException(@NotNull String input) {
+            super(input);
+        }
     }
 }
