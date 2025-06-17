@@ -61,6 +61,7 @@ Common use cases are:
 - [X] Open dialogs for players (via commands or code)
 - [X] Welcome dialog for new players
 - [X] FancyNpcs integration (open_dialog action)
+- [X] Confirmation and notice dialogs (API)
 - [ ] Add support for the quick action hotkey
 - [ ] Add tutorial features
 - [ ] Add input controls

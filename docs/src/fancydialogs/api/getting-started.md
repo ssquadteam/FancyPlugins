@@ -41,9 +41,21 @@ dependencies {
 
 Replace `VERSION` with the version of the API you want to use. You can find the latest version on the download pages or in the GitHub releases.
 
-## Create a new dialog
+## Show a notice dialog
 
-TODO
+```java
+new NoticeDialog("title", "message").show(player);
+// or
+NoticeDialog.show(player, "message");
+```
+
+## Show a confirmation dialog
+
+```java
+CompletableFuture<Boolean> confirmed = new ConfirmationDialog("title", "question", "confirmText", "cancelText").ask(player);
+// or
+boolean confirmed = ConfirmationDialog.ask(player, "question");
+```
 
 ## JavaDocs and help
 
