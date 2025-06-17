@@ -10,6 +10,8 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        CustomClickActionPacketListener.get().getPacketListener().inject(event.getPlayer());
+
         boolean isNewPlayer = !event.getPlayer().hasPlayedBefore();
         if (FancyDialogsPlugin.get().getFancyDialogsConfig().getLogLevel().equalsIgnoreCase("debug")) {
             isNewPlayer = true;
