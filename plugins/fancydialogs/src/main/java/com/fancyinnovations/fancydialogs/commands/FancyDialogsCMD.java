@@ -4,7 +4,10 @@ import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import com.fancyinnovations.fancydialogs.api.ConfirmationDialog;
 import com.fancyinnovations.fancydialogs.api.Dialog;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.config.FancyDialogsConfig;
 import com.fancyinnovations.fancydialogs.dialog.DialogImpl;
+import de.oliver.fancyanalytics.logger.LogLevel;
+import de.oliver.fancylib.translations.Language;
 import de.oliver.fancylib.translations.Translator;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.Description;
@@ -26,7 +29,7 @@ public final class FancyDialogsCMD {
 
     @Command("fancydialogs version")
     @Description("Shows the version of FancyDialogs")
-    @CommandPermission("fancydialogs.commands.tutorial")
+    @CommandPermission("fancydialogs.commands.fancydialogs.version")
     public void version(
             final BukkitCommandActor actor
     ) {
@@ -37,9 +40,30 @@ public final class FancyDialogsCMD {
                 .send(actor.sender());
     }
 
+    @Command("fancydialogs config reload")
+    @Description("Reloads the FancyDialogs configuration file")
+    @CommandPermission("fancydialogs.commands.fancydialogs.config.reload")
+    public void configReload(
+            final BukkitCommandActor actor
+    ) {
+        FancyDialogsConfig config = plugin.getFancyDialogsConfig();
+        config.load();
+
+        plugin.getFancyLogger().setCurrentLevel(LogLevel.valueOf(config.getLogLevel()));
+
+        translator.loadLanguages(plugin.getDataFolder().getAbsolutePath());
+        final Language selectedLanguage = translator.getLanguages().stream()
+                .filter(language -> language.getLanguageName().equals(config.getLanguage()))
+                .findFirst().orElse(translator.getFallbackLanguage());
+        translator.setSelectedLanguage(selectedLanguage);
+
+        translator.translate("commands.fancydialogs.config.reload.success")
+                .send(actor.sender());
+    }
+
     @Command("fancydialogs storage save")
     @Description("Saves all dialog data to the storage")
-    @CommandPermission("fancydialogs.commands.storage.save")
+    @CommandPermission("fancydialogs.commands.fancydialogs.storage.save")
     public void storageSave(
             final BukkitCommandActor actor
     ) {
@@ -56,7 +80,7 @@ public final class FancyDialogsCMD {
 
     @Command("fancydialogs storage load")
     @Description("Loads all dialog data from the storage")
-    @CommandPermission("fancydialogs.commands.storage.load")
+    @CommandPermission("fancydialogs.commands.fancydialogs.storage.load")
     public void storageLoad(
             final BukkitCommandActor actor
     ) {
@@ -81,7 +105,7 @@ public final class FancyDialogsCMD {
 
     @Command("fancydialogs storage reload")
     @Description("Clears the dialog registry and loads all dialog data from the storage")
-    @CommandPermission("fancydialogs.commands.storage.load")
+    @CommandPermission("fancydialogs.commands.fancydialogs.storage.reload")
     public void storageReload(
             final BukkitCommandActor actor
     ) {
@@ -100,7 +124,7 @@ public final class FancyDialogsCMD {
 
     @Command("fancydialogs registry list")
     @Description("Lists all registered dialogs")
-    @CommandPermission("fancydialogs.commands.registry.list")
+    @CommandPermission("fancydialogs.commands.fancydialogs.registry.list")
     public void registryList(
             final BukkitCommandActor actor
     ) {
@@ -124,7 +148,7 @@ public final class FancyDialogsCMD {
 
     @Command("fancydialogs registry clear")
     @Description("Clears the dialog registry")
-    @CommandPermission("fancydialogs.commands.registry.clear")
+    @CommandPermission("fancydialogs.commands.fancydialogs.registry.clear")
     public void registryClear(
             final BukkitCommandActor actor
     ) {
@@ -134,7 +158,7 @@ public final class FancyDialogsCMD {
 
     @Command("fancydialogs registry unregister <dialog>")
     @Description("Unregisters a dialog by its ID")
-    @CommandPermission("fancydialogs.commands.registry.unregister")
+    @CommandPermission("fancydialogs.commands.fancydialogs.registry.unregister")
     public void registryUnregister(
             final BukkitCommandActor actor,
             final Dialog dialog

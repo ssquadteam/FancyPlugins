@@ -14,6 +14,15 @@ Shows the version of FancyDialogs.
 - **Syntax**: `/fancydialogs version`
 - **Permissions**: `fancydialogs.commands.fancydialogs.version`
 
+## Config
+
+### Reload config
+
+Reloads the FancyDialogs configuration file.
+
+- **Syntax**: `/fancydialogs config reload`
+- **Permissions**: `fancydialogs.commands.fancydialogs.config.reload`
+
 ## Storage
 
 ### Save all dialogs
