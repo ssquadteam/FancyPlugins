@@ -29,7 +29,6 @@ public class DefaultDialogs {
         DialogData data = new DialogData(
                 "welcome_to_fancydialogs_dialog",
                 "Welcome to FancyDialogs",
-                "Welcome to FancyDialogs",
                 false,
                 List.of(
                         new DialogBodyData("Welcome to FancyDialogs! This is a sample dialog to get you started.")

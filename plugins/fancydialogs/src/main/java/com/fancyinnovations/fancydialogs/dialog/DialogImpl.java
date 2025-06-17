@@ -54,7 +54,7 @@ public class DialogImpl extends Dialog {
         this.fsDialog = new FS_MultiActionDialog(
                 new FS_CommonDialogData(
                         data.title(),
-                        data.externalTitle(),
+                        data.title(),
                         data.canCloseWithEscape(),
                         false,
                         FS_DialogAction.CLOSE,

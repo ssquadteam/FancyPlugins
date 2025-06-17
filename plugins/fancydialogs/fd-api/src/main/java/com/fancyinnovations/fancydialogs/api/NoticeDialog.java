@@ -21,7 +21,6 @@ public class NoticeDialog {
         this.dialogData = new DialogData(
                 "notice_dialog_" + UUID.randomUUID(),
                 this.title,
-                this.title,
                 true,
                 List.of(
                         new DialogBodyData(this.text)

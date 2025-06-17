@@ -27,7 +27,6 @@ public class ConfirmationDialog {
         this.dialogData = new DialogData(
                 "confirmation_dialog_" + UUID.randomUUID(),
                 this.title,
-                this.title,
                 false,
                 List.of(
                         new DialogBodyData(this.question)
