@@ -48,7 +48,7 @@ public class DialogCommandType extends BukkitExceptionHandler implements Paramet
                 .toList();
     }
 
-    static class InvalidDialogException extends InvalidValueException {
+    public static class InvalidDialogException extends InvalidValueException {
         public InvalidDialogException(@NotNull String input) {
             super(input);
         }
