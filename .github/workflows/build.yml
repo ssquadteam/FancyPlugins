@@ -39,6 +39,9 @@ jobs:
       - name: Build FancyHolograms
         run: ./gradlew :plugins:fancyholograms:shadowJar
 
+      - name: Build FancyDialogs
+        run: ./gradlew :plugins:fancydialogs:shadowJar
+
       - name: Build FancyVisuals
         run: ./gradlew :plugins:fancyvisuals:shadowJar
 
