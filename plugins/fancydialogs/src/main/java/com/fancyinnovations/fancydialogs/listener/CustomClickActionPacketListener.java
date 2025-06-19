@@ -1,5 +1,8 @@
 package com.fancyinnovations.fancydialogs.listener;
 
+import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
+import com.fancyinnovations.fancydialogs.actions.DialogAction;
+import com.fancyinnovations.fancydialogs.api.Dialog;
 import de.oliver.fancysitula.api.packets.FS_ServerboundCustomClickActionPacket;
 import de.oliver.fancysitula.api.packets.FS_ServerboundPacket;
 import de.oliver.fancysitula.api.utils.FS_PacketListener;
@@ -36,7 +39,19 @@ public class CustomClickActionPacketListener {
         String actionId = packet.getPayload().get("action_id");
         String actionData = packet.getPayload().get("action_data");
 
-        // TODO process the dialog action
+        Dialog dialog = FancyDialogsPlugin.get().getDialogRegistry().get(dialogId);
+        if (dialog == null) {
+            FancyDialogsPlugin.get().getFancyLogger().warn("Received action for unknown dialog: " + dialogId);
+            return; // Ignore actions for unknown dialogs
+        }
+
+        DialogAction action = FancyDialogsPlugin.get().getActionRegistry().getAction(actionId);
+        if (action == null) {
+            FancyDialogsPlugin.get().getFancyLogger().warn("Received unknown action: " + actionId);
+            return; // Ignore unknown actions
+        }
+
+        action.execute(event.player(), dialog, actionData);
     }
 
     public FS_PacketListener getPacketListener() {

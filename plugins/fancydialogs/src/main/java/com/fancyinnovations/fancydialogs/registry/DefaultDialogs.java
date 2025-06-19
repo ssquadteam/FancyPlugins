@@ -44,13 +44,13 @@ public class DefaultDialogs {
                         new DialogButton(
                                 "<color:#ff4f19>Close</color>",
                                 "<color:#ff4f19>Enjoy using FancyDialogs</color>",
-                                "close_dialog",
+                                "close",
                                 ""
                         ),
                         new DialogButton(
                                 "<color:#ffd000>Run command</color>",
                                 "<color:#ff4f19>Click to give yourself an apple :)</color>",
-                                "run_command:",
+                                "console_command",
                                 "give {player} apple 1"
                         )
                 )
@@ -74,26 +74,26 @@ public class DefaultDialogs {
                         new DialogButton(
                                 "<color:red>Read the rules</color>",
                                 "<color:red>Click to read our rules!</color>",
-                                "message",
-                                "<click:open_url:'{LINK TO RULES}'>Visit our rules</click>!"
+                                "open_dialog",
+                                "rules"
                         ),
                         new DialogButton(
                                 "<color:#00ff5e>Start playing</color>",
                                 "<color:#00ff5e>Click to start playing!</color>",
-                                "close_dialog",
+                                "close",
                                 ""
                         ),
                         new DialogButton(
                                 "<color:#1787ff>Join our Discord</color>",
                                 "<color:#1787ff>Click to join our Discord server!</color>",
                                 "message",
-                                "<click:open_url:'{LINK TO DISC SERVER}'>Join our Discord server</click>!"
+                                "Join our Discord server here: LINK TO DISCORD"
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Visit our website</color>",
                                 "<color:#ffee00>Click to visit our website!</color>",
                                 "message",
-                                "<click:open_url:'{LINK TO WEBSITE}'>Visit our website</click>!"
+                                "Visit our website here: LINK TO WEBSITE"
                         )
                 )
         );
@@ -114,30 +114,30 @@ public class DefaultDialogs {
                                 "<color:#ffee00>Visit our website</color>",
                                 "<color:#ffee00>Click to visit our website!</color>",
                                 "message",
-                                "<click:open_url:'{LINK TO WEBSITE}'>Visit our website</click>!"
+                                "Visit our website here: LINK TO WEBSITE"
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Read the rules</color>",
                                 "<color:#ffee00>Click to read our rules!</color>",
-                                "message",
-                                "<click:open_url:'{LINK TO RULES}'>Visit our rules</click>!"
+                                "open_dialog",
+                                "rules"
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Join our Discord</color>",
                                 "<color:#ffee00>Click to join our Discord server!</color>",
                                 "message",
-                                "<click:open_url:'{LINK TO DISCORD}'>Join our Discord server</click>!"
+                                "Join our Discord server here: LINK TO DISCORD"
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Support us</color>",
                                 "<color:#ffee00>Click to support us!</color>",
                                 "message",
-                                "<click:open_url:'{LINK TO SUPPORT}'>Support us</click>!"
+                                "Support us here: LINK TO SUPPORT"
                         ),
                         new DialogButton(
                                 "<color:red>Close</color>",
                                 "<color:red>Click to close this dialog!</color>",
-                                "close_dialog",
+                                "close",
                                 ""
                         )
                 )
