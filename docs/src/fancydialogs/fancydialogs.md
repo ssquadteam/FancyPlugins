@@ -62,7 +62,7 @@ Common use cases are:
 - [X] Welcome dialog for new players
 - [X] FancyNpcs integration (open_dialog action)
 - [X] Confirmation and notice dialogs (API)
+- [x] Add button action system
 - [ ] Add support for the quick action hotkey
 - [ ] Add tutorial features
 - [ ] Add input controls
-- [ ] Add button action system
