@@ -12,6 +12,7 @@ import com.fancyinnovations.fancydialogs.config.FDFeatureFlags;
 import com.fancyinnovations.fancydialogs.config.FancyDialogsConfig;
 import com.fancyinnovations.fancydialogs.dialog.DialogImpl;
 import com.fancyinnovations.fancydialogs.fancynpcs.OpenDialogNpcAction;
+import com.fancyinnovations.fancydialogs.listener.DialogButtonClickedListener;
 import com.fancyinnovations.fancydialogs.listener.PlayerJoinListener;
 import com.fancyinnovations.fancydialogs.registry.DefaultDialogs;
 import com.fancyinnovations.fancydialogs.registry.DialogRegistry;
@@ -163,6 +164,7 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
 
     private void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new DialogButtonClickedListener(), this);
     }
 
     private void registerCommands() {

@@ -42,6 +42,10 @@ public class CustomClickActionPacketListener {
 
         new DialogButtonClickedEvent(event.player(), dialogId, buttonId).callEvent();
 
+        if (dialogId.startsWith("confirmation_dialog_")) {
+            return; // Ignore confirmation dialog actions, handled separately
+        }
+
         Dialog dialog = FancyDialogsPlugin.get().getDialogRegistry().get(dialogId);
         if (dialog == null) {
             FancyDialogsPlugin.get().getFancyLogger().warn("Received action for unknown dialog: " + dialogId);

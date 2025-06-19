@@ -46,6 +46,18 @@ public final class FancyDialogsCMD {
     public void configReload(
             final BukkitCommandActor actor
     ) {
+        if (actor.isPlayer()) {
+            new ConfirmationDialog("Are you sure you want to reload the configuration? This will reset all changes made to the config file.")
+                    .withTitle("Confirm reload")
+                    .withOnConfirm(() -> reloadConfig(actor))
+                    .withOnCancel(() -> translator.translate("commands.fancydialogs.config.reload.cancelled").send(actor.sender()))
+                    .ask(actor.asPlayer());
+        } else {
+            reloadConfig(actor);
+        }
+    }
+
+    private void reloadConfig(BukkitCommandActor actor) {
         FancyDialogsConfig config = plugin.getFancyDialogsConfig();
         config.load();
 
@@ -85,12 +97,17 @@ public final class FancyDialogsCMD {
             final BukkitCommandActor actor
     ) {
         if (actor.isPlayer()) {
-            if (!ConfirmationDialog.ask(actor.asPlayer(), "Are you sure you want to load all dialogs from storage? This will clear the current registry.")) {
-                translator.translate("commands.fancydialogs.storage.load.cancelled").send(actor.sender());
-                return;
-            }
+            new ConfirmationDialog("Are you sure you want to load all dialog data from the storage? This will overwrite any existing dialogs.")
+                    .withTitle("Confirm load")
+                    .withOnConfirm(() -> loadStorage(actor))
+                    .withOnCancel(() -> translator.translate("commands.fancydialogs.storage.load.cancelled").send(actor.sender()))
+                    .ask(actor.asPlayer());
+        } else {
+            loadStorage(actor);
         }
+    }
 
+    private void loadStorage(BukkitCommandActor actor) {
         Collection<DialogData> dialogs = plugin.getDialogStorage().loadAll();
 
         for (DialogData dialogData : dialogs) {

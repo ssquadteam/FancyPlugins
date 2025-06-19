@@ -5,10 +5,10 @@ import java.util.UUID;
 
 public class DialogButton {
 
-    private final transient String id;
     private final String label;
     private final String tooltip;
     private final List<DialogAction> actions;
+    private transient String id;
 
     public DialogButton(String label, String tooltip, List<DialogAction> actions) {
         this.id = UUID.randomUUID().toString();
@@ -18,6 +18,9 @@ public class DialogButton {
     }
 
     public String id() {
+        if (id == null || id.isEmpty()) {
+            id = UUID.randomUUID().toString();
+        }
         return id;
     }
 

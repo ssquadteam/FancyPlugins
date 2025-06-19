@@ -6,83 +6,124 @@ import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfirmationDialog {
 
-    private final String title;
+    public static final Map<String, ConfirmationDialog> CACHE = new ConcurrentHashMap<>();
+
     private final String question;
-    private final String confirmText;
-    private final String cancelText;
+    private String title;
+    private String confirmText;
+    private String cancelText;
 
-    private final DialogData dialogData;
+    private Dialog dialog;
+    private String confirmButtonId;
+    private String cancelButtonId;
+    private Runnable onConfirm;
+    private Runnable onCancel;
 
-    public ConfirmationDialog(String title, String question, String confirmText, String cancelText) {
+    public ConfirmationDialog(String title, String question, String confirmText, String cancelText, Runnable onConfirm, Runnable onCancel) {
         this.title = title;
         this.question = question;
         this.confirmText = confirmText;
         this.cancelText = cancelText;
-
-        this.dialogData = new DialogData(
-                "confirmation_dialog_" + UUID.randomUUID(),
-                this.title,
-                false,
-                List.of(
-                        new DialogBodyData(this.question)
-                ),
-                List.of(
-                        new DialogButton(
-                                this.confirmText,
-                                this.confirmText,
-                                List.of()
-                        ),
-                        new DialogButton(
-                                this.cancelText,
-                                this.cancelText,
-                                List.of()
-                        )
-                )
-        );
+        this.onConfirm = onConfirm;
+        this.onCancel = onCancel;
     }
 
     public ConfirmationDialog(String question) {
-        this("Confirmation", question, "Confirm", "Cancel");
+        this.question = question;
     }
 
-    public ConfirmationDialog(String title, String question) {
-        this(title, question, "Confirm", "Cancel");
+    public ConfirmationDialog withTitle(String title) {
+        this.title = title;
+        return this;
     }
 
-    public static boolean ask(Player player, String question) {
-        return new ConfirmationDialog(question).ask(player).join();
+    public ConfirmationDialog withConfirmText(String confirmText) {
+        this.confirmText = confirmText;
+        return this;
     }
 
-    public CompletableFuture<Boolean> ask(Player player) {
-        CompletableFuture<Boolean> future = new CompletableFuture<>();
-        FancyDialogs.get()
-                .createDialog(dialogData)
-                .open(player);
-
-        // TODO wait for user response
-
-        future.complete(true);
-        return future;
+    public ConfirmationDialog withCancelText(String cancelText) {
+        this.cancelText = cancelText;
+        return this;
     }
 
-    public String getTitle() {
-        return title;
+    public ConfirmationDialog withOnConfirm(Runnable onConfirm) {
+        this.onConfirm = onConfirm;
+        return this;
     }
 
-    public String getQuestion() {
-        return question;
+    public ConfirmationDialog withOnCancel(Runnable onCancel) {
+        this.onCancel = onCancel;
+        return this;
     }
 
-    public String getConfirmText() {
-        return confirmText;
+    public void ask(Player player) {
+        buildDialog();
+        dialog.open(player);
+        CACHE.put(dialog.getId(), this);
     }
 
-    public String getCancelText() {
-        return cancelText;
+    private void buildDialog() {
+        if (title == null || title.isEmpty()) {
+            title = "Confirmation";
+        }
+
+        if (confirmText == null || confirmText.isEmpty()) {
+            confirmText = "Yes";
+        }
+
+        if (cancelText == null || cancelText.isEmpty()) {
+            cancelText = "No";
+        }
+
+        DialogButton confirmBtn = new DialogButton(
+                confirmText,
+                confirmText,
+                List.of(
+                        new DialogButton.DialogAction("confirm", "")
+                )
+        );
+        this.confirmButtonId = confirmBtn.id();
+
+        DialogButton cancelBtn = new DialogButton(
+                cancelText,
+                cancelText,
+                List.of(
+                        new DialogButton.DialogAction("cancel", "")
+                )
+        );
+        this.cancelButtonId = cancelBtn.id();
+
+        DialogData dialogData = new DialogData(
+                "confirmation_dialog_" + UUID.randomUUID(),
+                title,
+                false,
+                List.of(new DialogBodyData(question)),
+                List.of(confirmBtn, cancelBtn)
+        );
+
+        this.dialog = FancyDialogs.get().createDialog(dialogData);
+    }
+
+    public String getConfirmButtonId() {
+        return confirmButtonId;
+    }
+
+    public String getCancelButtonId() {
+        return cancelButtonId;
+    }
+
+    public Runnable getOnConfirm() {
+        return onConfirm;
+    }
+
+    public Runnable getOnCancel() {
+        return onCancel;
     }
 }

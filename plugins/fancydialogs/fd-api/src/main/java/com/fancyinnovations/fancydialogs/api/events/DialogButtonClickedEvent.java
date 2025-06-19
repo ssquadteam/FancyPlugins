@@ -21,6 +21,10 @@ public class DialogButtonClickedEvent extends Event {
         this.buttonId = buttonId;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     public Player getPlayer() {
         return player;
     }
