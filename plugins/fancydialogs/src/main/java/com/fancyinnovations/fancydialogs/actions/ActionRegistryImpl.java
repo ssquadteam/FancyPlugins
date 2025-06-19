@@ -1,15 +1,17 @@
 package com.fancyinnovations.fancydialogs.actions;
 
 import com.fancyinnovations.fancydialogs.actions.defaultActions.*;
+import com.fancyinnovations.fancydialogs.api.DialogAction;
+import com.fancyinnovations.fancydialogs.api.DialogActionRegistry;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ActionRegistry {
+public class ActionRegistryImpl implements DialogActionRegistry {
 
     private final Map<String, DialogAction> actions;
 
-    public ActionRegistry() {
+    public ActionRegistryImpl() {
         this.actions = new ConcurrentHashMap<>();
 
         registerDefaultActions();

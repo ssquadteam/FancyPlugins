@@ -1,7 +1,8 @@
 package com.fancyinnovations.fancydialogs;
 
-import com.fancyinnovations.fancydialogs.actions.ActionRegistry;
+import com.fancyinnovations.fancydialogs.actions.ActionRegistryImpl;
 import com.fancyinnovations.fancydialogs.api.Dialog;
+import com.fancyinnovations.fancydialogs.api.DialogActionRegistry;
 import com.fancyinnovations.fancydialogs.api.FancyDialogs;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import com.fancyinnovations.fancydialogs.commands.DialogCMD;
@@ -50,7 +51,7 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
     private Translator translator;
     private DialogRegistry dialogRegistry;
     private DialogStorage dialogStorage;
-    private ActionRegistry actionRegistry;
+    private ActionRegistryImpl actionRegistry;
 
     public FancyDialogsPlugin() {
         INSTANCE = this;
@@ -111,7 +112,7 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
 
         DefaultDialogs.registerDefaultDialogs();
 
-        actionRegistry = new ActionRegistry();
+        actionRegistry = new ActionRegistryImpl();
 
         fancyLogger.info("Successfully loaded FancyDialogs version %s".formatted(getDescription().getVersion()));
     }
@@ -208,11 +209,16 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
         return dialogRegistry;
     }
 
+    @Override
+    public DialogActionRegistry getDialogActionRegistry() {
+        return actionRegistry;
+    }
+
     public DialogStorage getDialogStorage() {
         return dialogStorage;
     }
 
-    public ActionRegistry getActionRegistry() {
+    public ActionRegistryImpl getActionRegistry() {
         return actionRegistry;
     }
 }

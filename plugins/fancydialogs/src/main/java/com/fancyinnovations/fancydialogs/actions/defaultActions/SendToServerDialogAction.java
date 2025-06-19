@@ -1,8 +1,8 @@
 package com.fancyinnovations.fancydialogs.actions.defaultActions;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
-import com.fancyinnovations.fancydialogs.actions.DialogAction;
 import com.fancyinnovations.fancydialogs.api.Dialog;
+import com.fancyinnovations.fancydialogs.api.DialogAction;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import org.bukkit.entity.Player;

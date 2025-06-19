@@ -15,4 +15,6 @@ public interface FancyDialogs {
 
     DialogRegistry getDialogRegistry();
 
+    DialogActionRegistry getDialogActionRegistry();
+
 }

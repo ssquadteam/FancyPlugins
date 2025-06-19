@@ -1,8 +1,8 @@
 package com.fancyinnovations.fancydialogs.listener;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
-import com.fancyinnovations.fancydialogs.actions.DialogAction;
 import com.fancyinnovations.fancydialogs.api.Dialog;
+import com.fancyinnovations.fancydialogs.api.DialogAction;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.events.DialogButtonClickedEvent;
 import de.oliver.fancysitula.api.packets.FS_ServerboundCustomClickActionPacket;

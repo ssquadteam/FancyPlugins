@@ -1,6 +1,5 @@
-package com.fancyinnovations.fancydialogs.actions;
+package com.fancyinnovations.fancydialogs.api;
 
-import com.fancyinnovations.fancydialogs.api.Dialog;
 import org.bukkit.entity.Player;
 
 public interface DialogAction {
