@@ -28,7 +28,7 @@ public class FancySitulaPlugin extends JavaPlugin {
         packetListener = FancySitula.PACKET_LISTENER_FACTORY.createPacketListener(FS_ServerboundPacket.Type.CUSTOM_CLICK_ACTION);
         packetListener.addListener((event) -> {
             FS_ServerboundCustomClickActionPacket packet = (FS_ServerboundCustomClickActionPacket) event.packet();
-            System.out.println("Received custom click action packet: " + packet.getId() + " with payload: " + packet.getPayload().orElse("No payload"));
+            System.out.println("Received custom click action packet: " + packet.getId());
         });
     }
 
