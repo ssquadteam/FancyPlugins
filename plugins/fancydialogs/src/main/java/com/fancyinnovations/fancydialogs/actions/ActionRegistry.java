@@ -1,7 +1,6 @@
 package com.fancyinnovations.fancydialogs.actions;
 
-import com.fancyinnovations.fancydialogs.actions.defaultActions.MessageDialogAction;
-import com.fancyinnovations.fancydialogs.actions.defaultActions.OpenDialogDialogAction;
+import com.fancyinnovations.fancydialogs.actions.defaultActions.*;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,6 +18,9 @@ public class ActionRegistry {
     private void registerDefaultActions() {
         registerAction("open_dialog", OpenDialogDialogAction.INSTANCE);
         registerAction("message", MessageDialogAction.INSTANCE);
+        registerAction("console_command", ConsoleCommandDialogAction.INSTANCE);
+        registerAction("player_command", PlayerCommandDialogAction.INSTANCE);
+        registerAction("send_to_server", SendToServerDialogAction.INSTANCE);
     }
 
     public void registerAction(String actionId, DialogAction action) {

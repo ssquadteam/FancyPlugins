@@ -150,6 +150,8 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
             new OpenDialogNpcAction().register();
         }
 
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
         fancyLogger.info("Successfully enabled FancyDialogs version %s".formatted(getDescription().getVersion()));
     }
 

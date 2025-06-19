@@ -19,7 +19,12 @@ public class MessageDialogAction implements DialogAction {
             return;
         }
 
-        Component msg = ModernChatColorHandler.translate(data);
+        String raw = data;
+        if (player != null) {
+            raw = data.replace("{player}", player.getName());
+        }
+
+        Component msg = ModernChatColorHandler.translate(raw);
         player.sendMessage(msg);
     }
 
