@@ -9,10 +9,7 @@ import de.oliver.fancysitula.api.dialogs.actions.FS_DialogCustomAction;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogBody;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogItemBody;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogTextBody;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogBooleanInput;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogInput;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogNumberRangeInput;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogSingleOptionInput;
+import de.oliver.fancysitula.api.dialogs.inputs.*;
 import de.oliver.fancysitula.api.dialogs.types.FS_ConfirmationDialog;
 import de.oliver.fancysitula.api.dialogs.types.FS_DialogListDialog;
 import de.oliver.fancysitula.api.dialogs.types.FS_MultiActionDialog;
@@ -35,10 +32,7 @@ import net.minecraft.server.dialog.action.CustomAll;
 import net.minecraft.server.dialog.body.DialogBody;
 import net.minecraft.server.dialog.body.ItemBody;
 import net.minecraft.server.dialog.body.PlainMessage;
-import net.minecraft.server.dialog.input.BooleanInput;
-import net.minecraft.server.dialog.input.InputControl;
-import net.minecraft.server.dialog.input.NumberRangeInput;
-import net.minecraft.server.dialog.input.SingleOptionInput;
+import net.minecraft.server.dialog.input.*;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
 
@@ -226,6 +220,15 @@ public class ClientboundShowDialogPacketImpl extends FS_ClientboundShowDialogPac
                         PaperAdventure.asVanilla(MiniMessage.miniMessage().deserialize(singleOptionInput.getLabel())),
                         singleOptionInput.isLabelVisible()
                 );
+            } else if (input.getControl() instanceof FS_DialogTextInput textInput) {
+                control = new TextInput(
+                        textInput.getWidth(),
+                        PaperAdventure.asVanilla(MiniMessage.miniMessage().deserialize(textInput.getLabel())),
+                        textInput.isLabelVisible(),
+                        textInput.getInitial(),
+                        textInput.getMaxLength(),
+                        Optional.empty()
+                );
             }
 
             nmsInputs.add(new Input(key, control));
@@ -253,8 +256,6 @@ public class ClientboundShowDialogPacketImpl extends FS_ClientboundShowDialogPac
 
             action = new CustomAll(idLocation, additions);
         }
-
-        // TODO add support for run command action
 
         Optional<Action> optionalAction = action != null ?
                 Optional.of(action) :
