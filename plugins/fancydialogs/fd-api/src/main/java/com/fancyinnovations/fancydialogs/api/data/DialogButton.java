@@ -1,9 +1,43 @@
 package com.fancyinnovations.fancydialogs.api.data;
 
-public record DialogButton(
-        String label,
-        String tooltip,
-        String action,
-        String actionData
-) {
+import java.util.List;
+import java.util.UUID;
+
+public class DialogButton {
+
+    private final transient String id;
+    private final String label;
+    private final String tooltip;
+    private final List<DialogAction> actions;
+
+    public DialogButton(String label, String tooltip, List<DialogAction> actions) {
+        this.id = UUID.randomUUID().toString();
+        this.label = label;
+        this.tooltip = tooltip;
+        this.actions = actions;
+    }
+
+    public String id() {
+        return id;
+    }
+
+    public String label() {
+        return label;
+    }
+
+    public String tooltip() {
+        return tooltip;
+    }
+
+    public List<DialogAction> actions() {
+        return actions;
+    }
+
+    public record DialogAction(
+            String name,
+            String data
+    ) {
+
+    }
+
 }

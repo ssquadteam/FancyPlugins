@@ -44,14 +44,14 @@ public class DefaultDialogs {
                         new DialogButton(
                                 "<color:#ff4f19>Close</color>",
                                 "<color:#ff4f19>Enjoy using FancyDialogs</color>",
-                                "close",
-                                ""
+                                List.of()
                         ),
                         new DialogButton(
                                 "<color:#ffd000>Run command</color>",
                                 "<color:#ff4f19>Click to give yourself an apple :)</color>",
-                                "console_command",
-                                "give {player} apple 1"
+                                List.of(
+                                        new DialogButton.DialogAction("console_command", "give @p minecraft:apple 1")
+                                )
                         )
                 )
         );
@@ -74,26 +74,28 @@ public class DefaultDialogs {
                         new DialogButton(
                                 "<color:red>Read the rules</color>",
                                 "<color:red>Click to read our rules!</color>",
-                                "open_dialog",
-                                "rules"
+                                List.of(
+                                        new DialogButton.DialogAction("open_dialog", "rules")
+                                )
                         ),
                         new DialogButton(
                                 "<color:#00ff5e>Start playing</color>",
                                 "<color:#00ff5e>Click to start playing!</color>",
-                                "close",
-                                ""
+                                List.of()
                         ),
                         new DialogButton(
                                 "<color:#1787ff>Join our Discord</color>",
                                 "<color:#1787ff>Click to join our Discord server!</color>",
-                                "message",
-                                "Join our Discord server here: LINK TO DISCORD"
+                                List.of(
+                                        new DialogButton.DialogAction("message", "Join our Discord server here: LINK TO DISCORD")
+                                )
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Visit our website</color>",
                                 "<color:#ffee00>Click to visit our website!</color>",
-                                "message",
-                                "Visit our website here: LINK TO WEBSITE"
+                                List.of(
+                                        new DialogButton.DialogAction("message", "Visit our website here: LINK TO WEBSITE")
+                                )
                         )
                 )
         );
@@ -113,32 +115,35 @@ public class DefaultDialogs {
                         new DialogButton(
                                 "<color:#ffee00>Visit our website</color>",
                                 "<color:#ffee00>Click to visit our website!</color>",
-                                "message",
-                                "Visit our website here: LINK TO WEBSITE"
+                                List.of(
+                                        new DialogButton.DialogAction("message", "Visit our website here: LINK TO WEBSITE")
+                                )
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Read the rules</color>",
                                 "<color:#ffee00>Click to read our rules!</color>",
-                                "open_dialog",
-                                "rules"
+                                List.of(
+                                        new DialogButton.DialogAction("open_dialog", "rules")
+                                )
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Join our Discord</color>",
                                 "<color:#ffee00>Click to join our Discord server!</color>",
-                                "message",
-                                "Join our Discord server here: LINK TO DISCORD"
+                                List.of(
+                                        new DialogButton.DialogAction("message", "Join our Discord server here: LINK TO DISCORD")
+                                )
                         ),
                         new DialogButton(
                                 "<color:#ffee00>Support us</color>",
                                 "<color:#ffee00>Click to support us!</color>",
-                                "message",
-                                "Support us here: LINK TO SUPPORT"
+                                List.of(
+                                        new DialogButton.DialogAction("message", "Support us by donating here: LINK TO DONATE")
+                                )
                         ),
                         new DialogButton(
                                 "<color:red>Close</color>",
                                 "<color:red>Click to close this dialog!</color>",
-                                "close",
-                                ""
+                                List.of()
                         )
                 )
         );

@@ -51,8 +51,7 @@ public class DialogImpl extends Dialog {
                             "fancydialogs_dialog_action",
                             Map.of(
                                     "dialog_id", id,
-                                    "action_id", button.action(),
-                                    "action_data", button.actionData()
+                                    "button_id", button.id()
                             )
                     )
             );

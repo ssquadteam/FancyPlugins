@@ -3,6 +3,7 @@ package com.fancyinnovations.fancydialogs.listener;
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import com.fancyinnovations.fancydialogs.actions.DialogAction;
 import com.fancyinnovations.fancydialogs.api.Dialog;
+import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import de.oliver.fancysitula.api.packets.FS_ServerboundCustomClickActionPacket;
 import de.oliver.fancysitula.api.packets.FS_ServerboundPacket;
 import de.oliver.fancysitula.api.utils.FS_PacketListener;
@@ -36,22 +37,29 @@ public class CustomClickActionPacketListener {
         }
 
         String dialogId = packet.getPayload().get("dialog_id");
-        String actionId = packet.getPayload().get("action_id");
-        String actionData = packet.getPayload().get("action_data");
+        String buttonId = packet.getPayload().get("button_id");
 
         Dialog dialog = FancyDialogsPlugin.get().getDialogRegistry().get(dialogId);
         if (dialog == null) {
             FancyDialogsPlugin.get().getFancyLogger().warn("Received action for unknown dialog: " + dialogId);
-            return; // Ignore actions for unknown dialogs
+            return;
         }
 
-        DialogAction action = FancyDialogsPlugin.get().getActionRegistry().getAction(actionId);
-        if (action == null) {
-            FancyDialogsPlugin.get().getFancyLogger().warn("Received unknown action: " + actionId);
-            return; // Ignore unknown actions
+        DialogButton btn = dialog.getData().getButtonById(buttonId);
+        if (btn == null) {
+            FancyDialogsPlugin.get().getFancyLogger().warn("Received action for unknown button: " + buttonId + " in dialog: " + dialogId);
+            return;
         }
 
-        action.execute(event.player(), dialog, actionData);
+        for (DialogButton.DialogAction btnAction : btn.actions()) {
+            DialogAction action = FancyDialogsPlugin.get().getActionRegistry().getAction(btnAction.name());
+            if (action == null) {
+                FancyDialogsPlugin.get().getFancyLogger().warn("Received action for unknown action: " + btnAction.name() + " in button: " + buttonId);
+                continue;
+            }
+
+            action.execute(event.player(), dialog, btnAction.data());
+        }
     }
 
     public FS_PacketListener getPacketListener() {

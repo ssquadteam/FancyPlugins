@@ -12,4 +12,14 @@ public record DialogData(
         @NotNull List<DialogButton> buttons
 ) {
 
+    public DialogButton getButtonById(@NotNull String buttonId) {
+        for (DialogButton button : buttons) {
+            if (button.id().equals(buttonId)) {
+                return button;
+            }
+        }
+
+        return null;
+    }
+
 }
