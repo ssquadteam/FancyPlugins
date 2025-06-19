@@ -126,6 +126,18 @@ public final class FancyDialogsCMD {
     public void storageReload(
             final BukkitCommandActor actor
     ) {
+        if (actor.isPlayer()) {
+            new ConfirmationDialog("Are you sure you want to reload all dialog data from the storage? This will clear the dialog registry and overwrite any existing dialogs.")
+                    .withTitle("Confirm reload")
+                    .withOnConfirm(() -> reloadStorage(actor))
+                    .withOnCancel(() -> translator.translate("commands.fancydialogs.storage.reload.cancelled").send(actor.sender()))
+                    .ask(actor.asPlayer());
+        } else {
+            reloadStorage(actor);
+        }
+    }
+
+    private void reloadStorage(BukkitCommandActor actor) {
         plugin.getDialogRegistry().clear();
 
         Collection<DialogData> dialogs = plugin.getDialogStorage().loadAll();
@@ -169,6 +181,18 @@ public final class FancyDialogsCMD {
     public void registryClear(
             final BukkitCommandActor actor
     ) {
+        if (actor.isPlayer()) {
+            new ConfirmationDialog("Are you sure you want to clear the dialog registry? This will remove all registered dialogs.")
+                    .withTitle("Confirm clear")
+                    .withOnConfirm(() -> clearRegistry(actor))
+                    .withOnCancel(() -> translator.translate("commands.fancydialogs.registry.clear.cancelled").send(actor.sender()))
+                    .ask(actor.asPlayer());
+        } else {
+            clearRegistry(actor);
+        }
+    }
+
+    private void clearRegistry(BukkitCommandActor actor) {
         plugin.getDialogRegistry().clear();
         translator.translate("commands.fancydialogs.registry.clear.success").send(actor.sender());
     }
@@ -177,6 +201,21 @@ public final class FancyDialogsCMD {
     @Description("Unregisters a dialog by its ID")
     @CommandPermission("fancydialogs.commands.fancydialogs.registry.unregister")
     public void registryUnregister(
+            final BukkitCommandActor actor,
+            final Dialog dialog
+    ) {
+        if (actor.isPlayer()) {
+            new ConfirmationDialog("Are you sure you want to unregister the dialog with ID '" + dialog.getId() + "'? This will remove it from the registry.")
+                    .withTitle("Confirm unregister")
+                    .withOnConfirm(() -> unregisterDialog(actor, dialog))
+                    .withOnCancel(() -> translator.translate("commands.fancydialogs.registry.unregister.cancelled").send(actor.sender()))
+                    .ask(actor.asPlayer());
+        } else {
+            unregisterDialog(actor, dialog);
+        }
+    }
+
+    private void unregisterDialog(
             final BukkitCommandActor actor,
             final Dialog dialog
     ) {

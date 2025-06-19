@@ -25,8 +25,11 @@ messages:
           cancelled: "<dark_gray>› <gray>Loading dialogs from storage was cancelled."
         reload:
           success: "<dark_gray>› <gray>Successfully reloaded {warningColor}{count}<gray> dialogs from the storage."
+          cancelled: "<dark_gray>› <gray>Reloading dialogs from storage was cancelled."
       registry:
         clear:
           success: "<dark_gray>› <gray>Successfully cleared all registered dialogs."
+          cancelled: "<dark_gray>› <gray>Clearing registered dialogs was cancelled."
         unregister:
           success: "<dark_gray>› <gray>Successfully unregistered dialog {warningColor}{id}<gray>."
+          cancelled: "<dark_gray>› <gray>Unregistering dialog {warningColor}{id}<gray> was cancelled."
