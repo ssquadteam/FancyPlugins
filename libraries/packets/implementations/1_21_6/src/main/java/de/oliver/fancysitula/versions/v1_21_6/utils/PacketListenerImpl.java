@@ -7,6 +7,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 import io.papermc.paper.adventure.PaperAdventure;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.common.ServerboundCustomClickActionPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -80,7 +81,13 @@ public class PacketListenerImpl extends FS_PacketListener {
                 Map<String, String> payload = new HashMap<>();
                 if (customClickActionPacket.payload().isPresent() && customClickActionPacket.payload().get().asCompound().isPresent()) {
                     customClickActionPacket.payload().get().asCompound().get().forEach((k, v) -> {
-                        payload.put(k, v.toString());
+                        if (v.getType().getName().equals(StringTag.TYPE.getName())) {
+                            if (v.asString().isPresent()) {
+                                payload.put(k, v.asString().get());
+                            }
+                        } else {
+                            payload.put(k, v.toString());
+                        }
                     });
                 }
 

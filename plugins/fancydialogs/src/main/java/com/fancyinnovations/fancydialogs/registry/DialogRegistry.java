@@ -15,22 +15,27 @@ public class DialogRegistry implements com.fancyinnovations.fancydialogs.api.Dia
         this.dialogs = new ConcurrentHashMap<>();
     }
 
+    @Override
     public void register(@NotNull Dialog dialog) {
         dialogs.put(dialog.getId(), dialog);
     }
 
+    @Override
     public void unregister(@NotNull String id) {
         dialogs.remove(id);
     }
 
+    @Override
     public Dialog get(@NotNull String id) {
         return dialogs.get(id);
     }
 
+    @Override
     public Collection<Dialog> getAll() {
         return dialogs.values();
     }
 
+    @Override
     public void clear() {
         dialogs.clear();
     }
