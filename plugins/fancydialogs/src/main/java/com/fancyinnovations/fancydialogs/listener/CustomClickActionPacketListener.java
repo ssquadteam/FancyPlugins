@@ -4,6 +4,7 @@ import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import com.fancyinnovations.fancydialogs.actions.DialogAction;
 import com.fancyinnovations.fancydialogs.api.Dialog;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
+import com.fancyinnovations.fancydialogs.api.events.DialogButtonClickedEvent;
 import de.oliver.fancysitula.api.packets.FS_ServerboundCustomClickActionPacket;
 import de.oliver.fancysitula.api.packets.FS_ServerboundPacket;
 import de.oliver.fancysitula.api.utils.FS_PacketListener;
@@ -38,6 +39,8 @@ public class CustomClickActionPacketListener {
 
         String dialogId = packet.getPayload().get("dialog_id");
         String buttonId = packet.getPayload().get("button_id");
+
+        new DialogButtonClickedEvent(event.player(), dialogId, buttonId).callEvent();
 
         Dialog dialog = FancyDialogsPlugin.get().getDialogRegistry().get(dialogId);
         if (dialog == null) {
