@@ -203,6 +203,7 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
         return fdConfig;
     }
 
+    @Override
     public DialogRegistry getDialogRegistry() {
         return dialogRegistry;
     }

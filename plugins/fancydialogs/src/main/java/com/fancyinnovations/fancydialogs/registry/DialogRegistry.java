@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class DialogRegistry {
+public class DialogRegistry implements com.fancyinnovations.fancydialogs.api.DialogRegistry {
 
     private final Map<String, Dialog> dialogs;
 

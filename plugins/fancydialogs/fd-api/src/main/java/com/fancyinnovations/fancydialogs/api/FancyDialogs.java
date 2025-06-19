@@ -13,4 +13,6 @@ public interface FancyDialogs {
 
     Dialog createDialog(DialogData data);
 
+    DialogRegistry getDialogRegistry();
+
 }
