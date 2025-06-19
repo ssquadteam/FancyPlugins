@@ -78,9 +78,11 @@ public class PacketListenerImpl extends FS_PacketListener {
                 ServerboundCustomClickActionPacket customClickActionPacket = (ServerboundCustomClickActionPacket) packet;
 
                 Map<String, String> payload = new HashMap<>();
-                customClickActionPacket.payload().get().asCompound().get().forEach((k, t) -> {
-                    payload.put(k, t.asString().get());
-                });
+                if (customClickActionPacket.payload().isPresent() && customClickActionPacket.payload().get().asCompound().isPresent()) {
+                    customClickActionPacket.payload().get().asCompound().get().forEach((k, v) -> {
+                        payload.put(k, v.toString());
+                    });
+                }
 
                 return new FS_ServerboundCustomClickActionPacket(
                         type,
