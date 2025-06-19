@@ -66,7 +66,53 @@ public class DialogImpl extends Dialog {
                         false,
                         FS_DialogAction.CLOSE,
                         body,
-                        new ArrayList<>() // inputs
+                        List.of(
+//                                new FS_DialogInput(
+//                                        "input1",
+//                                        new FS_DialogTextInput(
+//                                                200,
+//                                                "Enter something",
+//                                                true,
+//                                                "default text",
+//                                                100,
+//                                                null
+//                                        )
+//                                ),
+//                                new FS_DialogInput(
+//                                        "input2",
+//                                        new FS_DialogBooleanInput(
+//                                                "input2",
+//                                                false,
+//                                                "true",
+//                                                "false"
+//                                        )
+//                                ),
+//                                new FS_DialogInput(
+//                                        "input3",
+//                                        new FS_DialogNumberRangeInput(
+//                                                200,
+//                                                "Number Input",
+//                                                "options.generic_value",
+//                                                0,
+//                                                100,
+//                                                50.f,
+//                                                1.0f
+//                                        )
+//                                ),
+//                                new FS_DialogInput(
+//                                        "input4",
+//                                        new FS_DialogSingleOptionInput(
+//                                                200,
+//                                                List.of(
+//                                                        new FS_DialogSingleOptionInput.Entry("option1", "Option 1", true),
+//                                                        new FS_DialogSingleOptionInput.Entry("option2", "Option 2", false),
+//                                                        new FS_DialogSingleOptionInput.Entry("option3", "Option 3", false)
+//                                                ),
+//                                                "Select an option",
+//                                                true
+//                                        )
+//                                )
+                        )
                 ),
                 actions, // actions
                 null,
