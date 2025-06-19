@@ -18,6 +18,7 @@ import java.util.Map;
 public class JDB {
     private final static Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
+            .disableHtmlEscaping()
             .create();
 
     private static final String FILE_EXTENSION = ".json";
