@@ -1,0 +1,26 @@
+package com.fancyinnovations.fancydialogs.actions.defaultActions;
+
+import com.fancyinnovations.fancydialogs.actions.DialogAction;
+import com.fancyinnovations.fancydialogs.api.Dialog;
+import net.kyori.adventure.text.Component;
+import org.bukkit.entity.Player;
+import org.lushplugins.chatcolorhandler.ModernChatColorHandler;
+
+public class MessageDialogAction implements DialogAction {
+
+    public static final MessageDialogAction INSTANCE = new MessageDialogAction();
+
+    private MessageDialogAction() {
+    }
+
+    @Override
+    public void execute(Player player, Dialog dialog, String data) {
+        if (data == null || data.isEmpty()) {
+            return;
+        }
+
+        Component msg = ModernChatColorHandler.translate(data);
+        player.sendMessage(msg);
+    }
+
+}

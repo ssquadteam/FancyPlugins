@@ -1,5 +1,9 @@
 package com.fancyinnovations.fancydialogs.actions;
 
+import com.fancyinnovations.fancydialogs.actions.defaultActions.CloseDialogAction;
+import com.fancyinnovations.fancydialogs.actions.defaultActions.MessageDialogAction;
+import com.fancyinnovations.fancydialogs.actions.defaultActions.OpenDialogDialogAction;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,7 +18,9 @@ public class ActionRegistry {
     }
 
     private void registerDefaultActions() {
-
+        registerAction("close", CloseDialogAction.INSTANCE);
+        registerAction("open_dialog", OpenDialogDialogAction.INSTANCE);
+        registerAction("message", MessageDialogAction.INSTANCE);
     }
 
     public void registerAction(String actionId, DialogAction action) {
