@@ -1,0 +1,45 @@
+name: Deploy FancyDialogs (snapshot)
+
+on:
+  workflow_dispatch:
+jobs:
+  deploy-plugin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '21'
+
+      - name: Modify gradlew permissions
+        run: chmod +x ./gradlew
+
+      - name: Build Fancydialogs
+        run: ./gradlew :plugins:fancydialogs:shadowJar
+
+      - name: Build deployment tool
+        run: ./gradlew :tools:deployment:shadowJar
+
+      - name: Deploy
+        env:
+          MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run:
+          cd tools/deployment/build/libs &&
+          java -jar deployment.jar ../../../../plugins/fancydialogs/snapshot_deployment_config.json
+
+      - name: Publish to reposilite (snapshots)
+        run: ./gradlew :plugins:fancydialogs:fd-api:publishAllPublicationsToFancyinnovationsSnapshotsRepository
