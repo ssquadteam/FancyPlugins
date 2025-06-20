@@ -1,6 +1,7 @@
 package com.fancyinnovations.fancydialogs;
 
 import com.fancyinnovations.fancydialogs.actions.ActionRegistryImpl;
+import com.fancyinnovations.fancydialogs.analytics.Analytics;
 import com.fancyinnovations.fancydialogs.api.Dialog;
 import com.fancyinnovations.fancydialogs.api.DialogActionRegistry;
 import com.fancyinnovations.fancydialogs.api.FancyDialogs;
@@ -152,6 +153,10 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
         }
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
+        Analytics analytics = new Analytics();
+        analytics.registerMetrics();
+        analytics.start();
 
         fancyLogger.info("Successfully enabled FancyDialogs version %s".formatted(getDescription().getVersion()));
     }
