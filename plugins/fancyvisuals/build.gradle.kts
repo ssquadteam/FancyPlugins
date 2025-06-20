@@ -5,7 +5,7 @@ plugins {
 
     id("xyz.jpenilla.run-paper")
     id("com.gradleup.shadow")
-    id("net.minecrell.plugin-yml.paper")
+    id("de.eldoria.plugin-yml.paper")
 }
 
 runPaper.folia.registerTask()

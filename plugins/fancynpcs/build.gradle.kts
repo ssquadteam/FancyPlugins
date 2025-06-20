@@ -5,7 +5,7 @@ plugins {
     id("maven-publish")
     id("xyz.jpenilla.run-paper")
     id("com.gradleup.shadow")
-    id("net.minecrell.plugin-yml.paper")
+    id("de.eldoria.plugin-yml.paper")
     id("io.papermc.hangar-publish-plugin")
     id("com.modrinth.minotaur")
 }
