@@ -28,6 +28,7 @@
 - FancyNpcs: create and manage fancy looking npcs ([old repository](https://github.com/FancyMcPlugins/FancyNpcs))
 - FancyHolograms (v2): create fancy looking holograms ([old repository](https://github.com/FancyMcPlugins/FancyHolograms))
 - FancyHolograms (v3): create fancy looking holograms (work in progress)
+- FancyDialogs: create and manage fancy looking dialogs which were added in 1.21.6 (work in progress)
 - FancyVisuals: plugin to customize all visual components of the game (work in progress)
 
 **Libraries:**
