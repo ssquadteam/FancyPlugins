@@ -55,7 +55,7 @@ Example: `/npc action (npc) (trigger) add player_command warp spawn`
 
 Executes a command as the player who triggered the action, but with operator privileges. This action is useful for performing player-specific operations that require operator permissions.
 
-!!! warning
+!!!warning
 FancyNpcs will gives the player operator permissions for the duration of the command execution. This means that the player will have access to all commands and permissions during that time.
 This can be a security risk if not used carefully, so make sure to use this action only when necessary and with trusted players.
 !!!

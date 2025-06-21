@@ -6,7 +6,7 @@ visibility: hidden
 
 # REST API
 
-!!! danger
+!!!danger
 The FancyAnalytics platform is still in development. Expect breaking changes in the future.
 !!!
 

@@ -4,7 +4,7 @@ icon: info
 ---
 # Getting started
 
-!!! danger
+!!!danger
 Be aware, that only Paper and Folia is supported, but the plugin should work on any of its forks (like Purpur or Pufferfish). Spigot, Bukkit, Sponge and Fabric is not supported.
 !!!
 

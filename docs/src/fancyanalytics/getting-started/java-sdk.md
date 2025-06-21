@@ -5,7 +5,7 @@ order: 300
 
 # Java SDK
 
-!!! danger
+!!!danger
 The FancyAnalytics platform is still in development. Expect breaking changes in the future.
 !!!
 
@@ -46,7 +46,7 @@ dependencies {
 </dependency>
 ```
 
-!!! warning
+!!!warning
 Make sure to shade the API into your app! You can use the [Shade plugin](https://imperceptiblethoughts.com/shadow/) for this.
 !!!
 

@@ -5,7 +5,7 @@ order: 500
 
 # Minecraft Servers
 
-!!! danger
+!!!danger
 The FancyAnalytics platform is still in development. Expect breaking changes in the future.
 !!!
 

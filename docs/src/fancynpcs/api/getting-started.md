@@ -69,7 +69,7 @@ To let FancyNpcs handle the NPC, you need to register it. FancyNpcs will take ca
 FancyNpcsPlugin.get().getNpcManager().registerNpc(npc);
 ```
 
-!!! warning
+!!!warning
 Do not register npcs in the first few seconds after the server has started. You need to wait at least 10 seconds before registering npcs. Otherwise, the npcs will not get registered correctly.
 You can also listen to the `NpcsLoadedEvent` to know when you can register npcs.
 !!!

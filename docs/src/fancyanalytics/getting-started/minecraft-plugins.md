@@ -5,7 +5,7 @@ order: 400
 
 # Minecraft Plugins
 
-!!! danger
+!!!danger
 The FancyAnalytics platform is still in development. Expect breaking changes in the future.
 !!!
 
@@ -47,7 +47,7 @@ dependencies {
 </dependency>
 ```
 
-!!! warning
+!!!warning
 Make sure to shade the API into your plugin! You can use the [Shade plugin](https://imperceptiblethoughts.com/shadow/) for this.
 !!!
 

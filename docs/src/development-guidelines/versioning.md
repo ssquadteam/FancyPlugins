@@ -9,7 +9,7 @@ We use [Semantic Versioning](https://semver.org/) (Semver) for versioning.
 The version is structured as follows: `major.minor.patch.<build id>`. The build id is optional and is only used for
 development builds.
 
-!!! warning
+!!!warning
 This versioning system is not getting used yet. We will start applying the rules in the version 3.0.0 of all plugins.
 !!!
 
