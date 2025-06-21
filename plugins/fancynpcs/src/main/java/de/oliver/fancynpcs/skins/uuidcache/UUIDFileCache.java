@@ -1,8 +1,12 @@
 package de.oliver.fancynpcs.skins.uuidcache;
 
+import com.google.gson.Gson;
 import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.jdb.JDB;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
@@ -10,12 +14,19 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class UUIDFileCache implements UUIDCache {
 
+    private final static File usercacheFile = new File("usercache.json");
+    private final static Gson gson = new Gson();
     private final JDB storage;
     private final Map<String, UUIDCacheData> cache;
+    private final Map<String, UUID> minecraftUsercache;
 
     public UUIDFileCache() {
         this.storage = new JDB("plugins/FancyNpcs/.data");
         this.cache = new ConcurrentHashMap<>();
+        this.minecraftUsercache = new ConcurrentHashMap<>();
+
+        loadMinecraftUsercache();
+        load();
     }
 
     private void load() {
@@ -39,6 +50,33 @@ public class UUIDFileCache implements UUIDCache {
                 cache.put(data.username(), data);
             }
         }
+
+        FancyNpcs.getInstance().getFancyLogger().debug("Loaded " + cache.size() + " UUIDs from file cache");
+    }
+
+    private void loadMinecraftUsercache() {
+        if (!usercacheFile.exists()) {
+            FancyNpcs.getInstance().getFancyLogger().debug("Minecraft usercache file does not exist, skipping load.");
+            return;
+        }
+
+        MinecraftUsercacheData[] data;
+        try {
+            data = gson.fromJson(new FileReader(usercacheFile), MinecraftUsercacheData[].class);
+        } catch (FileNotFoundException e) {
+            FancyNpcs.getInstance().getFancyLogger().error("Failed to load Minecraft usercache file");
+            return;
+        }
+
+        if (data == null) {
+            return;
+        }
+
+        for (MinecraftUsercacheData d : data) {
+            minecraftUsercache.put(d.name(), UUID.fromString(d.uuid()));
+        }
+
+        FancyNpcs.getInstance().getFancyLogger().debug("Loaded " + minecraftUsercache.size() + " UUIDs from Minecraft usercache");
     }
 
     private void save() {
@@ -52,6 +90,11 @@ public class UUIDFileCache implements UUIDCache {
 
     @Override
     public UUID getUUID(String username) {
+        if (minecraftUsercache.containsKey(username)) {
+            FancyNpcs.getInstance().getFancyLogger().debug("Found UUID for " + username + ": " + minecraftUsercache.get(username) + " in Minecraft usercache");
+            return minecraftUsercache.get(username);
+        }
+
         if (cache.isEmpty()) {
             load(); // Load from storage if not present in cache
         }
