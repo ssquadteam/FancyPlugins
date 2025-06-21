@@ -131,4 +131,4 @@ manager.removeHologram("hologram_name");
 
 You can find the JavaDocs for the FancyHolograms API [here](https://repo.fancyinnovations.com/javadoc/releases/de/oliver/FancyHolograms/latest).
 
-Join the [FancyInnovations Discord](https://discord.gg/ZUgYCEJUEx) for help and support. There is a dedicated channel for help about the api (`#holograms-dev`).
+Join the [FancyInnovations Discord](https://discord.gg/ZUgYCEJUEx) for help and support. There is a dedicated channel for help about the api (`#holograms-api`).

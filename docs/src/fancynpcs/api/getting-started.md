@@ -136,5 +136,5 @@ npc.removeForAll();
 
 You can find the JavaDocs for the FancyNpcs API [here](https://repo.fancyinnovations.com/javadoc/releases/de/oliver/FancyNpcs/latest).
 
-Join the [FancyInnovations Discord](https://discord.gg/ZUgYCEJUEx) for help and support. There is a dedicated channel for help about the api (`#npcs-dev`).
+Join the [FancyInnovations Discord](https://discord.gg/ZUgYCEJUEx) for help and support. There is a dedicated channel for help about the api (`#npcs-api`).
 ```

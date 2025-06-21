@@ -52,14 +52,16 @@ NoticeDialog.show(player, "message");
 ## Show a confirmation dialog
 
 ```java
-CompletableFuture<Boolean> confirmed = new ConfirmationDialog("title", "question", "confirmText", "cancelText").ask(player);
-// or
-boolean confirmed = ConfirmationDialog.ask(player, "question");
+new ConfirmationDialog("Are you sure you want to reload the configuration?")
+    .withTitle("Confirm reload")
+    .withOnConfirm(() -> player.sendMessage("Reloading configuration..."))
+    .withOnCancel(() -> player.sendMessage("Reload cancelled."))
+    .ask(player);
 ```
 
 ## JavaDocs and help
 
-You can find the JavaDocs for the FancyNpcs API [here](https://repo.fancyinnovations.com/javadoc/releases/de/oliver/FancyNpcs/latest).
+You can find the JavaDocs for the FancyDialogs API [here](https://repo.fancyinnovations.com/javadoc/releases/de/oliver/FancyDialogs/latest).
 
-Join the [FancyInnovations Discord](https://discord.gg/ZUgYCEJUEx) for help and support. There is a dedicated channel for help about the api (`#npcs-dev`).
+Join the [FancyInnovations Discord](https://discord.gg/ZUgYCEJUEx) for help and support. There is a dedicated channel for help about the api (`#dialogs-api`).
 ```
