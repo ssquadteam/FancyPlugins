@@ -10,6 +10,7 @@ import de.oliver.fancynpcs.api.skins.SkinLoadException;
 import de.oliver.fancynpcs.api.skins.SkinManager;
 import de.oliver.fancynpcs.skins.cache.SkinCache;
 import de.oliver.fancynpcs.skins.cache.SkinCacheData;
+import de.oliver.fancynpcs.skins.uuidcache.UUIDCache;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.lushplugins.chatcolorhandler.ChatColorHandler;
@@ -33,12 +34,20 @@ public class SkinManagerImpl implements SkinManager, Listener {
 
     private final String SKINS_DIRECTORY = "plugins/FancyNpcs/skins/";
 
+    private final UUIDCache uuidCache;
     private final SkinCache fileCache;
     private final SkinCache memCache;
     private final SkinGenerationQueue mojangQueue;
     private final SkinGenerationQueue mineSkinQueue;
 
-    public SkinManagerImpl(SkinCache fileCache, SkinCache memCache, SkinGenerationQueue mojangQueue, SkinGenerationQueue mineSkinQueue) {
+    public SkinManagerImpl(
+            UUIDCache uuidCache,
+            SkinCache fileCache,
+            SkinCache memCache,
+            SkinGenerationQueue mojangQueue,
+            SkinGenerationQueue mineSkinQueue
+    ) {
+        this.uuidCache = uuidCache;
         this.fileCache = fileCache;
         this.memCache = memCache;
         this.mojangQueue = mojangQueue;
@@ -99,10 +108,15 @@ public class SkinManagerImpl implements SkinManager, Listener {
             return cached;
         }
 
-        UUID uuid = UUIDFetcher.getUUID(username);
+        UUID uuid = uuidCache.getUUID(username);
         if (uuid == null) {
-            throw new SkinLoadException(SkinLoadException.Reason.INVALID_USERNAME, "(USERNAME = '" + username + "')");
+            uuid = UUIDFetcher.getUUID(username);
+            if (uuid == null) {
+                throw new SkinLoadException(SkinLoadException.Reason.INVALID_USERNAME, "(USERNAME = '" + username + "')");
+            }
+            uuidCache.cacheUUID(username, uuid);
         }
+
         SkinData dataByUUID = getByUUID(uuid, variant);
 
         return new SkinData(username, dataByUUID.getVariant(), dataByUUID.getTextureValue(), dataByUUID.getTextureSignature());
@@ -158,8 +172,13 @@ public class SkinManagerImpl implements SkinManager, Listener {
 
             String id = skin.getParsedIdentifier();
             if (SkinUtils.isUsername(id)) {
-                UUID uuid = UUIDFetcher.getUUID(id);
+                UUID uuid = uuidCache.getUUID(id);
+                if (uuid == null) {
+                    uuid = UUIDFetcher.getUUID(id);
+                }
+
                 if (uuid != null) {
+                    uuidCache.cacheUUID(id, uuid);
                     id = uuid.toString();
                 }
             }
@@ -210,6 +229,10 @@ public class SkinManagerImpl implements SkinManager, Listener {
     public void cacheSkin(SkinData skinData) {
         memCache.addSkin(skinData);
         fileCache.addSkin(skinData);
+    }
+
+    public UUIDCache getUuidCache() {
+        return uuidCache;
     }
 
     public SkinCache getFileCache() {

@@ -38,6 +38,7 @@ import de.oliver.fancynpcs.skins.cache.SkinCacheFile;
 import de.oliver.fancynpcs.skins.cache.SkinCacheMemory;
 import de.oliver.fancynpcs.skins.mineskin.MineSkinQueue;
 import de.oliver.fancynpcs.skins.mojang.MojangQueue;
+import de.oliver.fancynpcs.skins.uuidcache.UUIDFileCache;
 import de.oliver.fancynpcs.tests.PlaceholderApiEnv;
 import de.oliver.fancynpcs.tracker.TurnToPlayerTracker;
 import de.oliver.fancynpcs.tracker.VisibilityTracker;
@@ -214,7 +215,7 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
         actionManager.registerAction(new NeedPermissionAction());
         actionManager.registerAction(new PlaySoundAction());
 
-        skinManager = new SkinManagerImpl(new SkinCacheFile(), new SkinCacheMemory(), MojangQueue.get(), MineSkinQueue.get());
+        skinManager = new SkinManagerImpl(new UUIDFileCache(), new SkinCacheFile(), new SkinCacheMemory(), MojangQueue.get(), MineSkinQueue.get());
         OldSkinCacheMigrator.migrate();
 
         textConfig = new TextConfig("#E33239", "#AD1D23", "#81E366", "#E3CA66", "#E36666", "");

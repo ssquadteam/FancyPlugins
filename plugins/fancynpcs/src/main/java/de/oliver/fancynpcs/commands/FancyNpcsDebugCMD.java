@@ -90,4 +90,10 @@ public final class FancyNpcsDebugCMD {
         translator.translate("fancynpcs_skin_system_clear_cache_success").send(player);
     }
 
+    @Command("fancynpcs skin_system clear_uuid_cache")
+    @Permission("fancynpcs.command.fancynpcs.skin_system.clear_uuid_cache")
+    public void onInvalidateUUidCache(final Player player) {
+        FancyNpcs.getInstance().getSkinManagerImpl().getUuidCache().clearCache();
+        translator.translate("fancynpcs_skin_system_clear_uuid_cache_success").send(player);
+    }
 }

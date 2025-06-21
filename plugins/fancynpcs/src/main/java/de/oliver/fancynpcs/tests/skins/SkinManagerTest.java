@@ -8,6 +8,7 @@ import de.oliver.fancynpcs.skins.cache.SkinCache;
 import de.oliver.fancynpcs.skins.cache.SkinCacheData;
 import de.oliver.fancynpcs.skins.cache.SkinCacheFile;
 import de.oliver.fancynpcs.skins.cache.SkinCacheMemory;
+import de.oliver.fancynpcs.skins.uuidcache.UUIDMemoryCache;
 import de.oliver.plugintests.annotations.FPAfterEach;
 import de.oliver.plugintests.annotations.FPBeforeEach;
 import de.oliver.plugintests.annotations.FPTest;
@@ -31,7 +32,7 @@ public class SkinManagerTest {
         fileCache = new SkinCacheFile();
         mojangQueue = new FakeSkinQueue();
         mineSkinQueue = new FakeSkinQueue();
-        manager = new SkinManagerImpl(fileCache, memCache, mojangQueue, mineSkinQueue);
+        manager = new SkinManagerImpl(new UUIDMemoryCache(), fileCache, memCache, mojangQueue, mineSkinQueue);
     }
 
     @FPAfterEach
@@ -65,7 +66,8 @@ public class SkinManagerTest {
                 SkinData expData,
                 boolean expQueued,
                 SkinGenerationRequest mojangRequest
-        ) {}
+        ) {
+        }
 
         TestCase[] testCases = {
                 new TestCase(
