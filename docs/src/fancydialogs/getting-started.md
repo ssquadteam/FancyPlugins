@@ -37,6 +37,18 @@ FancyDialogs uses a simple JSON format to define dialogs. Here is an example of 
   "body": [
     { "text": "This is my first dialog created with FancyDialogs!" }
   ],
+  "inputs": {
+    "textFields": [
+      {
+        "key": "fav_color",
+        "order": 1,
+        "label": "<color:#ff7300>What is your favorite color?</color>",
+        "placeholder": "Gold",
+        "maxLength": 50,
+        "maxLines": 1
+      }
+    ]
+  },
   "buttons": [
     {
       "label": "Visit our website",
@@ -59,6 +71,14 @@ The fields in this dialog are as follows:
 - `canCloseWithEscape`: Whether the dialog can be closed with the Escape key (default: true)
 - `body`: The body of the dialog, which can contain text (and items soon)
   - `text`: The text to display in the body of the dialog (supports MiniMessage & PlaceholderAPI)
+- `inputs`: The inputs of the dialog, which can contain text fields
+  - `textFields`: A list of text fields that can be used to collect input from the player
+    - `key`: The key to use to store the input value (can be used as a placeholder in actions)
+    - `order`: The order of the text field in the dialog
+    - `label`: The label to display above the text field (supports MiniMessage & PlaceholderAPI)
+    - `placeholder`: The initial text to display in the text field
+    - `maxLength`: The maximum length of the input
+    - `maxLines`: The maximum number of lines for the input (greater than 1 will create a multiline text field)
 - `buttons`: The buttons of the dialog, which can contain text, tooltips and actions
   - `label`: The text to display on the button (supports MiniMessage & PlaceholderAPI)
   - `tooltip`: The tooltip to display when hovering over the button (supports MiniMessage & PlaceholderAPI)
