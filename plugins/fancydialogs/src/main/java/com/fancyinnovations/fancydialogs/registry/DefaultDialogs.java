@@ -4,6 +4,8 @@ import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogTextField;
 import com.fancyinnovations.fancydialogs.dialog.DialogImpl;
 import com.fancyinnovations.fancydialogs.storage.DialogStorage;
 
@@ -40,6 +42,18 @@ public class DefaultDialogs {
                         new DialogBodyData("Explore more features in the documentation (<click:open_url:'https://docs.fancyinnovations.com/fancyholograms/'><u>click here</u></click>)."),
                         new DialogBodyData("<gradient:#ff7300:#ffd199:#ff7300>Enjoy using FancyDialogs :D</gradient>")
                 ),
+                new DialogInputs(
+                        List.of(
+                                new DialogTextField(
+                                        "fav_color",
+                                        "<color:#ff7300>What is your favorite color?</color>",
+                                        1,
+                                        "Gold",
+                                        50,
+                                        1
+                                )
+                        )
+                ),
                 List.of(
                         new DialogButton(
                                 "<color:#ff4f19>Close</color>",
@@ -47,10 +61,10 @@ public class DefaultDialogs {
                                 List.of()
                         ),
                         new DialogButton(
-                                "<color:#ffd000>Run command</color>",
-                                "<color:#ff4f19>Click to give yourself an apple :)</color>",
+                                "<color:#ffd000>Show favourite color</color>",
+                                "<color:#ff4f19>Click to show your fav color :D</color>",
                                 List.of(
-                                        new DialogButton.DialogAction("console_command", "give @p minecraft:apple 1")
+                                        new DialogButton.DialogAction("message", "Your favorite color is: {fav_color}")
                                 )
                         )
                 )
@@ -70,6 +84,7 @@ public class DefaultDialogs {
                         new DialogBodyData("We are glad to have you here!"),
                         new DialogBodyData("If you have any questions, feel free to ask our staff members.")
                 ),
+                DialogInputs.EMPTY,
                 List.of(
                         new DialogButton(
                                 "<color:red>Read the rules</color>",
@@ -111,6 +126,7 @@ public class DefaultDialogs {
                 List.of(
                         new DialogBodyData("Here you can quickly access some of the most important features of our server.")
                 ),
+                DialogInputs.EMPTY,
                 List.of(
                         new DialogButton(
                                 "<color:#ffee00>Visit our website</color>",

@@ -3,6 +3,7 @@ package com.fancyinnovations.fancydialogs.api;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -105,6 +106,7 @@ public class ConfirmationDialog {
                 title,
                 false,
                 List.of(new DialogBodyData(question)),
+                DialogInputs.EMPTY, // TODO add support for confirmation phrases
                 List.of(confirmBtn, cancelBtn)
         );
 

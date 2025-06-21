@@ -4,6 +4,8 @@ import com.fancyinnovations.fancydialogs.api.Dialog;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInput;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogTextField;
 import de.oliver.fancysitula.api.dialogs.FS_CommonDialogData;
 import de.oliver.fancysitula.api.dialogs.FS_DialogAction;
 import de.oliver.fancysitula.api.dialogs.actions.FS_CommonButtonData;
@@ -11,6 +13,9 @@ import de.oliver.fancysitula.api.dialogs.actions.FS_DialogActionButton;
 import de.oliver.fancysitula.api.dialogs.actions.FS_DialogCustomAction;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogBody;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogTextBody;
+import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogInput;
+import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogInputControl;
+import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogTextInput;
 import de.oliver.fancysitula.api.dialogs.types.FS_MultiActionDialog;
 import de.oliver.fancysitula.api.entities.FS_RealPlayer;
 import de.oliver.fancysitula.factories.FancySitula;
@@ -37,6 +42,30 @@ public class DialogImpl extends Dialog {
                     200 // default text width
             );
             body.add(fsDialogTextBody);
+        }
+
+        List<FS_DialogInput> inputs = new ArrayList<>();
+        for (DialogInput input : data.inputs().all()) {
+            FS_DialogInputControl control = null;
+            if (input instanceof DialogTextField textField) {
+                control = new FS_DialogTextInput(
+                        200, // default width
+                        textField.getLabel(),
+                        !textField.getLabel().isEmpty(),
+                        textField.getPlaceholder(),
+                        textField.getMaxLength(),
+                        textField.getMaxLines() > 0 ?
+                                new FS_DialogTextInput.MultilineOptions(textField.getMaxLines(), null) :
+                                null
+                );
+            }
+
+            if (control == null) {
+                throw new IllegalArgumentException("Unsupported input type: " + input.getClass().getSimpleName());
+            }
+
+            FS_DialogInput fsDialogInput = new FS_DialogInput(input.getKey(), control);
+            inputs.add(fsDialogInput);
         }
 
         List<FS_DialogActionButton> actions = new ArrayList<>();
@@ -66,7 +95,8 @@ public class DialogImpl extends Dialog {
                         false,
                         FS_DialogAction.CLOSE,
                         body,
-                        List.of(
+                        inputs
+//                        List.of(
 //                                new FS_DialogInput(
 //                                        "input1",
 //                                        new FS_DialogTextInput(
@@ -112,7 +142,7 @@ public class DialogImpl extends Dialog {
 //                                                true
 //                                        )
 //                                )
-                        )
+//                        )
                 ),
                 actions, // actions
                 null,

@@ -2,6 +2,7 @@ package com.fancyinnovations.fancydialogs.api;
 
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class NoticeDialog {
                 List.of(
                         new DialogBodyData(this.text)
                 ),
+                DialogInputs.EMPTY,
                 List.of()
         );
     }
