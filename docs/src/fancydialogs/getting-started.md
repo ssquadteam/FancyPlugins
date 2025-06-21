@@ -43,7 +43,7 @@ FancyDialogs uses a simple JSON format to define dialogs. Here is an example of 
         "key": "fav_color",
         "order": 1,
         "label": "<color:#ff7300>What is your favorite color?</color>",
-        "placeholder": "Gold",
+        "placeholder": "gold",
         "maxLength": 50,
         "maxLines": 1
       }
@@ -51,12 +51,12 @@ FancyDialogs uses a simple JSON format to define dialogs. Here is an example of 
   },
   "buttons": [
     {
-      "label": "Visit our website",
-      "tooltip": "Click to visit our website!",
+      "label": "Show favorite color",
+      "tooltip": "Click to show your favorite color",
       "actions": [
         {
           "name": "message",
-          "data": "Visit our website here: LINK TO WEBSITE"
+          "data": "Your favorite color is: <color:{fav_color}>{fav_color}</color>"
         }
       ]
     }

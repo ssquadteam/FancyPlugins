@@ -48,7 +48,7 @@ public class DefaultDialogs {
                                         "fav_color",
                                         "<color:#ff7300>What is your favorite color?</color>",
                                         1,
-                                        "Gold",
+                                        "gold",
                                         50,
                                         1
                                 )
@@ -64,7 +64,7 @@ public class DefaultDialogs {
                                 "<color:#ffd000>Show favourite color</color>",
                                 "<color:#ff4f19>Click to show your fav color :D</color>",
                                 List.of(
-                                        new DialogButton.DialogAction("message", "Your favorite color is: {fav_color}")
+                                        new DialogButton.DialogAction("message", "Your favorite color is: <color:{fav_color}>{fav_color}</color>")
                                 )
                         )
                 )
