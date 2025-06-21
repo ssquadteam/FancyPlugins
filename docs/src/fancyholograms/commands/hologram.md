@@ -80,6 +80,13 @@ Description: Rotates the hologram around the x-axis<br/>
 Syntax: ``/Hologram edit (hologram) rotatepitch (degrees)``<br/>
 Permission: ``FancyHolograms.admin``
 
+### translate
+
+Description: Translates the hologram by a certain amount in the x, y and z direction<br/>
+Syntax: ``/Hologram edit (hologram) rotatepitch (x) (y) (z)``<br/>
+Permission: ``FancyHolograms.admin``
+
+
 ### visibilityDistance
 
 Description: Sets from how far away players can see the hologram (-1 for default distance)<br/>
