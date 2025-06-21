@@ -10,6 +10,8 @@ import de.oliver.fancysitula.api.packets.FS_ServerboundPacket;
 import de.oliver.fancysitula.api.utils.FS_PacketListener;
 import de.oliver.fancysitula.factories.FancySitula;
 
+import java.util.Map;
+
 public class CustomClickActionPacketListener {
 
     private static CustomClickActionPacketListener INSTANCE;
@@ -69,7 +71,12 @@ public class CustomClickActionPacketListener {
                 continue;
             }
 
-            action.execute(event.player(), dialog, btnAction.data());
+            String data = btnAction.data();
+            for (Map.Entry<String, String> entry : packet.getPayload().entrySet()) {
+                data = data.replace("{" + entry.getKey() + "}", entry.getValue());
+            }
+
+            action.execute(event.player(), dialog, data);
         }
     }
 
