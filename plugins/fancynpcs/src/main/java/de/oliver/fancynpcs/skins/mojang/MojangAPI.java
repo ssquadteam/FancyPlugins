@@ -11,15 +11,17 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.concurrent.Executor;
 
 public class MojangAPI {
 
     private final HttpClient client;
     private final Gson gson = new Gson();
 
-    public MojangAPI() {
+    public MojangAPI(Executor executor) {
         this.client = HttpClient.newBuilder()
                 .connectTimeout(Duration.of(3, ChronoUnit.SECONDS))
+                .executor(executor)
                 .build();
     }
 

@@ -24,7 +24,7 @@ public class MojangQueue implements SkinGenerationQueue {
 
     private MojangQueue() {
         this.queue = new LinkedList<>();
-        this.api = new MojangAPI();
+        this.api = new MojangAPI(SkinManagerImpl.EXECUTOR);
 
         run();
     }
