@@ -48,7 +48,7 @@ dependencies {
 ```
 
 !!!warning
-Make sure to shade the API into your plugin! You can use the [Shade plugin](https://imperceptiblethoughts.com/shadow/) for this.
+Make sure to shade the API into your plugin! You can use the [Shade plugin](https://gradleup.com/shadow/) for this.
 !!!
 
 ## Initialize the API
