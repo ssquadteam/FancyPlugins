@@ -16,15 +16,17 @@ public class ConfirmationDialog {
     public static final Map<String, ConfirmationDialog> CACHE = new ConcurrentHashMap<>();
 
     private final String question;
-    private String title;
-    private String confirmText;
-    private String cancelText;
+    private String title = "Confirmation";
+    private String confirmText = "Yes";
+    private String cancelText = "No";
 
     private Dialog dialog;
     private String confirmButtonId;
     private String cancelButtonId;
-    private Runnable onConfirm;
-    private Runnable onCancel;
+    private Runnable onConfirm = () -> {
+    };
+    private Runnable onCancel = () -> {
+    };
 
     public ConfirmationDialog(String title, String question, String confirmText, String cancelText, Runnable onConfirm, Runnable onCancel) {
         this.title = title;
