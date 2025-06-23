@@ -4,7 +4,7 @@ plugins {
     id("com.gradleup.shadow")
 }
 
-val minecraftVersion = "1.21.5"
+val minecraftVersion = "1.21.6"
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:$minecraftVersion-R0.1-SNAPSHOT")

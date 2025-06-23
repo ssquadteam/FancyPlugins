@@ -16,7 +16,7 @@ runPaper.folia.registerTask()
 
 val supportedVersions =
     listOf(
-        "1.21.5",
+        "1.21.6",
     )
 
 allprojects {
@@ -40,7 +40,7 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.6-R0.1-SNAPSHOT")
 
     implementation(project(":plugins:fancydialogs:fd-api"))
 
