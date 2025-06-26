@@ -5,6 +5,7 @@ import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInput;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogSelect;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogTextField;
 import de.oliver.fancysitula.api.dialogs.FS_CommonDialogData;
 import de.oliver.fancysitula.api.dialogs.FS_DialogAction;
@@ -15,6 +16,7 @@ import de.oliver.fancysitula.api.dialogs.body.FS_DialogBody;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogTextBody;
 import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogInput;
 import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogInputControl;
+import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogSingleOptionInput;
 import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogTextInput;
 import de.oliver.fancysitula.api.dialogs.types.FS_MultiActionDialog;
 import de.oliver.fancysitula.api.entities.FS_RealPlayer;
@@ -57,6 +59,17 @@ public class DialogImpl extends Dialog {
                         textField.getMaxLines() > 0 ?
                                 new FS_DialogTextInput.MultilineOptions(textField.getMaxLines(), null) :
                                 null
+                );
+            } else if (input instanceof DialogSelect select) {
+                List<FS_DialogSingleOptionInput.Entry> entries = new ArrayList<>();
+                for (DialogSelect.Entry entry : select.getOptions()) {
+                    entries.add(new FS_DialogSingleOptionInput.Entry(entry.value(), entry.display(), entry.initial()));
+                }
+                control = new FS_DialogSingleOptionInput(
+                        200, // default width
+                        entries,
+                        select.getLabel(),
+                        !select.getLabel().isEmpty()
                 );
             }
 

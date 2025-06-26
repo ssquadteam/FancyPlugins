@@ -79,6 +79,14 @@ The fields in this dialog are as follows:
     - `placeholder`: The initial text to display in the text field
     - `maxLength`: The maximum length of the input
     - `maxLines`: The maximum number of lines for the input (greater than 1 will create a multiline text field)
+  - `selects`: A list of text fields that can be used to collect input from the player
+    - `key`: The key to use to store the input value (can be used as a placeholder in actions)
+    - `order`: The order of the text field in the dialog
+    - `label`: The label to display above the text field (supports MiniMessage & PlaceholderAPI)
+    - `options`: A list of options that can be selected by the player
+      - `value`: The value that will be returned when the player selects this option
+      - `display`: The text to display in the select field (supports MiniMessage & PlaceholderAPI)
+      - `initial`: Whether this option is selected by default (default: false)
 - `buttons`: The buttons of the dialog, which can contain text, tooltips and actions
   - `label`: The text to display on the button (supports MiniMessage & PlaceholderAPI)
   - `tooltip`: The tooltip to display when hovering over the button (supports MiniMessage & PlaceholderAPI)

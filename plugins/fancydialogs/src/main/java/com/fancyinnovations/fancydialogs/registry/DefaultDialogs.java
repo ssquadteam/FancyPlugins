@@ -5,6 +5,7 @@ import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogSelect;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogTextField;
 import com.fancyinnovations.fancydialogs.dialog.DialogImpl;
 import com.fancyinnovations.fancydialogs.storage.DialogStorage;
@@ -45,12 +46,25 @@ public class DefaultDialogs {
                 new DialogInputs(
                         List.of(
                                 new DialogTextField(
-                                        "fav_color",
-                                        "<color:#ff7300>What is your favorite color?</color>",
+                                        "nickname",
+                                        "<color:#ff7300>What is your nickname?</color>",
                                         1,
-                                        "gold",
+                                        "",
                                         50,
                                         1
+                                )
+                        ),
+                        List.of(
+                                new DialogSelect(
+                                        "color_choice",
+                                        "<color:#ff7300>Choose your favorite color</color>",
+                                        2,
+                                        List.of(
+                                                new DialogSelect.Entry("red", "<color:red>Red</color>", true),
+                                                new DialogSelect.Entry("green", "<color:green>Green</color>", false),
+                                                new DialogSelect.Entry("blue", "<color:blue>Blue</color>", false),
+                                                new DialogSelect.Entry("yellow", "<color:yellow>Yellow</color>", false)
+                                        )
                                 )
                         )
                 ),
@@ -64,7 +78,7 @@ public class DefaultDialogs {
                                 "<color:#ffd000>Show favourite color</color>",
                                 "<color:#ff4f19>Click to show your fav color :D</color>",
                                 List.of(
-                                        new DialogButton.DialogAction("message", "Your favorite color is: <color:{fav_color}>{fav_color}</color>")
+                                        new DialogButton.DialogAction("message", "Hi {nickname}, your favorite color is: <color:{color_choice}>{color_choice}</color>")
                                 )
                         )
                 )
