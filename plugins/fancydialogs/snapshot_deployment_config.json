@@ -9,7 +9,8 @@
   ],
   "channel": "ALPHA",
   "loaders": [
-    "paper"
+    "paper",
+    "folia"
   ],
   "featured": false
 }

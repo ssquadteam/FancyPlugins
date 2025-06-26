@@ -9,7 +9,8 @@
   ],
   "channel": "RELEASE",
   "loaders": [
-    "paper"
+    "paper",
+    "folia"
   ],
   "featured": false
 }
