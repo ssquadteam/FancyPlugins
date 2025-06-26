@@ -1,3 +1,1 @@
-- Added support for 1.21.6 and 1.21.7
-- Added UUID caching to improve performance
-- More fixes to the skin system
+- Added support for 1.21.6
