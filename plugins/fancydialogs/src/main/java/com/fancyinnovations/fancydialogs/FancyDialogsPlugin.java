@@ -8,6 +8,7 @@ import com.fancyinnovations.fancydialogs.api.FancyDialogs;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import com.fancyinnovations.fancydialogs.commands.DialogCMD;
 import com.fancyinnovations.fancydialogs.commands.FancyDialogsCMD;
+import com.fancyinnovations.fancydialogs.commands.QuickActionsCMD;
 import com.fancyinnovations.fancydialogs.commands.TutorialCMD;
 import com.fancyinnovations.fancydialogs.commands.types.DialogCommandType;
 import com.fancyinnovations.fancydialogs.config.FDFeatureFlags;
@@ -222,6 +223,7 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
         Lamp<BukkitCommandActor> lamp = lampBuilder.build();
 
         lamp.register(FancyDialogsCMD.INSTANCE);
+        lamp.register(QuickActionsCMD.INSTANCE);
         lamp.register(DialogCMD.INSTANCE);
         lamp.register(TutorialCMD.INSTANCE);
     }

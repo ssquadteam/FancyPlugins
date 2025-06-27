@@ -1,6 +1,6 @@
 ---
 icon: dot
-order: 9
+order: 8
 ---
 
 ![](../../static/commands.png)
