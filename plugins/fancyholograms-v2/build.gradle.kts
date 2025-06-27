@@ -146,8 +146,9 @@ tasks {
         val props = mapOf(
             "description" to project.description,
             "version" to getFHVersion(),
-            "hash" to gitCommitHash.get(),
-            "build" to (System.getenv("BUILD_ID") ?: "").ifEmpty { "undefined" }
+            "commit_hash" to gitCommitHash.get(),
+            "channel" to (System.getenv("RELEASE_CHANNEL") ?: "").ifEmpty { "undefined" },
+            "platform" to (System.getenv("RELEASE_PLATFORM") ?: "").ifEmpty { "undefined" }
         )
 
         inputs.properties(props)

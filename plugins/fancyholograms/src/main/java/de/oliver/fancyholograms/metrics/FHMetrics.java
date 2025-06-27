@@ -32,7 +32,7 @@ public class FHMetrics {
 
         HologramRegistry registry = FancyHologramsPlugin.get().getRegistry();
 
-        fancyAnalytics.registerStringMetric(new MetricSupplier<>("commit_hash", () -> FancyHologramsPlugin.get().getVersionConfig().getHash().substring(0, 7)));
+        fancyAnalytics.registerStringMetric(new MetricSupplier<>("commit_hash", () -> FancyHologramsPlugin.get().getVersionConfig().getCommitHash().substring(0, 7)));
 
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("server_size", () -> {
             long onlinePlayers = Bukkit.getOnlinePlayers().size();

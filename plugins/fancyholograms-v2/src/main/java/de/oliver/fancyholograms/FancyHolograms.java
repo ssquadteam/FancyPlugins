@@ -319,17 +319,15 @@ public final class FancyHolograms extends JavaPlugin implements FancyHologramsPl
     }
 
     private void registerMetrics() {
-        boolean isDevelopmentBuild = !versionConfig.getBuild().equalsIgnoreCase("undefined");
-
         Metrics metrics = new Metrics(this, 17990);
         metrics.addCustomChart(new Metrics.SingleLineChart("total_holograms", () -> hologramsManager.getHolograms().size()));
         metrics.addCustomChart(new Metrics.SimplePie("update_notifications", () -> configuration.areVersionNotificationsEnabled() ? "Yes" : "No"));
-        metrics.addCustomChart(new Metrics.SimplePie("using_development_build", () -> isDevelopmentBuild ? "Yes" : "No"));
+        metrics.addCustomChart(new Metrics.SimplePie("using_development_build", () -> versionConfig.isDevelopmentBuild() ? "Yes" : "No"));
 
         fancyAnalytics = new FancyAnalyticsAPI("3b77bd59-2b01-46f2-b3aa-a9584401797f", "E2gW5zc2ZTk1OGFkNGY2ZDQ0ODlM6San");
         fancyAnalytics.getConfig().setDisableLogging(true);
 
-        if (!isDevelopmentBuild) {
+        if (!versionConfig.isDevelopmentBuild()) {
             return;
         }
 
@@ -338,7 +336,7 @@ public final class FancyHolograms extends JavaPlugin implements FancyHologramsPl
         fancyAnalytics.getExceptionHandler().registerLogger(Bukkit.getLogger());
         fancyAnalytics.getExceptionHandler().registerLogger(fancyLogger);
 
-        fancyAnalytics.registerStringMetric(new MetricSupplier<>("commit_hash", () -> versionConfig.getHash().substring(0, 7)));
+        fancyAnalytics.registerStringMetric(new MetricSupplier<>("commit_hash", () -> versionConfig.getCommitHash().substring(0, 7)));
 
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("server_size", () -> {
             long onlinePlayers = Bukkit.getOnlinePlayers().size();
@@ -365,7 +363,7 @@ public final class FancyHolograms extends JavaPlugin implements FancyHologramsPl
         fancyAnalytics.registerNumberMetric(new MetricSupplier<>("amount_holograms", () -> (double) hologramsManager.getHolograms().size()));
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("enabled_update_notifications", () -> configuration.areVersionNotificationsEnabled() ? "true" : "false"));
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("fflag_disable_holograms_for_bedrock_players", () -> FHFeatureFlags.DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS.isEnabled() ? "true" : "false"));
-        fancyAnalytics.registerStringMetric(new MetricSupplier<>("using_development_build", () -> isDevelopmentBuild ? "true" : "false"));
+        fancyAnalytics.registerStringMetric(new MetricSupplier<>("using_development_build", () -> versionConfig.isDevelopmentBuild() ? "true" : "false"));
 
         fancyAnalytics.registerStringArrayMetric(new MetricSupplier<>("hologram_type", () -> {
             if (hologramsManager == null) {

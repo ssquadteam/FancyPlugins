@@ -353,19 +353,17 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
     }
 
     private void registerMetrics() {
-        boolean isDevelopmentBuild = !versionConfig.getBuild().equalsIgnoreCase("undefined");
-
         Metrics metrics = new Metrics(this, 17543);
         metrics.addCustomChart(new Metrics.SingleLineChart("total_npcs", () -> npcManager.getAllNpcs().size()));
         metrics.addCustomChart(new Metrics.SimplePie("update_notifications", () -> config.isMuteVersionNotification() ? "No" : "Yes"));
-        metrics.addCustomChart(new Metrics.SimplePie("using_development_build", () -> isDevelopmentBuild ? "Yes" : "No"));
+        metrics.addCustomChart(new Metrics.SimplePie("using_development_build", () -> versionConfig.isDevelopmentBuild() ? "Yes" : "No"));
 
         fancyAnalytics.registerMinecraftPluginMetrics(instance);
         fancyAnalytics.getExceptionHandler().registerLogger(getLogger());
         fancyAnalytics.getExceptionHandler().registerLogger(Bukkit.getLogger());
         fancyAnalytics.getExceptionHandler().registerLogger(fancyLogger);
 
-        fancyAnalytics.registerStringMetric(new MetricSupplier<>("commit_hash", () -> versionConfig.getHash().substring(0, 7)));
+        fancyAnalytics.registerStringMetric(new MetricSupplier<>("commit_hash", () -> versionConfig.getCommitHash().substring(0, 7)));
 
 
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("server_size", () -> {
@@ -393,7 +391,7 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
         fancyAnalytics.registerNumberMetric(new MetricSupplier<>("amount_npcs", () -> (double) npcManager.getAllNpcs().size()));
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("enabled_update_notifications", () -> config.isMuteVersionNotification() ? "false" : "true"));
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("enabled_player_npcs_fflag", () -> PLAYER_NPCS_FEATURE_FLAG.isEnabled() ? "true" : "false"));
-        fancyAnalytics.registerStringMetric(new MetricSupplier<>("using_development_build", () -> isDevelopmentBuild ? "true" : "false"));
+        fancyAnalytics.registerStringMetric(new MetricSupplier<>("using_development_build", () -> versionConfig.isDevelopmentBuild() ? "true" : "false"));
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("language", () -> translator.getSelectedLanguage().getLanguageCode()));
 
         fancyAnalytics.registerNumberMetric(new MetricSupplier<>("avg_interaction_cooldown", () -> {

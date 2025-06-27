@@ -12,8 +12,9 @@ public class VersionConfig {
     private final Plugin plugin;
     private final VersionFetcher fetcher;
     private String version;
-    private String build;
-    private String hash;
+    private String commitHash;
+    private String channel;
+    private String platform;
 
     public VersionConfig(Plugin plugin, VersionFetcher fetcher) {
         this.plugin = plugin;
@@ -29,8 +30,13 @@ public class VersionConfig {
         }
 
         version = config.getString("version", "undefined");
-        build = config.getString("build", "undefined");
-        hash = config.getString("hash", "undefined");
+        commitHash = config.getString("commit_hash", "undefined");
+        channel = config.getString("channel", "undefined");
+        platform = config.getString("platform", "undefined");
+    }
+
+    public boolean isDevelopmentBuild() {
+        return !channel.equalsIgnoreCase("release");
     }
 
     public void checkVersionAndDisplay(CommandSender sender, boolean displayOnlyIfOutdated) {
@@ -70,13 +76,11 @@ public class VersionConfig {
 
     private String latestVersion() {
         String result = "This server is using the latest version of {plugin}!\n" +
-                "Version: {version} (Git: {hash})" +
-                "{build}";
+                "Version: {version} (Git: {hash})";
 
         result = result.replace("{plugin}", plugin.getName())
                 .replace("{version}", version)
-                .replace("{hash}", hash.substring(0, 7))
-                .replace("{build}", build.equalsIgnoreCase("undefined") ? "" : "\nBuild: " + build);
+                .replace("{hash}", commitHash.substring(0, 7));
 
         return result;
     }
@@ -99,11 +103,15 @@ public class VersionConfig {
         return version;
     }
 
-    public String getBuild() {
-        return build;
+    public String getCommitHash() {
+        return commitHash;
     }
 
-    public String getHash() {
-        return hash;
+    public String getChannel() {
+        return channel;
+    }
+
+    public String getPlatform() {
+        return platform;
     }
 }
