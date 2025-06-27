@@ -2,8 +2,14 @@ package com.fancyinnovations.fancydialogs.analytics;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
+import de.oliver.fancyanalytics.api.events.Event;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
+import de.oliver.fancylib.VersionConfig;
 import org.bukkit.Bukkit;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class Analytics {
 
@@ -14,11 +20,16 @@ public class Analytics {
         api.getConfig().setDisableLogging(true);
     }
 
-    public void registerMetrics() {
+    private void registerMetrics() {
         api.registerMinecraftPluginMetrics(FancyDialogsPlugin.get());
         api.getExceptionHandler().registerLogger(FancyDialogsPlugin.get().getLogger());
         api.getExceptionHandler().registerLogger(Bukkit.getLogger());
         api.getExceptionHandler().registerLogger(FancyDialogsPlugin.get().getFancyLogger());
+
+        api.registerStringMetric(new MetricSupplier<>("language", () -> FancyDialogsPlugin.get().getTranslator().getSelectedLanguage().getLanguageCode()));
+
+        api.registerStringMetric(new MetricSupplier<>("release_channel", () -> FancyDialogsPlugin.get().getVersionConfig().getChannel()));
+        api.registerStringMetric(new MetricSupplier<>("release_platform", () -> FancyDialogsPlugin.get().getVersionConfig().getPlatform()));
 
         api.registerStringMetric(new MetricSupplier<>("server_size", () -> {
             long onlinePlayers = Bukkit.getOnlinePlayers().size();
@@ -45,8 +56,51 @@ public class Analytics {
         api.registerNumberMetric(new MetricSupplier<>("amount_dialogs", () -> (double) FancyDialogsPlugin.get().getDialogRegistry().getAll().size()));
     }
 
-    public void start() {
-        api.initialize();
+    private void checkIfVersionUpdated() {
+        VersionConfig versionConfig = FancyDialogsPlugin.get().getVersionConfig();
+
+        String currentVersion = versionConfig.getVersion();
+        String lastVersion = "N/A";
+
+        File versionFile = new File(FancyDialogsPlugin.get().getDataFolder(), "version.yml");
+        if (!versionFile.exists()) {
+            try {
+                Files.write(versionFile.toPath(), currentVersion.getBytes());
+            } catch (IOException e) {
+                FancyDialogsPlugin.get().getFancyLogger().warn("Could not write version file.");
+                return;
+            }
+        } else {
+            try {
+                lastVersion = new String(Files.readAllBytes(versionFile.toPath()));
+            } catch (IOException e) {
+                FancyDialogsPlugin.get().getFancyLogger().warn("Could not read version file.");
+                return;
+            }
+        }
+
+        if (!lastVersion.equals(currentVersion)) {
+            FancyDialogsPlugin.get().getFancyLogger().info("Plugin has been updated from version " + lastVersion + " to " + currentVersion + ".");
+            api.sendEvent(
+                    new Event("PluginVersionUpdated")
+                            .withProperty("from", lastVersion)
+                            .withProperty("to", currentVersion)
+                            .withProperty("commit_hash", versionConfig.getCommitHash())
+                            .withProperty("channel", versionConfig.getChannel())
+                            .withProperty("platform", versionConfig.getPlatform())
+            );
+
+            try {
+                Files.write(versionFile.toPath(), currentVersion.getBytes());
+            } catch (IOException e) {
+                FancyDialogsPlugin.get().getFancyLogger().warn("Could not write version file.");
+            }
+        }
     }
 
+    public void start() {
+        registerMetrics();
+        api.initialize();
+        checkIfVersionUpdated();
+    }
 }
