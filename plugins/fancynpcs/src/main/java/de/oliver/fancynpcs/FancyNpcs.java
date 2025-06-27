@@ -491,6 +491,9 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
                     new Event("PluginVersionUpdated")
                             .withProperty("from", lastVersion)
                             .withProperty("to", currentVersion)
+                            .withProperty("commit_hash", versionConfig.getCommitHash())
+                            .withProperty("channel", versionConfig.getChannel())
+                            .withProperty("platform", versionConfig.getPlatform())
             );
 
             try {
