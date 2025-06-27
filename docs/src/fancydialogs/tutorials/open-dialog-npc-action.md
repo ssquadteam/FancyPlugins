@@ -1,3 +1,8 @@
+---
+icon: dot
+order: 9
+---
+
 # Open dialog npc action
 
 !!!warning
