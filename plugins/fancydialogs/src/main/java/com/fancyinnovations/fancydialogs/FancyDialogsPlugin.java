@@ -14,6 +14,7 @@ import com.fancyinnovations.fancydialogs.config.FDFeatureFlags;
 import com.fancyinnovations.fancydialogs.config.FancyDialogsConfig;
 import com.fancyinnovations.fancydialogs.dialog.DialogImpl;
 import com.fancyinnovations.fancydialogs.fancynpcs.OpenDialogNpcAction;
+import com.fancyinnovations.fancydialogs.joinedplayerscache.JoinedPlayersCache;
 import com.fancyinnovations.fancydialogs.listener.DialogButtonClickedListener;
 import com.fancyinnovations.fancydialogs.listener.PlayerJoinListener;
 import com.fancyinnovations.fancydialogs.registry.DefaultDialogs;
@@ -58,6 +59,7 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
     private DialogRegistry dialogRegistry;
     private DialogStorage dialogStorage;
     private ActionRegistryImpl actionRegistry;
+    private JoinedPlayersCache joinedPlayersCache;
 
     public FancyDialogsPlugin() {
         INSTANCE = this;
@@ -123,6 +125,9 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
         DefaultDialogs.registerDefaultDialogs();
 
         actionRegistry = new ActionRegistryImpl();
+
+        joinedPlayersCache = new JoinedPlayersCache();
+        joinedPlayersCache.load();
 
         fancyLogger.info("Successfully loaded FancyDialogs version %s".formatted(getDescription().getVersion()));
     }
@@ -256,5 +261,9 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
 
     public ActionRegistryImpl getActionRegistry() {
         return actionRegistry;
+    }
+
+    public JoinedPlayersCache getJoinedPlayersCache() {
+        return joinedPlayersCache;
     }
 }
