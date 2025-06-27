@@ -223,9 +223,11 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
         Lamp<BukkitCommandActor> lamp = lampBuilder.build();
 
         lamp.register(FancyDialogsCMD.INSTANCE);
-        lamp.register(QuickActionsCMD.INSTANCE);
         lamp.register(DialogCMD.INSTANCE);
         lamp.register(TutorialCMD.INSTANCE);
+        if (!FDFeatureFlags.DISABLE_QUICK_ACTIONS_DIALOG.isEnabled()) {
+            lamp.register(QuickActionsCMD.INSTANCE);
+        }
     }
 
     @Override
