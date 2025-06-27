@@ -224,4 +224,29 @@ public final class FancyDialogsCMD {
                 .replace("id", dialog.getId())
                 .send(actor.sender());
     }
+
+    @Command("fancydialogs joined_players_cache clear")
+    @Description("Clears the joined players cache")
+    @CommandPermission("fancydialogs.commands.fancydialogs.joined_players_cache.clear")
+    public void joinedPlayersCacheClear(
+            final BukkitCommandActor actor
+    ) {
+        if (actor.isPlayer()) {
+            new ConfirmationDialog("Are you sure you want to clear the joined players cache?")
+                    .withTitle("Confirm clear")
+                    .withOnConfirm(() -> clearJoinedPlayersCache(actor))
+                    .withOnCancel(() -> translator.translate("commands.fancydialogs.joined_players_cache.clear.cancelled").send(actor.sender()))
+                    .ask(actor.asPlayer());
+        } else {
+            clearJoinedPlayersCache(actor);
+        }
+    }
+
+    private void clearJoinedPlayersCache(
+            final BukkitCommandActor actor
+    ) {
+        plugin.getJoinedPlayersCache().clear();
+        translator.translate("commands.fancydialogs.joined_players_cache.clear.success")
+                .send(actor.sender());
+    }
 }

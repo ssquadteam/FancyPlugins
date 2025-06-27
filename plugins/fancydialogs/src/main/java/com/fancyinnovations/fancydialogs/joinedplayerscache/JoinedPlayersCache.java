@@ -42,6 +42,11 @@ public class JoinedPlayersCache {
         }
     }
 
+    public void clear() {
+        playersJoined.clear();
+        save();
+    }
+
     public boolean checkIfPlayerJoined(UUID playerUUID) {
         return playersJoined.contains(playerUUID.toString());
     }

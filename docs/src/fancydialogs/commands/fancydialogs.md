@@ -48,23 +48,32 @@ Clears the dialog registry and loads all dialog data from the storage.
 
 ## Registry
 
-## List all dialogs
+### List all dialogs
 
 Lists all registered dialogs.
 
 - **Syntax**: `/fancydialogs registry list`
 - **Permissions**: `fancydialogs.commands.fancydialogs.registry.list`
 
-## Clear registry
+### Clear registry
 
 Clears the dialog registry
 
 - **Syntax**: `/fancydialogs registry clear`
 - **Permissions**: `fancydialogs.commands.fancydialogs.registry.clear`
 
-## Unregister dialog
+### Unregister dialog
 
 Unregisters a dialog by its ID.
 
 - **Syntax**: `/fancydialogs registry unregister <id>`
 - **Permissions**: `fancydialogs.commands.fancydialogs.registry.unregister`
+
+## Joined Players Cache
+
+## Clear joined players cache
+
+Clears the cache of players who have joined a dialog.
+
+- **Syntax**: `/fancydialogs joined_players_cache clear`
+- **Permissions**: `fancydialogs.commands.fancydialogs.joined_players_cache.clear`

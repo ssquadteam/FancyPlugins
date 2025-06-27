@@ -33,3 +33,7 @@ messages:
         unregister:
           success: "<dark_gray>› <gray>Successfully unregistered dialog {warningColor}{id}<gray>."
           cancelled: "<dark_gray>› <gray>Unregistering dialog {warningColor}{id}<gray> was cancelled."
+      joined_players_cache:
+        clear:
+          success: "<dark_gray>› <gray>Successfully cleared the joined players cache."
+          cancelled: "<dark_gray>› <gray>Clearing the joined players cache was cancelled."
