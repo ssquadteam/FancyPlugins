@@ -33,13 +33,12 @@ public class FeatureFlagConfig {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
         for (FeatureFlag featureFlag : featureFlags) {
-            config.setInlineComments("feature-flags." + featureFlag.getName(), List.of(featureFlag.getDescription()));
-
             if (config.isSet("feature-flags." + featureFlag.getName())) {
                 continue;
             }
 
             config.set("feature-flags." + featureFlag.getName(), false);
+            config.setInlineComments("feature-flags." + featureFlag.getName(), List.of(featureFlag.getDescription()));
         }
 
         for (String flagName : config.getConfigurationSection("feature-flags").getKeys(false)) {
