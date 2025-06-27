@@ -7,10 +7,12 @@ import de.oliver.fancylib.featureFlags.FeatureFlagConfig;
 public class FDFeatureFlags {
 
     public static final FeatureFlag DEBUG_MODE = new FeatureFlag("debug-mode", "Enable debug mode", false);
+    public static final FeatureFlag DISABLE_WELCOME_DIALOG = new FeatureFlag("disable-welcome-dialog", "Disable showing a welcome dialog when a player joins for the first time", false);
 
     public static void load() {
         FeatureFlagConfig config = new FeatureFlagConfig(FancyDialogsPlugin.get());
         config.addFeatureFlag(DEBUG_MODE);
+        config.addFeatureFlag(DISABLE_WELCOME_DIALOG);
         config.load();
     }
 
