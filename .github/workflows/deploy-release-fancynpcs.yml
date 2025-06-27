@@ -28,6 +28,9 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build FancyNpcs
+        env:
+          RELEASE_CHANNEL: 'release'
+          RELEASE_PLATFORM: 'modrinth'
         run: ./gradlew :plugins:fancynpcs:shadowJar
 
       - name: Build deployment tool

@@ -28,6 +28,9 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build FancyHolograms
+        env:
+          RELEASE_CHANNEL: 'release'
+          RELEASE_PLATFORM: 'modrinth'
         run: ./gradlew :plugins:fancyholograms:shadowJar
 
       - name: Build deployment tool

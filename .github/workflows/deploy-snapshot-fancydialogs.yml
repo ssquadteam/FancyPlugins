@@ -28,6 +28,9 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Fancydialogs
+        env:
+          RELEASE_CHANNEL: 'snapshot'
+          RELEASE_PLATFORM: 'modrinth'
         run: ./gradlew :plugins:fancydialogs:shadowJar
 
       - name: Build deployment tool
