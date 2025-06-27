@@ -33,6 +33,7 @@ import de.oliver.fancylib.translations.TextConfig;
 import de.oliver.fancylib.translations.Translator;
 import de.oliver.fancylib.versionFetcher.MasterVersionFetcher;
 import de.oliver.fancylib.versionFetcher.VersionFetcher;
+import de.oliver.fancysitula.api.IFancySitula;
 import de.oliver.fancysitula.api.utils.ServerVersion;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
@@ -96,6 +97,7 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
 
         if (FDFeatureFlags.DEBUG_MODE.isEnabled()) {
             fancyLogger.setCurrentLevel(LogLevel.DEBUG);
+            IFancySitula.LOGGER.setCurrentLevel(LogLevel.DEBUG);
         }
 
         translator = new Translator(new TextConfig("#32e347", "#35ad1d", "#81E366", "#E3CA66", "#E36666", ""));
