@@ -23,10 +23,10 @@ public class FancyDialogsConfig {
         logLevel = (String) ConfigHelper.getOrDefault(config, "log_level", "INFO");
         config.setInlineComments("log_level", List.of("The log level of the plugin. Possible values: DEBUG, INFO, WARN, ERROR."));
 
-        welcomeDialogID = (String) ConfigHelper.getOrDefault(config, "welcome_dialog_id", "welcome_to_fancydialogs_dialog");
+        welcomeDialogID = (String) ConfigHelper.getOrDefault(config, "welcome_dialog_id", "welcome_to_fancydialogs");
         config.setInlineComments("welcome_dialog_id", List.of("The ID of the dialog which will be shown to the player when they join the server for the first time."));
 
-        quickActionsDialogID = (String) ConfigHelper.getOrDefault(config, "quick_actions_dialog_id", "quick-actions-dialog");
+        quickActionsDialogID = (String) ConfigHelper.getOrDefault(config, "quick_actions_dialog_id", "quick_actions");
         config.setInlineComments("quick_actions_dialog_id", List.of("The ID of the dialog which will be shown to the player when they click on the quick actions key ('G' by default)."));
 
         FancyDialogsPlugin.get().saveConfig();
