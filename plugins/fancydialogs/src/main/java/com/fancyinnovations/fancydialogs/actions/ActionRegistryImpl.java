@@ -19,6 +19,7 @@ public class ActionRegistryImpl implements DialogActionRegistry {
 
     private void registerDefaultActions() {
         registerAction("open_dialog", OpenDialogDialogAction.INSTANCE);
+        registerAction("open_random_dialog", OpenRandomDialogDialogAction.INSTANCE);
         registerAction("message", MessageDialogAction.INSTANCE);
         registerAction("console_command", ConsoleCommandDialogAction.INSTANCE);
         registerAction("player_command", PlayerCommandDialogAction.INSTANCE);

@@ -127,4 +127,5 @@ Available actions include:
 - `console_command`: Executes a command as the console (set `data` to the command)
 - `player_command`: Executes a command as the player (set `data` to the command)
 - `open_dialog`: Opens another dialog (set `data` to the ID of the dialog to open)
+- `open_random_dialog`: Opens another dialog (set `data` to a list of dialog IDs separated by commas: 'dialog1,dialog2,dialog3')
 - `send_to_server`: Sends the player to another server (requires BungeeCord or Velocity) (set `data` to the server name)
