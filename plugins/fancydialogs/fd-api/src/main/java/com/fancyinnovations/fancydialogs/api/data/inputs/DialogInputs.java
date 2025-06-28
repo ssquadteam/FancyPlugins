@@ -1,11 +1,13 @@
 package com.fancyinnovations.fancydialogs.api.data.inputs;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public record DialogInputs(
-        List<DialogTextField> textFields,
-        List<DialogSelect> selects
+        @Nullable List<DialogTextField> textFields,
+        @Nullable List<DialogSelect> selects
 ) {
 
     public static final DialogInputs EMPTY = new DialogInputs(List.of(), List.of());

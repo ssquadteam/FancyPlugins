@@ -2,6 +2,7 @@ package com.fancyinnovations.fancydialogs.api.data;
 
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public record DialogData(
         @NotNull String title,
         boolean canCloseWithEscape,
         @NotNull List<DialogBodyData> body,
-        @NotNull DialogInputs inputs,
+        @Nullable DialogInputs inputs,
         @NotNull List<DialogButton> buttons
 ) {
 

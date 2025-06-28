@@ -47,38 +47,40 @@ public class DialogImpl extends Dialog {
         }
 
         List<FS_DialogInput> inputs = new ArrayList<>();
-        for (DialogInput input : data.inputs().all()) {
-            FS_DialogInputControl control = null;
-            if (input instanceof DialogTextField textField) {
-                control = new FS_DialogTextInput(
-                        200, // default width
-                        textField.getLabel(),
-                        !textField.getLabel().isEmpty(),
-                        textField.getPlaceholder(),
-                        textField.getMaxLength(),
-                        textField.getMaxLines() > 0 ?
-                                new FS_DialogTextInput.MultilineOptions(textField.getMaxLines(), null) :
-                                null
-                );
-            } else if (input instanceof DialogSelect select) {
-                List<FS_DialogSingleOptionInput.Entry> entries = new ArrayList<>();
-                for (DialogSelect.Entry entry : select.getOptions()) {
-                    entries.add(new FS_DialogSingleOptionInput.Entry(entry.value(), entry.display(), entry.initial()));
+        if (data.inputs() != null) {
+            for (DialogInput input : data.inputs().all()) {
+                FS_DialogInputControl control = null;
+                if (input instanceof DialogTextField textField) {
+                    control = new FS_DialogTextInput(
+                            200, // default width
+                            textField.getLabel(),
+                            !textField.getLabel().isEmpty(),
+                            textField.getPlaceholder(),
+                            textField.getMaxLength(),
+                            textField.getMaxLines() > 0 ?
+                                    new FS_DialogTextInput.MultilineOptions(textField.getMaxLines(), null) :
+                                    null
+                    );
+                } else if (input instanceof DialogSelect select) {
+                    List<FS_DialogSingleOptionInput.Entry> entries = new ArrayList<>();
+                    for (DialogSelect.Entry entry : select.getOptions()) {
+                        entries.add(new FS_DialogSingleOptionInput.Entry(entry.value(), entry.display(), entry.initial()));
+                    }
+                    control = new FS_DialogSingleOptionInput(
+                            200, // default width
+                            entries,
+                            select.getLabel(),
+                            !select.getLabel().isEmpty()
+                    );
                 }
-                control = new FS_DialogSingleOptionInput(
-                        200, // default width
-                        entries,
-                        select.getLabel(),
-                        !select.getLabel().isEmpty()
-                );
-            }
 
-            if (control == null) {
-                throw new IllegalArgumentException("Unsupported input type: " + input.getClass().getSimpleName());
-            }
+                if (control == null) {
+                    throw new IllegalArgumentException("Unsupported input type: " + input.getClass().getSimpleName());
+                }
 
-            FS_DialogInput fsDialogInput = new FS_DialogInput(input.getKey(), control);
-            inputs.add(fsDialogInput);
+                FS_DialogInput fsDialogInput = new FS_DialogInput(input.getKey(), control);
+                inputs.add(fsDialogInput);
+            }
         }
 
         List<FS_DialogActionButton> actions = new ArrayList<>();
