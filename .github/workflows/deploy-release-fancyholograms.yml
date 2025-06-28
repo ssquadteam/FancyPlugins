@@ -27,22 +27,22 @@ jobs:
       - name: Modify gradlew permissions
         run: chmod +x ./gradlew
 
-      - name: Build FancyHolograms
+      - name: Build deployment tool
+        run: ./gradlew :tools:deployment:shadowJar
+
+      - name: Build FancyHolograms for Modrinth
         env:
           RELEASE_CHANNEL: 'release'
           RELEASE_PLATFORM: 'modrinth'
         run: ./gradlew :plugins:fancyholograms:shadowJar
 
-      - name: Build deployment tool
-        run: ./gradlew :tools:deployment:shadowJar
-
-      - name: Deploy
+      - name: Deploy to Modrinth
         env:
           MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run:
           cd tools/deployment/build/libs &&
-          java -jar deployment.jar ../../../../plugins/fancyholograms/release_deployment_config.json
+          java -jar deployment.jar modrinth ../../../../plugins/fancyholograms/release_deployment_config.json true
 
       - name: Publish to reposilite (releases)
         run: ./gradlew :plugins:fancyholograms:fh-api:publishAllPublicationsToFancyinnovationsReleasesRepository
