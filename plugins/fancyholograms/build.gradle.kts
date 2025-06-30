@@ -118,7 +118,7 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.6")
+        minecraftVersion("1.21.7")
 
         downloadPlugins {
             modrinth("fancynpcs", "2.5.0")
