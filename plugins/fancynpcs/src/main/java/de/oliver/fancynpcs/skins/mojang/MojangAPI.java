@@ -35,7 +35,7 @@ public class MojangAPI {
                     .build();
 
             HttpResponse<String> resp = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (resp.statusCode() != 200) {
+            if (resp.statusCode() < 200 || resp.statusCode() >= 300) {
                 FancyNpcsPlugin.get().getFancyLogger().warn("Failed to fetch skin from Mojang API for " + uuid + " (status code: " + resp.statusCode() + ")");
                 FancyNpcsPlugin.get().getFancyLogger().debug("Body: " + resp.body());
                 return null;
