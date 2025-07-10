@@ -2,14 +2,15 @@ package com.fancyinnovations.fancydialogs.analytics;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
-import de.oliver.fancyanalytics.api.events.Event;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
+import de.oliver.fancyanalytics.sdk.events.Event;
 import de.oliver.fancylib.VersionConfig;
 import org.bukkit.Bukkit;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashMap;
 
 public class Analytics {
 
@@ -82,7 +83,7 @@ public class Analytics {
         if (!lastVersion.equals(currentVersion)) {
             FancyDialogsPlugin.get().getFancyLogger().info("Plugin has been updated from version " + lastVersion + " to " + currentVersion + ".");
             api.sendEvent(
-                    new Event("PluginVersionUpdated")
+                    new Event("PluginVersionUpdated", new HashMap<>())
                             .withProperty("from", lastVersion)
                             .withProperty("to", currentVersion)
                             .withProperty("commit_hash", versionConfig.getCommitHash())

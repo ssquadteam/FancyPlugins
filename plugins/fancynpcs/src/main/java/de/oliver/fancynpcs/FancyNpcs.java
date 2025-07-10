@@ -2,13 +2,13 @@ package de.oliver.fancynpcs;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
-import de.oliver.fancyanalytics.api.events.Event;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import de.oliver.fancyanalytics.logger.LogLevel;
 import de.oliver.fancyanalytics.logger.appender.Appender;
 import de.oliver.fancyanalytics.logger.appender.ConsoleAppender;
 import de.oliver.fancyanalytics.logger.appender.JsonAppender;
+import de.oliver.fancyanalytics.sdk.events.Event;
 import de.oliver.fancylib.FancyLib;
 import de.oliver.fancylib.Metrics;
 import de.oliver.fancylib.VersionConfig;
@@ -65,10 +65,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -174,7 +171,7 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
         PluginManager pluginManager = Bukkit.getPluginManager();
 
         if (npcAdapter == null) {
-            fancyAnalytics.sendEvent(new Event("pluginLoadingWithUnsupportedVersion")
+            fancyAnalytics.sendEvent(new Event("pluginLoadingWithUnsupportedVersion", new HashMap<>())
                     .withProperty("version", mcVersion)
                     .withProperty("pluginVersion", getPluginMeta().getVersion())
             );
@@ -488,7 +485,7 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
         if (!lastVersion.equals(currentVersion)) {
             fancyLogger.info("Plugin has been updated from version " + lastVersion + " to " + currentVersion + ".");
             fancyAnalytics.sendEvent(
-                    new Event("PluginVersionUpdated")
+                    new Event("PluginVersionUpdated", new HashMap<>())
                             .withProperty("from", lastVersion)
                             .withProperty("to", currentVersion)
                             .withProperty("commit_hash", versionConfig.getCommitHash())
