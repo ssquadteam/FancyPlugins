@@ -40,7 +40,7 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.6-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
 
     implementation(project(":plugins:fancydialogs:fd-api"))
 
@@ -94,7 +94,7 @@ tasks {
         minecraftVersion("1.21.7")
 
         downloadPlugins {
-//            modrinth("fancynpcs", "2.5.0")
+            modrinth("fancynpcs", "2.6.0")
 //            hangar("ViaVersion", "5.3.2")
 //            hangar("ViaBackwards", "5.3.2")
 //            modrinth("multiverse-core", "4.3.11")
