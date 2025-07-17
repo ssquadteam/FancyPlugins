@@ -23,6 +23,8 @@ import de.oliver.fancysitula.api.dialogs.types.FS_MultiActionDialog;
 import de.oliver.fancysitula.api.entities.FS_RealPlayer;
 import de.oliver.fancysitula.factories.FancySitula;
 import org.bukkit.entity.Player;
+import org.lushplugins.chatcolorhandler.ChatColorHandler;
+import org.lushplugins.chatcolorhandler.parsers.ParserTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,18 +32,15 @@ import java.util.Map;
 
 public class DialogImpl extends Dialog {
 
-    private FS_MultiActionDialog fsDialog;
-
     public DialogImpl(String id, DialogData data) {
         super(id, data);
-        init();
     }
 
-    private void init() {
+    private FS_MultiActionDialog buildForPlayer(Player player) {
         List<FS_DialogBody> body = new ArrayList<>();
         for (DialogBodyData bodyData : data.body()) {
             FS_DialogTextBody fsDialogTextBody = new FS_DialogTextBody(
-                    bodyData.text(),
+                    ChatColorHandler.translate(bodyData.text(), player, ParserTypes.placeholder()),
                     200 // default text width
             );
             body.add(fsDialogTextBody);
@@ -54,9 +53,9 @@ public class DialogImpl extends Dialog {
                 if (input instanceof DialogTextField textField) {
                     control = new FS_DialogTextInput(
                             200, // default width
-                            textField.getLabel(),
+                            ChatColorHandler.translate(textField.getLabel(), player, ParserTypes.placeholder()),
                             !textField.getLabel().isEmpty(),
-                            textField.getPlaceholder(),
+                            ChatColorHandler.translate(textField.getPlaceholder(), player, ParserTypes.placeholder()),
                             textField.getMaxLength(),
                             textField.getMaxLines() > 0 ?
                                     new FS_DialogTextInput.MultilineOptions(textField.getMaxLines(), null) :
@@ -65,12 +64,18 @@ public class DialogImpl extends Dialog {
                 } else if (input instanceof DialogSelect select) {
                     List<FS_DialogSingleOptionInput.Entry> entries = new ArrayList<>();
                     for (DialogSelect.Entry entry : select.getOptions()) {
-                        entries.add(new FS_DialogSingleOptionInput.Entry(entry.value(), entry.display(), entry.initial()));
+                        entries.add(
+                                new FS_DialogSingleOptionInput.Entry(
+                                        ChatColorHandler.translate(entry.value(), player, ParserTypes.placeholder()),
+                                        ChatColorHandler.translate(entry.display(), player, ParserTypes.placeholder()),
+                                        entry.initial()
+                                )
+                        );
                     }
                     control = new FS_DialogSingleOptionInput(
                             200, // default width
                             entries,
-                            select.getLabel(),
+                            ChatColorHandler.translate(select.getLabel(), player, ParserTypes.placeholder()),
                             !select.getLabel().isEmpty()
                     );
                 }
@@ -88,8 +93,8 @@ public class DialogImpl extends Dialog {
         for (DialogButton button : data.buttons()) {
             FS_DialogActionButton fsDialogActionButton = new FS_DialogActionButton(
                     new FS_CommonButtonData(
-                            button.label(),
-                            button.tooltip(),
+                            ChatColorHandler.translate(button.label(), player, ParserTypes.placeholder()),
+                            ChatColorHandler.translate(button.tooltip(), player, ParserTypes.placeholder()),
                             150 // default button width
                     ),
                     new FS_DialogCustomAction(
@@ -103,10 +108,10 @@ public class DialogImpl extends Dialog {
             actions.add(fsDialogActionButton);
         }
 
-        this.fsDialog = new FS_MultiActionDialog(
+        return new FS_MultiActionDialog(
                 new FS_CommonDialogData(
-                        data.title(),
-                        data.title(),
+                        ChatColorHandler.translate(data.title(), player, ParserTypes.placeholder()),
+                        ChatColorHandler.translate(data.title(), player, ParserTypes.placeholder()),
                         data.canCloseWithEscape(),
                         false,
                         FS_DialogAction.CLOSE,
@@ -169,7 +174,7 @@ public class DialogImpl extends Dialog {
     @Override
     public void open(Player player) {
         FancySitula.PACKET_FACTORY
-                .createShowDialogPacket(fsDialog)
+                .createShowDialogPacket(buildForPlayer(player))
                 .send(new FS_RealPlayer(player));
 
         viewers.add(player.getUniqueId());
