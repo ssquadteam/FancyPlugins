@@ -18,77 +18,53 @@
 
 </div>
 
-## Modules
+## FancyPlugins
 
-> [!TIP]
-> Read the [monorepo.md](docs/src/development-guidelines/monorepo.md) for more information about the monorepo.
-> Here is a blog article about why we use a monorepo: [why-monorepo.md](docs/src/blog/why-monorepo.md).
+This is a [monorepo](docs/src/development-guidelines/monorepo.md) for all plugins, libraries, and tools of FancyInnovations.
 
 **Plugins:**
-- FancyNpcs: create and manage fancy looking npcs ([old repository](https://github.com/FancyMcPlugins/FancyNpcs))
-- FancyHolograms (v2): create fancy looking holograms ([old repository](https://github.com/FancyMcPlugins/FancyHolograms))
-- FancyHolograms (v3): create fancy looking holograms (work in progress)
+- FancyNpcs: create and manage fancy looking npcs
+- FancyHolograms: create fancy looking holograms
 - FancyDialogs: create and manage fancy looking dialogs which were added in 1.21.6 (work in progress)
 - FancyVisuals: plugin to customize all visual components of the game (work in progress)
 
 **Libraries:**
-- Common: common classes and utilities (FancyLib previously)
-- JDB: json database library (included in FancyLib previously)
-- Plugin Tests: testing library for plugins (included in FancyLib previously)
-- Packets: packet handling library (FancySitula previously)
+- Common: common classes and utilities
+- JDB: json database library
+- Plugin Tests: testing library for plugins
+- Packets: packet handling library (also called FancySitula)
 
 **Tools:**
 - Deployment: deploy plugins to platforms like modrinth
 - Quick E2E: generate a quick end-to-end environment for testing
 
-Future packages that are planned to be added to the monorepo:
-- fancywebsite: https://github.com/FancyInnovations/FancyWebsite
-- (fancymorphs: https://github.com/FancyInnovations/FancyMorphs)
-- minecraft-client: a lightweight Minecraft client for testing
-
 ## Usage
 
-The monorepo uses Gradle as build system. See [monorepo.md](docs/src/development-guidelines/monorepo.md) for more information.
+The monorepo uses Gradle as a build system. See [monorepo.md](docs/src/development-guidelines/monorepo.md) for more information.
 
 To see specific usage for each package, see the README.md in the respective package directory.
 
-## Contributors
+## Contributing
 
-Since this is a new repository, the list of contributors didn't get migrated from the previous repositories.
-Here is a list of contributors to the previous repositories:
+You can contribute to this repository by reporting bugs, suggesting features, or contributing code. 
+Please read the [contributing guidelines](docs/src/development-guidelines/contributing.md) for more information.
 
-- [Grabsky](https://github.com/Grabsky)
-- [OakLoaf](https://github.com/OakLoaf)
-- [Matt-MX](https://github.com/MattMX)
-- [Sxtanna](https://github.com/Sxtanna)
-- [airoons](https://github.com/airoons)
-- [BitByLogics](https://github.com/BitByLogics)
-- [devpeaqe](https://github.com/devpeaqe)
-- [NonSwag](https://github.com/NonSwag)
-- [FrezzyDev](https://github.com/FrezzyDev)
-- [perkojack](https://github.com/perkojack)
-- [BigTows](https://github.com/BigTows)
-- [kforbro](https://github.com/kforbro)
-- [Kamillaova](https://github.com/Kamillaova)
-- [Emibergo02](https://github.com/Emibergo02)
-- [bridgelol](https://github.com/bridgelol)
-- [Seshpenguin](https://github.com/Seshpenguin)
-- [UltraFaceguy](https://github.com/UltraFaceguy)
-- [4drian3d](https://github.com/4drian3d)
-- [Zemux1613](https://github.com/Zemux1613)
-- [Yive](https://github.com/Yive)
-- [UsainSrht](https://github.com/UsainSrht)
-- [killerprojecte](https://github.com/killerprojecte)
-- [SirSalad](https://github.com/SirSalad)
-- [yukisnowflake](https://github.com/yukisnowflake)
-- [BiFTHg](https://github.com/BiFTHg)
-- [alexcastro1919](https://github.com/alexcastro1919)
-- [FrinshHD](https://github.com/FrinshHD)
-- [xii69](https://github.com/xii69)
-- [ruViolence](https://github.com/ruViolence)
-- [JonasDevDE](https://github.com/JonasDevDE)
-- [CloveTwilight3](https://github.com/CloveTwilight3)
+---
 
-*(Taken from https://github.com/FancyMcPlugins/FancyNpcs/graphs/contributors and https://github.com/FancyMcPlugins/FancyHolograms/graphs/contributors)*
+[All contributors of this repository:](https://github.com/FancyInnovations/FancyPlugins/graphs/contributors)
 
-If you contributed to the previous repositories and want to be listed here, please open an issue or a pull request.
+<a href = "https://github.com/FancyInnovations/FancyPlugins/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=FancyInnovations/FancyPlugins" alt="All contributors of this repository"/>
+</a>
+
+**[All contributors of the old FancyNpcs repository:](https://github.com/FancyMcPlugins/FancyNpcs/graphs/contributors)**
+
+<a href = "https://github.com/FancyMcPlugins/FancyNpcs/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=FancyMcPlugins/FancyNpcs" alt="All contributors of the old FancyNpcs repository"/>
+</a>
+
+**[All contributors of the old FancyHolograms repository:](https://github.com/FancyMcPlugins/FancyHolograms/graphs/contributors)**
+
+<a href = "https://github.com/FancyMcPlugins/FancyHolograms/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=FancyMcPlugins/FancyHolograms" alt="All contributors of the old FancyHolograms repository"/>
+</a>
