@@ -17,7 +17,7 @@ import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.commands.FancyHologramsCMD;
 import de.oliver.fancyholograms.commands.FancyHologramsTestCMD;
 import de.oliver.fancyholograms.commands.HologramCMD;
-import de.oliver.fancyholograms.hologram.version.*;
+import de.oliver.fancyholograms.hologram.version.HologramImpl;
 import de.oliver.fancyholograms.listeners.*;
 import de.oliver.fancyholograms.storage.FlatFileHologramStorage;
 import de.oliver.fancyholograms.storage.converter.FHConversionRegistry;
@@ -286,7 +286,7 @@ public final class FancyHolograms extends JavaPlugin implements FancyHologramsPl
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new WorldListener(), this);
-        if (Bukkit.getMinecraftVersion().equals("1.21.4") || Bukkit.getMinecraftVersion().equals("1.21.5") || Bukkit.getMinecraftVersion().equals("1.21.6") || Bukkit.getMinecraftVersion().equals("1.21.7")) {
+        if (Bukkit.getMinecraftVersion().equals("1.21.4") || Bukkit.getMinecraftVersion().equals("1.21.5") || Bukkit.getMinecraftVersion().equals("1.21.6") || Bukkit.getMinecraftVersion().equals("1.21.7") || Bukkit.getMinecraftVersion().equals("1.21.8")) {
             getServer().getPluginManager().registerEvents(new PlayerLoadedListener(), this);
         }
 
