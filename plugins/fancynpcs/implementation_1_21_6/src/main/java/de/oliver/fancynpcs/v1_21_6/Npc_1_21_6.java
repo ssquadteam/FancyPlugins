@@ -267,13 +267,25 @@ public class Npc_1_21_6 extends Npc {
 
         npc.setGlowingTag(data.isGlowing());
 
-        if (data.getEquipment() != null && data.getEquipment().size() > 0) {
-            List<Pair<EquipmentSlot, ItemStack>> equipmentList = new ArrayList<>();
+        data.applyAllAttributes(this);
 
+        // Set equipment
+        List<Pair<EquipmentSlot, ItemStack>> equipmentList = new ArrayList<>();
+        if (data.getEquipment() != null) {
             for (NpcEquipmentSlot slot : data.getEquipment().keySet()) {
                 equipmentList.add(new Pair<>(EquipmentSlot.byName(slot.toNmsName()), CraftItemStack.asNMSCopy(data.getEquipment().get(slot))));
             }
+        }
 
+        // Set body slot (from happy ghast harness attribute)
+        if (npc instanceof LivingEntity livingEntity) {
+            ItemStack bodySlot = livingEntity.getItemBySlot(EquipmentSlot.BODY);
+            if (!bodySlot.isEmpty()) {
+                equipmentList.add(new Pair<>(EquipmentSlot.BODY, bodySlot));
+            }
+        }
+
+        if (!equipmentList.isEmpty()) {
             ClientboundSetEquipmentPacket setEquipmentPacket = new ClientboundSetEquipmentPacket(npc.getId(), equipmentList);
             serverPlayer.connection.send(setEquipmentPacket);
         }
@@ -282,8 +294,6 @@ public class Npc_1_21_6 extends Npc {
             // Enable second layer of skin (https://wiki.vg/Entity_metadata#Player)
             npc.getEntityData().set(net.minecraft.world.entity.player.Player.DATA_PLAYER_MODE_CUSTOMISATION, (byte) (0x01 | 0x02 | 0x04 | 0x08 | 0x10 | 0x20 | 0x40));
         }
-
-        data.applyAllAttributes(this);
 
         refreshEntityData(player);
 
