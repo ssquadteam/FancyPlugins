@@ -17,7 +17,9 @@ import com.fancyinnovations.fancydialogs.dialog.DialogImpl;
 import com.fancyinnovations.fancydialogs.fancynpcs.OpenDialogNpcAction;
 import com.fancyinnovations.fancydialogs.joinedplayerscache.JoinedPlayersCache;
 import com.fancyinnovations.fancydialogs.listener.DialogButtonClickedListener;
+import com.fancyinnovations.fancydialogs.listener.PlayerDeathListener;
 import com.fancyinnovations.fancydialogs.listener.PlayerJoinListener;
+import com.fancyinnovations.fancydialogs.listener.PlayerQuitListener;
 import com.fancyinnovations.fancydialogs.registry.DefaultDialogs;
 import com.fancyinnovations.fancydialogs.registry.DialogRegistry;
 import com.fancyinnovations.fancydialogs.storage.DialogStorage;
@@ -207,6 +209,8 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
 
     private void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
         Bukkit.getPluginManager().registerEvents(new DialogButtonClickedListener(), this);
     }
 

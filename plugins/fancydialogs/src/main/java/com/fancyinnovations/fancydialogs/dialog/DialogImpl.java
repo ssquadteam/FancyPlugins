@@ -1,5 +1,6 @@
 package com.fancyinnovations.fancydialogs.dialog;
 
+import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import com.fancyinnovations.fancydialogs.api.Dialog;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
@@ -170,6 +171,10 @@ public class DialogImpl extends Dialog {
         FancySitula.PACKET_FACTORY
                 .createShowDialogPacket(fsDialog)
                 .send(new FS_RealPlayer(player));
+
+        viewers.add(player.getUniqueId());
+
+        FancyDialogsPlugin.get().getFancyLogger().debug("Opened dialog " + id + " for player " + player.getName());
     }
 
     @Override
@@ -177,6 +182,10 @@ public class DialogImpl extends Dialog {
         FancySitula.PACKET_FACTORY
                 .createClearDialogPacket()
                 .send(new FS_RealPlayer(player));
+
+        viewers.remove(player.getUniqueId());
+
+        FancyDialogsPlugin.get().getFancyLogger().debug("Closed dialog " + id + " for player " + player.getName());
     }
 
 }

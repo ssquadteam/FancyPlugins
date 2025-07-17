@@ -13,6 +13,10 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         CustomClickActionPacketListener.get().getPacketListener().inject(event.getPlayer());
 
+        for (Dialog dialog : FancyDialogsPlugin.get().getDialogRegistry().getAll()) {
+            dialog.removeViewer(event.getPlayer());
+        }
+
         if (FDFeatureFlags.DISABLE_WELCOME_DIALOG.isEnabled()) {
             FancyDialogsPlugin.get().getFancyLogger().debug("Welcome dialog is disabled via feature flag");
             return;

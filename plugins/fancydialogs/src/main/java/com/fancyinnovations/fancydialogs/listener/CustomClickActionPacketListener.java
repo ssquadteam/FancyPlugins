@@ -58,6 +58,11 @@ public class CustomClickActionPacketListener {
             return;
         }
 
+        if (!dialog.isOpenedFor(event.player())) {
+            FancyDialogsPlugin.get().getFancyLogger().warn("Received action for dialog: " + dialogId + " but it is not opened for player: " + event.player().getName());
+            return;
+        }
+
         DialogButton btn = dialog.getData().getButtonById(buttonId);
         if (btn == null) {
             FancyDialogsPlugin.get().getFancyLogger().warn("Received action for unknown button: " + buttonId + " in dialog: " + dialogId);
