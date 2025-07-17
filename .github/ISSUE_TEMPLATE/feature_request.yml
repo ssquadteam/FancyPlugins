@@ -1,7 +1,7 @@
 name: Feature Request
 description: Suggest a new Feature.
 title: "Feature: "
-labels: ["feature"]
+labels: [ "Type: Enhancement", "Priority: Medium", "Status: Pending" ]
 body:
   - type: dropdown
     id: plugin
