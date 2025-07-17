@@ -17,7 +17,7 @@ import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.commands.FancyHologramsCMD;
 import de.oliver.fancyholograms.commands.FancyHologramsTestCMD;
 import de.oliver.fancyholograms.commands.HologramCMD;
-import de.oliver.fancyholograms.hologram.version.HologramImpl;
+import de.oliver.fancyholograms.hologram.version.*;
 import de.oliver.fancyholograms.listeners.*;
 import de.oliver.fancyholograms.storage.FlatFileHologramStorage;
 import de.oliver.fancyholograms.storage.converter.FHConversionRegistry;

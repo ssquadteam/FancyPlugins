@@ -56,7 +56,7 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
 
     implementation(project(":plugins:fancyholograms-v2:api"))
     implementation(project(":plugins:fancyholograms-v2:implementation_1_20_4", configuration = "reobf"))
@@ -113,14 +113,14 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.7")
+        minecraftVersion("1.21.8")
 
         downloadPlugins {
-            modrinth("fancynpcs", "2.5.2")
-            hangar("ViaVersion", "5.4.0")
-            hangar("ViaBackwards", "5.4.0")
-            modrinth("multiverse-core", "5.0.2")
-            hangar("PlaceholderAPI", "2.11.6")
+//            modrinth("fancynpcs", "2.5.2")
+//            hangar("ViaVersion", "5.4.0")
+//            hangar("ViaBackwards", "5.4.0")
+//            modrinth("multiverse-core", "5.0.2")
+//            hangar("PlaceholderAPI", "2.11.6")
 //            modrinth("DecentHolograms", "2.8.12")
         }
     }

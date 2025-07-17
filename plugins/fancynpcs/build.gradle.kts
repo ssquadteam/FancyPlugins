@@ -50,7 +50,7 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
 
     implementation(project(":plugins:fancynpcs:fn-api"))
     implementation(project(":plugins:fancynpcs:implementation_1_21_6"))
@@ -114,13 +114,13 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.7")
+        minecraftVersion("1.21.8")
 
         downloadPlugins {
-            hangar("ViaVersion", "5.4.0")
-            hangar("ViaBackwards", "5.4.0")
-            hangar("PlaceholderAPI", "2.11.6")
-            modrinth("multiverse-core", "5.0.2")
+//            hangar("ViaVersion", "5.4.0")
+//            hangar("ViaBackwards", "5.4.0")
+//            hangar("PlaceholderAPI", "2.11.6")
+//            modrinth("multiverse-core", "5.0.2")
         }
     }
 
