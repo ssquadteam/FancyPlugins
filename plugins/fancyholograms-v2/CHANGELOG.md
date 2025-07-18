@@ -1,1 +1,3 @@
-- Added support for 1.21.6
+- Added support for 1.21.7 and 1.21.8
+- Fixed comments not being for new feature flags
+- Improved http handling in FancyAnalytics
