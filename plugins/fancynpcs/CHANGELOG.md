@@ -1,3 +1,5 @@
-- Added support for 1.21.6
-- Added UUID caching to improve performance
-- More fixes to the skin system
+- Added support for 1.21.7 & 1.21.8
+- Added `harness` attribute for happy ghasts
+- Fixed comments not being for new feature flags
+- Fixed status code check of Mojang API
+- Improved http handling in FancyAnalytics
