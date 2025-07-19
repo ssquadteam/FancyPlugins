@@ -30,7 +30,8 @@ public abstract class HologramTrait {
     protected Hologram hologram;
     protected JDB storage;
 
-    public void attachHologram(Hologram hologram) {
+    @ApiStatus.Internal
+    public final void attachHologram(Hologram hologram) {
         if (this.hologram != null) {
             throw new IllegalStateException("Trait is already attached to a hologram");
         }
@@ -98,7 +99,7 @@ public abstract class HologramTrait {
     public void save() {
     }
 
-    public String getName() {
+    public final String getName() {
         if (getClass().isAnnotationPresent(HologramTraitClass.class)) {
             return getClass().getAnnotation(HologramTraitClass.class).traitName();
         }
@@ -106,7 +107,7 @@ public abstract class HologramTrait {
         throw new IllegalArgumentException("Trait class " + getClass() + " is not annotated with HologramTraitClass");
     }
 
-    protected boolean isTraitAttached(Class<? extends HologramTrait> trait) {
+    protected final boolean isTraitAttached(Class<? extends HologramTrait> trait) {
         for (HologramTrait hologramTrait : hologram.getTraitTrait().getTraits()) {
             if (hologramTrait.getClass().equals(trait)) {
                 return true;
@@ -116,7 +117,7 @@ public abstract class HologramTrait {
         return false;
     }
 
-    protected <T extends HologramTrait> T getTrait(Class<T> trait) {
+    protected final <T extends HologramTrait> T getTrait(Class<T> trait) {
         for (HologramTrait hologramTrait : hologram.getTraitTrait().getTraits()) {
             if (hologramTrait.getClass().equals(trait)) {
                 return (T) hologramTrait;
@@ -126,7 +127,7 @@ public abstract class HologramTrait {
         return null;
     }
 
-    public Hologram getHologram() {
+    public final Hologram getHologram() {
         return hologram;
     }
 }
