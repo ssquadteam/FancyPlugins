@@ -1,6 +1,6 @@
 package de.oliver.fancynpcs;
 
-import de.oliver.fancylib.ConfigHelper;
+import com.fancyinnovations.config.ConfigHelper;
 import de.oliver.fancynpcs.api.FancyNpcsConfig;
 import org.bukkit.configuration.file.FileConfiguration;
 

@@ -1,4 +1,4 @@
-package de.oliver.fancylib;
+package com.fancyinnovations.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 

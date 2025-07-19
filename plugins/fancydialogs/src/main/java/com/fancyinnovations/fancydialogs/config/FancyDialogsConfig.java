@@ -1,7 +1,7 @@
 package com.fancyinnovations.fancydialogs.config;
 
+import com.fancyinnovations.config.ConfigHelper;
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
-import de.oliver.fancylib.ConfigHelper;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.List;

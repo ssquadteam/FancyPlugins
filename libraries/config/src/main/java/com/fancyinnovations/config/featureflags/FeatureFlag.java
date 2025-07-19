@@ -1,5 +1,9 @@
 package com.fancyinnovations.config.featureflags;
 
+/**
+ * Use ConfigOption instead of this class.
+ */
+@Deprecated
 public class FeatureFlag {
 
     private final String name;
