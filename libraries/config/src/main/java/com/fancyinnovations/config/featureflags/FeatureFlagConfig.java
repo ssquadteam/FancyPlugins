@@ -1,4 +1,4 @@
-package de.oliver.fancylib.featureFlags;
+package com.fancyinnovations.config.featureflags;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;

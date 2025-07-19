@@ -1,5 +1,7 @@
 package de.oliver.fancynpcs;
 
+import com.fancyinnovations.config.featureflags.FeatureFlag;
+import com.fancyinnovations.config.featureflags.FeatureFlagConfig;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
@@ -12,8 +14,6 @@ import de.oliver.fancyanalytics.sdk.events.Event;
 import de.oliver.fancylib.FancyLib;
 import de.oliver.fancylib.Metrics;
 import de.oliver.fancylib.VersionConfig;
-import de.oliver.fancylib.featureFlags.FeatureFlag;
-import de.oliver.fancylib.featureFlags.FeatureFlagConfig;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
 import de.oliver.fancylib.serverSoftware.schedulers.BukkitScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;

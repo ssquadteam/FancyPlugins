@@ -1,8 +1,8 @@
 package de.oliver.fancyholograms.config;
 
+import com.fancyinnovations.config.featureflags.FeatureFlag;
+import com.fancyinnovations.config.featureflags.FeatureFlagConfig;
 import de.oliver.fancyholograms.main.FancyHologramsPlugin;
-import de.oliver.fancylib.featureFlags.FeatureFlag;
-import de.oliver.fancylib.featureFlags.FeatureFlagConfig;
 
 public class FHFeatureFlags {
 

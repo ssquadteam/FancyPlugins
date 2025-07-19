@@ -1,8 +1,8 @@
 package com.fancyinnovations.fancydialogs.config;
 
+import com.fancyinnovations.config.featureflags.FeatureFlag;
+import com.fancyinnovations.config.featureflags.FeatureFlagConfig;
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
-import de.oliver.fancylib.featureFlags.FeatureFlag;
-import de.oliver.fancylib.featureFlags.FeatureFlagConfig;
 
 public class FDFeatureFlags {
 
