@@ -37,6 +37,15 @@ public class Config {
     }
 
     /**
+     * Retrieves the logger associated with this configuration.
+     *
+     * @return the logger
+     */
+    public Map<String, ConfigField<?>> getFields() {
+        return fields;
+    }
+
+    /**
      * Retrieves the value of a configuration field by its path.
      *
      * @param path the path of the configuration field
