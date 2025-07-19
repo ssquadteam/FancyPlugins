@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Represents a configuration manager that handles loading, saving, and managing configuration fields.
+ * It uses YAML files for storage and provides methods to add fields, retrieve values, and reload configurations.
+ */
 public class Config {
 
     private final ExtendedFancyLogger logger;
@@ -23,10 +27,22 @@ public class Config {
         this.values = new ConcurrentHashMap<>();
     }
 
+    /**
+     * Adds a configuration field to the manager.
+     *
+     * @param field the configuration field to add
+     */
     public void addField(ConfigField<?> field) {
         fields.put(field.path(), field);
     }
 
+    /**
+     * Retrieves the value of a configuration field by its path.
+     *
+     * @param path the path of the configuration field
+     * @param <T>  the type of the field value
+     * @return the value of the configuration field or null if not found
+     */
     public <T> T get(String path) {
         ConfigField<?> field = fields.get(path);
         if (field != null) {
@@ -34,9 +50,12 @@ public class Config {
             return (T) field.type().cast(value);
         }
 
-        throw new IllegalArgumentException("No field found for path: " + path);
+        return null;
     }
 
+    /**
+     * Reloads the configuration from the file.
+     */
     public void reload() {
         if (!configFile.exists()) {
             if (!configFile.mkdirs()) {
