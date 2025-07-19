@@ -22,6 +22,7 @@ public final class FHConfiguration implements HologramConfiguration {
 
     public static final String DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH = "experimental_features.disable_holograms_for_bedrock_players";
     public static final String DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS = "experimental_features.disable_holograms_for_old_clients";
+    public static final String USE_LAMP_COMMANDS = "experimental_features.use_lamp_commands";
 
     private static final String CONFIG_FILE_PATH = "plugins/FancyHolograms/config.yml";
     private Config config;
@@ -92,6 +93,15 @@ public final class FHConfiguration implements HologramConfiguration {
                 Boolean.class
         ));
 
+        config.addField(new ConfigField<>(
+                LANGUAGE_PATH,
+                "The language to use for the plugin.",
+                false,
+                "default",
+                false,
+                String.class
+        ));
+
         /*
             FEATURE FLAGS
          */
@@ -115,12 +125,12 @@ public final class FHConfiguration implements HologramConfiguration {
         ));
 
         config.addField(new ConfigField<>(
-                LANGUAGE_PATH,
-                "The language to use for the plugin.",
+                USE_LAMP_COMMANDS,
+                "Use the new commands made with the Lamp framework.",
                 false,
-                "default",
                 false,
-                String.class
+                false,
+                Boolean.class
         ));
 
         config.reload();
@@ -170,6 +180,11 @@ public final class FHConfiguration implements HologramConfiguration {
     }
 
     @Override
+    public String getLanguage() {
+        return config.get(LANGUAGE_PATH);
+    }
+
+    @Override
     public boolean isHologramsForBedrockPlayersEnabled() {
         return !(boolean) config.get(DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH);
     }
@@ -180,7 +195,7 @@ public final class FHConfiguration implements HologramConfiguration {
     }
 
     @Override
-    public String getLanguage() {
-        return config.get(LANGUAGE_PATH);
+    public boolean useLampCommands() {
+        return config.get(USE_LAMP_COMMANDS);
     }
 }

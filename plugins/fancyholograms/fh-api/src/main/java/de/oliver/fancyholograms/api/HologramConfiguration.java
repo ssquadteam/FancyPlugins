@@ -52,6 +52,13 @@ public interface HologramConfiguration {
     String getLogLevel();
 
     /**
+     * Returns the language used by the plugin.
+     *
+     * @return The language used by the plugin.
+     */
+    String getLanguage();
+
+    /**
      * Returns whether holograms should be shown to bedrock players.
      *
      * @return {@code true} if holograms should be shown to bedrock players, {@code false} otherwise.
@@ -66,9 +73,9 @@ public interface HologramConfiguration {
     boolean isHologramsForOldClientsEnabled();
 
     /**
-     * Returns the language used by the plugin.
+     * Returns whether the plugin uses lamp commands.
      *
-     * @return The language used by the plugin.
+     * @return {@code true} if the plugin uses lamp commands, {@code false} otherwise.
      */
-    String getLanguage();
+    boolean useLampCommands();
 }

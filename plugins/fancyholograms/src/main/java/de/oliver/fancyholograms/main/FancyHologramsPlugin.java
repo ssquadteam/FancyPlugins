@@ -195,8 +195,12 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
     public void onEnable() {
         new FancyLib(INSTANCE);
 
-        registerCommands();
-        registerLampCommands();
+        if (configuration.useLampCommands()) {
+            registerLampCommands();
+        } else {
+            registerCommands();
+        }
+
         registerListeners();
 
         versionConfig.load();
