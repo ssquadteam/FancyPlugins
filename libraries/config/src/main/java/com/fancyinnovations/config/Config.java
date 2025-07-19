@@ -71,6 +71,15 @@ public class Config {
             String path = entry.getKey();
             ConfigField<?> field = entry.getValue();
 
+            if (field.forRemoval()) {
+                if (yaml.isSet(path)) {
+                    logger.debug("Removing path '" + path + "' from config");
+                    yaml.set(path, null);
+                    dirty = true;
+                }
+                continue;
+            }
+
             if (yaml.isSet(path)) {
                 Object value = yaml.get(path);
                 if (field.type().isInstance(value)) {

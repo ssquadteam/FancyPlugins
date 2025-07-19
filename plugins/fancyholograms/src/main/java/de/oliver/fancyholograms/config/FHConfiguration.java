@@ -26,12 +26,14 @@ public final class FHConfiguration implements HologramConfiguration {
                 MUTE_VERSION_NOTIFICATION_PATH,
                 "Whether version notifications are muted.",
                 false,
+                false,
                 Boolean.class
         ));
 
         config.addField(new ConfigField<>(
                 ENABLE_AUTOSAVE_PATH,
                 "Whether autosave is enabled.",
+                false,
                 true,
                 Boolean.class
         ));
@@ -39,6 +41,7 @@ public final class FHConfiguration implements HologramConfiguration {
         config.addField(new ConfigField<>(
                 AUTOSAVE_INTERVAL_PATH,
                 "The interval at which autosave is performed in minutes.",
+                false,
                 15,
                 Integer.class
         ));
@@ -46,6 +49,7 @@ public final class FHConfiguration implements HologramConfiguration {
         config.addField(new ConfigField<>(
                 SAVE_ON_CHANGED_PATH,
                 "Whether the plugin should save holograms when they are changed.",
+                false,
                 true,
                 Boolean.class
         ));
@@ -53,6 +57,7 @@ public final class FHConfiguration implements HologramConfiguration {
         config.addField(new ConfigField<>(
                 VISIBILITY_DISTANCE_PATH,
                 "The default visibility distance for holograms.",
+                false,
                 20,
                 Integer.class
         ));
@@ -60,6 +65,7 @@ public final class FHConfiguration implements HologramConfiguration {
         config.addField(new ConfigField<>(
                 REGISTER_COMMANDS_PATH,
                 "Whether the plugin should register its commands.",
+                false,
                 true,
                 Boolean.class
         ));
@@ -67,6 +73,7 @@ public final class FHConfiguration implements HologramConfiguration {
         config.addField(new ConfigField<>(
                 LOG_LEVEL_PATH,
                 "The log level for the plugin (DEBUG, INFO, WARN, ERROR).",
+                false,
                 "INFO",
                 String.class
         ));
