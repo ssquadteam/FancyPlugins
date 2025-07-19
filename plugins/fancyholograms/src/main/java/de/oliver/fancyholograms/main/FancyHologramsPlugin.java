@@ -15,6 +15,7 @@ import de.oliver.fancyholograms.api.hologram.Hologram;
 import de.oliver.fancyholograms.commands.FancyHologramsCMD;
 import de.oliver.fancyholograms.commands.FancyHologramsTestCMD;
 import de.oliver.fancyholograms.commands.HologramCMD;
+import de.oliver.fancyholograms.commands.lampCommands.fancyholograms.ConfigCMD;
 import de.oliver.fancyholograms.config.FHConfiguration;
 import de.oliver.fancyholograms.controller.HologramControllerImpl;
 import de.oliver.fancyholograms.converter.FHConversionRegistry;
@@ -36,6 +37,9 @@ import de.oliver.fancyholograms.util.PluginUtils;
 import de.oliver.fancylib.FancyLib;
 import de.oliver.fancylib.VersionConfig;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
+import de.oliver.fancylib.translations.Language;
+import de.oliver.fancylib.translations.TextConfig;
+import de.oliver.fancylib.translations.Translator;
 import de.oliver.fancylib.versionFetcher.MasterVersionFetcher;
 import de.oliver.fancylib.versionFetcher.VersionFetcher;
 import de.oliver.fancysitula.api.IFancySitula;
@@ -46,6 +50,9 @@ import org.bukkit.command.Command;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import revxrsal.commands.Lamp;
+import revxrsal.commands.bukkit.BukkitLamp;
+import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -73,6 +80,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
     private final ExecutorService storageThread;
 
     private final FHConfiguration configuration;
+    private final Translator translator;
 
     private Function<HologramData, Hologram> hologramFactory;
 
@@ -118,6 +126,8 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         );
 
         configuration = new FHConfiguration();
+
+        translator = new Translator(new TextConfig("#32e347", "#35ad1d", "#81E366", "#E3CA66", "#E36666", ""));
     }
 
     public static @NotNull FancyHologramsPlugin get() {
@@ -172,6 +182,12 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
             return;
         }
 
+        translator.loadLanguages(getDataFolder().getAbsolutePath());
+        final Language selectedLanguage = translator.getLanguages().stream()
+                .filter(language -> language.getLanguageName().equals(configuration.getLanguage()))
+                .findFirst().orElse(translator.getFallbackLanguage());
+        translator.setSelectedLanguage(selectedLanguage);
+
         fancyLogger.info("Successfully loaded FancyHolograms version %s".formatted(getDescription().getVersion()));
     }
 
@@ -180,6 +196,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         new FancyLib(INSTANCE);
 
         registerCommands();
+        registerLampCommands();
         registerListeners();
 
         versionConfig.load();
@@ -261,6 +278,20 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
             FancyHologramsTestCMD fancyHologramsTestCMD = new FancyHologramsTestCMD(this);
             getServer().getCommandMap().register("fancyholograms", fancyHologramsTestCMD);
         }
+    }
+
+    private void registerLampCommands() {
+        Lamp.Builder<BukkitCommandActor> lampBuilder = BukkitLamp
+                .builder(this);
+
+//        lampBuilder.parameterTypes(builder -> {
+//            builder.addParameterType(Dialog.class, DialogCommandType.INSTANCE);
+//        });
+//        lampBuilder.exceptionHandler(DialogCommandType.INSTANCE);
+
+        Lamp<BukkitCommandActor> lamp = lampBuilder.build();
+
+        lamp.register(ConfigCMD.INSTANCE);
     }
 
     private void registerListeners() {
@@ -373,5 +404,9 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
     public FHConfiguration getFHConfiguration() {
         return configuration;
+    }
+
+    public Translator getTranslator() {
+        return translator;
     }
 }

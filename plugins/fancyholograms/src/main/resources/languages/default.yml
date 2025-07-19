@@ -1,0 +1,9 @@
+language_name: default
+messages:
+  commands:
+    fancyholograms:
+      config:
+        show:
+          settings_header: "<dark_gray>› <gray>FancyHolograms settings:"
+          experimental_header: "<dark_gray>› <gray>FancyHolograms experimental features:"
+          entry: "<dark_gray>› <gray> - {warningColor}{path}<gray>: {value} (default: {default})"

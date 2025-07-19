@@ -64,4 +64,11 @@ public interface HologramConfiguration {
      * @return {@code true} if holograms should be shown to players with an old client version, {@code false} otherwise.
      */
     boolean isHologramsForOldClientsEnabled();
+
+    /**
+     * Returns the language used by the plugin.
+     *
+     * @return The language used by the plugin.
+     */
+    String getLanguage();
 }

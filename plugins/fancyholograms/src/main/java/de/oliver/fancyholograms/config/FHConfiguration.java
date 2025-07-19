@@ -7,21 +7,23 @@ import de.oliver.fancyholograms.main.FancyHologramsPlugin;
 
 public final class FHConfiguration implements HologramConfiguration {
 
+    public static final String LOG_LEVEL_PATH = "settings.logging.level";
+
+    public static final String MUTE_VERSION_NOTIFICATION_PATH = "settings.logging.version_notification";
+    public static final String ENABLE_AUTOSAVE_PATH = "settings.saving.autosave.enabled";
+    public static final String AUTOSAVE_INTERVAL_PATH = "settings.saving.autosave.interval";
+
+    public static final String SAVE_ON_CHANGED_PATH = "settings.saving.save_on_changed";
+    public static final String VISIBILITY_DISTANCE_PATH = "settings.visibility_distance";
+
+    public static final String REGISTER_COMMANDS_PATH = "settings.register_commands";
+
+    public static final String LANGUAGE_PATH = "settings.language";
+
+    public static final String DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH = "experimental_features.disable_holograms_for_bedrock_players";
+    public static final String DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS = "experimental_features.disable_holograms_for_old_clients";
+
     private static final String CONFIG_FILE_PATH = "plugins/FancyHolograms/config.yml";
-
-    private static final String LOG_LEVEL_PATH = "settings.logging.level";
-    private static final String MUTE_VERSION_NOTIFICATION_PATH = "settings.logging.version_notification";
-
-    private static final String ENABLE_AUTOSAVE_PATH = "settings.saving.autosave.enabled";
-    private static final String AUTOSAVE_INTERVAL_PATH = "settings.saving.autosave.interval";
-    private static final String SAVE_ON_CHANGED_PATH = "settings.saving.save_on_changed";
-
-    private static final String VISIBILITY_DISTANCE_PATH = "settings.visibility_distance";
-    private static final String REGISTER_COMMANDS_PATH = "settings.register_commands";
-    
-    private static final String DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH = "experimental_features.disable_holograms_for_bedrock_players";
-    private static final String DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS = "experimental_features.disable_holograms_for_old_clients";
-
     private Config config;
 
     public void init() {
@@ -96,7 +98,7 @@ public final class FHConfiguration implements HologramConfiguration {
 
         config.addField(new ConfigField<>(
                 DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH,
-                "Do not show holograms to bedrock players",
+                "Do not show holograms to bedrock players,",
                 false,
                 false,
                 false,
@@ -105,11 +107,20 @@ public final class FHConfiguration implements HologramConfiguration {
 
         config.addField(new ConfigField<>(
                 DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS,
-                "Do not show holograms to clients with a version older than 1.19.4",
+                "Do not show holograms to clients with a version older than 1.19.4.",
                 false,
                 false,
                 false,
                 Boolean.class
+        ));
+
+        config.addField(new ConfigField<>(
+                LANGUAGE_PATH,
+                "The language to use for the plugin.",
+                false,
+                "default",
+                false,
+                String.class
         ));
 
         config.reload();
@@ -117,6 +128,10 @@ public final class FHConfiguration implements HologramConfiguration {
 
     public void reload() {
         config.reload();
+    }
+
+    public Config getConfig() {
+        return config;
     }
 
     @Override
@@ -162,5 +177,10 @@ public final class FHConfiguration implements HologramConfiguration {
     @Override
     public boolean isHologramsForOldClientsEnabled() {
         return !(boolean) config.get(DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS);
+    }
+
+    @Override
+    public String getLanguage() {
+        return config.get(LANGUAGE_PATH);
     }
 }
