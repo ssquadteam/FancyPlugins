@@ -1,5 +1,5 @@
-**ATTENTION**: v3.0.0 is still in development and contains breaking changes and potential bugs. Do not use this version
-in production at all, or you may lose data!!
+**ATTENTION**: v3 is still in development and contains breaking changes and potential bugs. 
+Do not use this version in production at all, or you may lose data!!
 
 Commit hash: %COMMIT_HASH%
 
