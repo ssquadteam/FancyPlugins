@@ -6,7 +6,7 @@ import de.oliver.fancyholograms.api.data.*;
 import de.oliver.fancyholograms.api.events.HologramDespawnEvent;
 import de.oliver.fancyholograms.api.events.HologramSpawnEvent;
 import de.oliver.fancyholograms.api.hologram.Hologram;
-import de.oliver.fancyholograms.config.FHFeatureFlags;
+import de.oliver.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancyholograms.util.PluginUtils;
 import de.oliver.fancysitula.api.entities.*;
 import de.oliver.fancysitula.factories.FancySitula;
@@ -49,7 +49,7 @@ public final class HologramImpl extends Hologram {
             return;
         }
 
-        if (FHFeatureFlags.DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS.isEnabled()) {
+        if (FancyHologramsPlugin.get().getFHConfiguration().isHologramsForOldClientsEnabled()) {
             final var protocolVersion = PluginUtils.isViaVersionEnabled() ? Via.getAPI().getPlayerVersion(player.getUniqueId()) : MINIMUM_PROTOCOL_VERSION;
             if (protocolVersion < MINIMUM_PROTOCOL_VERSION) {
                 FancyHolograms.get().getFancyLogger().debug("Player " + player.getName() + " is using an outdated protocol version (" + protocolVersion + "). Hologram will not be shown.");

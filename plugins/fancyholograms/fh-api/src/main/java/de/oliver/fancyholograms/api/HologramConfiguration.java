@@ -50,4 +50,18 @@ public interface HologramConfiguration {
      * @return The log level for the plugin.
      */
     String getLogLevel();
+
+    /**
+     * Returns whether holograms should be shown to bedrock players.
+     *
+     * @return {@code true} if holograms should be shown to bedrock players, {@code false} otherwise.
+     */
+    boolean isHologramsForBedrockPlayersEnabled();
+
+    /**
+     * Returns whether holograms should be shown to players with an old client version.
+     *
+     * @return {@code true} if holograms should be shown to players with an old client version, {@code false} otherwise.
+     */
+    boolean isHologramsForOldClientsEnabled();
 }

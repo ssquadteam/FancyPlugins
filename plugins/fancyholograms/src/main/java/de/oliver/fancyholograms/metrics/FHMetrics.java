@@ -4,7 +4,6 @@ import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import de.oliver.fancyholograms.api.HologramRegistry;
-import de.oliver.fancyholograms.config.FHFeatureFlags;
 import de.oliver.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancylib.Metrics;
 import org.bukkit.Bukkit;
@@ -55,7 +54,7 @@ public class FHMetrics {
 
         fancyAnalytics.registerNumberMetric(new MetricSupplier<>("amount_holograms", () -> (double) registry.getAll().size()));
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("enabled_update_notifications", () -> FancyHologramsPlugin.get().getFHConfiguration().areVersionNotificationsMuted() ? "false" : "true"));
-        fancyAnalytics.registerStringMetric(new MetricSupplier<>("fflag_disable_holograms_for_bedrock_players", () -> FHFeatureFlags.DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS.isEnabled() ? "true" : "false"));
+        fancyAnalytics.registerStringMetric(new MetricSupplier<>("fflag_disable_holograms_for_bedrock_players", () -> FancyHologramsPlugin.get().getFHConfiguration().isHologramsForBedrockPlayersEnabled() ? "false" : "true"));
         fancyAnalytics.registerStringMetric(new MetricSupplier<>("using_development_build", () -> FancyHologramsPlugin.get().getVersionConfig().isDevelopmentBuild() ? "true" : "false"));
 
         fancyAnalytics.registerStringArrayMetric(new MetricSupplier<>("hologram_type", () -> {

@@ -15,6 +15,8 @@ public final class FHConfiguration implements HologramConfiguration {
     private static final String VISIBILITY_DISTANCE_PATH = "visibility_distance";
     private static final String REGISTER_COMMANDS_PATH = "register_commands";
     private static final String LOG_LEVEL_PATH = "log_level";
+    private static final String DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH = "disable_holograms_for_bedrock_players";
+    private static final String DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS = "disable_holograms_for_old_clients";
 
     private Config config;
 
@@ -84,6 +86,28 @@ public final class FHConfiguration implements HologramConfiguration {
                 String.class
         ));
 
+        /*
+            FEATURE FLAGS
+         */
+
+        config.addField(new ConfigField<>(
+                DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH,
+                "Do not show holograms to bedrock players",
+                false,
+                false,
+                false,
+                Boolean.class
+        ));
+
+        config.addField(new ConfigField<>(
+                DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS,
+                "Do not show holograms to clients with a version older than 1.19.4",
+                false,
+                false,
+                false,
+                Boolean.class
+        ));
+
         config.reload();
     }
 
@@ -124,5 +148,15 @@ public final class FHConfiguration implements HologramConfiguration {
     @Override
     public String getLogLevel() {
         return config.get(LOG_LEVEL_PATH);
+    }
+
+    @Override
+    public boolean isHologramsForBedrockPlayersEnabled() {
+        return !(boolean) config.get(DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH);
+    }
+
+    @Override
+    public boolean isHologramsForOldClientsEnabled() {
+        return !(boolean) config.get(DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS);
     }
 }

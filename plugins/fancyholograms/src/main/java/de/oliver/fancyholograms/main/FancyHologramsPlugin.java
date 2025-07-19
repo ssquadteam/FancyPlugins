@@ -16,7 +16,6 @@ import de.oliver.fancyholograms.commands.FancyHologramsCMD;
 import de.oliver.fancyholograms.commands.FancyHologramsTestCMD;
 import de.oliver.fancyholograms.commands.HologramCMD;
 import de.oliver.fancyholograms.config.FHConfiguration;
-import de.oliver.fancyholograms.config.FHFeatureFlags;
 import de.oliver.fancyholograms.controller.HologramControllerImpl;
 import de.oliver.fancyholograms.converter.FHConversionRegistry;
 import de.oliver.fancyholograms.hologram.version.*;
@@ -131,7 +130,6 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
     @Override
     public void onLoad() {
-        FHFeatureFlags.load();
         configuration.init();
 
         LogLevel logLevel;
@@ -276,7 +274,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
             getServer().getPluginManager().registerEvents(new NpcListener(this), this);
         }
 
-        if (FHFeatureFlags.DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS.isEnabled() && PluginUtils.isFloodgateEnabled()) {
+        if (configuration.isHologramsForBedrockPlayersEnabled() && PluginUtils.isFloodgateEnabled()) {
             getServer().getPluginManager().registerEvents(new BedrockPlayerListener(), this);
         }
     }
