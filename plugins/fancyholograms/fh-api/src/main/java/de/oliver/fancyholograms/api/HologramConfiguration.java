@@ -1,15 +1,6 @@
 package de.oliver.fancyholograms.api;
 
-import org.jetbrains.annotations.NotNull;
-
 public interface HologramConfiguration {
-
-    /**
-     * Reloads the configuration.
-     *
-     * @param plugin The plugin instance.
-     */
-    void reload(@NotNull FancyHolograms plugin);
 
     /**
      * Returns whether version notifications are muted.

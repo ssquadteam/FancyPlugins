@@ -73,7 +73,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
     private final ScheduledExecutorService hologramThread;
     private final ExecutorService storageThread;
 
-    private final HologramConfiguration configuration;
+    private final FHConfiguration configuration;
 
     private Function<HologramData, Hologram> hologramFactory;
 
@@ -132,7 +132,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
     @Override
     public void onLoad() {
         FHFeatureFlags.load();
-        configuration.reload(this);
+        configuration.init();
 
         LogLevel logLevel;
         try {
@@ -373,7 +373,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         return this.storageThread;
     }
 
-    public HologramConfiguration getFHConfiguration() {
+    public FHConfiguration getFHConfiguration() {
         return configuration;
     }
 }

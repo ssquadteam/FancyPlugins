@@ -43,7 +43,7 @@ public final class FancyHologramsCMD extends Command {
                 MessageHelper.success(sender, "Saved all holograms");
             }
             case "reload" -> {
-                this.plugin.getHologramConfiguration().reload(plugin);
+                this.plugin.getFHConfiguration().reload();
 
                 this.plugin.getRegistry().clear();
                 Collection<HologramData> hologramData = this.plugin.getStorage().loadAll();
