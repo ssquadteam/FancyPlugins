@@ -62,11 +62,6 @@ public class Config {
      */
     public void reload() {
         if (!configFile.exists()) {
-            if (!configFile.mkdirs()) {
-                logger.error("Failed to create directories for config file: " + configFile.getAbsolutePath());
-                return;
-            }
-
             try {
                 if (!configFile.createNewFile()) {
                     logger.error("Failed to create config file: " + configFile.getAbsolutePath());
