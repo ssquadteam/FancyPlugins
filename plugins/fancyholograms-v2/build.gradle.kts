@@ -71,6 +71,7 @@ dependencies {
     implementation(project(":libraries:packets:packets-api"))
     implementation(project(":libraries:common"))
     implementation(project(":libraries:jdb"))
+    implementation(project(":libraries:config"))
     implementation("de.oliver.FancyAnalytics:java-sdk:0.0.3")
     implementation("de.oliver.FancyAnalytics:mc-api:0.1.8")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")

@@ -20,8 +20,7 @@ public final class FHConfiguration implements HologramConfiguration {
 
     public void init() {
         config = new Config(FancyHologramsPlugin.get().getFancyLogger(), CONFIG_FILE_PATH);
-
-
+        
         config.addField(new ConfigField<>(
                 MUTE_VERSION_NOTIFICATION_PATH,
                 "Whether version notifications are muted.",
