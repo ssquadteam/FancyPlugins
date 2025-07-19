@@ -35,6 +35,7 @@ include(":plugins:fancydialogs:fd-api")
 
 include(":libraries:common")
 include(":libraries:jdb")
+include(":libraries:config")
 include(":libraries:plugin-tests")
 
 include(":libraries:packets")
