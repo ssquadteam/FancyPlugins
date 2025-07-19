@@ -45,12 +45,16 @@ public class Config {
      */
     public <T> T get(String path) {
         ConfigField<?> field = fields.get(path);
-        if (field != null) {
-            Object value = values.computeIfAbsent(path, k -> field.defaultValue());
-            return (T) field.type().cast(value);
+        if (field == null) {
+            return null;
         }
 
-        return null;
+        if (field.forceDefault()) {
+            return (T) field.defaultValue();
+        }
+
+        Object value = values.computeIfAbsent(path, k -> field.defaultValue());
+        return (T) field.type().cast(value);
     }
 
     /**

@@ -20,10 +20,11 @@ public final class FHConfiguration implements HologramConfiguration {
 
     public void init() {
         config = new Config(FancyHologramsPlugin.get().getFancyLogger(), CONFIG_FILE_PATH);
-        
+
         config.addField(new ConfigField<>(
                 MUTE_VERSION_NOTIFICATION_PATH,
                 "Whether version notifications are muted.",
+                false,
                 false,
                 false,
                 Boolean.class
@@ -34,6 +35,7 @@ public final class FHConfiguration implements HologramConfiguration {
                 "Whether autosave is enabled.",
                 false,
                 true,
+                false,
                 Boolean.class
         ));
 
@@ -42,6 +44,7 @@ public final class FHConfiguration implements HologramConfiguration {
                 "The interval at which autosave is performed in minutes.",
                 false,
                 15,
+                false,
                 Integer.class
         ));
 
@@ -50,6 +53,7 @@ public final class FHConfiguration implements HologramConfiguration {
                 "Whether the plugin should save holograms when they are changed.",
                 false,
                 true,
+                false,
                 Boolean.class
         ));
 
@@ -58,6 +62,7 @@ public final class FHConfiguration implements HologramConfiguration {
                 "The default visibility distance for holograms.",
                 false,
                 20,
+                false,
                 Integer.class
         ));
 
@@ -66,6 +71,7 @@ public final class FHConfiguration implements HologramConfiguration {
                 "Whether the plugin should register its commands.",
                 false,
                 true,
+                false,
                 Boolean.class
         ));
 
@@ -74,6 +80,7 @@ public final class FHConfiguration implements HologramConfiguration {
                 "The log level for the plugin (DEBUG, INFO, WARN, ERROR).",
                 false,
                 "INFO",
+                false,
                 String.class
         ));
 

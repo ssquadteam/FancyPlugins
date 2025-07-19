@@ -8,6 +8,7 @@ package com.fancyinnovations.config;
  * @param description  a description of the field
  * @param forRemoval   indicates if this field should be removed
  * @param defaultValue the default value of the field
+ * @param forceDefault indicates if the default value should be enforced
  * @param type         the class type of the field value
  */
 public record ConfigField<T>(
@@ -15,6 +16,7 @@ public record ConfigField<T>(
         String description,
         boolean forRemoval,
         T defaultValue,
+        boolean forceDefault,
         Class<T> type
 ) {
 }
