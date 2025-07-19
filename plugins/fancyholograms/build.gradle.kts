@@ -31,6 +31,8 @@ val supportedVersions =
         "1.21.4",
         "1.21.5",
         "1.21.6",
+        "1.21.7",
+        "1.21.8",
     )
 
 allprojects {
@@ -69,6 +71,7 @@ dependencies {
     implementation(project(":libraries:common"))
     implementation(project(":libraries:plugin-tests"))
     implementation(project(":libraries:jdb"))
+    implementation(project(":libraries:config"))
     implementation(project(":libraries:packets"))
     implementation(project(":libraries:packets:packets-api"))
     implementation("de.oliver.FancyAnalytics:java-sdk:0.0.3")
@@ -119,12 +122,12 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.7")
+        minecraftVersion("1.21.8")
 
         downloadPlugins {
-            modrinth("fancynpcs", "2.5.0")
-            hangar("ViaVersion", "5.3.2")
-            hangar("ViaBackwards", "5.3.2")
+            modrinth("fancynpcs", "2.7.0")
+//            hangar("ViaVersion", "5.3.2")
+//            hangar("ViaBackwards", "5.3.2")
 //            modrinth("multiverse-core", "4.3.11")
             hangar("PlaceholderAPI", "2.11.6")
 //            modrinth("DecentHolograms", "2.8.12")
