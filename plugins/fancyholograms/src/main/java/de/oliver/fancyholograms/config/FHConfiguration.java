@@ -8,13 +8,17 @@ import de.oliver.fancyholograms.main.FancyHologramsPlugin;
 public final class FHConfiguration implements HologramConfiguration {
 
     private static final String CONFIG_FILE_PATH = "plugins/FancyHolograms/config.yml";
-    private static final String ENABLE_AUTOSAVE_PATH = "saving.autosave.enabled";
-    private static final String AUTOSAVE_INTERVAL_PATH = "saving.autosave.interval";
-    private static final String SAVE_ON_CHANGED_PATH = "saving.save_on_changed";
-    private static final String VISIBILITY_DISTANCE_PATH = "visibility_distance";
-    private static final String REGISTER_COMMANDS_PATH = "register_commands";
-    private static final String LOG_LEVEL_PATH = "logging.level";
-    private static final String MUTE_VERSION_NOTIFICATION_PATH = "logging.version_notification";
+
+    private static final String LOG_LEVEL_PATH = "settings.logging.level";
+    private static final String MUTE_VERSION_NOTIFICATION_PATH = "settings.logging.version_notification";
+
+    private static final String ENABLE_AUTOSAVE_PATH = "settings.saving.autosave.enabled";
+    private static final String AUTOSAVE_INTERVAL_PATH = "settings.saving.autosave.interval";
+    private static final String SAVE_ON_CHANGED_PATH = "settings.saving.save_on_changed";
+
+    private static final String VISIBILITY_DISTANCE_PATH = "settings.visibility_distance";
+    private static final String REGISTER_COMMANDS_PATH = "settings.register_commands";
+    
     private static final String DISABLE_HOLOGRAMS_FOR_BEDROCK_PLAYERS_PATH = "experimental_features.disable_holograms_for_bedrock_players";
     private static final String DISABLE_HOLOGRAMS_FOR_OLD_CLIENTS = "experimental_features.disable_holograms_for_old_clients";
 
@@ -22,6 +26,15 @@ public final class FHConfiguration implements HologramConfiguration {
 
     public void init() {
         config = new Config(FancyHologramsPlugin.get().getFancyLogger(), CONFIG_FILE_PATH);
+
+        config.addField(new ConfigField<>(
+                LOG_LEVEL_PATH,
+                "The log level for the plugin (DEBUG, INFO, WARN, ERROR).",
+                false,
+                "INFO",
+                false,
+                String.class
+        ));
 
         config.addField(new ConfigField<>(
                 MUTE_VERSION_NOTIFICATION_PATH,
@@ -75,15 +88,6 @@ public final class FHConfiguration implements HologramConfiguration {
                 true,
                 false,
                 Boolean.class
-        ));
-
-        config.addField(new ConfigField<>(
-                LOG_LEVEL_PATH,
-                "The log level for the plugin (DEBUG, INFO, WARN, ERROR).",
-                false,
-                "INFO",
-                false,
-                String.class
         ));
 
         /*
