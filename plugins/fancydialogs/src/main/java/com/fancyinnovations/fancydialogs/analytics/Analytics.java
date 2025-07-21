@@ -1,6 +1,8 @@
 package com.fancyinnovations.fancydialogs.analytics;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
+import com.fancyinnovations.fancydialogs.api.Dialog;
+import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
 import de.oliver.fancyanalytics.sdk.events.Event;
@@ -55,6 +57,44 @@ public class Analytics {
         }));
 
         api.registerNumberMetric(new MetricSupplier<>("amount_dialogs", () -> (double) FancyDialogsPlugin.get().getDialogRegistry().getAll().size()));
+
+        api.registerNumberMetric(new MetricSupplier<>("amount_body_elements", () -> {
+            long count = 0;
+            for (Dialog dialog : FancyDialogsPlugin.get().getDialogRegistry().getAll()) {
+                count += dialog.getData().body().size();
+            }
+
+            return (double) count;
+        }));
+
+        api.registerNumberMetric(new MetricSupplier<>("amount_input_elements", () -> {
+            long count = 0;
+            for (Dialog dialog : FancyDialogsPlugin.get().getDialogRegistry().getAll()) {
+                count += dialog.getData().inputs().all().size();
+            }
+
+            return (double) count;
+        }));
+
+        api.registerNumberMetric(new MetricSupplier<>("amount_buttons", () -> {
+            long count = 0;
+            for (Dialog dialog : FancyDialogsPlugin.get().getDialogRegistry().getAll()) {
+                count += dialog.getData().buttons().size();
+            }
+
+            return (double) count;
+        }));
+
+        api.registerNumberMetric(new MetricSupplier<>("amount_actions", () -> {
+            long count = 0;
+            for (Dialog dialog : FancyDialogsPlugin.get().getDialogRegistry().getAll()) {
+                for (DialogButton button : dialog.getData().buttons()) {
+                    count += button.actions().size();
+                }
+            }
+
+            return (double) count;
+        }));
     }
 
     private void checkIfVersionUpdated() {
