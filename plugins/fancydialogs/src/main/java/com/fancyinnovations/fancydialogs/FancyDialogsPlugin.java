@@ -40,6 +40,7 @@ import de.oliver.fancysitula.api.IFancySitula;
 import de.oliver.fancysitula.api.utils.ServerVersion;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.Lamp;
 import revxrsal.commands.bukkit.BukkitLamp;
@@ -201,6 +202,14 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
     @Override
     public void onDisable() {
         for (Dialog dialog : dialogRegistry.getAll()) {
+            // Close all viewers of the dialog
+            for (UUID viewer : dialog.getViewers()) {
+                Player player = Bukkit.getPlayer(viewer);
+                if (player != null && player.isOnline()) {
+                    dialog.close(player);
+                }
+            }
+
             dialogStorage.save(dialog.getData());
         }
 
