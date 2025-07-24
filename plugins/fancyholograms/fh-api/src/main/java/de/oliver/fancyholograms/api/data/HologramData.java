@@ -203,11 +203,6 @@ public class HologramData implements YamlData {
         float pitch = (float) section.getDouble("location.pitch", 0);
 
         World world = Bukkit.getWorld(worldName);
-        if (world == null) {
-            FancyHolograms.get().getFancyLogger().warn("Could not load hologram '" + name + "', because the world '" + worldName + "' is not loaded");
-            return false;
-        }
-
         location = new Location(world, x, y, z, yaw, pitch);
         visibilityDistance = section.getInt("visibility_distance", DEFAULT_VISIBILITY_DISTANCE);
         visibility = Optional.ofNullable(section.getString("visibility"))
