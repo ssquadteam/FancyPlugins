@@ -19,7 +19,7 @@ import de.oliver.fancyholograms.commands.lampCommands.fancyholograms.ConfigCMD;
 import de.oliver.fancyholograms.config.FHConfiguration;
 import de.oliver.fancyholograms.controller.HologramControllerImpl;
 import de.oliver.fancyholograms.converter.FHConversionRegistry;
-import de.oliver.fancyholograms.hologram.version.*;
+import de.oliver.fancyholograms.hologram.version.HologramImpl;
 import de.oliver.fancyholograms.listeners.*;
 import de.oliver.fancyholograms.metrics.FHMetrics;
 import de.oliver.fancyholograms.registry.HologramRegistryImpl;
@@ -256,13 +256,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
             return HologramImpl::new;
         }
 
-        return switch (version) {
-            case "1.20.3", "1.20.4" -> Hologram1_20_4::new;
-            case "1.20.2" -> Hologram1_20_2::new;
-            case "1.20", "1.20.1" -> Hologram1_20_1::new;
-            case "1.19.4" -> Hologram1_19_4::new;
-            default -> null;
-        };
+        return null;
     }
 
     private void registerCommands() {
