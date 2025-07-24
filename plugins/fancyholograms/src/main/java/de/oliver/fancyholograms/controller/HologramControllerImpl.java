@@ -86,8 +86,12 @@ public class HologramControllerImpl implements HologramController {
     }
 
     private boolean isWithinVisibilityDistance(@NotNull final Hologram hologram, @NotNull final Player player) {
-        final Location location = hologram.getData().getLocation();
         if (!hologram.getData().getWorldName().equals(player.getWorld().getName())) {
+            return false;
+        }
+
+        final Location location = hologram.getData().getLocation();
+        if (location.getWorld() == null) {
             return false;
         }
 
