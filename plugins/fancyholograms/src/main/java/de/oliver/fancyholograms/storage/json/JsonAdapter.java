@@ -118,6 +118,10 @@ public class JsonAdapter {
     }
 
     public static HologramData fromJson(JsonDataUnion data) {
+        if (!data.hologram_data().worldName().equals(data.hologram_data().location().world())) {
+            throw new IllegalArgumentException("World name in hologram data does not match location world");
+        }
+
         Location loc = new Location(
                 Bukkit.getWorld(data.hologram_data().worldName()),
                 data.hologram_data().location().x(),
