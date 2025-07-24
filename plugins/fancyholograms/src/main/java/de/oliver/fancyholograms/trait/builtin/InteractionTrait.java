@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 @ApiStatus.Experimental
-@HologramTraitClass(traitName = "interaction_trait", defaultTrait = true)
+@HologramTraitClass(traitName = "interaction_trait")
 public class InteractionTrait extends HologramTrait {
 
     private static final FancyNpcsPlugin FN = FancyNpcsPlugin.get();
