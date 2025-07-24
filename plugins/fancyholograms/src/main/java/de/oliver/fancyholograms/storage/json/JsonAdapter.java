@@ -122,7 +122,9 @@ public class JsonAdapter {
                 Bukkit.getWorld(data.hologram_data().worldName()),
                 data.hologram_data().location().x(),
                 data.hologram_data().location().y(),
-                data.hologram_data().location().z()
+                data.hologram_data().location().z(),
+                data.hologram_data().location().yaw(),
+                data.hologram_data().location().pitch()
         );
         Vector3f scale = new Vector3f(
                 data.display_data().scale().x(),
