@@ -163,18 +163,16 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
                     """);
         }
 
-        hologramFactory = resolveHologramFactory();
-        if (hologramFactory == null) {
-            List<String> supportedVersions = new ArrayList<>(List.of("1.19.4", "1.20", "1.20.1", "1.20.2", "1.20.3", "1.20.4"));
-            supportedVersions.addAll(ServerVersion.getSupportedVersions());
-
+        if (ServerVersion.isVersionSupported(Bukkit.getMinecraftVersion())) {
+            hologramFactory = HologramImpl::new;
+        } else {
             fancyLogger.warn("""
                     --------------------------------------------------
                     Unsupported minecraft server version.
                     Please update the server to one of (%s).
                     Disabling the FancyHolograms plugin.
                     --------------------------------------------------
-                    """.formatted(String.join(" / ", supportedVersions)));
+                    """.formatted(String.join(" / ", ServerVersion.getSupportedVersions())));
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
@@ -246,17 +244,6 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         fancyLogger.info("Successfully disabled FancyHolograms version %s".formatted(getDescription().getVersion()));
 
         INSTANCE = null;
-    }
-
-    private @Nullable Function<HologramData, Hologram> resolveHologramFactory() {
-        final var version = Bukkit.getMinecraftVersion();
-
-        // check if the server version is supported by FancySitula
-        if (ServerVersion.isVersionSupported(version)) {
-            return HologramImpl::new;
-        }
-
-        return null;
     }
 
     private void registerCommands() {
