@@ -4,6 +4,7 @@ import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogCheckbox;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogSelect;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogTextField;
@@ -66,6 +67,14 @@ public class DefaultDialogs {
                                                 new DialogSelect.Entry("yellow", "<color:yellow>Yellow</color>", false)
                                         )
                                 )
+                        ),
+                        List.of(
+                                new DialogCheckbox(
+                                        "is_cool",
+                                        "<color:#ff7300>Are you cool?</color>",
+                                        3,
+                                        true
+                                )
                         )
                 ),
                 List.of(
@@ -79,6 +88,13 @@ public class DefaultDialogs {
                                 "<color:#ff4f19>Click to show your fav color :D</color>",
                                 List.of(
                                         new DialogButton.DialogAction("message", "Hi {nickname}, your favorite color is: <color:{color_choice}>{color_choice}</color>")
+                                )
+                        ),
+                        new DialogButton(
+                                "<color:#ffd000>Check if you are cool</color>",
+                                "<color:#ff4f19>Click to know if, you are cool</color>",
+                                List.of(
+                                        new DialogButton.DialogAction("message", "Hi {nickname}, are you cool: {is_cool}")
                                 )
                         )
                 )

@@ -5,6 +5,7 @@ import com.fancyinnovations.fancydialogs.api.Dialog;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogCheckbox;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInput;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogSelect;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogTextField;
@@ -15,10 +16,7 @@ import de.oliver.fancysitula.api.dialogs.actions.FS_DialogActionButton;
 import de.oliver.fancysitula.api.dialogs.actions.FS_DialogCustomAction;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogBody;
 import de.oliver.fancysitula.api.dialogs.body.FS_DialogTextBody;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogInput;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogInputControl;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogSingleOptionInput;
-import de.oliver.fancysitula.api.dialogs.inputs.FS_DialogTextInput;
+import de.oliver.fancysitula.api.dialogs.inputs.*;
 import de.oliver.fancysitula.api.dialogs.types.FS_MultiActionDialog;
 import de.oliver.fancysitula.api.entities.FS_RealPlayer;
 import de.oliver.fancysitula.factories.FancySitula;
@@ -78,6 +76,8 @@ public class DialogImpl extends Dialog {
                             ChatColorHandler.translate(select.getLabel(), player, ParserTypes.placeholder()),
                             !select.getLabel().isEmpty()
                     );
+                } else if (input instanceof DialogCheckbox checkbox) {
+                    control = new FS_DialogBooleanInput(input.getLabel(), checkbox.isInitial(), "true", "false");
                 }
 
                 if (control == null) {
