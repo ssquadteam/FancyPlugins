@@ -85,6 +85,12 @@ public class PacketListenerImpl extends FS_PacketListener {
                             if (v.asString().isPresent()) {
                                 payload.put(k, v.asString().get());
                             }
+                        } else if (v.getType().getName().equals(net.minecraft.nbt.ByteTag.TYPE.getName())) {
+                            if (v.asBoolean().isPresent()) {
+                                payload.put(k, String.valueOf(v.asBoolean().get()));
+                            } else if (v.asByte().isPresent()) {
+                                payload.put(k, String.valueOf(v.asByte().get()));
+                            }
                         } else {
                             payload.put(k, v.toString());
                         }
