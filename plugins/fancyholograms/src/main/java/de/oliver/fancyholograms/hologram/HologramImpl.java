@@ -1,4 +1,4 @@
-package de.oliver.fancyholograms.hologram.version;
+package de.oliver.fancyholograms.hologram;
 
 import com.viaversion.viaversion.api.Via;
 import de.oliver.fancyholograms.api.FancyHolograms;
