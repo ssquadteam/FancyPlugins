@@ -14,6 +14,8 @@ Things that will **not** be migrated automatically:
 The API has changed significantly, so you will have to update your code accordingly.
 Read more about the new API [here](#new-api).
 
+**Important**: We've decided to drop support for the following Minecraft versions: 1.19.4 - 1.20.4! FancyHolograms v3 will only support Minecraft 1.20.5 and newer.
+
 ## New Commands & Translations
 
 In v3, all commands have been rewritten and simplified.
