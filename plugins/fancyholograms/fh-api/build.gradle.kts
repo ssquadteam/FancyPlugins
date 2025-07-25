@@ -18,7 +18,7 @@ dependencies {
 
 tasks {
     shadowJar {
-        relocate("org.lushplugins.chatcolorhandler", "de.oliver.fancyholograms.libs.chatcolorhandler")
+        relocate("org.lushplugins.chatcolorhandler", "com.fancyinnovations.fancyholograms.libs.chatcolorhandler")
 
         archiveClassifier.set("")
     }
