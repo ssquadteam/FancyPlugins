@@ -298,25 +298,37 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
 
         int npcUpdateInterval = config.getNpcUpdateInterval();
         npcThread.scheduleAtFixedRate(() -> {
-            List<Npc> npcs = new ArrayList<>(npcManager.getAllNpcs());
-            for (Npc npc : npcs) {
-                String skinID = npc.getData().getSkinData().getIdentifier();
-                boolean skinUpdated = npc.getData().getSkinData() != null &&
-                        !skinID.isEmpty() &&
-                        SkinUtils.isPlaceholder(skinID);
+            final List<Npc> npcs = new ArrayList<>(npcManager.getAllNpcs());
+            for (final Npc npc : npcs) {
+                try {
+                    boolean shouldUpdate = false;
 
-                boolean displayNameUpdated = npc.getData().getDisplayName() != null &&
-                        !npc.getData().getDisplayName().isEmpty() &&
-                        SkinUtils.isPlaceholder(npc.getData().getDisplayName());
+                    if (npc.getData().getDisplayName() != null && !npc.getData().getDisplayName().isBlank() && SkinUtils.isPlaceholder(npc.getData().getDisplayName())) {
+                        shouldUpdate = true;
+                    }
 
-                if (skinUpdated || displayNameUpdated) {
-                    SkinData skinData = skinManager.getByIdentifier(skinID, npc.getData().getSkinData().getVariant());
-                    skinData.setIdentifier(skinID);
-                    npc.getData().setSkinData(skinData);
+                    if (npc.getData().getSkinData() != null) {
+                        final String skinID = npc.getData().getSkinData().getIdentifier();
+                        if (!skinID.isEmpty() && SkinUtils.isPlaceholder(skinID)) {
+                            final SkinData skinData = skinManager.getByIdentifier(skinID, npc.getData().getSkinData().getVariant());
+                            skinData.setIdentifier(skinID);
+                            npc.getData().setSkinData(skinData);
+                            shouldUpdate = true;
+                        }
+                    }
 
-                    npc.removeForAll();
-                    npc.create();
-                    npc.spawnForAll();
+                    if (shouldUpdate) {
+                        npc.removeForAll();
+                        npc.create();
+                        npc.spawnForAll();
+                    }
+                } catch (final Throwable thr) {
+                    fancyLogger.error(
+                            "An error occurred while updating '" + npc.getData().getName() + "' NPC."
+                                    + System.lineSeparator() + "  (1) " + thr.getClass().getName() + ": " + thr.getMessage()
+                                    + (thr.getCause() != null ? System.lineSeparator() + "  (2) " + thr.getCause().getClass().getName() + ": " + thr.getCause().getMessage() : "")
+                    );
+                    fancyLogger.error(thr);
                 }
             }
         }, 30, npcUpdateInterval, TimeUnit.SECONDS);
