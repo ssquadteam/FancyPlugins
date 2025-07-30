@@ -1,13 +1,15 @@
 package com.fancyinnovations.fancyholograms.controller;
 
-import com.google.common.cache.CacheBuilder;
 import com.fancyinnovations.fancyholograms.api.HologramController;
 import com.fancyinnovations.fancyholograms.api.data.DisplayHologramData;
 import com.fancyinnovations.fancyholograms.api.data.HologramData;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
+import com.google.common.cache.CacheBuilder;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
+import de.oliver.fancynpcs.api.Npc;
+import de.oliver.fancynpcs.api.NpcAttribute;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -16,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
 import java.time.Duration;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class HologramControllerImpl implements HologramController {
@@ -166,12 +169,12 @@ public class HologramControllerImpl implements HologramController {
      * @param hologram The hologram to sync.
      */
     public void syncHologramWithNpc(@NotNull final Hologram hologram) {
-        final var linkedNpcName = hologram.getData().getLinkedNpcName();
+        String linkedNpcName = hologram.getData().getLinkedNpcName();
         if (linkedNpcName == null) {
             return;
         }
 
-        final var npc = FancyNpcsPlugin.get().getNpcManager().getNpc(linkedNpcName);
+        Npc npc = FancyNpcsPlugin.get().getNpcManager().getNpc(linkedNpcName);
         if (npc == null) {
             return;
         }
@@ -180,13 +183,23 @@ public class HologramControllerImpl implements HologramController {
         npc.getData().setShowInTab(false);
         npc.updateForAll();
 
-        final var npcScale = npc.getData().getScale();
+        float npcScale = npc.getData().getScale();
 
         if (hologram.getData() instanceof DisplayHologramData displayData) {
             displayData.setScale(new Vector3f(npcScale));
         }
 
-        final var location = npc.getData().getLocation().clone().add(0, (npc.getEyeHeight() * npcScale) + (0.5 * npcScale), 0);
+        Location location = npc.getData().getLocation().clone().add(0, (npc.getEyeHeight() * npcScale) + (0.5 * npcScale), 0);
+
+        for (Map.Entry<NpcAttribute, String> entry : npc.getData().getAttributes().entrySet()) {
+            NpcAttribute attribute = entry.getKey();
+            String value = entry.getValue();
+
+            if (attribute.getName().equalsIgnoreCase("pose") && value.equalsIgnoreCase("sitting")) {
+                location.subtract(0, 0.5 * npcScale, 0);
+            }
+        }
+
         hologram.getData().setLocation(location);
     }
 }
