@@ -109,6 +109,8 @@ A trait is basically a plugin that can be added to a hologram to add new feature
 Traits have access to the hologram's data and lifecycle, allowing them to modify the hologram's behavior or appearance.
 Each trait can have its own configuration and can be enabled or disabled individually.
 
+You can add / remove traits to holograms using the `/hologram edit (hologram) traits (add|remove) (trait)` command.
+
 There are several built-in traits that come with FancyHolograms v3:
 
 - `multiple_pages_trait`: Allows you to create multiple pages in a hologram
