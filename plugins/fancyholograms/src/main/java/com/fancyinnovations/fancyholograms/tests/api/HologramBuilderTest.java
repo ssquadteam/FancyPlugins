@@ -11,6 +11,7 @@ import com.fancyinnovations.fancyholograms.api.data.property.Visibility;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import com.fancyinnovations.fancyholograms.api.hologram.HologramType;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
+import com.fancyinnovations.fancyholograms.trait.builtin.DebugTrait;
 import de.oliver.plugintests.annotations.FPTest;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -98,6 +99,7 @@ public class HologramBuilderTest {
                 .visibility(Visibility.ALL)
                 .persistent(false)
                 .linkedNpcName("TestNPC")
+                .trait(DebugTrait.class)
                 .billboard(Display.Billboard.FIXED)
                 .scale(3, 5, 6)
                 .translation(1, 2, 3)
@@ -122,6 +124,7 @@ public class HologramBuilderTest {
         expect(data.getVisibility()).toEqual(Visibility.ALL);
         expect(data.isPersistent()).toBe(false);
         expect(data.getLinkedNpcName()).toEqual("TestNPC");
+        expect(data.getTraitTrait().isTraitAttached(DebugTrait.class)).toBe(true);
         expect(data.getBillboard()).toEqual(Display.Billboard.FIXED);
         expect(data.getScale()).toEqual(new Vector3f(3, 5, 6));
         expect(data.getTranslation()).toEqual(new Vector3f(1, 2, 3));

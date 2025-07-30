@@ -4,6 +4,7 @@ import com.fancyinnovations.fancyholograms.api.FancyHolograms;
 import com.fancyinnovations.fancyholograms.api.data.DisplayHologramData;
 import com.fancyinnovations.fancyholograms.api.data.property.Visibility;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
 import org.bukkit.entity.Display;
 import org.joml.Vector3f;
 
@@ -55,6 +56,15 @@ public abstract class HologramBuilder {
 
     public HologramBuilder linkedNpcName(String linkedNpcName) {
         data.setLinkedNpcName(linkedNpcName);
+        return this;
+    }
+
+    /**
+     * Adds a trait to the hologram.
+     */
+    public final HologramBuilder trait(Class<? extends HologramTrait> trait) {
+        data.addTrait(trait);
+
         return this;
     }
 
