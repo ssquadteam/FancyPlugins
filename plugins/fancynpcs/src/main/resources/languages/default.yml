@@ -189,7 +189,7 @@ messages:
   npc_action_add_success: "<dark_gray>› <gray>Action has been added. There are {warningColor}{total}<gray> actions in total."
   npc_action_add_before_success: "<dark_gray>› <gray>Action has been added before action {warningColor}{number}<gray>. There are {warningColor}{total}<gray> actions in total."
   npc_action_add_after_success: "<dark_gray>› <gray>Action has been added after action {warningColor}{number}<gray>. There are {warningColor}{total}<gray> actions in total."
-  npc_action_add_op_warning: "<dark_gray>› {warningColor}This action will give the player operator permissions for the duration of the command execution. This means that the player will have access to all commands and permissions during that time. This can be a security risk if not used carefully, so make sure to use this action only when necessary!"
+  npc_action_add_op_warning: "<dark_gray>› {warningColor}ATTENTION: <gray>The “player_command_as_op” action temporarily grants operator status to a player during command execution. This poses a security risk and should only be used with trusted players and when necessary."
   npc_action_set_success: "<dark_gray>› <gray>Action trigger {warningColor}{number}<gray> has been updated. There are {warningColor}{total}<gray> actions in total."
   npc_action_set_failure: "<dark_gray>› {errorColor}Action trigger {warningColor}{number}{errorColor} does not exist."
   npc_action_move_up_success: "<dark_gray>› <gray>Action trigger {warningColor}{number}<gray> has been moved up."
