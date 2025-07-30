@@ -55,6 +55,7 @@ public class JsonStorage implements HologramStorage {
                 if (u.hologram_data().name().equals(hologram.getName())) {
                     existing[i] = union;
                     jdb.set(hologram.getFilePath(), existing);
+                    hologram.getTraitTrait().save();
                     return;
                 }
             }
@@ -68,6 +69,8 @@ public class JsonStorage implements HologramStorage {
             FancyHolograms.get().getFancyLogger().error("Failed to save hologram " + hologram.getName());
             FancyHolograms.get().getFancyLogger().error(e);
         }
+
+        hologram.getTraitTrait().save();
     }
 
     @Override
@@ -152,6 +155,7 @@ public class JsonStorage implements HologramStorage {
             }
             for (JsonDataUnion union : allTextUnions) {
                 HologramData data = JsonAdapter.fromJson(union);
+                data.getTraitTrait().load();
                 data.setFilePath(path);
                 holograms.add(data);
             }

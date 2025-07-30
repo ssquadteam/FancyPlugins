@@ -80,6 +80,10 @@ public class HologramRegistryImpl implements HologramRegistry {
 
     @Override
     public void clear() {
+        for (Hologram hologram : holograms.values()) {
+            hologram.getData().getTraitTrait().onUnregister();
+        }
+        
         holograms.clear();
     }
 }
