@@ -21,6 +21,7 @@ import com.fancyinnovations.fancyholograms.storage.HologramStorage;
 import com.fancyinnovations.fancyholograms.storage.StorageMigrator;
 import com.fancyinnovations.fancyholograms.storage.json.JsonStorage;
 import com.fancyinnovations.fancyholograms.trait.HologramTraitRegistryImpl;
+import com.fancyinnovations.fancyholograms.trait.builtin.DebugTrait;
 import com.fancyinnovations.fancyholograms.trait.builtin.FileContentTrait;
 import com.fancyinnovations.fancyholograms.trait.builtin.InteractionTrait;
 import com.fancyinnovations.fancyholograms.trait.builtin.MultiplePagesTrait;
@@ -206,6 +207,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         metrics.register();
         metrics.registerLegacy();
 
+        traitRegistry.register(DebugTrait.class);
         traitRegistry.register(MultiplePagesTrait.class);
         traitRegistry.register(FileContentTrait.class);
         traitRegistry.register(InteractionTrait.class);
