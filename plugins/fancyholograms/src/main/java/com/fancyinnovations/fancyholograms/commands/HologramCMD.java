@@ -191,7 +191,7 @@ public final class HologramCMD extends Command {
 
             final var usingNpcs = PluginUtils.isFancyNpcsEnabled();
 
-            List<String> suggestions = new ArrayList<>(Arrays.asList("position", "moveHere", "center", "moveTo", "rotate", "rotatepitch", "billboard", "scale", "translate", "visibilityDistance", "visibility", "shadowRadius", "shadowStrength", "brightness", usingNpcs ? "linkWithNpc" : "", usingNpcs ? "unlinkWithNpc" : ""));
+            List<String> suggestions = new ArrayList<>(Arrays.asList("traits", "position", "moveHere", "center", "moveTo", "rotate", "rotatepitch", "billboard", "scale", "translate", "visibilityDistance", "visibility", "shadowRadius", "shadowStrength", "brightness", usingNpcs ? "linkWithNpc" : "", usingNpcs ? "unlinkWithNpc" : ""));
             suggestions.addAll(type.getCommands());
 
             return suggestions.stream().filter(input -> input.toLowerCase().startsWith(args[2].toLowerCase(Locale.ROOT))).toList();
@@ -199,6 +199,10 @@ public final class HologramCMD extends Command {
 
         if (!args[0].equalsIgnoreCase("edit")) {
             return Collections.emptyList();
+        }
+
+        if (args[2].equalsIgnoreCase("traits")) {
+            return new TraitsCMD().tabcompletion(sender, hologram, args);
         }
 
         // /holo edit [hologram] [option] {tab:contextual}
@@ -349,6 +353,9 @@ public final class HologramCMD extends Command {
         }
 
         return switch (action) {
+            // hologram data
+            case "traits" -> new TraitsCMD().run(player, hologram, args);
+
             // display data
             case "moveto" -> new MoveToCMD().run(player, hologram, args);
             case "rotate" -> new RotateCMD().run(player, hologram, args);

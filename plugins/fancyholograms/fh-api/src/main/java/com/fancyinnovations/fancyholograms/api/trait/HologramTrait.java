@@ -107,7 +107,7 @@ public abstract class HologramTrait {
         throw new IllegalArgumentException("Trait class " + getClass() + " is not annotated with HologramTraitClass");
     }
 
-    protected final boolean isTraitAttached(Class<? extends HologramTrait> trait) {
+    public final boolean isTraitAttached(Class<? extends HologramTrait> trait) {
         for (HologramTrait hologramTrait : hologram.getData().getTraitTrait().getTraits()) {
             if (hologramTrait.getClass().equals(trait)) {
                 return true;
@@ -117,7 +117,7 @@ public abstract class HologramTrait {
         return false;
     }
 
-    protected final <T extends HologramTrait> T getTrait(Class<T> trait) {
+    public final <T extends HologramTrait> T getTrait(Class<T> trait) {
         for (HologramTrait hologramTrait : hologram.getData().getTraitTrait().getTraits()) {
             if (hologramTrait.getClass().equals(trait)) {
                 return (T) hologramTrait;

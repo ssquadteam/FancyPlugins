@@ -28,6 +28,38 @@ public class HologramTraitTrait extends HologramTrait {
         }
     }
 
+    public void addTrait(Class<? extends HologramTrait> trait) {
+        try {
+            HologramTrait newTrait = trait.getConstructor().newInstance();
+            addTrait(newTrait);
+        } catch (Exception e) {
+            logger.error("Failed to instantiate trait " + trait.getSimpleName());
+            logger.error(e);
+        }
+    }
+
+    public void removeTrait(HologramTrait trait) {
+        if (this.traits.remove(trait)) {
+            // Detach the trait from the hologram if it was successfully removed
+            if (hologram != null) {
+                trait.onUnregister();
+                logger.debug("Detached trait " + trait.getClass().getSimpleName() + " from hologram " + hologram.getData().getName());
+            }
+        } else {
+            logger.warn("Trait " + trait.getClass().getSimpleName() + " not found in hologram " + hologram.getData().getName());
+        }
+    }
+
+    public void removeTrait(Class<? extends HologramTrait> trait) {
+        for (HologramTrait t : this.traits) {
+            if (t.getClass().equals(trait)) {
+                removeTrait(t);
+                return;
+            }
+        }
+        logger.warn("Trait " + trait.getSimpleName() + " not found in hologram " + hologram.getData().getName());
+    }
+
     @Override
     public void onAttach() {
         // Attach all default traits to the hologram
