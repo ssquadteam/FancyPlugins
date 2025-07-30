@@ -54,6 +54,7 @@ public final class HologramCMD extends Command {
             <%primary_color%>- /hologram edit <hologram> shadowStrength <value> <dark_gray>- <white>Changes the shadow strength of the hologram
             <%primary_color%>- /hologram edit <hologram> brightness <block|sky> <0-15> <dark_gray>- <white>Changes the brightness of the hologram
             <%primary_color%>- /hologram edit <hologram> updateTextInterval <seconds> <dark_gray>- <white>Sets the interval for updating the text
+            <%primary_color%>- /hologram edit <hologram> traits <add|remove> <trait name> <dark_gray>- <white>Adds or removes a trait to the hologram
             """.replace("%primary_color%", MessageHelper.getPrimaryColor());
 
     private static final String HELP_TEXT_NPCS = """
