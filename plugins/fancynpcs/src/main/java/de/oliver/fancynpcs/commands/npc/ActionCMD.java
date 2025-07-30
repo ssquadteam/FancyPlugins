@@ -13,13 +13,12 @@ import org.incendo.cloud.annotations.Permission;
 import org.incendo.cloud.annotations.suggestion.Suggestions;
 import org.incendo.cloud.context.CommandContext;
 import org.incendo.cloud.context.CommandInput;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public enum ActionCMD {
     INSTANCE; // SINGLETON
@@ -49,6 +48,11 @@ public enum ActionCMD {
                 .translate("npc_action_add_success")
                 .replaceStripped("total", String.valueOf(npc.getData().getActions(trigger).size()))
                 .send(sender);
+
+        if (actionType.getName().equalsIgnoreCase("player_command_as_op")) {
+            translator.translate("npc_action_add_op_warning")
+                    .send(sender);
+        }
     }
 
     @Command("npc action <npc> <trigger> add_before <index> <actionType> [value]")
@@ -77,6 +81,11 @@ public enum ActionCMD {
                 .replaceStripped("number", String.valueOf(index))
                 .replaceStripped("total", String.valueOf(npc.getData().getActions(trigger).size()))
                 .send(sender);
+
+        if (actionType.getName().equalsIgnoreCase("player_command_as_op")) {
+            translator.translate("npc_action_add_op_warning")
+                    .send(sender);
+        }
     }
 
     @Command("npc action <npc> <trigger> add_after <index> <actionType> [value]")
@@ -105,6 +114,11 @@ public enum ActionCMD {
                 .replaceStripped("number", String.valueOf(index))
                 .replaceStripped("total", String.valueOf(npc.getData().getActions(trigger).size()))
                 .send(sender);
+
+        if (actionType.getName().equalsIgnoreCase("player_command_as_op")) {
+            translator.translate("npc_action_add_op_warning")
+                    .send(sender);
+        }
     }
 
     @Command("npc action <npc> <trigger> set <number> <actionType> [value]")
@@ -140,6 +154,11 @@ public enum ActionCMD {
                 .replaceStripped("number", String.valueOf(number))
                 .replaceStripped("total", String.valueOf(npc.getData().getActions(trigger).size()))
                 .send(sender);
+
+        if (actionType.getName().equalsIgnoreCase("player_command_as_op")) {
+            translator.translate("npc_action_add_op_warning")
+                    .send(sender);
+        }
     }
 
     @Command("npc action <npc> <trigger> remove <number>")
