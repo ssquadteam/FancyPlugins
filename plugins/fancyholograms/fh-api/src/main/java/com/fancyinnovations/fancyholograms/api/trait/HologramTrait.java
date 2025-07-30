@@ -1,10 +1,10 @@
 package com.fancyinnovations.fancyholograms.api.trait;
 
-import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import com.fancyinnovations.fancyholograms.api.FancyHolograms;
 import com.fancyinnovations.fancyholograms.api.HologramController;
 import com.fancyinnovations.fancyholograms.api.HologramRegistry;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
+import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import de.oliver.jdb.JDB;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
@@ -108,7 +108,7 @@ public abstract class HologramTrait {
     }
 
     protected final boolean isTraitAttached(Class<? extends HologramTrait> trait) {
-        for (HologramTrait hologramTrait : hologram.getTraitTrait().getTraits()) {
+        for (HologramTrait hologramTrait : hologram.getData().getTraitTrait().getTraits()) {
             if (hologramTrait.getClass().equals(trait)) {
                 return true;
             }
@@ -118,7 +118,7 @@ public abstract class HologramTrait {
     }
 
     protected final <T extends HologramTrait> T getTrait(Class<T> trait) {
-        for (HologramTrait hologramTrait : hologram.getTraitTrait().getTraits()) {
+        for (HologramTrait hologramTrait : hologram.getData().getTraitTrait().getTraits()) {
             if (hologramTrait.getClass().equals(trait)) {
                 return (T) hologramTrait;
             }

@@ -3,6 +3,8 @@ package com.fancyinnovations.fancyholograms.storage.json.model;
 import com.fancyinnovations.fancyholograms.api.data.property.Visibility;
 import com.fancyinnovations.fancyholograms.api.hologram.HologramType;
 
+import java.util.List;
+
 public record JsonHologramData(
         String name,
         HologramType type,
@@ -10,7 +12,8 @@ public record JsonHologramData(
         String worldName,
         Integer visibilityDistance,
         Visibility visibility,
-        String linkedNpcName
+        String linkedNpcName,
+        List<String> traits
 ) {
 }
 

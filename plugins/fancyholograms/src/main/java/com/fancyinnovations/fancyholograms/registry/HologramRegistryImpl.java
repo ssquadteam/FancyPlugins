@@ -26,7 +26,7 @@ public class HologramRegistryImpl implements HologramRegistry {
 
         boolean registered = holograms.putIfAbsent(hologram.getData().getName(), hologram) != null;
 
-        hologram.getTraitTrait().onRegister();
+        hologram.getData().getTraitTrait().onRegister();
 
         return registered;
     }
@@ -41,7 +41,7 @@ public class HologramRegistryImpl implements HologramRegistry {
 
         FancyHologramsPlugin.get().getStorage().delete(hologram.getData());
 
-        hologram.getTraitTrait().onUnregister();
+        hologram.getData().getTraitTrait().onUnregister();
 
         return removed;
     }

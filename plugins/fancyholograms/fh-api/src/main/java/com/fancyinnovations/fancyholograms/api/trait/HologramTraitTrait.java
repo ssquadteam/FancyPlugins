@@ -1,10 +1,8 @@
 package com.fancyinnovations.fancyholograms.api.trait;
 
 import com.fancyinnovations.fancyholograms.api.events.HologramTraitAttachedEvent;
-import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import org.bukkit.entity.Player;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,27 +10,21 @@ import java.util.List;
 public class HologramTraitTrait extends HologramTrait {
 
     private final List<HologramTrait> traits;
-    private Configuration configuration;
 
-    public HologramTraitTrait(Hologram hologram) {
-        this.configuration = new Configuration(new ArrayList<>());
+    public HologramTraitTrait() {
         this.traits = new ArrayList<>();
-        attachHologram(hologram);
     }
 
     public void addTrait(HologramTrait trait) {
-        if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
-            return;
-        }
-
-        trait.attachHologram(hologram);
         this.traits.add(trait);
-        this.configuration.traits().add(trait.getName());
-        try {
-            storage.set(hologram.getData().getName(), configuration);
-        } catch (IOException e) {
-            logger.error("Failed to save configuration for HologramTraitTrait");
-            logger.error(e);
+
+        // Attach the trait to the hologram if hologram already exists
+        if (hologram != null) {
+            if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
+                return;
+            }
+
+            trait.attachHologram(hologram);
         }
     }
 
@@ -47,11 +39,6 @@ public class HologramTraitTrait extends HologramTrait {
 
             try {
                 HologramTrait trait = ti.clazz().getConstructor().newInstance();
-                if (!new HologramTraitAttachedEvent(hologram, trait, true).callEvent()) {
-                    continue;
-                }
-
-                trait.attachHologram(hologram);
                 this.traits.add(trait);
             } catch (Exception e) {
                 logger.error("Failed to instantiate default trait " + ti.name());
@@ -61,38 +48,13 @@ public class HologramTraitTrait extends HologramTrait {
             logger.debug("Attached default trait " + ti.name() + " to hologram " + hologram.getData().getName());
         }
 
-        // Attach all traits that are already attached to the hologram
-        try {
-            configuration = storage.get(hologram.getData().getName(), Configuration.class);
-        } catch (IOException e) {
-            logger.error("Failed to load configuration for HologramTraitTrait");
-            logger.error(e);
-            return;
-        }
-        if (configuration == null) {
-            return;
-        }
-
-        for (String traitName : configuration.traits()) {
-            HologramTraitRegistry.TraitInfo traitInfo = api.getTraitRegistry().getTrait(traitName);
-            if (traitInfo == null) {
-                logger.warn("Trait " + traitName + " is not registered");
+        // Attach all traits that were added to the hologram
+        for (HologramTrait trait : traits) {
+            if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
                 continue;
             }
 
-            try {
-                HologramTrait trait = traitInfo.clazz().getConstructor().newInstance();
-
-                if (!new HologramTraitAttachedEvent(hologram, trait, false).callEvent()) {
-                    return;
-                }
-
-                trait.attachHologram(hologram);
-                this.traits.add(trait);
-            } catch (Exception e) {
-                logger.error("Failed to instantiate trait " + traitName);
-                logger.error(e);
-            }
+            trait.attachHologram(hologram);
         }
     }
 
@@ -156,13 +118,4 @@ public class HologramTraitTrait extends HologramTrait {
         return traits;
     }
 
-    public Configuration getConfiguration() {
-        return configuration;
-    }
-
-    public record Configuration(
-            List<String> traits
-    ) {
-
-    }
 }

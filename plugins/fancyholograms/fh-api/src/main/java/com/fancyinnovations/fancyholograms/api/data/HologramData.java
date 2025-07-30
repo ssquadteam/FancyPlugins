@@ -3,6 +3,8 @@ package com.fancyinnovations.fancyholograms.api.data;
 import com.fancyinnovations.fancyholograms.api.FancyHolograms;
 import com.fancyinnovations.fancyholograms.api.data.property.Visibility;
 import com.fancyinnovations.fancyholograms.api.hologram.HologramType;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTraitTrait;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -11,6 +13,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,7 +23,7 @@ public class HologramData implements YamlData {
     public static final Visibility DEFAULT_VISIBILITY = Visibility.ALL;
     public static final boolean DEFAULT_IS_VISIBLE = true;
     public static final boolean DEFAULT_PERSISTENCE = true;
-
+    protected final @NotNull HologramTraitTrait traitTrait;
     private final String name;
     private final HologramType type;
     private String filePath;
@@ -48,6 +51,7 @@ public class HologramData implements YamlData {
         } else {
             this.worldName = null;
         }
+        this.traitTrait = new HologramTraitTrait();
     }
 
     public @NotNull String getName() {
@@ -189,6 +193,32 @@ public class HologramData implements YamlData {
             setHasChanges(true);
         }
 
+        return this;
+    }
+
+    @ApiStatus.Experimental
+    public @NotNull HologramTraitTrait getTraitTrait() {
+        return traitTrait;
+    }
+
+    @ApiStatus.Experimental
+    public HologramData addTrait(HologramTrait trait) {
+        traitTrait.addTrait(trait);
+        return this;
+    }
+
+    @ApiStatus.Experimental
+    public HologramData addTrait(Class<? extends HologramTrait> traitClass) {
+        HologramTrait trait = null;
+        try {
+            trait = traitClass.getConstructor(null).newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
+            FancyHolograms.get().getFancyLogger().error("Failed to instantiate trait " + traitClass.getSimpleName());
+            FancyHolograms.get().getFancyLogger().error(e);
+        }
+
+        traitTrait.addTrait(trait);
         return this;
     }
 

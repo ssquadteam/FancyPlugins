@@ -1,11 +1,8 @@
 package com.fancyinnovations.fancyholograms.api.hologram;
 
-import com.google.common.collect.Sets;
-import com.fancyinnovations.fancyholograms.api.FancyHolograms;
 import com.fancyinnovations.fancyholograms.api.data.HologramData;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
-import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
-import com.fancyinnovations.fancyholograms.api.trait.HologramTraitTrait;
+import com.google.common.collect.Sets;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.entity.Player;
@@ -14,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lushplugins.chatcolorhandler.ModernChatColorHandler;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -32,13 +28,13 @@ public abstract class Hologram {
 
     protected final @NotNull HologramData data;
     protected final @NotNull Set<UUID> viewers;
-    protected final @NotNull HologramTraitTrait traitTrait;
 
     protected Hologram(@NotNull final HologramData data) {
         this.data = data;
         this.viewers = new HashSet<>();
-        this.traitTrait = new HologramTraitTrait(this);
-        this.data.setOnModify(this.traitTrait::onModify);
+
+        this.data.getTraitTrait().attachHologram(this);
+        this.data.setOnModify(this.data.getTraitTrait()::onModify);
     }
 
     /**
@@ -98,32 +94,6 @@ public abstract class Hologram {
      */
     public final boolean isViewer(@NotNull final UUID player) {
         return this.viewers.contains(player);
-    }
-
-    @ApiStatus.Experimental
-    public @NotNull HologramTraitTrait getTraitTrait() {
-        return traitTrait;
-    }
-
-    @ApiStatus.Experimental
-    public HologramData addTrait(HologramTrait trait) {
-        traitTrait.addTrait(trait);
-        return data;
-    }
-
-    @ApiStatus.Experimental
-    public HologramData addTrait(Class<? extends HologramTrait> traitClass) {
-        HologramTrait trait = null;
-        try {
-            trait = traitClass.getConstructor(null).newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                 NoSuchMethodException e) {
-            FancyHolograms.get().getFancyLogger().error("Failed to instantiate trait " + traitClass.getSimpleName());
-            FancyHolograms.get().getFancyLogger().error(e);
-        }
-
-        traitTrait.addTrait(trait);
-        return data;
     }
 
     public final @NotNull HologramData getData() {

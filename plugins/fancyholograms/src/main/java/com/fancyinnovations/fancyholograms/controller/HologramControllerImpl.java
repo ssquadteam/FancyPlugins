@@ -34,7 +34,7 @@ public class HologramControllerImpl implements HologramController {
             }
 
             hologram.spawnTo(player);
-            hologram.getTraitTrait().onSpawn(player);
+            hologram.getData().getTraitTrait().onSpawn(player);
         }
     }
 
@@ -49,7 +49,7 @@ public class HologramControllerImpl implements HologramController {
             }
 
             hologram.despawnFrom(player);
-            hologram.getTraitTrait().onDespawn(player);
+            hologram.getData().getTraitTrait().onDespawn(player);
         }
     }
 
@@ -65,7 +65,7 @@ public class HologramControllerImpl implements HologramController {
             }
 
             hologram.updateFor(player);
-            hologram.getTraitTrait().onUpdate(player);
+            hologram.getData().getTraitTrait().onUpdate(player);
         }
     }
 

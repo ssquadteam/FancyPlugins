@@ -1,13 +1,13 @@
 package com.fancyinnovations.fancyholograms.hologram;
 
-import com.fancyinnovations.fancyholograms.api.data.HologramData;
-import com.viaversion.viaversion.api.Via;
 import com.fancyinnovations.fancyholograms.api.FancyHolograms;
+import com.fancyinnovations.fancyholograms.api.data.HologramData;
 import com.fancyinnovations.fancyholograms.api.events.HologramDespawnEvent;
 import com.fancyinnovations.fancyholograms.api.events.HologramSpawnEvent;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
 import com.fancyinnovations.fancyholograms.util.PluginUtils;
+import com.viaversion.viaversion.api.Via;
 import de.oliver.fancysitula.api.entities.*;
 import de.oliver.fancysitula.factories.FancySitula;
 import org.bukkit.entity.Player;
@@ -63,7 +63,7 @@ public final class HologramImpl extends Hologram {
         this.viewers.add(player.getUniqueId());
         updateFor(player);
 
-        traitTrait.onSpawn(player);
+        data.getTraitTrait().onSpawn(player);
     }
 
     @Override
@@ -85,7 +85,7 @@ public final class HologramImpl extends Hologram {
 
         this.viewers.remove(player.getUniqueId());
 
-        traitTrait.onDespawn(player);
+        data.getTraitTrait().onDespawn(player);
     }
 
 

@@ -1,6 +1,9 @@
 package com.fancyinnovations.fancyholograms.storage.json;
 
+import com.fancyinnovations.fancyholograms.api.FancyHolograms;
 import com.fancyinnovations.fancyholograms.api.data.HologramData;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTraitRegistry;
 import com.fancyinnovations.fancyholograms.storage.json.model.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,7 +29,10 @@ public class JsonAdapter {
                 data.getWorldName(),
                 data.getVisibilityDistance(),
                 data.getVisibility(),
-                data.getLinkedNpcName()
+                data.getLinkedNpcName(),
+                data.getTraitTrait().getTraits().stream()
+                        .map(HologramTrait::getName)
+                        .toList()
         );
     }
 
@@ -196,6 +202,22 @@ public class JsonAdapter {
                             .setVisibility(data.hologram_data().visibility())
                             .setLinkedNpcName(data.hologram_data().linkedNpcName());
         };
+
+        for (String traitName : data.hologram_data().traits()) {
+            HologramTraitRegistry.TraitInfo traitInfo = FancyHolograms.get().getTraitRegistry().getTrait(traitName);
+            if (traitInfo == null) {
+                FancyHolograms.get().getFancyLogger().warn("Trait " + traitName + " is not registered");
+                continue;
+            }
+
+            try {
+                HologramTrait trait = traitInfo.clazz().getConstructor().newInstance();
+                hologramData.getTraitTrait().addTrait(trait);
+            } catch (Exception e) {
+                FancyHolograms.get().getFancyLogger().error("Failed to instantiate trait " + traitName);
+                FancyHolograms.get().getFancyLogger().error(e);
+            }
+        }
 
         return hologramData;
     }
