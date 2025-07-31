@@ -34,7 +34,7 @@ public enum TurnToPlayerCMD {
         } else if (state == null) {
             // If no state provided, just display current state
             boolean currentState = npc.getData().isTurnToPlayer();
-            translator.translate(currentState ? "npc_turn_to_player_status_true" : "npc_turn_to_player_status_false")
+            translator.translate(currentState ? "npc_turn_to_player_set_true" : "npc_turn_to_player_set_false")
                     .replace("npc", npc.getData().getName())
                     .send(sender);
         }
