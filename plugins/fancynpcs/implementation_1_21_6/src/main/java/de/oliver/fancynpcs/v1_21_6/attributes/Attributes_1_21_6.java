@@ -43,6 +43,7 @@ public class Attributes_1_21_6 {
         attributes.addAll(VexAttributes.getAllAttributes());
         attributes.addAll(ArmadilloAttributes.getAllAttributes());
         attributes.addAll(HappyGhastAttributes.getAllAttributes());
+        attributes.addAll(SnifferAttributes.getAllAttributes());
 
         attributes.addAll(DisplayAttributes.getAllAttributes());
         attributes.addAll(TextDisplayAttributes.getAllAttributes());
