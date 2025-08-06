@@ -44,24 +44,30 @@ public final class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(@NotNull final PlayerJoinEvent event) {
-        for (final var hologram : this.plugin.getHologramsManager().getHolograms()) {
-            hologram.forceHideHologram(event.getPlayer());
-            hologram.forceUpdateShownStateFor(event.getPlayer());
-        }
+        FancyHolograms.get().getHologramThread().submit(() -> {
+            for (final var hologram : this.plugin.getHologramsManager().getHolograms()) {
+                hologram.forceHideHologram(event.getPlayer());
+                hologram.forceUpdateShownStateFor(event.getPlayer());
+            }
+        });
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onTeleport(@NotNull final PlayerTeleportEvent event) {
-        for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
-            hologram.forceUpdateShownStateFor(event.getPlayer());
-        }
+        FancyHolograms.get().getHologramThread().submit(() -> {
+            for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
+                hologram.forceUpdateShownStateFor(event.getPlayer());
+            }
+        });
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onWorldChange(@NotNull final PlayerChangedWorldEvent event) {
-        for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
-            hologram.forceUpdateShownStateFor(event.getPlayer());
-        }
+        FancyHolograms.get().getHologramThread().submit(() -> {
+            for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
+                hologram.forceUpdateShownStateFor(event.getPlayer());
+            }
+        });
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -83,9 +89,11 @@ public final class PlayerListener implements Listener {
                 // Removing player from the map, as they're no longer needed here.
                 loadingResourcePacks.remove(playerUniqueId);
                 // Refreshing holograms as to make sure custom textures are loaded.
-                for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
-                    hologram.refreshHologram(event.getPlayer());
-                }
+                FancyHolograms.get().getHologramThread().submit(() -> {
+                    for (final Hologram hologram : this.plugin.getHologramsManager().getHolograms()) {
+                        hologram.refreshHologram(event.getPlayer());
+                    }
+                });
             }
         }
     }
