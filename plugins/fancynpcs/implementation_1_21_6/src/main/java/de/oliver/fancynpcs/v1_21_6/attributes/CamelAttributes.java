@@ -4,6 +4,7 @@ import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.NpcAttribute;
 import de.oliver.fancynpcs.v1_21_6.ReflectionHelper;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.animal.camel.Camel;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
@@ -32,16 +33,19 @@ public class CamelAttributes {
         Bukkit.getScheduler().runTask(FancyNpcsPlugin.get().getPlugin(), () -> {
             switch (value.toLowerCase()) {
                 case "standing" -> {
+                    camel.setPose(Pose.STANDING);
                     camel.setDashing(false);
-                    camel.standUp();
+                    camel.resetLastPoseChangeTick(camel.level().getGameTime());
                 }
                 case "sitting" -> {
+                    camel.setPose(Pose.SITTING);
                     camel.setDashing(false);
-                    camel.sitDown();
+                    camel.resetLastPoseChangeTick(-camel.level().getGameTime());
                 }
                 case "dashing" -> {
-                    camel.standUpInstantly();
+                    camel.setPose(Pose.STANDING);
                     camel.setDashing(true);
+                    camel.resetLastPoseChangeTick(camel.level().getGameTime());
                 }
             }
         });
