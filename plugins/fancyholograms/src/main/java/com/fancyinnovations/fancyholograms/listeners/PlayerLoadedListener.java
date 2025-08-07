@@ -12,8 +12,10 @@ public class PlayerLoadedListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerLoaded(@NotNull final PlayerClientLoadedWorldEvent event) {
-        for (final Hologram hologram : FancyHolograms.get().getRegistry().getAll()) {
-            FancyHolograms.get().getController().refreshHologram(hologram, event.getPlayer());
-        }
+        FancyHolograms.get().getHologramThread().submit(() -> {
+            for (final Hologram hologram : FancyHolograms.get().getRegistry().getAll()) {
+                FancyHolograms.get().getController().refreshHologram(hologram, event.getPlayer());
+            }
+        });
     }
 }
