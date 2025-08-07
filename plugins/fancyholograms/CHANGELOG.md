@@ -113,9 +113,14 @@ You can add / remove traits to holograms using the `/hologram edit (hologram) tr
 
 There are several built-in traits that come with FancyHolograms v3:
 
-- `multiple_pages_trait`: Allows you to create multiple pages in a hologram
-- `interaction_trait`: Allows you to make clickable holograms (using FancyNpcs)
-- `file_content_trait`: Allows you to display the content of a file in a hologram
+**Interaction Trait**: This trait will spawn an interaction npc (FancyNpcs is required) around the hologram with some actions (can be configured in `plugins/FancyHolograms/data/traits/interaction_trait`)
+
+**Multiple Pages Trait**: This trait adds the ability to have multiple pages in one hologram.  There are three modes to cycle through the pages.
+1. MANUAL mode: you set the page number manually (there will be a command for that in the future)
+2. CYCLE mode: it will go to the next page every X seconds and will start at the first page after the it reaches the last one
+3. RANDOM: it will show a random page every X seconds
+
+**File Content Trait**: This trait will show the contents of a file. You can configure the file path
 
 You can also create your own traits by extending the `HologramTrait` class. 
 View the [Javadocs]() for more information about how the `HologramTrait` class is structured.
