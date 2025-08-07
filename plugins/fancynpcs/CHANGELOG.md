@@ -1,5 +1,4 @@
-- Added support for 1.21.7 & 1.21.8
-- Added `harness` attribute for happy ghasts
-- Fixed comments not being for new feature flags
-- Fixed status code check of Mojang API
-- Improved http handling in FancyAnalytics
+- Fixed placeholder skins not refreshing
+- Send a warning message when using the `player_command_as_op` action
+- Fixed translation for the `turn_to_player` action
+- Fixed camel pose attribute for 1.21.6 - 1.21.8
