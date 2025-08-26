@@ -10,7 +10,7 @@ dependencies {
 
     compileOnly(project(":plugins:fancynpcs:fn-api"))
     compileOnly(project(":libraries:common"))
-    compileOnly("org.lushplugins:ChatColorHandler:5.1.6")
+    compileOnly("org.lushplugins:ChatColorHandler:6.0.0")
 }
 
 
