@@ -1,6 +1,7 @@
 package de.oliver.fancynpcs.skins.uuidcache;
 
 import com.google.gson.Gson;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.jdb.JDB;
 
@@ -34,8 +35,7 @@ public class UUIDFileCache implements UUIDCache {
         try {
             uuids = this.storage.get("uuids", UUIDCacheData[].class);
         } catch (IOException e) {
-            FancyNpcs.getInstance().getFancyLogger().error("Failed to load UUID cache");
-            FancyNpcs.getInstance().getFancyLogger().error(e);
+            FancyNpcs.getInstance().getFancyLogger().error("Failed to load UUID cache", ThrowableProperty.of(e));
             return;
         }
 

@@ -1,6 +1,7 @@
 package de.oliver.fancynpcs.skins.mojang;
 
 import com.google.gson.Gson;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import de.oliver.fancynpcs.api.skins.SkinData;
 import de.oliver.fancynpcs.skins.mineskin.RatelimitException;
@@ -51,8 +52,7 @@ public class MojangAPI {
         } catch (RatelimitException e) {
             throw e; // rethrow
         } catch (Exception e) {
-            FancyNpcsPlugin.get().getFancyLogger().warn("Failed to fetch skin from Mojang API for " + uuid);
-            FancyNpcsPlugin.get().getFancyLogger().warn(e);
+            FancyNpcsPlugin.get().getFancyLogger().warn("Failed to fetch skin from Mojang API for " + uuid, ThrowableProperty.of(e));
             return null;
         }
     }

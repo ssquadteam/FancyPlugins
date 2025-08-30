@@ -10,6 +10,7 @@ import de.oliver.fancyanalytics.logger.LogLevel;
 import de.oliver.fancyanalytics.logger.appender.Appender;
 import de.oliver.fancyanalytics.logger.appender.ConsoleAppender;
 import de.oliver.fancyanalytics.logger.appender.JsonAppender;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancyanalytics.sdk.events.Event;
 import de.oliver.fancylib.FancyLib;
 import de.oliver.fancylib.Metrics;
@@ -323,12 +324,7 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
                         npc.spawnForAll();
                     }
                 } catch (final Throwable thr) {
-                    fancyLogger.error(
-                            "An error occurred while updating '" + npc.getData().getName() + "' NPC."
-                                    + System.lineSeparator() + "  (1) " + thr.getClass().getName() + ": " + thr.getMessage()
-                                    + (thr.getCause() != null ? System.lineSeparator() + "  (2) " + thr.getCause().getClass().getName() + ": " + thr.getCause().getMessage() : "")
-                    );
-                    fancyLogger.error(thr);
+                    fancyLogger.error("An error occurred while updating '" + npc.getData().getName() + "' NPC.", ThrowableProperty.of(thr));
                 }
             }
         }, 30, npcUpdateInterval, TimeUnit.SECONDS);

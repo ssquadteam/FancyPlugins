@@ -27,7 +27,7 @@ public class JsonNametagStore implements NametagStore {
         try {
             jdb.set(context.getName() + "/" + id, nametag);
         } catch (IOException e) {
-            FancyVisuals.getFancyLogger().error("Failed to set nametag for id " + id);
+            FancyVisuals.getFancyLogger().error("Failed to set nametag for id " + id, ThrowableProperty.of(e));
             FancyVisuals.getFancyLogger().error(e);
         }
     }

@@ -1,6 +1,7 @@
 package de.oliver.fancynpcs;
 
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
 import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.NpcAttribute;
@@ -66,8 +67,7 @@ public class NpcManagerImpl implements NpcManager {
         try {
             npcConfig.save(npcConfigFile);
         } catch (IOException e) {
-            logger.error("Could not save npc config file");
-            logger.error(e);
+            logger.error("Could not save npc config file", ThrowableProperty.of(e));
         }
     }
 
@@ -129,8 +129,7 @@ public class NpcManagerImpl implements NpcManager {
             try {
                 npcConfigFile.createNewFile();
             } catch (IOException e) {
-                logger.error("Could not create npc config file");
-                logger.error(e);
+                logger.error("Could not create npc config file", ThrowableProperty.of(e));
                 return;
             }
         }
@@ -441,7 +440,7 @@ public class NpcManagerImpl implements NpcManager {
         this.setLoaded();
     }
 
-    private void setLoaded(){
+    private void setLoaded() {
         isLoaded = true;
         new NpcsLoadedEvent().callEvent();
     }

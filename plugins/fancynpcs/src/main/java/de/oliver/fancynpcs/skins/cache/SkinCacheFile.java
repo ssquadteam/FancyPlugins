@@ -1,5 +1,6 @@
 package de.oliver.fancynpcs.skins.cache;
 
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.fancynpcs.api.skins.SkinData;
 import de.oliver.jdb.JDB;
@@ -23,8 +24,7 @@ public class SkinCacheFile implements SkinCache {
         try {
             skinCacheData = this.storage.get("skins/" + b64ID, SkinCacheData.class);
         } catch (IOException e) {
-            FancyNpcs.getInstance().getFancyLogger().error("Failed to load skin cache");
-            FancyNpcs.getInstance().getFancyLogger().error(e);
+            FancyNpcs.getInstance().getFancyLogger().error("Failed to load skin cache", ThrowableProperty.of(e));
         }
 
         if (skinCacheData == null) {
@@ -47,8 +47,7 @@ public class SkinCacheFile implements SkinCache {
             String b64ID = Base64.getEncoder().encodeToString(skin.getIdentifier().getBytes());
             this.storage.set("skins/" + b64ID, skinCacheData);
         } catch (IOException e) {
-            FancyNpcs.getInstance().getFancyLogger().error("Failed to save skin cache");
-            FancyNpcs.getInstance().getFancyLogger().error(e);
+            FancyNpcs.getInstance().getFancyLogger().error("Failed to save skin cache", ThrowableProperty.of(e));
         }
     }
 
