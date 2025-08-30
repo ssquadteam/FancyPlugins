@@ -4,6 +4,7 @@ import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTraitClass;
 import com.fancyinnovations.fancyholograms.util.PluginUtils;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.NpcAttribute;
@@ -67,8 +68,7 @@ public class InteractionTrait extends HologramTrait {
         try {
             storage.set(hologram.getData().getName(), config);
         } catch (Exception e) {
-            logger.error("Failed to save configuration for InteractionTrait");
-            logger.error(e);
+            logger.error("Failed to save configuration for InteractionTrait", ThrowableProperty.of(e));
         }
     }
 
@@ -77,8 +77,7 @@ public class InteractionTrait extends HologramTrait {
         try {
             config = storage.get(hologram.getData().getName(), Configuration.class);
         } catch (Exception e) {
-            logger.error("Failed to load configuration for InteractionTrait");
-            logger.error(e);
+            logger.error("Failed to load configuration for InteractionTrait", ThrowableProperty.of(e));
         }
         if (config == null) {
             config = new Configuration(List.of(

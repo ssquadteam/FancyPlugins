@@ -74,7 +74,7 @@ dependencies {
     implementation(project(":libraries:config"))
     implementation("de.oliver.FancyAnalytics:java-sdk:0.0.4")
     implementation("de.oliver.FancyAnalytics:mc-api:0.1.9")
-    implementation("de.oliver.FancyAnalytics:logger:0.0.6")
+    implementation("de.oliver.FancyAnalytics:logger:0.0.7")
 
     compileOnly(project(":plugins:fancynpcs:fn-api"))
     compileOnly("org.lushplugins:ChatColorHandler:6.0.0")

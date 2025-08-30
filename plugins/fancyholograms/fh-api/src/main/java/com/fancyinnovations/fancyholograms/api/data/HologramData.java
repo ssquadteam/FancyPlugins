@@ -5,6 +5,7 @@ import com.fancyinnovations.fancyholograms.api.data.property.Visibility;
 import com.fancyinnovations.fancyholograms.api.hologram.HologramType;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTraitTrait;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -214,8 +215,7 @@ public class HologramData implements YamlData {
             trait = traitClass.getConstructor(null).newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException e) {
-            FancyHolograms.get().getFancyLogger().error("Failed to instantiate trait " + traitClass.getSimpleName());
-            FancyHolograms.get().getFancyLogger().error(e);
+            FancyHolograms.get().getFancyLogger().error("Failed to instantiate trait " + traitClass.getSimpleName(), ThrowableProperty.of(e));
         }
 
         traitTrait.addTrait(trait);

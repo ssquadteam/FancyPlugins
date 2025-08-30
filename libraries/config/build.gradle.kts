@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
-    compileOnly("de.oliver.FancyAnalytics:logger:0.0.6")
+    compileOnly("de.oliver.FancyAnalytics:logger:0.0.7")
     compileOnly("org.jetbrains:annotations:26.0.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.2")

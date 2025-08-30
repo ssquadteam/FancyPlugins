@@ -1,6 +1,7 @@
 package com.fancyinnovations.fancyholograms.api.trait;
 
 import com.fancyinnovations.fancyholograms.api.events.HologramTraitAttachedEvent;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -33,8 +34,7 @@ public class HologramTraitTrait extends HologramTrait {
             HologramTrait newTrait = trait.getConstructor().newInstance();
             addTrait(newTrait);
         } catch (Exception e) {
-            logger.error("Failed to instantiate trait " + trait.getSimpleName());
-            logger.error(e);
+            logger.error("Failed to instantiate trait " + trait.getSimpleName(), ThrowableProperty.of(e));
         }
     }
 
@@ -73,8 +73,7 @@ public class HologramTraitTrait extends HologramTrait {
                 HologramTrait trait = ti.clazz().getConstructor().newInstance();
                 this.traits.add(trait);
             } catch (Exception e) {
-                logger.error("Failed to instantiate default trait " + ti.name());
-                logger.error(e);
+                logger.error("Failed to instantiate default trait " + ti.name(), ThrowableProperty.of(e));
             }
 
             logger.debug("Attached default trait " + ti.name() + " to hologram " + hologram.getData().getName());

@@ -1,6 +1,7 @@
 package com.fancyinnovations.fancydialogs.joinedplayerscache;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.jdb.JDB;
 
 import java.util.Collections;
@@ -27,8 +28,7 @@ public class JoinedPlayersCache {
                 FancyDialogsPlugin.get().getFancyLogger().debug("Loaded joined players from file.");
             }
         } catch (Exception e) {
-            FancyDialogsPlugin.get().getFancyLogger().error("Failed to load joined players cache");
-            FancyDialogsPlugin.get().getFancyLogger().error(e);
+            FancyDialogsPlugin.get().getFancyLogger().error("Failed to load joined players cache", ThrowableProperty.of(e));
         }
     }
 
@@ -37,8 +37,7 @@ public class JoinedPlayersCache {
             jdb.set("joined_players", playersJoined);
             FancyDialogsPlugin.get().getFancyLogger().debug("Saved joined players cache");
         } catch (Exception e) {
-            FancyDialogsPlugin.get().getFancyLogger().error("Failed to save joined players cache");
-            FancyDialogsPlugin.get().getFancyLogger().error(e);
+            FancyDialogsPlugin.get().getFancyLogger().error("Failed to save joined players cache", ThrowableProperty.of(e));
         }
     }
 

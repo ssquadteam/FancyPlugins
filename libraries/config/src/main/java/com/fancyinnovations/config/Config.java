@@ -1,6 +1,7 @@
 package com.fancyinnovations.config;
 
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -77,8 +78,7 @@ public class Config {
                     return;
                 }
             } catch (IOException e) {
-                logger.error("Error creating config file: " + configFile.getAbsolutePath());
-                logger.error(e);
+                logger.error("Error creating config file: " + configFile.getAbsolutePath(), ThrowableProperty.of(e));
                 return;
             }
 
@@ -138,8 +138,7 @@ public class Config {
         try {
             yaml.save(configFile);
         } catch (IOException e) {
-            logger.error("Error saving config file: " + configFile.getAbsolutePath());
-            logger.error(e);
+            logger.error("Error saving config file: " + configFile.getAbsolutePath(), ThrowableProperty.of(e));
         }
     }
 }

@@ -7,6 +7,7 @@ import com.fancyinnovations.fancyholograms.api.data.ItemHologramData;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.storage.HologramStorage;
 import com.fancyinnovations.fancyholograms.storage.json.model.JsonDataUnion;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.jdb.JDB;
 
 import java.io.File;
@@ -66,8 +67,7 @@ public class JsonStorage implements HologramStorage {
 
             jdb.set(hologram.getFilePath(), newArray);
         } catch (IOException e) {
-            FancyHolograms.get().getFancyLogger().error("Failed to save hologram " + hologram.getName());
-            FancyHolograms.get().getFancyLogger().error(e);
+            FancyHolograms.get().getFancyLogger().error("Failed to save hologram " + hologram.getName(), ThrowableProperty.of(e));
         }
 
         hologram.getTraitTrait().save();
@@ -101,8 +101,7 @@ public class JsonStorage implements HologramStorage {
 
             jdb.set(hologram.getFilePath(), newArray.toArray(new JsonDataUnion[0]));
         } catch (IOException e) {
-            FancyHolograms.get().getFancyLogger().error("Failed to save hologram " + hologram.getName());
-            FancyHolograms.get().getFancyLogger().error(e);
+            FancyHolograms.get().getFancyLogger().error("Failed to save hologram " + hologram.getName(), ThrowableProperty.of(e));
         }
     }
 
@@ -160,8 +159,7 @@ public class JsonStorage implements HologramStorage {
                 holograms.add(data);
             }
         } catch (IOException e) {
-            FancyHolograms.get().getFancyLogger().error("Failed to load all holograms from " + path);
-            FancyHolograms.get().getFancyLogger().error(e);
+            FancyHolograms.get().getFancyLogger().error("Failed to load all holograms from " + path, ThrowableProperty.of(e));
         }
 
         return holograms;

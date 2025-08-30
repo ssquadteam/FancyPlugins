@@ -2,6 +2,7 @@ package com.fancyinnovations.fancydialogs.storage;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.jdb.JDB;
 
 import java.io.IOException;
@@ -22,8 +23,7 @@ public class JsonDialogStorage implements DialogStorage {
         try {
             jdb.set(dialog.id(), dialog);
         } catch (IOException e) {
-            FancyDialogsPlugin.get().getFancyLogger().error("Failed to save dialog " + dialog.id());
-            FancyDialogsPlugin.get().getFancyLogger().error(e);
+            FancyDialogsPlugin.get().getFancyLogger().error("Failed to save dialog " + dialog.id(), ThrowableProperty.of(e));
         }
     }
 
@@ -46,8 +46,7 @@ public class JsonDialogStorage implements DialogStorage {
         try {
             dialogs = jdb.getAll("", DialogData.class);
         } catch (IOException e) {
-            FancyDialogsPlugin.get().getFancyLogger().error("Failed to load all dialogs");
-            FancyDialogsPlugin.get().getFancyLogger().error(e);
+            FancyDialogsPlugin.get().getFancyLogger().error("Failed to load all dialogs", ThrowableProperty.of(e));
         }
 
         return dialogs;

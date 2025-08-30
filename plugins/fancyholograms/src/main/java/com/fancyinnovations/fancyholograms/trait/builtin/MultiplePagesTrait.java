@@ -3,6 +3,7 @@ package com.fancyinnovations.fancyholograms.trait.builtin;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTraitClass;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.io.IOException;
@@ -54,8 +55,7 @@ public class MultiplePagesTrait extends HologramTrait {
         try {
             storage.set(hologram.getData().getName(), config);
         } catch (IOException e) {
-            logger.error("Failed to save configuration for MultiplePagesTrait");
-            logger.error(e);
+            logger.error("Failed to save configuration for MultiplePagesTrait", ThrowableProperty.of(e));
         }
     }
 
@@ -64,8 +64,7 @@ public class MultiplePagesTrait extends HologramTrait {
         try {
             config = storage.get(hologram.getData().getName(), Configuration.class);
         } catch (IOException e) {
-            logger.error("Failed to load configuration for MultiplePagesTrait");
-            logger.error(e);
+            logger.error("Failed to load configuration for MultiplePagesTrait", ThrowableProperty.of(e));
         }
         if (config == null) {
             config = DEFAULT_CONFIG;

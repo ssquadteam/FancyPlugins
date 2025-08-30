@@ -3,6 +3,7 @@ package com.fancyinnovations.fancyholograms.trait.builtin;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTraitClass;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.io.IOException;
@@ -52,8 +53,7 @@ public class FileContentTrait extends HologramTrait {
             List<String> lines = List.of(content.split("\\r?\\n"));
             ((TextHologramData) hologram.getData()).setText(lines);
         } catch (IOException e) {
-            logger.error("Failed to read file content of: " + config.filePath());
-            logger.error(e);
+            logger.error("Failed to read file content of: " + config.filePath(), ThrowableProperty.of(e));
         }
     }
 
@@ -62,8 +62,7 @@ public class FileContentTrait extends HologramTrait {
         try {
             config = storage.get(hologram.getData().getName(), Configuration.class);
         } catch (IOException e) {
-            logger.error("Failed to load configuration for FileContentTrait");
-            logger.error(e);
+            logger.error("Failed to load configuration for FileContentTrait", ThrowableProperty.of(e));
         }
         if (config == null) {
             config = DEFAULT_CONFIG;
@@ -76,8 +75,7 @@ public class FileContentTrait extends HologramTrait {
         try {
             storage.set(hologram.getData().getName(), config);
         } catch (IOException e) {
-            logger.error("Failed to save configuration for FileContentTrait");
-            logger.error(e);
+            logger.error("Failed to save configuration for FileContentTrait", ThrowableProperty.of(e));
         }
     }
 

@@ -5,6 +5,7 @@ import com.fancyinnovations.fancyholograms.api.data.HologramData;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTraitRegistry;
 import com.fancyinnovations.fancyholograms.storage.json.model.*;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -214,8 +215,7 @@ public class JsonAdapter {
                 HologramTrait trait = traitInfo.clazz().getConstructor().newInstance();
                 hologramData.getTraitTrait().addTrait(trait);
             } catch (Exception e) {
-                FancyHolograms.get().getFancyLogger().error("Failed to instantiate trait " + traitName);
-                FancyHolograms.get().getFancyLogger().error(e);
+                FancyHolograms.get().getFancyLogger().error("Failed to instantiate trait " + traitName, ThrowableProperty.of(e));
             }
         }
 

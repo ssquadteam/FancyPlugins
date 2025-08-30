@@ -6,6 +6,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -96,8 +97,7 @@ public class UUIDFetcher {
 
             return data.id;
         } catch (Exception e) {
-            LOGGER.error("Could not fetch UUID for name: " + name);
-            LOGGER.error(e);
+            LOGGER.error("Could not fetch UUID for name: " + name, ThrowableProperty.of(e));
             return null;
         }
     }
@@ -132,8 +132,7 @@ public class UUIDFetcher {
 
             return currentNameData.name;
         } catch (Exception e) {
-            LOGGER.error("Could not fetch name for uuid: " + uuid);
-            LOGGER.error(e);
+            LOGGER.error("Could not fetch name for uuid: " + uuid, ThrowableProperty.of(e));
             return null;
         }
     }
