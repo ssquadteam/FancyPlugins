@@ -1,5 +1,6 @@
 package de.oliver.fancyvisuals.nametags.store;
 
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancyvisuals.FancyVisuals;
 import de.oliver.fancyvisuals.api.Context;
 import de.oliver.fancyvisuals.api.nametags.Nametag;
@@ -28,7 +29,6 @@ public class JsonNametagStore implements NametagStore {
             jdb.set(context.getName() + "/" + id, nametag);
         } catch (IOException e) {
             FancyVisuals.getFancyLogger().error("Failed to set nametag for id " + id, ThrowableProperty.of(e));
-            FancyVisuals.getFancyLogger().error(e);
         }
     }
 
@@ -39,8 +39,7 @@ public class JsonNametagStore implements NametagStore {
         try {
             nametag = jdb.get(context.getName() + "/" + id, Nametag.class);
         } catch (IOException e) {
-            FancyVisuals.getFancyLogger().error("Failed to get nametag for id " + id);
-            FancyVisuals.getFancyLogger().error(e);
+            FancyVisuals.getFancyLogger().error("Failed to get nametag for id " + id, ThrowableProperty.of(e));
         }
 
         return nametag;
@@ -58,8 +57,7 @@ public class JsonNametagStore implements NametagStore {
         try {
             jdb.getAll(context.getName(), Nametag.class);
         } catch (IOException e) {
-            FancyVisuals.getFancyLogger().error("Failed to get all nametags");
-            FancyVisuals.getFancyLogger().error(e);
+            FancyVisuals.getFancyLogger().error("Failed to get all nametags", ThrowableProperty.of(e));
         }
 
         return nametags;

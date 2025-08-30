@@ -1,5 +1,6 @@
 package de.oliver.fancyvisuals.playerConfig;
 
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 import de.oliver.fancyvisuals.FancyVisuals;
 import de.oliver.jdb.JDB;
 import org.jetbrains.annotations.NotNull;
@@ -37,8 +38,7 @@ public class JsonPlayerConfigStore {
         try {
             playerConfig = jdb.get(uuid.toString(), PlayerConfig.class);
         } catch (Exception e) {
-            FancyVisuals.getFancyLogger().error("Failed to get player config for uuid " + uuid);
-            FancyVisuals.getFancyLogger().error(e);
+            FancyVisuals.getFancyLogger().error("Failed to get player config for uuid " + uuid, ThrowableProperty.of(e));
         }
 
         return playerConfig != null ? playerConfig : getDefaultPlayerConfig();
@@ -54,8 +54,7 @@ public class JsonPlayerConfigStore {
         try {
             jdb.set(uuid.toString(), playerConfig);
         } catch (Exception e) {
-            FancyVisuals.getFancyLogger().error("Failed to set player config for uuid " + uuid);
-            FancyVisuals.getFancyLogger().error(e);
+            FancyVisuals.getFancyLogger().error("Failed to set player config for uuid " + uuid, ThrowableProperty.of(e));
         }
     }
 
@@ -80,8 +79,7 @@ public class JsonPlayerConfigStore {
         try {
             playerConfig = jdb.get("default", PlayerConfig.class);
         } catch (Exception e) {
-            FancyVisuals.getFancyLogger().error("Failed to get default player config");
-            FancyVisuals.getFancyLogger().error(e);
+            FancyVisuals.getFancyLogger().error("Failed to get default player config", ThrowableProperty.of(e));
         }
 
         if (playerConfig == null) {
@@ -90,8 +88,7 @@ public class JsonPlayerConfigStore {
             try {
                 jdb.set("default", DEFAULT_PLAYER_CONFIG);
             } catch (Exception e) {
-                FancyVisuals.getFancyLogger().error("Failed to set default player config");
-                FancyVisuals.getFancyLogger().error(e);
+                FancyVisuals.getFancyLogger().error("Failed to set default player config", ThrowableProperty.of(e));
             }
         }
 
