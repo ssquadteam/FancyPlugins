@@ -63,8 +63,8 @@ dependencies {
     implementation(project(":libraries:config"))
     implementation(project(":libraries:packets"))
     implementation(project(":libraries:packets:packets-api"))
-    implementation("de.oliver.FancyAnalytics:java-sdk:0.0.3")
-    implementation("de.oliver.FancyAnalytics:mc-api:0.1.8")
+    implementation("de.oliver.FancyAnalytics:java-sdk:0.0.4")
+    implementation("de.oliver.FancyAnalytics:mc-api:0.1.9")
     implementation("de.oliver.FancyAnalytics:logger:0.0.6")
 
     implementation("io.github.revxrsal:lamp.common:4.0.0-rc.12")

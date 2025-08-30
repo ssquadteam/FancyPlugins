@@ -37,7 +37,7 @@ dependencies {
     implementation(project(":libraries:packets"))
     implementation(project(":libraries:packets:packets-api"))
     implementation(project(":libraries:config"))
-    compileOnly("de.oliver.FancyAnalytics:mc-api:0.1.8") // loaded in FancyVisualLoader
+    compileOnly("de.oliver.FancyAnalytics:mc-api:0.1.9") // loaded in FancyVisualLoader
     compileOnly("de.oliver.FancyAnalytics:logger:0.0.6") // loaded in FancyVisualLoader
 
     implementation("org.lushplugins:ChatColorHandler:6.0.0")
