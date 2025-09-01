@@ -25,6 +25,7 @@ import de.oliver.fancyholograms.util.PluginUtils;
 import de.oliver.fancylib.FancyLib;
 import de.oliver.fancylib.Metrics;
 import de.oliver.fancylib.VersionConfig;
+import de.oliver.fancylib.logging.PluginMiddleware;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
 import de.oliver.fancylib.versionFetcher.MasterVersionFetcher;
 import de.oliver.fancylib.versionFetcher.VersionFetcher;
@@ -87,7 +88,12 @@ public final class FancyHolograms extends JavaPlugin implements FancyHologramsPl
             }
         }
         JsonAppender jsonAppender = new JsonAppender(false, false, true, logsFile.getPath());
-        this.fancyLogger = new ExtendedFancyLogger("FancyHolograms", LogLevel.INFO, List.of(consoleAppender, jsonAppender), new ArrayList<>());
+        this.fancyLogger = new ExtendedFancyLogger(
+                "FancyHolograms",
+                LogLevel.INFO,
+                List.of(consoleAppender, jsonAppender),
+                List.of(new PluginMiddleware(this))
+        );
     }
 
     public static @NotNull FancyHolograms get() {

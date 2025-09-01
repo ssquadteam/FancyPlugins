@@ -30,6 +30,7 @@ import de.oliver.fancyanalytics.logger.appender.Appender;
 import de.oliver.fancyanalytics.logger.appender.ConsoleAppender;
 import de.oliver.fancyanalytics.logger.appender.JsonAppender;
 import de.oliver.fancylib.VersionConfig;
+import de.oliver.fancylib.logging.PluginMiddleware;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
 import de.oliver.fancylib.translations.Language;
 import de.oliver.fancylib.translations.TextConfig;
@@ -81,7 +82,12 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
             }
         }
         JsonAppender jsonAppender = new JsonAppender(false, false, true, logsFile.getPath());
-        this.fancyLogger = new ExtendedFancyLogger("FancyDialogs", LogLevel.INFO, List.of(consoleAppender, jsonAppender), new ArrayList<>());
+        this.fancyLogger = new ExtendedFancyLogger(
+                "FancyDialogs",
+                LogLevel.INFO,
+                List.of(consoleAppender, jsonAppender),
+                List.of(new PluginMiddleware(this))
+        );
     }
 
     public static FancyDialogsPlugin get() {
