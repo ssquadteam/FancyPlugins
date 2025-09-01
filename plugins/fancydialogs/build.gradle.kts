@@ -55,7 +55,7 @@ dependencies {
     implementation(project(":libraries:jdb"))
     implementation(project(":libraries:config"))
     implementation("de.oliver.FancyAnalytics:java-sdk:0.0.4")
-    implementation("de.oliver.FancyAnalytics:mc-api:0.1.9")
+    implementation("de.oliver.FancyAnalytics:mc-api:0.1.10")
     implementation("de.oliver.FancyAnalytics:logger:0.0.7")
 
     compileOnly(project(":plugins:fancynpcs:fn-api"))
