@@ -44,8 +44,9 @@ allprojects {
         maven(url = "https://repo.papermc.io/repository/maven-public/")
         maven(url = "https://repo.fancyinnovations.com/releases")
         maven(url = "https://repo.lushplugins.org/releases")
-        maven(url = "https://repo.inventivetalent.org/repository/maven-snapshots/")
-        maven(url = "https://repo.extendedclip.com/releases/")
+        maven(url = "https://repo.inventivetalent.org/repository/maven-snapshots/") // for cloud command framework
+        maven(url = "https://repo.extendedclip.com/releases/") // for PlaceholderAPI
+        maven(url = "https://maven.enginehub.org/repo/") // for WorldEdit
     }
 }
 
@@ -85,7 +86,8 @@ dependencies {
     implementation("org.mineskin:java-client-jsoup:3.0.3-SNAPSHOT")
 
     compileOnly("me.clip:placeholderapi:2.11.6")
-    compileOnly("com.intellectualsites.plotsquared:plotsquared-core:7.5.2")
+    compileOnly("com.intellectualsites.plotsquared:plotsquared-core:7.5.6")
+    compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.3.14")
 }
 
 paper {
