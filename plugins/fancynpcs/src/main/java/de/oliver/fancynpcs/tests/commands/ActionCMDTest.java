@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static de.oliver.plugintests.Expectable.expect;
+import static de.oliver.plugintests.utils.Delay.delay;
 
 public class ActionCMDTest {
 
@@ -47,9 +48,11 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " add " + actionType + " " + actionValue)).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(1);
-        expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(actionType);
-        expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(actionValue);
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(1);
+            expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(actionType);
+            expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(actionValue);
+        });
     }
 
     @FPTest(name = "Add action before")
@@ -63,11 +66,13 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " add_before 1 " + actionType + " " + actionValue)).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
-        expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(actionType);
-        expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(actionValue);
-        expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(existingAction.action().getName());
-        expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(existingAction.value());
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
+            expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(actionType);
+            expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(actionValue);
+            expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(existingAction.action().getName());
+            expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(existingAction.value());
+        });
     }
 
     @FPTest(name = "Add action after")
@@ -81,11 +86,13 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " add_after 1 " + actionType + " " + actionValue)).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
-        expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(existingAction.action().getName());
-        expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(existingAction.value());
-        expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(actionType);
-        expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(actionValue);
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
+            expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(existingAction.action().getName());
+            expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(existingAction.value());
+            expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(actionType);
+            expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(actionValue);
+        });
     }
 
     @FPTest(name = "Set action")
@@ -99,9 +106,11 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " set 1 " + actionType + " " + actionValue)).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(1);
-        expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(actionType);
-        expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(actionValue);
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(1);
+            expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(actionType);
+            expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(actionValue);
+        });
     }
 
     @FPTest(name = "Remove action")
@@ -112,7 +121,9 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " remove 1")).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(0);
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(0);
+        });
     }
 
     @FPTest(name = "Move action up")
@@ -124,11 +135,13 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " move_up 2")).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
-        expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(existingAction2.action().getName());
-        expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(existingAction2.value());
-        expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(existingAction1.action().getName());
-        expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(existingAction1.value());
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
+            expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(existingAction2.action().getName());
+            expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(existingAction2.value());
+            expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(existingAction1.action().getName());
+            expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(existingAction1.value());
+        });
     }
 
     @FPTest(name = "Move action down")
@@ -140,11 +153,13 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " move_down 1")).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
-        expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(existingAction2.action().getName());
-        expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(existingAction2.value());
-        expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(existingAction1.action().getName());
-        expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(existingAction1.value());
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(2);
+            expect(npc.getData().getActions(actionTrigger).getFirst().action().getName()).toEqual(existingAction2.action().getName());
+            expect(npc.getData().getActions(actionTrigger).getFirst().value()).toEqual(existingAction2.value());
+            expect(npc.getData().getActions(actionTrigger).getLast().action().getName()).toEqual(existingAction1.action().getName());
+            expect(npc.getData().getActions(actionTrigger).getLast().value()).toEqual(existingAction1.value());
+        });
     }
 
     @FPTest(name = "Clear actions")
@@ -155,7 +170,9 @@ public class ActionCMDTest {
 
         expect(player.performCommand("npc action " + npcName + " " + actionTrigger + " clear")).toBe(true);
 
-        expect(npc.getData().getActions(actionTrigger).size()).toEqual(0);
+        delay(() -> {
+            expect(npc.getData().getActions(actionTrigger).size()).toEqual(0);
+        });
     }
 
 }

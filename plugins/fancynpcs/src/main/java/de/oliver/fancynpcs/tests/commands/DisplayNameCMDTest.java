@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 import static de.oliver.plugintests.Expectable.expect;
+import static de.oliver.plugintests.utils.Delay.delay;
 
 public class DisplayNameCMDTest {
 
@@ -37,19 +38,28 @@ public class DisplayNameCMDTest {
     public void setDisplayName(Player player) {
         String displayName = "<red>Test Display Name";
         expect(player.performCommand("npc displayname " + npcName + " " + displayName)).toBe(true);
-        expect(npc.getData().getDisplayName()).toEqual(displayName);
+
+        delay(() -> {
+            expect(npc.getData().getDisplayName()).toEqual(displayName);
+        });
     }
 
     @FPTest(name = "Set display name to none")
     public void setDisplayNameToNone(Player player) {
         expect(player.performCommand("npc displayname " + npcName + " @none")).toBe(true);
-        expect(npc.getData().getDisplayName()).toEqual("<empty>");
+
+        delay(() -> {
+            expect(npc.getData().getDisplayName()).toEqual("<empty>");
+        });
     }
 
     @FPTest(name = "Set display name to empty")
     public void setDisplayNameToEmpty(Player player) {
         expect(player.performCommand("npc displayname " + npcName + " <empty>")).toBe(true);
-        expect(npc.getData().getDisplayName()).toEqual("<empty>");
+
+        delay(() -> {
+            expect(npc.getData().getDisplayName()).toEqual("<empty>");
+        });
     }
 
     @FPTest(name = "Set display name with blocked command")
@@ -62,7 +72,9 @@ public class DisplayNameCMDTest {
 
         expect(player.performCommand("npc displayname " + npcName + " <click:run_command:'/" + blockedCommand + "'>hello</click>")).toBe(true);
 
-        expect(npc.getData().getDisplayName()).toEqual(npcName);
+        delay(() -> {
+            expect(npc.getData().getDisplayName()).toEqual(npcName);
+        });
     }
 
 }

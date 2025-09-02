@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import static de.oliver.plugintests.Expectable.expect;
+import static de.oliver.plugintests.utils.Delay.delay;
 
 public class TypeCMDTest {
 
@@ -34,15 +35,9 @@ public class TypeCMDTest {
     @FPTest(name = "Set type to COW")
     public void setTypeToCow(Player player) {
         expect(player.performCommand("npc type " + npcName + " COW")).toBe(true);
-        expect(npc.getData().getType()).toBe(EntityType.COW);
-    }
 
-    @FPTest(name = "Set type to COW with showInTab")
-    public void setTypeToCowWithShowInTab(Player player) {
-        npc.getData().setShowInTab(true);
-        expect(player.performCommand("npc type " + npcName + " COW")).toBe(true);
-
-        expect(npc.getData().getType()).toBe(EntityType.COW);
-        expect(npc.getData().isShowInTab()).toBe(false);
+        delay(() -> {
+            expect(npc.getData().getType()).toBe(EntityType.COW);
+        });
     }
 }

@@ -8,6 +8,7 @@ import de.oliver.plugintests.annotations.FPTest;
 import org.bukkit.entity.Player;
 
 import static de.oliver.plugintests.Expectable.expect;
+import static de.oliver.plugintests.utils.Delay.delay;
 
 public class TurnToPlayerCMDTest {
 
@@ -33,7 +34,10 @@ public class TurnToPlayerCMDTest {
     @FPTest(name = "Set turnToPlayer to true")
     public void setTurnToPlayerToTrue(Player player) {
         expect(player.performCommand("npc turn_to_player " + npcName + " true")).toBe(true);
-        expect(npc.getData().isTurnToPlayer()).toBe(true);
+
+        delay(() -> {
+            expect(npc.getData().isTurnToPlayer()).toBe(true);
+        });
     }
 
     @FPTest(name = "Set turnToPlayer to false")
@@ -41,7 +45,10 @@ public class TurnToPlayerCMDTest {
         npc.getData().setTurnToPlayer(true);
 
         expect(player.performCommand("npc turn_to_player " + npcName + " false")).toBe(true);
-        expect(npc.getData().isTurnToPlayer()).toBe(false);
+
+        delay(() -> {
+            expect(npc.getData().isTurnToPlayer()).toBe(false);
+        });
     }
 
 }
