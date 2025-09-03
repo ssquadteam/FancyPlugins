@@ -175,9 +175,9 @@ Permission: ``FancyHolograms.admin``
 Description: Sets the interval for refreshing the text (useful for
 placeholders)<br/>
 Syntax: ``/Hologram edit (hologram) updateTextInterval (ticks | seconds | minutes)``<br/>
-Example ticks:``/Hologram edit (hologram) updateTextInterval (15)``<br/>
-Example seconds:``/Hologram edit (hologram) updateTextInterval (5s)``<br/>
-Example minutes:``/Hologram edit (hologram) updateTextInterval (5m)``<br/>
+Example ticks:``/Hologram edit (hologram) updateTextInterval 15``<br/>
+Example seconds:``/Hologram edit (hologram) updateTextInterval 5s``<br/>
+Example minutes:``/Hologram edit (hologram) updateTextInterval 5m``<br/>
 Permission: ``FancyHolograms.admin``
 
 ### background
