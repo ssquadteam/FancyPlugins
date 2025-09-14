@@ -211,28 +211,36 @@ Learn more about actions and triggers in the [Action System](../tutorials/action
 Adds an action to the specified NPC's trigger.
 
 - **Syntax**: `/npc action (npc) (trigger) add (actionType) [value]`
-- **Permissions**: `fancynpcs.command.npc.action.add`
+- **Permissions**: 
+  - `fancynpcs.command.npc.action.add`
+  - and `fancynpcs.command.npc.action.(actionType)` for the specific action type
 
 ### Add action before
 
 Adds an action before the specified index in the NPC's action list for the given trigger.
 
 - **Syntax**: `/npc action (npc) (trigger) add_before (index) (actionType) [value]`
-- **Permissions**: `fancynpcs.command.npc.action.addBefore`
+- **Permissions**: 
+  - `fancynpcs.command.npc.action.addBefore`
+  - and `fancynpcs.command.npc.action.(actionType)` for the specific action type
 
 ### Add action after
 
 Adds an action after the specified index in the NPC's action list for the given trigger.
 
 - **Syntax**: `/npc action (npc) (trigger) add_after (index) (actionType) [value]`
-- **Permissions**: `fancynpcs.command.npc.action.addAfter`
+- **Permissions**: 
+  - `fancynpcs.command.npc.action.addAfter`
+  - and `fancynpcs.command.npc.action.(actionType)` for the specific action type
 
 ### Set action
 
 Sets an action at the specified number in the NPC's action list for the given trigger.
 
 - **Syntax**: `/npc action (npc) (trigger) set (number) (actionType) [value]`
-- **Permissions**: `fancynpcs.command.npc.action.set`
+- **Permissions**: 
+  - `fancynpcs.command.npc.action.set`
+  - and `fancynpcs.command.npc.action.(actionType)` for the specific action type
 
 ### Remove action
 

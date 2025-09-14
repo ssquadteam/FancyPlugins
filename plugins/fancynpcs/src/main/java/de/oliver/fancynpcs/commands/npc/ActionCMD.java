@@ -34,6 +34,10 @@ public enum ActionCMD {
             final @NotNull NpcAction actionType,
             final @Nullable @Greedy String value
     ) {
+        if (!checkAddPermissions(sender, actionType)) {
+            return;
+        }
+
         if (actionType.requiresValue() && (value == null || value.isEmpty())) {
             translator
                     .translate("npc_action_requires_value")
@@ -65,6 +69,10 @@ public enum ActionCMD {
             final @NotNull NpcAction actionType,
             final @Nullable @Greedy String value
     ) {
+        if (!checkAddPermissions(sender, actionType)) {
+            return;
+        }
+
         if (actionType.requiresValue() && (value == null || value.isEmpty())) {
             translator
                     .translate("npc_action_requires_value")
@@ -98,6 +106,10 @@ public enum ActionCMD {
             final @NotNull NpcAction actionType,
             final @Nullable @Greedy String value
     ) {
+        if (!checkAddPermissions(sender, actionType)) {
+            return;
+        }
+
         if (actionType.requiresValue() && (value == null || value.isEmpty())) {
             translator
                     .translate("npc_action_requires_value")
@@ -131,6 +143,10 @@ public enum ActionCMD {
             final @NotNull NpcAction actionType,
             final @Nullable @Greedy String value
     ) {
+        if (!checkAddPermissions(sender, actionType)) {
+            return;
+        }
+
         if (actionType.requiresValue() && (value == null || value.isEmpty())) {
             translator
                     .translate("npc_action_requires_value")
@@ -301,6 +317,21 @@ public enum ActionCMD {
             newActions.add(new NpcAction.NpcActionData(i + 1, a.action(), a.value()));
         }
         return newActions;
+    }
+
+    private boolean checkAddPermissions(final CommandSender sender, final NpcAction action) {
+        boolean hasGeneralPerms = sender.hasPermission("fancynpcs.command.npc.action.add.*");
+        boolean hasSpecificPerms = sender.hasPermission("fancynpcs.command.npc.action.add." + action.getName());
+
+        if (hasGeneralPerms || hasSpecificPerms) {
+            return true;
+        }
+
+        translator
+                .translate("action_missing_permissions")
+                .send(sender);
+
+        return false;
     }
 
 
