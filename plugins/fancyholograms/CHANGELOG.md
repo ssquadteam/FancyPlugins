@@ -16,16 +16,23 @@ Read more about the new API [here](#new-api).
 
 **Important**: We've decided to drop support for the following Minecraft versions: 1.19.4 - 1.20.4! FancyHolograms v3 will only support Minecraft 1.20.5 and newer.
 
-## New Commands & Translations
+[//]: # (## New Commands & Translations)
 
-In v3, all commands have been rewritten and simplified.
-If you're using FancyNpcs, you will notice that the commands are now more consistent with the FancyNpcs commands.
-It's now using the [Lamp command framework](https://github.com/Revxrsal/Lamp), which allows for better command handling and easier command creation.
+[//]: # ()
+[//]: # (In v3, all commands have been rewritten and simplified.)
 
-Not only the command structure has changed, but also the responses.
-All responses are now configurable. You can find the default responses in the `plugins/FancyHolograms/languages/default.yml` file.
-You can create your own language files in the `plugins/FancyHolograms/languages/` folder, by copying the `default.yml` file and renaming it to your desired language code (e.g. `nl.yml`, `pl.yml`, etc.).
-Remember to set the `language` option in the `config.yml` file to your language code.
+[//]: # (If you're using FancyNpcs, you will notice that the commands are now more consistent with the FancyNpcs commands.)
+
+[//]: # (It's now using the [Lamp command framework]&#40;https://github.com/Revxrsal/Lamp&#41;, which allows for better command handling and easier command creation.)
+
+[//]: # ()
+[//]: # (Not only the command structure has changed, but also the responses.)
+
+[//]: # (All responses are now configurable. You can find the default responses in the `plugins/FancyHolograms/languages/default.yml` file.)
+
+[//]: # (You can create your own language files in the `plugins/FancyHolograms/languages/` folder, by copying the `default.yml` file and renaming it to your desired language code &#40;e.g. `nl.yml`, `pl.yml`, etc.&#41;.)
+
+[//]: # (Remember to set the `language` option in the `config.yml` file to your language code.)
 
 ## New Storage System
 
@@ -98,6 +105,30 @@ The feature flags are now stored in the `config.yml` too. You can find them unde
 
 ## New API
 
+The API has been completely rewritten. 
+You can now create holograms using builders, which allows for better readability and easier creation of holograms.
+With traits, you can extend the functionality of holograms and add new features.
+
+You can view the Javadocs [here](https://repo.fancyinnovations.com/javadoc/snapshots/de/oliver/FancyHolograms/3.0.0-SNAPSHOT.4).
+
+### Getting Started
+
+The v3 API is currently in beta and may change in the future.
+It is only available in the `snapshots` repository for now.
+
+Repository:
+```kotlin
+maven {
+  name = "fancyinnovationsSnapshots"
+  url = uri("https://repo.fancyinnovations.com/snapshots")
+}
+```
+
+Dependency:
+```kotlin
+implementation("de.oliver:FancyHolograms:3.0.0-SNAPSHOT.4")
+```
+
 ### Builders
 
 The new API introduces builders for creating holograms.
@@ -163,12 +194,12 @@ This will spawn the hologram for the specified players if they meet the visibili
 Read more about the trait feature below.
 
 You can also create your own traits by extending the `HologramTrait` class.
-View the [Javadocs]() for more information about how the `HologramTrait` class is structured.
+View the [Javadocs](https://repo.fancyinnovations.com/javadoc/snapshots/de/oliver/FancyHolograms/3.0.0-SNAPSHOT.4) for more information about how the `HologramTrait` class is structured.
 You can override all the `on` methods, as well as the `load` and `save` methods.
 
 Every trait has a `storage` JDB (JSON Database) object that can be used to store data related to the trait.
 The JDB will save the data to the `plugins/FancyHolograms/data/traits/<trait name>/` folder, all paths are relative to this folder.
-You can read more about the JDB [here]().
+You can read more about the JDB [here](https://repo.fancyinnovations.com/javadoc/releases/de/oliver/JDB/1.0.1).
 
 You can view the source code of the built-in traits to see how they are implemented [here](https://github.com/FancyInnovations/FancyPlugins/tree/main/plugins/fancyholograms/src/main/java/com/fancyinnovations/fancyholograms/trait/builtin).
 
