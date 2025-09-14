@@ -13,13 +13,13 @@ import java.util.Collection;
 public interface HologramController {
 
     /**
-     * Shows the hologram to the given players, if they should see it, and it is not already shown to them.
+     * Shows the hologram to the given players if they should see it, and it is not yet shown to them.
      */
     @ApiStatus.Internal
     void showHologramTo(@NotNull final Hologram hologram, @NotNull final Player... players);
 
     /**
-     * Hides the hologram from the given players, if they should not see it, and it is shown to them.
+     * Hides the hologram from the given players if they should not see it, and it is shown to them.
      */
     @ApiStatus.Internal
     void hideHologramFrom(@NotNull final Hologram hologram, @NotNull final Player... players);
@@ -38,7 +38,7 @@ public interface HologramController {
     void updateHologramData(@NotNull final Hologram hologram, @NotNull final Player... players);
 
     /**
-     * Spawns the hologram to the given players, if they should see it, and it is not already shown to them.
+     * Spawns the hologram to the given players if they should see it, and it is not yet shown to them.
      * Hide the hologram from the players that should not see it.
      */
     void refreshHologram(@NotNull final Hologram hologram, @NotNull final Player... players);

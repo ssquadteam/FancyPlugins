@@ -22,6 +22,11 @@ public class BlockHologramBuilder extends HologramBuilder {
         return new BlockHologramBuilder(name, location);
     }
 
+    /**
+     * Sets the block material for the block hologram.
+     *
+     * @param block the material of the block
+     */
     public BlockHologramBuilder block(Material block) {
         ((BlockHologramData) data).setBlock(block);
         return this;

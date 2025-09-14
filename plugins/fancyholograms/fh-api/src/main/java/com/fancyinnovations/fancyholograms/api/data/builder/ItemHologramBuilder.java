@@ -22,6 +22,11 @@ public class ItemHologramBuilder extends HologramBuilder {
         return new ItemHologramBuilder(name, location);
     }
 
+    /**
+     * Sets the item stack for the item hologram.
+     *
+     * @param item the item stack to be displayed
+     */
     public ItemHologramBuilder item(ItemStack item) {
         ((ItemHologramData) data).setItemStack(item);
         return this;
