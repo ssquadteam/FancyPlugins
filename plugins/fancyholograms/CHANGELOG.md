@@ -98,7 +98,79 @@ The feature flags are now stored in the `config.yml` too. You can find them unde
 
 ## New API
 
-TODO
+### Builders
+
+The new API introduces builders for creating holograms.
+There is one builder for each type of hologram: `TextHologramBuilder`, `ItemHologramBuilder` and `BlockHologramBuilder`.
+
+Example of creating a text hologram:
+
+```java
+Hologram hologram = TextHologramBuilder.create("Test", player.getLocation())
+                .text("Custom line")
+                .background(Color.BLACK)
+                .textAlignment(TextDisplay.TextAlignment.LEFT)
+                .textShadow(true)
+                .seeThrough(true)
+                .updateTextInterval(420)
+                .visibilityDistance(42)
+                .visibility(Visibility.ALL)
+                .persistent(false)
+                .linkedNpcName("TestNPC")
+                .trait(DebugTrait.class)
+                .billboard(Display.Billboard.FIXED)
+                .scale(3, 5, 6)
+                .translation(1, 2, 3)
+                .brightness(7, 3)
+                .shadowRadius(0.5f)
+                .shadowStrength(0.7f)
+                .interpolationDuration(100)
+                .build();
+```
+
+You can also call `buildAndRegister()` to create and register the hologram in one go.
+
+### Registry and Controller
+
+The HologramManager has been replaced with a HologramRegistry and a HologramController.
+The HologramRegistry is responsible for registering and unregistering holograms.
+The HologramController is responsible for managing the hologram's visibility and updating the holograms.
+
+You can either register your hologram using the `buildAndRegister()` method in the builder, or you can register it manually using the `HologramRegistry`:
+
+```java
+FancyHolograms.get().getRegistry().register(hologram);
+```
+
+You can get a registered hologram using its name:
+
+```java
+Optional<Hologram> hologram = FancyHolograms.get().getRegistry().get("Test");
+// or
+Hologram hologram = FancyHolograms.get().getRegistry().mustGet("Test");
+```
+
+You can manually refresh the hologram's visibility using the `HologramController`:
+
+```java
+FancyHolograms.get().getController().refreshHologram(hologram, players);
+```
+
+This will spawn the hologram for the specified players if they meet the visibility requirements or despawn it if they don't.
+
+### Traits
+
+Read more about the trait feature below.
+
+You can also create your own traits by extending the `HologramTrait` class.
+View the [Javadocs]() for more information about how the `HologramTrait` class is structured.
+You can override all the `on` methods, as well as the `load` and `save` methods.
+
+Every trait has a `storage` JDB (JSON Database) object that can be used to store data related to the trait.
+The JDB will save the data to the `plugins/FancyHolograms/data/traits/<trait name>/` folder, all paths are relative to this folder.
+You can read more about the JDB [here]().
+
+You can view the source code of the built-in traits to see how they are implemented [here](https://github.com/FancyInnovations/FancyPlugins/tree/main/plugins/fancyholograms/src/main/java/com/fancyinnovations/fancyholograms/trait/builtin).
 
 ## Traits
 
@@ -121,11 +193,3 @@ There are several built-in traits that come with FancyHolograms v3:
 3. RANDOM: it will show a random page every X seconds
 
 **File Content Trait**: This trait will show the contents of a file. You can configure the file path
-
-You can also create your own traits by extending the `HologramTrait` class. 
-View the [Javadocs]() for more information about how the `HologramTrait` class is structured.
-You can override all the `on` methods, as well as the `load` and `save` methods.
-
-Every trait has a `storage` JDB (JSON Database) object that can be used to store data related to the trait.
-The JDB will save the data to the `plugins/FancyHolograms/data/traits/<trait name>/` folder, all paths are relative to this folder.
-You can read more about the JDB [here]().
