@@ -1,3 +1,3 @@
-- Added support for 1.21.7 and 1.21.8
-- Fixed comments not being for new feature flags
-- Improved http handling in FancyAnalytics
+- Improved performance by running more tasks asynchronously
+- Improved logging
+- Added HologramManager#isLoaded method
