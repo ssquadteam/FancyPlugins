@@ -1,4 +1,5 @@
-- Fixed placeholder skins not refreshing
-- Send a warning message when using the `player_command_as_op` action
-- Fixed translation for the `turn_to_player` action
-- Fixed camel pose attribute for 1.21.6 - 1.21.8
+- Added support for MiniPlaceholders v3
+- Added permissions for each action type
+- Improved logging
+- Fixed various bugs for the player-npcs fflag
+- Added an optional flag to disable arm swinging in Npc#update
