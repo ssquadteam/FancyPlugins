@@ -1,12 +1,19 @@
 package com.fancyinnovations.fancyholograms.metrics;
 
+import com.fancyinnovations.fancyholograms.api.HologramRegistry;
+import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
-import com.fancyinnovations.fancyholograms.api.HologramRegistry;
-import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
+import de.oliver.fancyanalytics.sdk.events.Event;
 import de.oliver.fancylib.Metrics;
+import de.oliver.fancylib.VersionConfig;
 import org.bukkit.Bukkit;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.HashMap;
 
 public class FHMetrics {
 
@@ -76,6 +83,47 @@ public class FHMetrics {
         metrics.addCustomChart(new Metrics.SingleLineChart("total_holograms", () -> FancyHologramsPlugin.get().getRegistry().getAll().size()));
         metrics.addCustomChart(new Metrics.SimplePie("update_notifications", () -> FancyHologramsPlugin.get().getFHConfiguration().areVersionNotificationsMuted() ? "No" : "Yes"));
         metrics.addCustomChart(new Metrics.SimplePie("using_development_build", () -> FancyHologramsPlugin.get().getVersionConfig().isDevelopmentBuild() ? "Yes" : "No"));
+    }
+
+    public void checkIfPluginVersionUpdated() {
+        VersionConfig versionConfig = FancyHologramsPlugin.get().getVersionConfig();
+        String currentVersion = versionConfig.getVersion();
+        String lastVersion = "N/A";
+
+        File versionFile = new File(FancyHologramsPlugin.get().getDataFolder(), "version.yml");
+        if (!versionFile.exists()) {
+            try {
+                Files.write(versionFile.toPath(), currentVersion.getBytes());
+            } catch (IOException e) {
+                logger.warn("Could not write version file.");
+                return;
+            }
+        } else {
+            try {
+                lastVersion = new String(Files.readAllBytes(versionFile.toPath()));
+            } catch (IOException e) {
+                logger.warn("Could not read version file.");
+                return;
+            }
+        }
+
+        if (!lastVersion.equals(currentVersion)) {
+            logger.info("Plugin has been updated from version " + lastVersion + " to " + currentVersion + ".");
+            fancyAnalytics.sendEvent(
+                    new Event("PluginVersionUpdated", new HashMap<>())
+                            .withProperty("from", lastVersion)
+                            .withProperty("to", currentVersion)
+                            .withProperty("commit_hash", versionConfig.getCommitHash())
+                            .withProperty("channel", versionConfig.getChannel())
+                            .withProperty("platform", versionConfig.getPlatform())
+            );
+
+            try {
+                Files.write(versionFile.toPath(), currentVersion.getBytes());
+            } catch (IOException e) {
+                logger.warn("Could not write version file.");
+            }
+        }
     }
 
     public FancyAnalyticsAPI getFancyAnalytics() {

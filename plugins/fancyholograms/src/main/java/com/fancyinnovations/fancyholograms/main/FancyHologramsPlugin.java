@@ -212,6 +212,7 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
         metrics.register();
         metrics.registerLegacy();
+        metrics.checkIfPluginVersionUpdated();
 
         traitRegistry.register(DebugTrait.class);
         traitRegistry.register(MultiplePagesTrait.class);
