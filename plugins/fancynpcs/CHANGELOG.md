@@ -3,4 +3,4 @@
 - Improved logging
 - Fixed various bugs for the player-npcs fflag
 - Added an optional flag to disable arm swinging in Npc#update
-- Added HologramManager#isLoaded method
+- Added NpcManager#isLoaded method

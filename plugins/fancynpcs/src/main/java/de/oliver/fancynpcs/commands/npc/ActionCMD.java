@@ -38,6 +38,11 @@ public enum ActionCMD {
             return;
         }
 
+        if (value != null && DisplayNameCMD.INSTANCE.hasBlockedCommands(value)) {
+            translator.translate("command_input_contains_blocked_command").send(sender);
+            return;
+        }
+
         if (actionType.requiresValue() && (value == null || value.isEmpty())) {
             translator
                     .translate("npc_action_requires_value")
@@ -70,6 +75,11 @@ public enum ActionCMD {
             final @Nullable @Greedy String value
     ) {
         if (!checkAddPermissions(sender, actionType)) {
+            return;
+        }
+
+        if (value != null && DisplayNameCMD.INSTANCE.hasBlockedCommands(value)) {
+            translator.translate("command_input_contains_blocked_command").send(sender);
             return;
         }
 
@@ -110,6 +120,11 @@ public enum ActionCMD {
             return;
         }
 
+        if (value != null && DisplayNameCMD.INSTANCE.hasBlockedCommands(value)) {
+            translator.translate("command_input_contains_blocked_command").send(sender);
+            return;
+        }
+
         if (actionType.requiresValue() && (value == null || value.isEmpty())) {
             translator
                     .translate("npc_action_requires_value")
@@ -144,6 +159,11 @@ public enum ActionCMD {
             final @Nullable @Greedy String value
     ) {
         if (!checkAddPermissions(sender, actionType)) {
+            return;
+        }
+
+        if (value != null && DisplayNameCMD.INSTANCE.hasBlockedCommands(value)) {
+            translator.translate("command_input_contains_blocked_command").send(sender);
             return;
         }
 

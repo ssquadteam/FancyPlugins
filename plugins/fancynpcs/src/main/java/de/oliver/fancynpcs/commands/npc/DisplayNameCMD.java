@@ -4,7 +4,6 @@ import de.oliver.fancylib.translations.Translator;
 import de.oliver.fancynpcs.FancyNpcs;
 import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.events.NpcModifyEvent;
-import org.lushplugins.chatcolorhandler.ModernChatColorHandler;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentIteratorType;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -16,19 +15,18 @@ import org.incendo.cloud.annotations.Permission;
 import org.incendo.cloud.annotations.suggestion.Suggestions;
 import org.incendo.cloud.context.CommandContext;
 import org.incendo.cloud.context.CommandInput;
+import org.jetbrains.annotations.NotNull;
+import org.lushplugins.chatcolorhandler.ModernChatColorHandler;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-import org.jetbrains.annotations.NotNull;
-
 public enum DisplayNameCMD {
     INSTANCE; // SINGLETON
 
-    private final Translator translator = FancyNpcs.getInstance().getTranslator();
-
     // Storing in a static variable to avoid re-creating the array each time suggestion is requested.
     private static final List<String> NONE_SUGGESTIONS = List.of("@none");
+    private final Translator translator = FancyNpcs.getInstance().getTranslator();
 
     @Command("npc displayname <npc> <name>")
     @Permission("fancynpcs.command.npc.displayname")
@@ -66,8 +64,10 @@ public enum DisplayNameCMD {
 
     /* UTILITY METHODS */
 
-    /** Returns {@code true} if specified component contains blocked command, {@code false} otherwise. */
-    private boolean hasBlockedCommands(final @NotNull String message) {
+    /**
+     * Returns {@code true} if specified component contains blocked command, {@code false} otherwise.
+     */
+    public boolean hasBlockedCommands(final @NotNull String message) {
         // Converting message to a Component.
         final Component component = ModernChatColorHandler.translate(message);
         // Getting the list of all blocked commands.
