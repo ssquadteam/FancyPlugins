@@ -352,7 +352,7 @@ public class Npc_1_20_6 extends Npc {
                 npcPlayer.getUUID(),
                 profile,
                 data.isShowInTab(),
-                69,
+                0,
                 npcPlayer.gameMode.getGameModeForPlayer(),
                 npcPlayer.getTabListDisplayName(),
                 Optionull.map(npcPlayer.getChatSession(), RemoteChatSession::asData)

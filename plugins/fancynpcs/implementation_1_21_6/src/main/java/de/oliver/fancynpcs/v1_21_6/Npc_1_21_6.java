@@ -393,7 +393,7 @@ public class Npc_1_21_6 extends Npc {
                 npcPlayer.getUUID(),
                 profile,
                 data.isShowInTab(),
-                69,
+                0,
                 npcPlayer.gameMode.getGameModeForPlayer(),
                 npcPlayer.getTabListDisplayName(),
                 true,
