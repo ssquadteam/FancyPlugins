@@ -208,9 +208,8 @@ public class Npc_1_21_5 extends Npc {
         ClientboundRotateHeadPacket rotateHeadPacket = new ClientboundRotateHeadPacket(npc, (byte) (location.getYaw() * angelMultiplier));
         serverPlayer.connection.send(rotateHeadPacket);
     }
-
     @Override
-    public void update(Player player) {
+    public void update(Player player, boolean swingArm) {
         if (npc == null) {
             return;
         }
@@ -288,7 +287,7 @@ public class Npc_1_21_5 extends Npc {
         refreshEntityData(player);
 
         if (data.isSpawnEntity() && data.getLocation() != null) {
-            move(player, true);
+            move(player, swingArm);
         }
 
         NpcAttribute playerPoseAttr = FancyNpcsPlugin.get().getAttributeManager().getAttributeByName(org.bukkit.entity.EntityType.PLAYER, "pose");

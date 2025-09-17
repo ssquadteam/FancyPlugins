@@ -210,7 +210,7 @@ public class Npc_1_21_3 extends Npc {
     }
 
     @Override
-    public void update(Player player) {
+    public void update(Player player, boolean swingArm) {
         if (npc == null) {
             return;
         }
@@ -288,7 +288,7 @@ public class Npc_1_21_3 extends Npc {
         refreshEntityData(player);
 
         if (data.isSpawnEntity() && data.getLocation() != null) {
-            move(player, true);
+            move(player, swingArm);
         }
 
         NpcAttribute playerPoseAttr = FancyNpcsPlugin.get().getAttributeManager().getAttributeByName(org.bukkit.entity.EntityType.PLAYER, "pose");

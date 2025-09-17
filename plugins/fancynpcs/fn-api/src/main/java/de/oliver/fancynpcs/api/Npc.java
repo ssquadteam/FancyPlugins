@@ -118,12 +118,20 @@ public abstract class Npc {
 
     public abstract void lookAt(Player player, Location location);
 
-    public abstract void update(Player player);
+    public abstract void update(Player player, boolean swingArm);
+
+    public void update(Player player) {
+        update(player, true);
+    }
+
+    public void updateForAll(boolean swingArm) {
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            update(onlinePlayer, swingArm);
+        }
+    }
 
     public void updateForAll() {
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            update(onlinePlayer);
-        }
+        updateForAll(true);
     }
 
     public abstract void move(Player player, boolean swingArm);
