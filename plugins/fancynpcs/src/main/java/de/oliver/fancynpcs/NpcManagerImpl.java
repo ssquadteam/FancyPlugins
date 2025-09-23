@@ -52,7 +52,7 @@ public class NpcManagerImpl implements NpcManager {
     }
 
     public void registerNpc(Npc npc) {
-        if (!FancyNpcs.PLAYER_NPCS_FEATURE_FLAG.isEnabled() && npcs.values().stream().anyMatch(npc1 -> npc1.getData().getName().equals(npc.getData().getName()))) {
+        if (!FancyNpcs.PLAYER_NPCS_FEATURE_FLAG.isEnabled() && getAllNpcs().stream().anyMatch(npc1 -> npc1.getData().getName().equals(npc.getData().getName()))) {
             throw new IllegalStateException("An NPC with this name already exists");
         } else {
             npcs.put(npc.getData().getId(), npc);
@@ -74,7 +74,7 @@ public class NpcManagerImpl implements NpcManager {
     @ApiStatus.Internal
     @Override
     public Npc getNpc(int entityId) {
-        for (Npc npc : npcs.values()) {
+        for (Npc npc : getAllNpcs()) {
             if (npc.getEntityId() == entityId) {
                 return npc;
             }
@@ -85,7 +85,7 @@ public class NpcManagerImpl implements NpcManager {
 
     @Override
     public Npc getNpc(String name) {
-        for (Npc npc : npcs.values()) {
+        for (Npc npc : getAllNpcs()) {
             if (npc.getData().getName().equalsIgnoreCase(name)) {
                 return npc;
             }
@@ -96,7 +96,7 @@ public class NpcManagerImpl implements NpcManager {
 
     @Override
     public Npc getNpcById(String id) {
-        for (Npc npc : npcs.values()) {
+        for (Npc npc : getAllNpcs()) {
             if (npc.getData().getId().equals(id)) {
                 return npc;
             }
@@ -107,7 +107,7 @@ public class NpcManagerImpl implements NpcManager {
 
     @Override
     public Npc getNpc(String name, UUID creator) {
-        for (Npc npc : npcs.values()) {
+        for (Npc npc : getAllNpcs()) {
             if (npc.getData().getCreator().equals(creator) && npc.getData().getName().equalsIgnoreCase(name)) {
                 return npc;
             }
@@ -117,7 +117,7 @@ public class NpcManagerImpl implements NpcManager {
     }
 
     public Collection<Npc> getAllNpcs() {
-        return npcs.values();
+        return new ArrayList<>(npcs.values());
     }
 
     public void saveNpcs(boolean force) {
@@ -136,7 +136,7 @@ public class NpcManagerImpl implements NpcManager {
 
         YamlConfiguration npcConfig = YamlConfiguration.loadConfiguration(npcConfigFile);
 
-        for (Npc npc : npcs.values()) {
+        for (Npc npc : getAllNpcs()) {
             if (!npc.isSaveToFile()) {
                 continue;
             }
