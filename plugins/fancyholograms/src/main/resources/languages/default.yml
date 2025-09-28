@@ -10,3 +10,8 @@ messages:
           settings_header: "<dark_gray>› <gray>FancyHolograms settings:"
           experimental_header: "<dark_gray>› <gray>FancyHolograms experimental features:"
           entry: "<dark_gray>› <gray> - {warningColor}{path}<gray>: {value} (default: {default})"
+
+    hologram:
+      edit:
+        trait:
+          not_found: "<dark_gray>› <gray>Could not find trait {warningColor}{name}<gray>."
