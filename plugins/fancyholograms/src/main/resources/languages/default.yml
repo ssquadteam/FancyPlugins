@@ -1,5 +1,8 @@
 language_name: default
 messages:
+  common:
+    hologram:
+      not_found: "<dark_gray>› <gray>Could not find hologram {warningColor}{name}<gray>."
   commands:
     fancyholograms:
       config:

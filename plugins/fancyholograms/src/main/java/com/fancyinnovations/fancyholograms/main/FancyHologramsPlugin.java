@@ -10,6 +10,7 @@ import com.fancyinnovations.fancyholograms.commands.FancyHologramsCMD;
 import com.fancyinnovations.fancyholograms.commands.FancyHologramsTestCMD;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.fancyholograms.ConfigCMD;
+import com.fancyinnovations.fancyholograms.commands.lampCommands.types.HologramCommandType;
 import com.fancyinnovations.fancyholograms.config.FHConfiguration;
 import com.fancyinnovations.fancyholograms.controller.HologramControllerImpl;
 import com.fancyinnovations.fancyholograms.converter.FHConversionRegistry;
@@ -275,10 +276,10 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         Lamp.Builder<BukkitCommandActor> lampBuilder = BukkitLamp
                 .builder(this);
 
-//        lampBuilder.parameterTypes(builder -> {
-//            builder.addParameterType(Dialog.class, DialogCommandType.INSTANCE);
-//        });
-//        lampBuilder.exceptionHandler(DialogCommandType.INSTANCE);
+        lampBuilder.parameterTypes(builder -> {
+            builder.addParameterType(Hologram.class, HologramCommandType.INSTANCE);
+        });
+        lampBuilder.exceptionHandler(HologramCommandType.INSTANCE);
 
         Lamp<BukkitCommandActor> lamp = lampBuilder.build();
 
