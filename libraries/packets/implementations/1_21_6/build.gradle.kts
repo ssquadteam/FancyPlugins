@@ -9,8 +9,6 @@ dependencies {
     paperweight.paperDevBundle("1.21.7-R0.1-SNAPSHOT")
     compileOnly(project(":libraries:packets:packets-api"))
 
-//    compileOnly("com.fancyinnovations:fancymc:1.21.6-pre2")
-
     testImplementation(project(":libraries:packets"))
     testImplementation(project(":libraries:packets:packets-api"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.2")

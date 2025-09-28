@@ -2,6 +2,7 @@ rootProject.name = "minecraft-plugins"
 
 include(":plugins:fancynpcs:")
 include(":plugins:fancynpcs:fn-api")
+include(":plugins:fancynpcs:implementation_1_21_9")
 include(":plugins:fancynpcs:implementation_1_21_6")
 include(":plugins:fancynpcs:implementation_1_21_5")
 include(":plugins:fancynpcs:implementation_1_21_4")
@@ -44,6 +45,7 @@ include(":libraries:packets:implementations:1_21_3")
 include(":libraries:packets:implementations:1_21_4")
 include(":libraries:packets:implementations:1_21_5")
 include(":libraries:packets:implementations:1_21_6")
+include(":libraries:packets:implementations:1_21_9")
 
 
 include(":tools:deployment")
