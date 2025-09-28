@@ -15,3 +15,9 @@ messages:
       edit:
         trait:
           not_found: "<dark_gray>› <gray>Could not find trait {warningColor}{name}<gray>."
+          attach:
+            already_attached: "<dark_gray>› <gray>Hologram {warningColor}{hologram}<gray> already has trait {warningColor}{name}<gray> attached."
+            success: "<dark_gray>› <gray>Successfully attached trait {warningColor}{name}<gray> to hologram {warningColor}{hologram}<gray>."
+          detach:
+            not_attached: "<dark_gray>› <gray>Hologram {warningColor}{hologram}<gray> does not have trait {warningColor}{name}<gray> attached."
+            success: "<dark_gray>› <gray>Successfully detached trait {warningColor}{name}<gray> from hologram {warningColor}{hologram}<gray>."

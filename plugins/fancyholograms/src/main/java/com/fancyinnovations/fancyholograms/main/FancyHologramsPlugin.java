@@ -6,11 +6,14 @@ import com.fancyinnovations.fancyholograms.api.HologramController;
 import com.fancyinnovations.fancyholograms.api.HologramRegistry;
 import com.fancyinnovations.fancyholograms.api.data.HologramData;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTraitRegistry;
 import com.fancyinnovations.fancyholograms.commands.FancyHologramsCMD;
 import com.fancyinnovations.fancyholograms.commands.FancyHologramsTestCMD;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.fancyholograms.ConfigCMD;
+import com.fancyinnovations.fancyholograms.commands.lampCommands.hologram.TraitCMD;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.types.HologramCommandType;
+import com.fancyinnovations.fancyholograms.commands.lampCommands.types.TraitCommandType;
 import com.fancyinnovations.fancyholograms.config.FHConfiguration;
 import com.fancyinnovations.fancyholograms.controller.HologramControllerImpl;
 import com.fancyinnovations.fancyholograms.converter.FHConversionRegistry;
@@ -198,10 +201,9 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
     public void onEnable() {
         new FancyLib(INSTANCE);
 
+        registerCommands();
         if (configuration.useLampCommands()) {
             registerLampCommands();
-        } else {
-            registerCommands();
         }
 
         registerListeners();
@@ -278,12 +280,20 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
         lampBuilder.parameterTypes(builder -> {
             builder.addParameterType(Hologram.class, HologramCommandType.INSTANCE);
+            builder.addParameterType(HologramTraitRegistry.TraitInfo.class, TraitCommandType.INSTANCE);
         });
-        lampBuilder.exceptionHandler(HologramCommandType.INSTANCE);
+
+        lampBuilder
+                .exceptionHandler(HologramCommandType.INSTANCE)
+                .exceptionHandler(TraitCommandType.INSTANCE);
 
         Lamp<BukkitCommandActor> lamp = lampBuilder.build();
 
+        // fancyholograms commands
         lamp.register(ConfigCMD.INSTANCE);
+
+        // hologram commands
+        lamp.register(TraitCMD.INSTANCE);
     }
 
     private void registerListeners() {
