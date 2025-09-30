@@ -1,8 +1,10 @@
 package de.oliver.fancynpcs.v1_21_9;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMultimap;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.datafixers.util.Pair;
 import de.oliver.fancylib.ReflectionUtils;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
@@ -94,10 +96,13 @@ public class Npc_1_21_9 extends Npc {
             String value = data.getSkinData().getTextureValue();
             String signature = data.getSkinData().getTextureSignature();
 
-            ((ServerPlayer) npc).getGameProfile().properties().replaceValues(
-                    "textures",
-                    ImmutableList.of(new Property("textures", value, signature))
+            PropertyMap propertyMap = new PropertyMap(
+                    ImmutableMultimap.of(
+                            "textures",
+                            new Property("textures", value, signature)
+                    )
             );
+            ((ServerPlayer) npc).gameProfile = new GameProfile(uuid, localName, propertyMap);
         }
 
         NpcSpawnEvent spawnEvent = new NpcSpawnEvent(this, player);
