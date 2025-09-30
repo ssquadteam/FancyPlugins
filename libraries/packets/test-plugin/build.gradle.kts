@@ -39,7 +39,7 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.7")
+        minecraftVersion("1.21.9")
     }
 
     shadowJar {
