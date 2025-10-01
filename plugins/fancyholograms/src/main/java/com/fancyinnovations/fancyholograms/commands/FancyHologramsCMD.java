@@ -7,8 +7,10 @@ import com.fancyinnovations.fancyholograms.converter.FHConversionRegistry;
 import com.fancyinnovations.fancyholograms.converter.HologramConversionSession;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancylib.MessageHelper;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -45,7 +47,20 @@ public final class FancyHologramsCMD extends Command {
             case "reload" -> {
                 this.plugin.getFHConfiguration().reload();
 
+                Collection<Hologram> allHolograms = new ArrayList<>(this.plugin.getRegistry().getAll());
+
                 this.plugin.getRegistry().clear();
+
+                for (Hologram hologram : allHolograms) {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        hologram.despawnFrom(player);
+                    }
+
+                    for (UUID viewer : hologram.getViewers()) {
+                        hologram.removeViewer(viewer);
+                    }
+                }
+
                 Collection<HologramData> hologramData = this.plugin.getStorage().loadAll();
                 for (HologramData data : hologramData) {
                     Hologram hologram = this.plugin.getHologramFactory().apply(data);
