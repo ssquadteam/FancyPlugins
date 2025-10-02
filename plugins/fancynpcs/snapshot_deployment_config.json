@@ -24,7 +24,7 @@
     "1.21.8",
     "1.21.9"
   ],
-  "channel": "ALPHA",
+  "channel": "BETA",
   "loaders": [
     "paper",
     "folia"
