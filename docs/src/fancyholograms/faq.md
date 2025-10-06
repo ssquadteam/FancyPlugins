@@ -12,7 +12,7 @@ A separate hologram will need to be created for each line.
 
 ### How to add a blank line?
 
-To add a blank line in a hologram, use `<r>` on a new line.
+To add a blank line in a hologram, use `<reset>` on a new line.
 
 ### How to make holograms clickable?
 
