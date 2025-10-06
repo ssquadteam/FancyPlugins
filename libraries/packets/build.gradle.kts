@@ -18,7 +18,7 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.9-R0.1-SNAPSHOT")
 
     implementation(project(":libraries:packets:packets-api"))
     implementation(project(":libraries:packets:implementations:1_21_9"))
