@@ -73,6 +73,10 @@ Syntax: `send_to_server (server name)`
 
 Example: `/npc action (npc) (trigger) add send_to_server skyblock`
 
+!!!info
+Make sure to set `bungee-plugin-message-channel` to `true` in the velocity.toml config file. Otherwise, this action might not work properly.
+!!!
+
 ### execute_random_action
 
 Picks a random action from the remaining actions in the list and executes it. This action is useful for creating random behavior in NPCs.
