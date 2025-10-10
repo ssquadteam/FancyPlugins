@@ -1,8 +1,0 @@
-- Added support for 1.21.9 and 1.21.10
-- Added support for MiniPlaceholders v3
-- Added permissions for each action type
-- Improved logging
-- Fixed various bugs for the player-npcs fflag
-- Added an optional flag to disable arm swinging in Npc#update
-- Added NpcManager#isLoaded method
-- Regular dev builds are now published to the BETA channel
