@@ -50,7 +50,7 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.9-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
 
     implementation(project(":plugins:fancyholograms:fh-api"))
 
@@ -113,7 +113,7 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.9")
+        minecraftVersion("1.21.10")
 
         downloadPlugins {
             modrinth("fancynpcs", "2.7.0")

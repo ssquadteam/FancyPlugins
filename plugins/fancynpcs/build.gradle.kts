@@ -53,7 +53,7 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.9-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
 
     implementation(project(":plugins:fancynpcs:fn-api"))
     implementation(project(":plugins:fancynpcs:implementation_1_21_9"))
@@ -120,7 +120,7 @@ paper {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.9")
+        minecraftVersion("1.21.10")
 
         downloadPlugins {
 //            hangar("ViaVersion", "5.4.0")
