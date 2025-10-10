@@ -1,3 +1,6 @@
+- Added support for 1.21.9 and 1.21.10
+- Added support for MiniPlaceholders v3
 - Improved performance by running more tasks asynchronously
 - Improved logging
 - Added HologramManager#isLoaded method
+- Regular dev builds are now published to the BETA channel
