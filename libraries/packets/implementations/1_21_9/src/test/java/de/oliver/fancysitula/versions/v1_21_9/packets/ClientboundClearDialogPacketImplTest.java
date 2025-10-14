@@ -1,4 +1,4 @@
-package de.oliver.fancysitula.versions.v1_21_6.packets;
+package de.oliver.fancysitula.versions.v1_21_9.packets;
 
 import org.junit.jupiter.api.Test;
 

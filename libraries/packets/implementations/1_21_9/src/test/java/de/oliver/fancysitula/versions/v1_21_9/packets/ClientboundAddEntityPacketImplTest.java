@@ -1,4 +1,4 @@
-package de.oliver.fancysitula.versions.v1_21_6.packets;
+package de.oliver.fancysitula.versions.v1_21_9.packets;
 
 import de.oliver.fancysitula.api.utils.AngelConverter;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -56,9 +56,9 @@ class ClientboundAddEntityPacketImplTest {
         assert createdPacket.getYRot() == AngelConverter.degreesToVanillaByte(yaw);
         assert createdPacket.getXRot() == AngelConverter.degreesToVanillaByte(pitch);
         assert createdPacket.getYHeadRot() == AngelConverter.degreesToVanillaByte(headYaw);
-        assert createdPacket.getXa() == velocityX;
-        assert createdPacket.getYa() == velocityY;
-        assert createdPacket.getZa() == velocityZ;
+        assert createdPacket.getMovement().x == velocityX;
+        assert createdPacket.getMovement().y == velocityY;
+        assert createdPacket.getMovement().z == velocityZ;
         assert createdPacket.getData() == data;
     }
 }

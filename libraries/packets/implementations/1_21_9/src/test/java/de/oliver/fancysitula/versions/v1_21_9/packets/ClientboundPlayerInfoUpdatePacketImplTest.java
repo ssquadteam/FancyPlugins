@@ -1,4 +1,4 @@
-package de.oliver.fancysitula.versions.v1_21_6.packets;
+package de.oliver.fancysitula.versions.v1_21_9.packets;
 
 import de.oliver.fancysitula.api.packets.FS_ClientboundPlayerInfoUpdatePacket;
 import de.oliver.fancysitula.api.utils.FS_GameProfile;
@@ -47,8 +47,8 @@ class ClientboundPlayerInfoUpdatePacketImplTest {
 
         // check entry
         ClientboundPlayerInfoUpdatePacket.Entry entry = createdPacket.entries().getFirst();
-        assert entry.profile().getId().equals(gameProfile.getUUID());
-        assert entry.profile().getName().equals(gameProfile.getName());
+        assert entry.profile().id().equals(gameProfile.getUUID());
+        assert entry.profile().name().equals(gameProfile.getName());
         assert entry.listed() == listed;
         assert entry.latency() == latency;
         assert entry.gameMode().getId() == gameMode.getId();
