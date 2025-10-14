@@ -70,7 +70,7 @@ dependencies {
     implementation("io.github.revxrsal:lamp.common:4.0.0-rc.12")
     implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.12")
     compileOnly(project(":plugins:fancynpcs:fn-api"))
-    compileOnly("org.lushplugins:ChatColorHandler:6.0.2")
+    compileOnly("org.lushplugins:ChatColorHandler:6.0.3")
     compileOnly("com.viaversion:viaversion-api:5.2.1")
     compileOnly("org.geysermc.floodgate:api:2.2.4-SNAPSHOT")
 }
