@@ -9,7 +9,6 @@ import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import com.fancyinnovations.fancydialogs.commands.DialogCMD;
 import com.fancyinnovations.fancydialogs.commands.FancyDialogsCMD;
 import com.fancyinnovations.fancydialogs.commands.QuickActionsCMD;
-import com.fancyinnovations.fancydialogs.commands.TutorialCMD;
 import com.fancyinnovations.fancydialogs.commands.types.DialogCommandType;
 import com.fancyinnovations.fancydialogs.config.FDFeatureFlags;
 import com.fancyinnovations.fancydialogs.config.FancyDialogsConfig;
@@ -243,7 +242,6 @@ public class FancyDialogsPlugin extends JavaPlugin implements FancyDialogs {
 
         lamp.register(FancyDialogsCMD.INSTANCE);
         lamp.register(DialogCMD.INSTANCE);
-        lamp.register(TutorialCMD.INSTANCE);
         if (!FDFeatureFlags.DISABLE_QUICK_ACTIONS_DIALOG.isEnabled()) {
             lamp.register(QuickActionsCMD.INSTANCE);
         }
