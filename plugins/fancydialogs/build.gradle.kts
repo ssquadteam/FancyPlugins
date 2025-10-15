@@ -14,13 +14,6 @@ plugins {
 
 runPaper.folia.registerTask()
 
-val supportedVersions =
-    listOf(
-        "1.21.6",
-        "1.21.7",
-        "1.21.8",
-    )
-
 allprojects {
     group = "de.oliver"
     version = getFDVersion()
@@ -97,7 +90,7 @@ tasks {
         minecraftVersion("1.21.10")
 
         downloadPlugins {
-            modrinth("fancynpcs", "2.6.0.283")
+            modrinth("fancynpcs", "2.8.0")
 //            hangar("ViaVersion", "5.3.2")
 //            hangar("ViaBackwards", "5.3.2")
 //            modrinth("multiverse-core", "4.3.11")
@@ -168,35 +161,4 @@ val gitCommitMessage: Provider<String> = providers.exec {
 
 fun getFDVersion(): String {
     return file("VERSION").readText()
-}
-
-hangarPublish {
-    publications.register("plugin") {
-        version = project.version as String
-        id = "FancyDialogs"
-        channel = "Alpha"
-
-        apiKey.set(System.getenv("HANGAR_PUBLISH_API_TOKEN"))
-
-        platforms {
-            paper {
-                jar = tasks.shadowJar.flatMap { it.archiveFile }
-                platformVersions = supportedVersions
-            }
-        }
-
-        changelog = gitCommitMessage.get()
-    }
-}
-
-modrinth {
-    token.set(System.getenv("MODRINTH_PUBLISH_API_TOKEN"))
-    projectId.set("FancyDialogs")
-    versionNumber.set(getFDVersion())
-    versionType.set("alpha")
-    uploadFile.set(file("build/libs/${project.name}-${getFDVersion()}.jar"))
-    gameVersions.addAll(supportedVersions)
-    loaders.add("paper")
-    loaders.add("folia")
-    changelog.set(gitCommitMessage.get())
 }
