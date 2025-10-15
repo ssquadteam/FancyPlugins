@@ -21,3 +21,7 @@ messages:
           detach:
             not_attached: "<dark_gray>› <gray>Hologram {warningColor}{hologram}<gray> does not have trait {warningColor}{name}<gray> attached."
             success: "<dark_gray>› <gray>Successfully detached trait {warningColor}{name}<gray> from hologram {warningColor}{hologram}<gray>."
+          list:
+            no_traits: "<dark_gray>› <gray>Hologram {warningColor}{hologram}<gray> does not have any traits attached."
+            header: "<dark_gray>› <gray>Hologram {warningColor}{hologram}<gray> has the following traits attached:"
+            entry: "<dark_gray>› <gray> - {warningColor}{name}<gray>"

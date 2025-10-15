@@ -1,5 +1,6 @@
-**ATTENTION**: v3 is still in development and contains breaking changes and potential bugs. 
-Do not use this version in production at all, or you may lose data!!
+**ATTENTION**: v3 is still in development and contains breaking changes and potential bugs.
+Do not use this version in production at all, or you may lose data!
+Once migrated to v3, you cannot go back to v2 without losing all your holograms and configurations!
 
 Commit hash: %COMMIT_HASH%
 

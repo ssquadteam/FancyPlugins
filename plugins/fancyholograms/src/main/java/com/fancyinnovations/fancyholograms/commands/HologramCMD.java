@@ -202,10 +202,6 @@ public final class HologramCMD extends Command {
             return Collections.emptyList();
         }
 
-        if (args[2].equalsIgnoreCase("traits")) {
-            return new TraitsCMD().tabcompletion(sender, hologram, args);
-        }
-
         // /holo edit [hologram] [option] {tab:contextual}
         if (args.length == 4) {
             final var suggestions = switch (args[2].toLowerCase(Locale.ROOT)) {
@@ -354,9 +350,6 @@ public final class HologramCMD extends Command {
         }
 
         return switch (action) {
-            // hologram data
-            case "traits" -> new TraitsCMD().run(player, hologram, args);
-
             // display data
             case "moveto" -> new MoveToCMD().run(player, hologram, args);
             case "rotate" -> new RotateCMD().run(player, hologram, args);

@@ -1,7 +1,9 @@
 package com.fancyinnovations.fancyholograms.commands.lampCommands.hologram;
 
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTrait;
 import com.fancyinnovations.fancyholograms.api.trait.HologramTraitRegistry;
+import com.fancyinnovations.fancyholograms.api.trait.HologramTraitTrait;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.suggestions.AttachedTraitsSuggestion;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.suggestions.DetachedTraitsSuggestion;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
@@ -69,5 +71,31 @@ public final class TraitCMD {
                 .replace("hologram", hologram.getData().getName())
                 .replace("name", trait.name())
                 .send(actor.sender());
+    }
+
+    @Command("hologram-new edit <hologram> trait list")
+    @Description("Lists all attached traits of a hologram")
+    @CommandPermission("fancyholograms.commands.hologram.trait.list")
+    public void list(
+            final @NotNull BukkitCommandActor actor,
+            final @NotNull Hologram hologram
+    ) {
+        HologramTraitTrait traitTrait = hologram.getData().getTraitTrait();
+        if (traitTrait.getTraits().isEmpty()) {
+            translator.translate("commands.hologram.edit.trait.list.no_traits")
+                    .replace("hologram", hologram.getData().getName())
+                    .send(actor.sender());
+            return;
+        }
+
+        translator.translate("commands.hologram.edit.trait.list.header")
+                .replace("hologram", hologram.getData().getName())
+                .send(actor.sender());
+
+        for (HologramTrait trait : traitTrait.getTraits()) {
+            translator.translate("commands.hologram.edit.trait.list.entry")
+                    .replace("name", trait.getName())
+                    .send(actor.sender());
+        }
     }
 }

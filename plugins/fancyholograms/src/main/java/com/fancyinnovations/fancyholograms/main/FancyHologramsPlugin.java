@@ -212,6 +212,17 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         if (!configuration.areVersionNotificationsMuted()) {
             checkForNewerVersion();
         }
+        if (versionConfig.isDevelopmentBuild()) {
+            fancyLogger.warn("""
+                    
+                    --------------------------------------------------
+                    You are using a development build of FancyHolograms.
+                    Please be aware that there might be bugs in this version.
+                    If you find any bugs, please report them on our discord server (https://discord.gg/ZUgYCEJUEx).
+                    Read more about the risks of using a development build here: https://docs.fancyinnovations.com/development-guidelines/versioning/#build
+                    --------------------------------------------------
+                    """);
+        }
 
         metrics.register();
         metrics.registerLegacy();
