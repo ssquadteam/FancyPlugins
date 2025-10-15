@@ -4,6 +4,7 @@ import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,12 +13,12 @@ public abstract class Dialog {
 
     protected String id;
     protected DialogData data;
-    protected Set<UUID> viewers;
+    protected Map<UUID, Long> viewers; // uuid, time opened
 
     public Dialog(String id, DialogData data) {
         this.id = id;
         this.data = data;
-        this.viewers = ConcurrentHashMap.newKeySet();
+        this.viewers = new ConcurrentHashMap<>();
     }
 
     public Dialog() {
@@ -49,7 +50,7 @@ public abstract class Dialog {
      * @return a set of UUIDs of players who have this dialog opened
      */
     public Set<UUID> getViewers() {
-        return Set.copyOf(viewers);
+        return Set.copyOf(viewers.keySet());
     }
 
     /**
@@ -58,13 +59,7 @@ public abstract class Dialog {
      * @param uuid of the player to check
      * @return true if the dialog is opened for the player, false otherwise
      */
-    public boolean isOpenedFor(UUID uuid) {
-        if (uuid == null) {
-            return false;
-        }
-
-        return viewers.contains(uuid);
-    }
+    public abstract boolean isOpenedFor(UUID uuid);
 
     /***
      * Checks if the dialog is opened for a specific player.
@@ -85,7 +80,8 @@ public abstract class Dialog {
         if (player == null) {
             return;
         }
-        viewers.add(player.getUniqueId());
+
+        viewers.put(player.getUniqueId(), System.currentTimeMillis());
     }
 
     @ApiStatus.Internal
@@ -93,6 +89,7 @@ public abstract class Dialog {
         if (player == null) {
             return;
         }
+
         viewers.remove(player.getUniqueId());
     }
 }

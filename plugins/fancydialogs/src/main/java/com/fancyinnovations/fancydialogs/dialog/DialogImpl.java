@@ -27,6 +27,7 @@ import org.lushplugins.chatcolorhandler.parsers.ParserTypes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class DialogImpl extends Dialog {
 
@@ -177,7 +178,7 @@ public class DialogImpl extends Dialog {
                 .createShowDialogPacket(buildForPlayer(player))
                 .send(new FS_RealPlayer(player));
 
-        viewers.add(player.getUniqueId());
+        addViewer(player);
 
         FancyDialogsPlugin.get().getFancyLogger().debug("Opened dialog " + id + " for player " + player.getName());
     }
@@ -188,9 +189,29 @@ public class DialogImpl extends Dialog {
                 .createClearDialogPacket()
                 .send(new FS_RealPlayer(player));
 
-        viewers.remove(player.getUniqueId());
+        removeViewer(player);
 
         FancyDialogsPlugin.get().getFancyLogger().debug("Closed dialog " + id + " for player " + player.getName());
+    }
+
+    @Override
+    public boolean isOpenedFor(UUID uuid) {
+        if (uuid == null) {
+            return false;
+        }
+
+        if (!viewers.containsKey(uuid)) {
+            return false;
+        }
+
+        long openedAt = viewers.get(uuid);
+        long now = System.currentTimeMillis();
+        if (now - openedAt > FancyDialogsPlugin.get().getFancyDialogsConfig().getCloseTimeout()) {
+            viewers.remove(uuid);
+            return false;
+        }
+
+        return true;
     }
 
 }

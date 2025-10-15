@@ -12,6 +12,7 @@ public class FancyDialogsConfig {
     private String logLevel;
     private String welcomeDialogID;
     private String quickActionsDialogID;
+    private long closeTimeout;
 
     public void load() {
         FancyDialogsPlugin.get().reloadConfig();
@@ -28,6 +29,9 @@ public class FancyDialogsConfig {
 
         quickActionsDialogID = (String) ConfigHelper.getOrDefault(config, "quick_actions_dialog_id", "quick_actions");
         config.setInlineComments("quick_actions_dialog_id", List.of("The ID of the dialog which will be shown to the player when they click on the quick actions key ('G' by default)."));
+
+        closeTimeout = (long) ConfigHelper.getOrDefault(config, "close_timeout", 1000L * 60 * 2);
+        config.setInlineComments("close_timeout", List.of("The time in milliseconds after which a dialog will be considered closed if the player does not respond. 0 means no timeout."));
 
         FancyDialogsPlugin.get().saveConfig();
     }
@@ -46,5 +50,9 @@ public class FancyDialogsConfig {
 
     public String getQuickActionsDialogID() {
         return quickActionsDialogID;
+    }
+
+    public long getCloseTimeout() {
+        return closeTimeout;
     }
 }
