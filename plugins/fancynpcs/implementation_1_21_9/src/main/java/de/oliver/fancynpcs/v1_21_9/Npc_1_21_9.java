@@ -387,11 +387,19 @@ public class Npc_1_21_9 extends Npc {
     }
 
     private ClientboundPlayerInfoUpdatePacket.Entry getEntry(ServerPlayer npcPlayer, ServerPlayer viewer) {
-        GameProfile profile = npcPlayer.getGameProfile();
-        if (data.isMirrorSkin()) {
-            GameProfile newProfile = new GameProfile(profile.id(), profile.name());
-            newProfile.properties().putAll(viewer.getGameProfile().properties());
-            profile = newProfile;
+        GameProfile profile;
+        if (!data.isMirrorSkin()) {
+            profile = npcPlayer.getGameProfile();
+        } else {
+            Property textures = viewer.getGameProfile().properties().get("textures").iterator().next();
+
+            PropertyMap propertyMap = new PropertyMap(
+                    ImmutableMultimap.of(
+                            "textures",
+                            new Property("textures", textures.value(), textures.signature())
+                    )
+            );
+            profile = new GameProfile(uuid, localName, propertyMap);
         }
 
         return new ClientboundPlayerInfoUpdatePacket.Entry(
