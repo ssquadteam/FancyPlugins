@@ -1,6 +1,7 @@
 package com.fancyinnovations.fancyholograms.metrics;
 
 import com.fancyinnovations.fancyholograms.api.HologramRegistry;
+import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancyanalytics.api.FancyAnalyticsAPI;
 import de.oliver.fancyanalytics.api.metrics.MetricSupplier;
@@ -72,6 +73,14 @@ public class FHMetrics {
             return registry.getAll().stream()
                     .map(h -> h.getData().getType().name())
                     .toArray(String[]::new);
+        }));
+
+        fancyAnalytics.registerNumberMetric(new MetricSupplier<>("total_amount_attached_traits", () -> {
+            double total = 0d;
+            for (Hologram hologram : registry.getAll()) {
+                total += hologram.getData().getTraitTrait().getTraits().size();
+            }
+            return total;
         }));
 
 
