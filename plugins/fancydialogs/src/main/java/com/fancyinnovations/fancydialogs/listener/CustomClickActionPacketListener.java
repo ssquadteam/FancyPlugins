@@ -46,7 +46,7 @@ public class CustomClickActionPacketListener {
         String dialogId = packet.getPayload().get("dialog_id");
         String buttonId = packet.getPayload().get("button_id");
 
-        new DialogButtonClickedEvent(event.player(), dialogId, buttonId).callEvent();
+        new DialogButtonClickedEvent(event.player(), dialogId, buttonId, packet.getPayload()).callEvent();
 
         if (dialogId.startsWith("confirmation_dialog_")) {
             return; // Ignore confirmation dialog actions, handled separately

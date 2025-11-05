@@ -1,9 +1,12 @@
-package com.fancyinnovations.fancydialogs.api;
+package com.fancyinnovations.fancydialogs.api.dialogs;
 
+import com.fancyinnovations.fancydialogs.api.Dialog;
+import com.fancyinnovations.fancydialogs.api.FancyDialogs;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogButton;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;
+import com.fancyinnovations.fancydialogs.api.data.inputs.DialogTextField;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -19,6 +22,7 @@ public class ConfirmationDialog {
     private String title = "Confirmation";
     private String confirmText = "Yes";
     private String cancelText = "No";
+    private String expectedUserInput = "";
 
     private Dialog dialog;
     private String confirmButtonId;
@@ -28,7 +32,7 @@ public class ConfirmationDialog {
     private Runnable onCancel = () -> {
     };
 
-    public ConfirmationDialog(String title, String question, String confirmText, String cancelText, Runnable onConfirm, Runnable onCancel) {
+    public ConfirmationDialog(String title, String question, String confirmText, String cancelText, String expectedUserInput, Runnable onConfirm, Runnable onCancel) {
         this.title = title;
         this.question = question;
         this.confirmText = confirmText;
@@ -53,6 +57,11 @@ public class ConfirmationDialog {
 
     public ConfirmationDialog withCancelText(String cancelText) {
         this.cancelText = cancelText;
+        return this;
+    }
+
+    public ConfirmationDialog withExpectedUserInput(String expectedUserInput) {
+        this.expectedUserInput = expectedUserInput;
         return this;
     }
 
@@ -103,16 +112,29 @@ public class ConfirmationDialog {
         );
         this.cancelButtonId = cancelBtn.id();
 
+        List<DialogTextField> textFields = null;
+        if (expectedUserInput != null && !expectedUserInput.isEmpty()) {
+            textFields = List.of(
+                    new DialogTextField("confirmation_user_input", "Type '" + expectedUserInput + "' to confirm", 0, "", expectedUserInput.length(), 1)
+            );
+        }
+
+        DialogInputs inputs = new DialogInputs(textFields, null, null);
+
         DialogData dialogData = new DialogData(
                 "confirmation_dialog_" + UUID.randomUUID(),
                 title,
                 false,
                 List.of(new DialogBodyData(question)),
-                DialogInputs.EMPTY, // TODO add support for confirmation phrases
+                inputs,
                 List.of(confirmBtn, cancelBtn)
         );
 
         this.dialog = FancyDialogs.get().createDialog(dialogData);
+    }
+
+    public String getExpectedUserInput() {
+        return expectedUserInput;
     }
 
     public String getConfirmButtonId() {

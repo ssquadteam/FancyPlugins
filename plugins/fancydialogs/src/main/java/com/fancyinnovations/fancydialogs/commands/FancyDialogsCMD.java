@@ -1,9 +1,9 @@
 package com.fancyinnovations.fancydialogs.commands;
 
 import com.fancyinnovations.fancydialogs.FancyDialogsPlugin;
-import com.fancyinnovations.fancydialogs.api.ConfirmationDialog;
 import com.fancyinnovations.fancydialogs.api.Dialog;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
+import com.fancyinnovations.fancydialogs.api.dialogs.ConfirmationDialog;
 import com.fancyinnovations.fancydialogs.config.FancyDialogsConfig;
 import com.fancyinnovations.fancydialogs.dialog.DialogImpl;
 import de.oliver.fancyanalytics.logger.LogLevel;

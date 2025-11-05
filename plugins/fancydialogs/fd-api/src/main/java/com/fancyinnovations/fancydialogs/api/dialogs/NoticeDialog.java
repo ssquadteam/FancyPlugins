@@ -1,5 +1,6 @@
-package com.fancyinnovations.fancydialogs.api;
+package com.fancyinnovations.fancydialogs.api.dialogs;
 
+import com.fancyinnovations.fancydialogs.api.FancyDialogs;
 import com.fancyinnovations.fancydialogs.api.data.DialogBodyData;
 import com.fancyinnovations.fancydialogs.api.data.DialogData;
 import com.fancyinnovations.fancydialogs.api.data.inputs.DialogInputs;

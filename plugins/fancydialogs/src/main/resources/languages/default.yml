@@ -2,6 +2,8 @@ language_name: default
 messages:
   dialog:
     not_found: "<dark_gray>› <gray>Dialog {warningColor}{id}<gray> is not registered."
+  confirmation_dialog:
+    input_mismatch: "<dark_gray>› <gray>Your input does not match the expected phrase."
   commands:
     dialog:
       open:
