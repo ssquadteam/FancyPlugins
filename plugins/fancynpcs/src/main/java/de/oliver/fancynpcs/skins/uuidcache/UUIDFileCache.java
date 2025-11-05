@@ -55,6 +55,10 @@ public class UUIDFileCache implements UUIDCache {
     }
 
     private void loadMinecraftUsercache() {
+        if (!FancyNpcs.USE_MINECRAFT_USERCACHE_FEATURE_FLAG.isEnabled()) {
+            return;
+        }
+
         if (!usercacheFile.exists()) {
             FancyNpcs.getInstance().getFancyLogger().debug("Minecraft usercache file does not exist, skipping load.");
             return;
