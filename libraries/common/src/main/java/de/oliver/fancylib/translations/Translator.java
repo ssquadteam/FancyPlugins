@@ -57,6 +57,9 @@ public class Translator {
         }
 
         for (File langFile : langFiles) {
+            if (!langFile.isFile()) {
+                continue;
+            }
             if (!langFile.getName().endsWith(".yml")) {
                 continue;
             }
