@@ -2,6 +2,8 @@ package com.fancyinnovations.fancyholograms.api.hologram;
 
 import com.fancyinnovations.fancyholograms.api.data.HologramData;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Sets;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
@@ -12,10 +14,9 @@ import org.jetbrains.annotations.Nullable;
 import org.lushplugins.chatcolorhandler.ModernChatColorHandler;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 
@@ -32,30 +33,12 @@ public abstract class Hologram {
     protected final @NotNull Set<UUID> viewers;
 
     private static final UUID NULL_PLAYER_KEY = new UUID(0L, 0L);
-    private static final long TEXT_CACHE_TTL_MS = 1000L;
-    private static final long TEXT_CACHE_MAX_AGE_MS = 5 * 60 * 1000L;
-    private static final int TEXT_CACHE_MAX_SIZE = 512;
 
-    private final Map<UUID, CacheEntry> cachedTextPerPlayer = new ConcurrentHashMap<>();
+    private final Cache<UUID, Component> cachedTextPerPlayer = CacheBuilder.newBuilder()
+            .expireAfterWrite(1, TimeUnit.SECONDS)
+            .maximumSize(512)
+            .build();
     private String lastRawText = "";
-
-    private static final class CacheEntry {
-        private final Component text;
-        private final long lastUpdated;
-
-        private CacheEntry(Component text, long lastUpdated) {
-            this.text = text;
-            this.lastUpdated = lastUpdated;
-        }
-
-        private Component getText() {
-            return text;
-        }
-
-        private long getLastUpdated() {
-            return lastUpdated;
-        }
-    }
 
     protected Hologram(@NotNull final HologramData data) {
         this.data = data;
@@ -187,7 +170,7 @@ public abstract class Hologram {
      * Caching rules:
      * - Cache key: player UUID (or NULL_PLAYER_KEY for non-player specific text)
      * - Cache is invalidated whenever the underlying text changes via the onModify callback.
-     * - Per-entry timestamps are used to validate freshness against TEXT_CACHE_TTL_MS.
+     * - Uses Guava Cache with 1 second TTL and a maximum size of 512 entries.
      *
      * @param player the player to get the placeholders for, or null if no placeholders should be replaced
      * @return the text shown in the hologram
@@ -198,40 +181,21 @@ public abstract class Hologram {
         }
 
         final String rawText = String.join("\n", textData.getText());
-        final long now = System.currentTimeMillis();
 
-        if (player != null) {
-            final UUID uuid = player.getUniqueId();
-
-            if (rawText.equals(lastRawText)) {
-                final CacheEntry entry = cachedTextPerPlayer.get(uuid);
-                if (entry != null && now - entry.getLastUpdated() <= TEXT_CACHE_TTL_MS) {
-                    return entry.getText();
-                }
-            } else {
-                clearTextCache();
-            }
-
-            final Component translated = ModernChatColorHandler.translate(rawText, player);
-            cachedTextPerPlayer.put(uuid, new CacheEntry(translated, now));
+        if (!rawText.equals(lastRawText)) {
+            cachedTextPerPlayer.invalidateAll();
             lastRawText = rawText;
-            evictStaleCacheEntries(now);
-            return translated;
         }
 
-        if (rawText.equals(lastRawText)) {
-            final CacheEntry entry = cachedTextPerPlayer.get(NULL_PLAYER_KEY);
-            if (entry != null && now - entry.getLastUpdated() <= TEXT_CACHE_TTL_MS) {
-                return entry.getText();
-            }
-        } else {
-            clearTextCache();
+        final UUID cacheKey = (player != null) ? player.getUniqueId() : NULL_PLAYER_KEY;
+
+        final Component cached = cachedTextPerPlayer.getIfPresent(cacheKey);
+        if (cached != null) {
+            return cached;
         }
 
-        final Component translated = ModernChatColorHandler.translate(rawText, (Player) null);
-        cachedTextPerPlayer.put(NULL_PLAYER_KEY, new CacheEntry(translated, now));
-        lastRawText = rawText;
-        evictStaleCacheEntries(now);
+        final Component translated = ModernChatColorHandler.translate(rawText, player);
+        cachedTextPerPlayer.put(cacheKey, translated);
         return translated;
     }
 
@@ -241,40 +205,8 @@ public abstract class Hologram {
      */
     @ApiStatus.Internal
     public void clearTextCache() {
-        cachedTextPerPlayer.clear();
+        cachedTextPerPlayer.invalidateAll();
         lastRawText = "";
     }
 
-    /**
-     * Evicts cache entries that are either:
-     * - No longer associated with an active viewer (except the null-player key), or
-     * - Older than TEXT_CACHE_MAX_AGE_MS, or
-     * - Beyond TEXT_CACHE_MAX_SIZE entries (dropping the oldest first).
-     *
-     * This prevents unbounded growth and stale data for players who are no longer viewing.
-     */
-    private void evictStaleCacheEntries(long now) {
-        cachedTextPerPlayer.entrySet().removeIf(entry -> {
-            final UUID uuid = entry.getKey();
-            final CacheEntry cacheEntry = entry.getValue();
-
-            if (uuid.equals(NULL_PLAYER_KEY)) {
-                return now - cacheEntry.getLastUpdated() > TEXT_CACHE_MAX_AGE_MS;
-            }
-
-            if (!viewers.contains(uuid)) {
-                return true;
-            }
-
-            return now - cacheEntry.getLastUpdated() > TEXT_CACHE_MAX_AGE_MS;
-        });
-
-        if (cachedTextPerPlayer.size() > TEXT_CACHE_MAX_SIZE) {
-            cachedTextPerPlayer.entrySet().stream()
-                    .sorted((a, b) -> Long.compare(a.getValue().getLastUpdated(), b.getValue().getLastUpdated()))
-                    .limit(cachedTextPerPlayer.size() - TEXT_CACHE_MAX_SIZE)
-                    .map(Map.Entry::getKey)
-                    .forEach(cachedTextPerPlayer::remove);
-        }
-    }
 }
