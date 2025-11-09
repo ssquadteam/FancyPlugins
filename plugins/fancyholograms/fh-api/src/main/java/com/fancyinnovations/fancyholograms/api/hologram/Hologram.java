@@ -12,8 +12,10 @@ import org.jetbrains.annotations.Nullable;
 import org.lushplugins.chatcolorhandler.ModernChatColorHandler;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 
@@ -29,12 +31,47 @@ public abstract class Hologram {
     protected final @NotNull HologramData data;
     protected final @NotNull Set<UUID> viewers;
 
+    private static final UUID NULL_PLAYER_KEY = new UUID(0L, 0L);
+    private static final long TEXT_CACHE_TTL_MS = 1000L;
+    private static final long TEXT_CACHE_MAX_AGE_MS = 5 * 60 * 1000L;
+    private static final int TEXT_CACHE_MAX_SIZE = 512;
+
+    private final Map<UUID, CacheEntry> cachedTextPerPlayer = new ConcurrentHashMap<>();
+    private String lastRawText = "";
+
+    private static final class CacheEntry {
+        private final Component text;
+        private final long lastUpdated;
+
+        private CacheEntry(Component text, long lastUpdated) {
+            this.text = text;
+            this.lastUpdated = lastUpdated;
+        }
+
+        private Component getText() {
+            return text;
+        }
+
+        private long getLastUpdated() {
+            return lastUpdated;
+        }
+    }
+
     protected Hologram(@NotNull final HologramData data) {
         this.data = data;
         this.viewers = new HashSet<>();
 
         this.data.getTraitTrait().attachHologram(this);
-        this.data.setOnModify(this.data.getTraitTrait()::onModify);
+
+        final Runnable traitOnModify = this.data.getTraitTrait()::onModify;
+        final Runnable clearCache = this::clearTextCache;
+
+        final Runnable composedOnModify = () -> {
+            clearCache.run();
+            traitOnModify.run();
+        };
+
+        this.data.setOnModify(composedOnModify);
     }
 
     /**
@@ -145,8 +182,12 @@ public abstract class Hologram {
     }
 
     /**
-     * Gets the text shown in the hologram. If a player is specified, placeholders in the text are replaced
-     * with their corresponding values for the player.
+     * Gets the text shown in the hologram, with lightweight caching to reduce repeated placeholder and color processing.
+     *
+     * Caching rules:
+     * - Cache key: player UUID (or NULL_PLAYER_KEY for non-player specific text)
+     * - Cache is invalidated whenever the underlying text changes via the onModify callback.
+     * - Per-entry timestamps are used to validate freshness against TEXT_CACHE_TTL_MS.
      *
      * @param player the player to get the placeholders for, or null if no placeholders should be replaced
      * @return the text shown in the hologram
@@ -156,8 +197,84 @@ public abstract class Hologram {
             return null;
         }
 
-        var text = String.join("\n", textData.getText());
+        final String rawText = String.join("\n", textData.getText());
+        final long now = System.currentTimeMillis();
 
-        return ModernChatColorHandler.translate(text, player);
+        if (player != null) {
+            final UUID uuid = player.getUniqueId();
+
+            if (rawText.equals(lastRawText)) {
+                final CacheEntry entry = cachedTextPerPlayer.get(uuid);
+                if (entry != null && now - entry.getLastUpdated() <= TEXT_CACHE_TTL_MS) {
+                    return entry.getText();
+                }
+            } else {
+                clearTextCache();
+            }
+
+            final Component translated = ModernChatColorHandler.translate(rawText, player);
+            cachedTextPerPlayer.put(uuid, new CacheEntry(translated, now));
+            lastRawText = rawText;
+            evictStaleCacheEntries(now);
+            return translated;
+        }
+
+        if (rawText.equals(lastRawText)) {
+            final CacheEntry entry = cachedTextPerPlayer.get(NULL_PLAYER_KEY);
+            if (entry != null && now - entry.getLastUpdated() <= TEXT_CACHE_TTL_MS) {
+                return entry.getText();
+            }
+        } else {
+            clearTextCache();
+        }
+
+        final Component translated = ModernChatColorHandler.translate(rawText, (Player) null);
+        cachedTextPerPlayer.put(NULL_PLAYER_KEY, new CacheEntry(translated, now));
+        lastRawText = rawText;
+        evictStaleCacheEntries(now);
+        return translated;
+    }
+
+    /**
+     * Clears the cached text for all players. Intended to be invoked via the onModify hook
+     * when text-related data changes to prevent stale content from being displayed.
+     */
+    @ApiStatus.Internal
+    public void clearTextCache() {
+        cachedTextPerPlayer.clear();
+        lastRawText = "";
+    }
+
+    /**
+     * Evicts cache entries that are either:
+     * - No longer associated with an active viewer (except the null-player key), or
+     * - Older than TEXT_CACHE_MAX_AGE_MS, or
+     * - Beyond TEXT_CACHE_MAX_SIZE entries (dropping the oldest first).
+     *
+     * This prevents unbounded growth and stale data for players who are no longer viewing.
+     */
+    private void evictStaleCacheEntries(long now) {
+        cachedTextPerPlayer.entrySet().removeIf(entry -> {
+            final UUID uuid = entry.getKey();
+            final CacheEntry cacheEntry = entry.getValue();
+
+            if (uuid.equals(NULL_PLAYER_KEY)) {
+                return now - cacheEntry.getLastUpdated() > TEXT_CACHE_MAX_AGE_MS;
+            }
+
+            if (!viewers.contains(uuid)) {
+                return true;
+            }
+
+            return now - cacheEntry.getLastUpdated() > TEXT_CACHE_MAX_AGE_MS;
+        });
+
+        if (cachedTextPerPlayer.size() > TEXT_CACHE_MAX_SIZE) {
+            cachedTextPerPlayer.entrySet().stream()
+                    .sorted((a, b) -> Long.compare(a.getValue().getLastUpdated(), b.getValue().getLastUpdated()))
+                    .limit(cachedTextPerPlayer.size() - TEXT_CACHE_MAX_SIZE)
+                    .map(Map.Entry::getKey)
+                    .forEach(cachedTextPerPlayer::remove);
+        }
     }
 }
