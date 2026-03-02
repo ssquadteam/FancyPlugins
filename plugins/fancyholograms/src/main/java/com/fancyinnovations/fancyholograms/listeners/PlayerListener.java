@@ -45,7 +45,6 @@ public final class PlayerListener implements Listener {
                         hologram.despawnFrom(event.getPlayer());
                         hologram.removeViewer(event.getPlayer().getUniqueId());
                         FancyHologramsPlugin.get().getController().refreshHologram(hologram, event.getPlayer());
-                        System.out.println("Refreshed hologram " + hologram.getData().getName() + " for player " + event.getPlayer().getName() + " on join.");
                     }
                 },
                 FancyHologramsPlugin.get().getHologramConfiguration().getSpawnDelayOnJoin(),
