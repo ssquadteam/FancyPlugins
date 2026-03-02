@@ -3,7 +3,9 @@ package com.fancyinnovations.fancyholograms.commands.lampCommands.hologram;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.api.events.HologramUpdateEvent;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
+import com.fancyinnovations.fancyholograms.api.hologram.HologramType;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
+import com.fancyinnovations.fancyholograms.commands.lampCommands.conditions.IsHologramType;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.suggestions.MoveLineDownSuggestion;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancylib.translations.Translator;
@@ -26,6 +28,7 @@ public final class MoveDownCMD {
     private MoveDownCMD() {
     }
 
+    @IsHologramType(types = HologramType.TEXT)
     @Command("hologram-new edit <hologram> move_line_down <line>")
     @Description("Moves a line down by one position")
     @CommandPermission("fancyholograms.hologram.edit.move_line")
@@ -34,10 +37,7 @@ public final class MoveDownCMD {
             final @NotNull Hologram hologram,
             final @NotNull @SuggestWith(MoveLineDownSuggestion.class) int line
     ) {
-        if (!(hologram.getData() instanceof TextHologramData textData)) {
-            translator.translate("common.hologram.must_be_text_hologram").send(actor.sender());
-            return;
-        }
+        TextHologramData textData = (TextHologramData) hologram.getData();
 
         List<String> text = textData.getText();
 

@@ -10,6 +10,7 @@ import com.fancyinnovations.fancyholograms.api.trait.HologramTraitRegistry;
 import com.fancyinnovations.fancyholograms.commands.FancyHologramsCMD;
 import com.fancyinnovations.fancyholograms.commands.FancyHologramsTestCMD;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
+import com.fancyinnovations.fancyholograms.commands.lampCommands.conditions.HologramTypeCondition;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.fancyholograms.ConfigCMD;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.hologram.*;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.types.GlowingColorCommandType;
@@ -289,6 +290,8 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
     private void registerLampCommands() {
         Lamp.Builder<BukkitCommandActor> lampBuilder = BukkitLamp
                 .builder(this);
+
+        lampBuilder.commandCondition(HologramTypeCondition.INSTANCE);
 
         lampBuilder.parameterTypes(builder -> {
             builder.addParameterType(Hologram.class, HologramCommandType.INSTANCE);

@@ -3,7 +3,9 @@ package com.fancyinnovations.fancyholograms.commands.lampCommands.hologram;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.api.events.HologramUpdateEvent;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
+import com.fancyinnovations.fancyholograms.api.hologram.HologramType;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
+import com.fancyinnovations.fancyholograms.commands.lampCommands.conditions.IsHologramType;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.suggestions.SwapLinesSuggestion;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancylib.translations.Translator;
@@ -26,6 +28,7 @@ public final class SwapLinesCMD {
     private SwapLinesCMD() {
     }
 
+    @IsHologramType(types = HologramType.TEXT)
     @Command("hologram-new edit <hologram> swap_lines <line1> <line2>")
     @Description("Swaps two lines")
     @CommandPermission("fancyholograms.hologram.edit.move_line")
@@ -35,10 +38,7 @@ public final class SwapLinesCMD {
             final @NotNull @SuggestWith(SwapLinesSuggestion.class) int line1,
             final @NotNull @SuggestWith(SwapLinesSuggestion.class) int line2
     ) {
-        if (!(hologram.getData() instanceof TextHologramData textData)) {
-            translator.translate("common.hologram.must_be_text_hologram").send(actor.sender());
-            return;
-        }
+        TextHologramData textData = (TextHologramData) hologram.getData();
 
         List<String> text = textData.getText();
 

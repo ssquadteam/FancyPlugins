@@ -20,8 +20,6 @@ messages:
   common:
     hologram:
       not_found: "<dark_gray>› <gray>Could not find hologram {warningColor}{name}<gray>."
-      must_be_text_hologram: "<dark_gray>› {errorColor}This command can only be used on {warningColor}text {errorColor}holograms."
-      must_be_item_or_block_hologram: "<dark_gray>› {errorColor}This command can only be used on {warningColor}item {errorColor}or {warningColor}block {errorColor}holograms."
   commands:
     fancyholograms:
       config:
