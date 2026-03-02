@@ -6,7 +6,7 @@ import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.suggestions.SwapLinesSuggestion;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
-import de.oliver.fancylib.MessageHelper;
+import de.oliver.fancylib.translations.Translator;
 import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.Description;
@@ -20,13 +20,15 @@ import java.util.List;
 public final class SwapLinesCMD {
 
     public static final SwapLinesCMD INSTANCE = new SwapLinesCMD();
+    private final FancyHologramsPlugin plugin = FancyHologramsPlugin.get();
+    private final Translator translator = FancyHologramsPlugin.get().getTranslator();
 
     private SwapLinesCMD() {
     }
 
-    @Command("hologram-new edit <hologram> swapLines <line1> <line2>")
+    @Command("hologram-new edit <hologram> swap_lines <line1> <line2>")
     @Description("Swaps two lines")
-    @CommandPermission("fancyholograms.hologram.edit.swap_lines")
+    @CommandPermission("fancyholograms.hologram.edit.move_line")
     public void swapLines(
             final @NotNull BukkitCommandActor actor,
             final @NotNull Hologram hologram,
@@ -34,24 +36,34 @@ public final class SwapLinesCMD {
             final @NotNull @SuggestWith(SwapLinesSuggestion.class) int line2
     ) {
         if (!(hologram.getData() instanceof TextHologramData textData)) {
-            MessageHelper.error(actor.sender(), "This command can only be used on text holograms");
+            translator.translate("common.hologram.must_be_text_hologram").send(actor.sender());
             return;
         }
 
         List<String> text = textData.getText();
 
         if (line1 < 1 || line1 > text.size()) {
-            MessageHelper.error(actor.sender(), "First line number is out of range (1-" + text.size() + ")");
+            translator.translate("commands.hologram.edit.lines.line_number_out_of_bounds")
+                    .replace("line", String.valueOf(line1))
+                    .replace("min", "1")
+                    .replace("max", String.valueOf(text.size()))
+                    .send(actor.sender());
             return;
         }
 
         if (line2 < 1 || line2 > text.size()) {
-            MessageHelper.error(actor.sender(), "Second line number is out of range (1-" + text.size() + ")");
+            translator.translate("commands.hologram.edit.lines.line_number_out_of_bounds")
+                    .replace("line", String.valueOf(line2))
+                    .replace("min", "1")
+                    .replace("max", String.valueOf(text.size()))
+                    .send(actor.sender());
             return;
         }
 
         if (line1 == line2) {
-            MessageHelper.warning(actor.sender(), "Cannot swap a line with itself");
+            translator.translate("commands.hologram.edit.lines.cannot_swap_same_line")
+                    .replace("line", String.valueOf(line1))
+                    .send(actor.sender());
             return;
         }
 
@@ -74,6 +86,9 @@ public final class SwapLinesCMD {
             FancyHologramsPlugin.get().getStorage().save(hologram.getData());
         }
 
-        MessageHelper.success(actor.sender(), "Swapped line " + line1 + " with line " + line2);
+        translator.translate("commands.hologram.edit.lines.swap_success")
+                .replace("line1", String.valueOf(line1))
+                .replace("line2", String.valueOf(line2))
+                .send(actor.sender());
     }
 }

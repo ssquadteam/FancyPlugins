@@ -6,7 +6,7 @@ import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.suggestions.MoveLineUpSuggestion;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
-import de.oliver.fancylib.MessageHelper;
+import de.oliver.fancylib.translations.Translator;
 import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.Description;
@@ -20,11 +20,13 @@ import java.util.List;
 public final class MoveUpCMD {
 
     public static final MoveUpCMD INSTANCE = new MoveUpCMD();
+    private final FancyHologramsPlugin plugin = FancyHologramsPlugin.get();
+    private final Translator translator = FancyHologramsPlugin.get().getTranslator();
 
     private MoveUpCMD() {
     }
 
-    @Command("hologram-new edit <hologram> moveLineUp <line>")
+    @Command("hologram-new edit <hologram> move_line_up <line>")
     @Description("Moves a line up by one position")
     @CommandPermission("fancyholograms.hologram.edit.move_line")
     public void moveLineUp(
@@ -33,19 +35,18 @@ public final class MoveUpCMD {
             final @NotNull @SuggestWith(MoveLineUpSuggestion.class) int line
     ) {
         if (!(hologram.getData() instanceof TextHologramData textData)) {
-            MessageHelper.error(actor.sender(), "This command can only be used on text holograms");
+            translator.translate("common.hologram.must_be_text_hologram").send(actor.sender());
             return;
         }
 
         List<String> text = textData.getText();
 
-        if (line < 1 || line > text.size()) {
-            MessageHelper.error(actor.sender(), "Line number is out of range (1-" + text.size() + ")");
-            return;
-        }
-
-        if (line == 1) {
-            MessageHelper.warning(actor.sender(), "Line 1 cannot be moved up");
+        if (line < 2 || line > text.size()) {
+            translator.translate("commands.hologram.edit.lines.line_number_out_of_bounds")
+                    .replace("line", String.valueOf(line))
+                    .replace("min", "2")
+                    .replace("max", String.valueOf(text.size()))
+                    .send(actor.sender());
             return;
         }
 
@@ -68,6 +69,9 @@ public final class MoveUpCMD {
             FancyHologramsPlugin.get().getStorage().save(hologram.getData());
         }
 
-        MessageHelper.success(actor.sender(), "Moved line " + line + " up to position " + (line - 1));
+        translator.translate("commands.hologram.edit.lines.move_success")
+                .replace("line", String.valueOf(line))
+                .replace("position", String.valueOf(line - 1))
+                .send(actor.sender());
     }
 }

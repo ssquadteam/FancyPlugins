@@ -34,10 +34,8 @@ public final class GlowingCMD {
             final @NotNull Hologram hologram
     ) {
         // Check if hologram is ITEM or BLOCK type
-        if (!(hologram.getData() instanceof DisplayHologramData displayData) ||
-            (!(hologram.getData() instanceof ItemHologramData) && !(hologram.getData() instanceof BlockHologramData))) {
-            translator.translate("commands.hologram.edit.glowing.only_item_block")
-                    .send(actor.sender());
+        if (!(hologram.getData() instanceof DisplayHologramData displayData) || (!(hologram.getData() instanceof ItemHologramData) && !(hologram.getData() instanceof BlockHologramData))) {
+            translator.translate("common.hologram.must_be_item_or_block_hologram").send(actor.sender());
             return;
         }
 
@@ -85,10 +83,8 @@ public final class GlowingCMD {
             final @NotNull GlowingColor color
     ) {
         // Check if hologram is ITEM or BLOCK type
-        if (!(hologram.getData() instanceof DisplayHologramData displayData) ||
-            (!(hologram.getData() instanceof ItemHologramData) && !(hologram.getData() instanceof BlockHologramData))) {
-            translator.translate("commands.hologram.edit.glowing.only_item_block")
-                    .send(actor.sender());
+        if (!(hologram.getData() instanceof DisplayHologramData displayData) || (!(hologram.getData() instanceof ItemHologramData) && !(hologram.getData() instanceof BlockHologramData))) {
+            translator.translate("common.hologram.must_be_item_or_block_hologram").send(actor.sender());
             return;
         }
 
