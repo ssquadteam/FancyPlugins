@@ -10,6 +10,7 @@ import com.fancyinnovations.fancyholograms.api.trait.HologramTraitRegistry;
 import com.fancyinnovations.fancyholograms.commands.FancyHologramsCMD;
 import com.fancyinnovations.fancyholograms.commands.FancyHologramsTestCMD;
 import com.fancyinnovations.fancyholograms.commands.HologramCMD;
+import com.fancyinnovations.fancyholograms.commands.lampCommands.conditions.HologramTraitCondition;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.conditions.HologramTypeCondition;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.fancyholograms.ConfigCMD;
 import com.fancyinnovations.fancyholograms.commands.lampCommands.hologram.*;
@@ -291,14 +292,19 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         Lamp.Builder<BukkitCommandActor> lampBuilder = BukkitLamp
                 .builder(this);
 
-        lampBuilder.commandCondition(HologramTypeCondition.INSTANCE);
+        // conditions
+        lampBuilder
+                .commandCondition(HologramTypeCondition.INSTANCE)
+                .commandCondition(HologramTraitCondition.INSTANCE);
 
+        // parameter types
         lampBuilder.parameterTypes(builder -> {
             builder.addParameterType(Hologram.class, HologramCommandType.INSTANCE);
             builder.addParameterType(HologramTraitRegistry.TraitInfo.class, TraitCommandType.INSTANCE);
             builder.addParameterType(de.oliver.fancylib.colors.GlowingColor.class, GlowingColorCommandType.INSTANCE);
         });
 
+        // exception handlers
         lampBuilder
                 .exceptionHandler(HologramCommandType.INSTANCE)
                 .exceptionHandler(TraitCommandType.INSTANCE)
