@@ -22,6 +22,8 @@ public interface FWorld {
 
     FWorldSettings getSettings();
 
+    void setSettings(FWorldSettings settings);
+
     World getBukkitWorld();
 
 }
