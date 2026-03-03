@@ -1,6 +1,10 @@
 package com.fancyinnovations.fancyworlds.main;
 
 import com.fancyinnovations.fancyworlds.api.FancyWorlds;
+import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
+import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
+import com.fancyinnovations.fancyworlds.worlds.service.WorldServiceImpl;
+import com.fancyinnovations.fancyworlds.worlds.storage.fake.FakeWorldStorage;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import de.oliver.fancyanalytics.logger.LogLevel;
 import de.oliver.fancyanalytics.logger.appender.Appender;
@@ -18,6 +22,9 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
     private static FancyWorldsPlugin INSTANCE;
     private final ExtendedFancyLogger fancyLogger;
+
+    private WorldStorage worldStorage;
+    private WorldService worldService;
 
     public FancyWorldsPlugin() {
         INSTANCE = this;
@@ -48,16 +55,35 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
     @Override
     public void onLoad() {
+        fancyLogger.info("Loading FancyWorlds version %s...".formatted(getDescription().getVersion()));
+
+        worldStorage = new FakeWorldStorage();
+        worldService = new WorldServiceImpl(worldStorage);
+
         fancyLogger.info("Successfully loaded FancyWorlds version %s".formatted(getDescription().getVersion()));
     }
 
     @Override
     public void onEnable() {
+        fancyLogger.info("Enabling FancyWorlds version %s...".formatted(getDescription().getVersion()));
+
         fancyLogger.info("Successfully enabled FancyWorlds version %s".formatted(getDescription().getVersion()));
     }
 
     @Override
     public void onDisable() {
+        fancyLogger.info("Disabling FancyWorlds version %s...".formatted(getDescription().getVersion()));
+
         fancyLogger.info("Successfully disabled FancyWorlds version %s".formatted(getDescription().getVersion()));
+    }
+
+    @Override
+    public WorldStorage getWorldStorage() {
+        return worldStorage;
+    }
+
+    @Override
+    public WorldService getWorldService() {
+        return worldService;
     }
 }
