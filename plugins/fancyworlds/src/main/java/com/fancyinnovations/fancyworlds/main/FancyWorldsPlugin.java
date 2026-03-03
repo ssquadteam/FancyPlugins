@@ -21,7 +21,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
     public FancyWorldsPlugin() {
         INSTANCE = this;
-        
+
         Appender consoleAppender = new ConsoleAppender("[{loggerName}] ({threadName}) {logLevel}: {message}");
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
         File logsFile = new File("plugins/FancyWorlds/logs/FW-logs-" + date + ".txt");
