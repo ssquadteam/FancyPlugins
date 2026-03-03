@@ -38,6 +38,9 @@ include(":plugins:fancyvisuals")
 include(":plugins:fancydialogs")
 include(":plugins:fancydialogs:fd-api")
 
+include(":plugins:fancyworlds")
+include(":plugins:fancyworlds:fw-api")
+
 include(":libraries:common")
 include(":libraries:jdb")
 include(":libraries:config")
