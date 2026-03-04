@@ -21,7 +21,7 @@ public class FWorldImpl implements FWorld {
     private World bukkitWorld;
 
     public FWorldImpl(
-            @NotNull UUID id,
+            @Nullable UUID id,
             @NotNull String name,
             @Nullable Long seed,
             @Nullable World.Environment environment,
@@ -29,13 +29,17 @@ public class FWorldImpl implements FWorld {
             @Nullable Boolean generateStructures,
             @Nullable FWorldSettings settings
     ) {
-        this.id = id;
+        this.id = id != null ? id : UUID.randomUUID();
         this.name = name;
         this.seed = seed != null ? seed : 0L;
         this.environment = environment != null ? environment : World.Environment.NORMAL;
         this.generator = generator != null ? generator : "default";
         this.generateStructures = generateStructures != null ? generateStructures : true;
         this.settings = settings != null ? settings : new FWorldSettingsImpl();
+    }
+
+    public FWorldImpl(@NotNull String name) {
+        this(null, name, null, null, null, null, null);
     }
 
     @Override
