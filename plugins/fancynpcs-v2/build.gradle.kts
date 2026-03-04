@@ -101,6 +101,7 @@ tasks {
         minecraftVersion("1.21.11")
 
         downloadPlugins {
+            hangar("kite", "1.2.4+12")
             hangar("ViaVersion", "5.7.1")
             hangar("ViaBackwards", "5.7.1")
 //            hangar("PlaceholderAPI", "2.11.6")
