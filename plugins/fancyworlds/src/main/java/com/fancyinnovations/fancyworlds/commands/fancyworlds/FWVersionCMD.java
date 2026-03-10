@@ -3,7 +3,10 @@ package com.fancyinnovations.fancyworlds.commands.fancyworlds;
 import com.fancyinnovations.fancyworlds.api.FancyWorldsConfig;
 import com.fancyinnovations.fancyworlds.main.FancyWorldsPlugin;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
+import de.oliver.fancylib.VersionConfig;
 import de.oliver.fancylib.translations.Translator;
+import de.oliver.fancylib.versionFetcher.VersionFetcher;
+import org.apache.maven.artifact.versioning.ComparableVersion;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.Description;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
@@ -24,12 +27,25 @@ public class FWVersionCMD {
     public void version(
             final BukkitCommandActor actor
     ) {
-        String version = plugin.getPluginMeta().getVersion();
+        VersionFetcher versionFetcher = FancyWorldsPlugin.get().getVersionFetcher();
+        VersionConfig versionConfig = FancyWorldsPlugin.get().getVersionConfig();
+
+        ComparableVersion currentVersion = new ComparableVersion(versionConfig.getVersion());
+        ComparableVersion newestVersion = versionFetcher.fetchNewestVersion();
 
         translator.translate("commands.fancyworlds.version")
                 .withPrefix()
-                .replace("version", version)
+                .replace("version", versionConfig.getVersion())
                 .send(actor.sender());
+
+        if (newestVersion != null && currentVersion.compareTo(newestVersion) < 0) {
+            translator.translate("commands.fancyworlds.version_outdated")
+                    .withPrefix()
+                    .replace("version", versionConfig.getVersion())
+                    .replace("latestVersion", newestVersion.toString())
+                    .replace("downloadURL", versionFetcher.getDownloadUrl())
+                    .send(actor.sender());
+        }
     }
 
 }

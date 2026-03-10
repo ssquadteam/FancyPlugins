@@ -3,3 +3,4 @@ messages:
   commands:
     fancyworlds:
       version: "You are running FancyWorlds {primaryColor}v{version}{secondaryColor}."
+      version_outdated: "You are running an outdated version of FancyWorlds. Please update to the latest version {primaryColor}v{latestVersion}{secondaryColor}({downloadURL})."

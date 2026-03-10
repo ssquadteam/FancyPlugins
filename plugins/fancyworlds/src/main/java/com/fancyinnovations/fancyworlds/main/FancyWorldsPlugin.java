@@ -13,10 +13,14 @@ import de.oliver.fancyanalytics.logger.LogLevel;
 import de.oliver.fancyanalytics.logger.appender.Appender;
 import de.oliver.fancyanalytics.logger.appender.ConsoleAppender;
 import de.oliver.fancyanalytics.logger.appender.JsonAppender;
+import de.oliver.fancylib.VersionConfig;
 import de.oliver.fancylib.logging.PluginMiddleware;
 import de.oliver.fancylib.translations.Language;
 import de.oliver.fancylib.translations.TextConfig;
 import de.oliver.fancylib.translations.Translator;
+import de.oliver.fancylib.versionFetcher.FancySpacesVersionFetcher;
+import de.oliver.fancylib.versionFetcher.VersionFetcher;
+import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.Lamp;
 import revxrsal.commands.bukkit.BukkitLamp;
@@ -26,6 +30,9 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.concurrent.CompletableFuture.supplyAsync;
 
 public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
@@ -33,6 +40,8 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     private final ExtendedFancyLogger fancyLogger;
 
     private FancyWorldsConfigImpl fancyWorldsConfig;
+    private VersionFetcher versionFetcher;
+    private VersionConfig versionConfig;
     private Translator translator;
 
     private WorldStorage worldStorage;
@@ -69,6 +78,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     public void onLoad() {
         fancyLogger.info("Loading FancyWorlds version %s...".formatted(getDescription().getVersion()));
 
+        // Config
         fancyWorldsConfig = new FancyWorldsConfigImpl();
         fancyWorldsConfig.init();
         fancyWorldsConfig.reload();
@@ -80,8 +90,13 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
             logLevel = LogLevel.INFO;
         }
         fancyLogger.setCurrentLevel(logLevel);
-//        IFancySitula.LOGGER.setCurrentLevel(logLevel);
 
+        // Version checking
+        versionFetcher = new FancySpacesVersionFetcher("FancyWorlds");
+        versionConfig = new VersionConfig(this, versionFetcher);
+        versionConfig.load();
+
+        // Translator
         translator = new Translator(
                 new TextConfig(
                         "#ffcc24", // color to highlight important information
@@ -100,6 +115,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
                 .orElse(translator.getFallbackLanguage());
         translator.setSelectedLanguage(selectedLanguage);
 
+        // Services
         worldStorage = new FakeWorldStorage();
         worldService = new WorldServiceImpl(worldStorage);
 
@@ -109,6 +125,21 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     @Override
     public void onEnable() {
         fancyLogger.info("Enabling FancyWorlds version %s...".formatted(getDescription().getVersion()));
+
+        if (!fancyWorldsConfig.areVersionNotificationsMuted()) {
+            checkForNewerVersion();
+        }
+        if (versionConfig.isDevelopmentBuild()) {
+            fancyLogger.warn("""
+                    
+                    --------------------------------------------------
+                    You are using a development build of FancyWorlds.
+                    Please be aware that there might be bugs in this version.
+                    If you find any bugs, please report them on our discord server (https://discord.gg/ZUgYCEJUEx).
+                    Read more about the risks of using a development build here: https://fancyinnovations.com/docs/general/development-guidelines/versioning#build
+                    --------------------------------------------------
+                    """);
+        }
 
         registerCommands();
 
@@ -148,6 +179,25 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 //        lamp.register(TraitCMD.INSTANCE);
     }
 
+    private void checkForNewerVersion() {
+        final var current = new ComparableVersion(versionConfig.getVersion());
+
+        supplyAsync(getVersionFetcher()::fetchNewestVersion).thenApply(Objects::requireNonNull).whenComplete((newest, error) -> {
+            if (error != null || newest.compareTo(current) <= 0) {
+                return; // could not get the newest version or already on latest
+            }
+
+            fancyLogger.warn("""
+                    
+                    -------------------------------------------------------
+                    You are not using the latest version of the FancyWorlds plugin.
+                    Please update to the newest version (%s).
+                    %s
+                    -------------------------------------------------------
+                    """.formatted(newest, getVersionFetcher().getDownloadUrl()));
+        });
+    }
+
     @Override
     public ExtendedFancyLogger getFancyLogger() {
         return fancyLogger;
@@ -156,6 +206,14 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     @Override
     public FancyWorldsConfig getFancyWorldsConfig() {
         return fancyWorldsConfig;
+    }
+
+    public VersionFetcher getVersionFetcher() {
+        return versionFetcher;
+    }
+
+    public VersionConfig getVersionConfig() {
+        return versionConfig;
     }
 
     public Translator getTranslator() {
