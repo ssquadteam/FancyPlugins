@@ -13,6 +13,9 @@ public class FancyWorldsConfigImpl implements FancyWorldsConfig {
     public static final String LANGUAGE_PATH = "settings.language";
 
     private static final String CONFIG_FILE_PATH = "plugins/FancyWorlds/config.yml";
+
+    private static final String AUTOMATICALLY_LINK_WORLDS_PATH = "settings.automatic_world_linking";
+
     private Config config;
 
     public void init() {
@@ -44,6 +47,15 @@ public class FancyWorldsConfigImpl implements FancyWorldsConfig {
                 false,
                 String.class
         ));
+
+        config.addField(new ConfigField<>(
+                AUTOMATICALLY_LINK_WORLDS_PATH,
+                "Whether worlds should be automatically linked when loaded.",
+                false,
+                true,
+                false,
+                Boolean.class
+        ));
     }
 
     public void reload() {
@@ -64,6 +76,11 @@ public class FancyWorldsConfigImpl implements FancyWorldsConfig {
 
     public String getLanguage() {
         return config.get(LANGUAGE_PATH);
+    }
+
+    @Override
+    public boolean automaticallyLinkWorlds() {
+        return config.get(AUTOMATICALLY_LINK_WORLDS_PATH);
     }
 
 }

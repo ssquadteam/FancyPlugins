@@ -2,11 +2,15 @@ package com.fancyinnovations.fancyworlds.main;
 
 import com.fancyinnovations.fancyworlds.api.FancyWorlds;
 import com.fancyinnovations.fancyworlds.api.FancyWorldsConfig;
+import com.fancyinnovations.fancyworlds.api.worlds.FWorld;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWConfigCMD;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
+import com.fancyinnovations.fancyworlds.commands.types.FWorldCommandType;
+import com.fancyinnovations.fancyworlds.commands.world.WorldLinkCMD;
 import com.fancyinnovations.fancyworlds.commands.world.WorldListCMD;
+import com.fancyinnovations.fancyworlds.commands.world.WorldUnlinkCMD;
 import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
 import com.fancyinnovations.fancyworlds.listeners.WorldLoadListener;
 import com.fancyinnovations.fancyworlds.listeners.WorldUnloadListener;
@@ -164,17 +168,12 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
                 .builder(this);
 
         // parameter types
-//        lampBuilder.parameterTypes(builder -> {
-//            builder.addParameterType(Hologram.class, HologramCommandType.INSTANCE);
-//            builder.addParameterType(HologramTraitRegistry.TraitInfo.class, TraitCommandType.INSTANCE);
-//            builder.addParameterType(de.oliver.fancylib.colors.GlowingColor.class, GlowingColorCommandType.INSTANCE);
-//        });
+        lampBuilder.parameterTypes(builder -> {
+            builder.addParameterType(FWorld.class, FWorldCommandType.INSTANCE);
+        });
 
         // exception handlers
-//        lampBuilder
-//                .exceptionHandler(HologramCommandType.INSTANCE)
-//                .exceptionHandler(TraitCommandType.INSTANCE)
-//                .exceptionHandler(GlowingColorCommandType.INSTANCE);
+        lampBuilder.exceptionHandler(FWorldCommandType.INSTANCE);
 
         Lamp<BukkitCommandActor> lamp = lampBuilder.build();
 
@@ -184,6 +183,8 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
         // world commands
         lamp.register(WorldListCMD.INSTANCE);
+        lamp.register(WorldLinkCMD.INSTANCE);
+        lamp.register(WorldUnlinkCMD.INSTANCE);
     }
 
     private void registerListeners() {

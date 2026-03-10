@@ -1,5 +1,7 @@
 language_name: default
 messages:
+  common:
+    world_not_found: "{errorColor}Could not find world {primaryColor}{worldName}{errorColor}."
   commands:
     fancyworlds:
       version:
@@ -12,8 +14,13 @@ messages:
           cancelled: "Configuration reload cancelled."
     world:
       list:
-        no_worlds: "{warningColor}No worlds are currently linked to FancyWorlds."
+        no_worlds: "No worlds are currently linked to FancyWorlds. You can link a world using {primaryColor}/world link <worldName>{secondaryColor}."
         header: "Linked worlds ({worldCount}):"
         entry_loaded: " {secondaryColor}- {primaryColor}{worldName} {secondaryColor}({playerCount} players, {entityCount} entities, {chunkCount} loaded chunks)"
         entry_unloaded: " {secondaryColor}- {primaryColor}{worldName} {secondaryColor}(unloaded)"
+      link:
+        success: "Successfully linked world {primaryColor}{worldName}{secondaryColor} to FancyWorlds."
+        already_linked: "{errorColor}World {primaryColor}{worldName}{secondaryColor} is already linked to FancyWorlds."
+      unlink:
+        success: "Successfully unlinked world {primaryColor}{worldName}{secondaryColor} from FancyWorlds."
 

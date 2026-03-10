@@ -22,6 +22,11 @@ public class WorldLoadListener extends FancyContext implements Listener {
         World world = event.getWorld();
         FWorldImpl fworld = (FWorldImpl) service.getWorldByName(world.getName());
         if (fworld == null) {
+            if (!config.automaticallyLinkWorlds()) {
+                logger.debug("The world '" + world.getName() + "' is not registered to FancyWorlds and automatic linking is disabled. Skipping.");
+                return;
+            }
+
             fworld = new FWorldImpl(
                     world.getUID(),
                     world.getName(),

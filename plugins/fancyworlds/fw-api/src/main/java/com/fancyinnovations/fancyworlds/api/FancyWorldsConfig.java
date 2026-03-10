@@ -12,4 +12,6 @@ public interface FancyWorldsConfig {
 
     String getLanguage();
 
+    boolean automaticallyLinkWorlds();
+
 }
