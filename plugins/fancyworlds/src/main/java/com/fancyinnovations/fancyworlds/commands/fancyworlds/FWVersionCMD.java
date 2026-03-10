@@ -1,10 +1,8 @@
 package com.fancyinnovations.fancyworlds.commands.fancyworlds;
 
-import com.fancyinnovations.fancyworlds.api.FancyWorldsConfig;
+import com.fancyinnovations.fancyworlds.commands.FancyCMD;
 import com.fancyinnovations.fancyworlds.main.FancyWorldsPlugin;
-import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import de.oliver.fancylib.VersionConfig;
-import de.oliver.fancylib.translations.Translator;
 import de.oliver.fancylib.versionFetcher.VersionFetcher;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import revxrsal.commands.annotation.Command;
@@ -12,14 +10,9 @@ import revxrsal.commands.annotation.Description;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 import revxrsal.commands.bukkit.annotation.CommandPermission;
 
-public class FWVersionCMD {
+public class FWVersionCMD extends FancyCMD {
 
     public static final FWVersionCMD INSTANCE = new FWVersionCMD();
-
-    private final FancyWorldsPlugin plugin = FancyWorldsPlugin.get();
-    private final ExtendedFancyLogger logger = FancyWorldsPlugin.get().getFancyLogger();
-    private final FancyWorldsConfig config = FancyWorldsPlugin.get().getFancyWorldsConfig();
-    private final Translator translator = FancyWorldsPlugin.get().getTranslator();
 
     @Command("fancyworlds version")
     @Description("Shows the version of FancyWorlds")
