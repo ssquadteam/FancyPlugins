@@ -1,7 +1,9 @@
 package com.fancyinnovations.fancyworlds.commands.fancyworlds;
 
+import com.fancyinnovations.fancyworlds.api.FancyWorldsConfig;
 import com.fancyinnovations.fancyworlds.main.FancyWorldsPlugin;
-import de.oliver.fancylib.MessageHelper;
+import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
+import de.oliver.fancylib.translations.Translator;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.Description;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
@@ -12,7 +14,9 @@ public class FWVersionCMD {
     public static final FWVersionCMD INSTANCE = new FWVersionCMD();
 
     private final FancyWorldsPlugin plugin = FancyWorldsPlugin.get();
-//    private final Translator translator = FancyWorldsPlugin.get().getTranslator();
+    private final ExtendedFancyLogger logger = FancyWorldsPlugin.get().getFancyLogger();
+    private final FancyWorldsConfig config = FancyWorldsPlugin.get().getFancyWorldsConfig();
+    private final Translator translator = FancyWorldsPlugin.get().getTranslator();
 
     @Command("fancyworlds version")
     @Description("Shows the version of FancyWorlds")
@@ -22,11 +26,10 @@ public class FWVersionCMD {
     ) {
         String version = plugin.getPluginMeta().getVersion();
 
-        MessageHelper.info(actor.sender(), "You are using FancyWorlds version %s".formatted(version));
-
-//        translator.translate("commands.fancydialogs.version")
-//                .replace("version", version)
-//                .send(actor.sender());
+        translator.translate("commands.fancyworlds.version")
+                .withPrefix()
+                .replace("version", version)
+                .send(actor.sender());
     }
 
 }

@@ -14,6 +14,9 @@ import de.oliver.fancyanalytics.logger.appender.Appender;
 import de.oliver.fancyanalytics.logger.appender.ConsoleAppender;
 import de.oliver.fancyanalytics.logger.appender.JsonAppender;
 import de.oliver.fancylib.logging.PluginMiddleware;
+import de.oliver.fancylib.translations.Language;
+import de.oliver.fancylib.translations.TextConfig;
+import de.oliver.fancylib.translations.Translator;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.Lamp;
 import revxrsal.commands.bukkit.BukkitLamp;
@@ -30,6 +33,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     private final ExtendedFancyLogger fancyLogger;
 
     private FancyWorldsConfigImpl fancyWorldsConfig;
+    private Translator translator;
 
     private WorldStorage worldStorage;
     private WorldService worldService;
@@ -77,6 +81,24 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         }
         fancyLogger.setCurrentLevel(logLevel);
 //        IFancySitula.LOGGER.setCurrentLevel(logLevel);
+
+        translator = new Translator(
+                new TextConfig(
+                        "#ffcc24", // color to highlight important information
+                        "gray", // text color for regular messages
+                        "#81E366",
+                        "#E3CA66",
+                        "#E36666",
+                        "<color:#ba8813>[</color><gradient:#ffae00:#fffb00:#ffae00>FancyWorlds</gradient><color:#ba8813>]</color> <gray>"
+                )
+        );
+
+        translator.loadLanguages(getDataFolder().getAbsolutePath());
+        Language selectedLanguage = translator.getLanguages().stream()
+                .filter(language -> language.getLanguageName().equals(fancyWorldsConfig.getLanguage()))
+                .findFirst()
+                .orElse(translator.getFallbackLanguage());
+        translator.setSelectedLanguage(selectedLanguage);
 
         worldStorage = new FakeWorldStorage();
         worldService = new WorldServiceImpl(worldStorage);
@@ -134,6 +156,10 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     @Override
     public FancyWorldsConfig getFancyWorldsConfig() {
         return fancyWorldsConfig;
+    }
+
+    public Translator getTranslator() {
+        return translator;
     }
 
     @Override

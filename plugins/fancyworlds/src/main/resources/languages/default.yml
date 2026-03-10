@@ -2,4 +2,4 @@ language_name: default
 messages:
   commands:
     fancyworlds:
-      version: "<dark_gray>› <gray>You are running FancyWorlds {warningColor}{version}<gray>."
+      version: "You are running FancyWorlds {primaryColor}v{version}{secondaryColor}."
