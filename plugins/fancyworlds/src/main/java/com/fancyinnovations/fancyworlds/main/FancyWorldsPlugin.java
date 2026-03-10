@@ -6,7 +6,10 @@ import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWConfigCMD;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
+import com.fancyinnovations.fancyworlds.commands.world.WorldListCMD;
 import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
+import com.fancyinnovations.fancyworlds.listeners.WorldLoadListener;
+import com.fancyinnovations.fancyworlds.listeners.WorldUnloadListener;
 import com.fancyinnovations.fancyworlds.worlds.service.WorldServiceImpl;
 import com.fancyinnovations.fancyworlds.worlds.storage.fake.FakeWorldStorage;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
@@ -144,6 +147,8 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
         registerCommands();
 
+        registerListeners();
+
         fancyLogger.info("Successfully enabled FancyWorlds version %s".formatted(getDescription().getVersion()));
     }
 
@@ -178,7 +183,12 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         lamp.register(FWConfigCMD.INSTANCE);
 
         // world commands
-//        lamp.register(TraitCMD.INSTANCE);
+        lamp.register(WorldListCMD.INSTANCE);
+    }
+
+    private void registerListeners() {
+        Bukkit.getPluginManager().registerEvents(new WorldLoadListener(), this);
+        Bukkit.getPluginManager().registerEvents(new WorldUnloadListener(), this);
     }
 
     public void registerTranslator() {

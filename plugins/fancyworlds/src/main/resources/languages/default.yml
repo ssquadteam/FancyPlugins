@@ -10,4 +10,10 @@ messages:
           confirmation: "{warningColor}Are you sure you want to reload the configuration? This will apply any changes made to the config file."
           success: "Configuration reloaded successfully."
           cancelled: "Configuration reload cancelled."
+    world:
+      list:
+        no_worlds: "{warningColor}No worlds are currently linked to FancyWorlds."
+        header: "Linked worlds ({worldCount}):"
+        entry_loaded: " {secondaryColor}- {primaryColor}{worldName} {secondaryColor}({playerCount} players, {entityCount} entities, {chunkCount} loaded chunks)"
+        entry_unloaded: " {secondaryColor}- {primaryColor}{worldName} {secondaryColor}(unloaded)"
 

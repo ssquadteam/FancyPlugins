@@ -1,13 +1,9 @@
-import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
-import net.minecrell.pluginyml.paper.PaperPluginDescription
-
 plugins {
     id("java-library")
     id("maven-publish")
 
     id("xyz.jpenilla.run-paper")
     id("com.gradleup.shadow")
-    id("de.eldoria.plugin-yml.paper")
 }
 
 runPaper.folia.registerTask()
@@ -51,24 +47,6 @@ dependencies {
     implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.12")
 
     implementation("org.jetbrains:annotations:26.1.0")
-}
-
-paper {
-    name = "FancyWorlds"
-    main = "com.fancyinnovations.fancyworlds.main.FancyWorldsPlugin"
-    bootstrapper = "com.fancyinnovations.fancyworlds.main.FancyWorldsBootstrapper"
-    loader = "com.fancyinnovations.fancyworlds.main.FancyWorldsLoader"
-    foliaSupported = true
-    version = getFWVersion()
-    description = "Simple, lightweight and fast world management plugin"
-    apiVersion = "1.21"
-    load = BukkitPluginDescription.PluginLoadOrder.STARTUP
-    serverDependencies {
-        register("FancyDialogs") {
-            required = true
-            load = PaperPluginDescription.RelativeLoadOrder.BEFORE
-        }
-    }
 }
 
 tasks {

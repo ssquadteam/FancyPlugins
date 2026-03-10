@@ -1,7 +1,7 @@
 package com.fancyinnovations.fancyworlds.commands.fancyworlds;
 
-import com.fancyinnovations.fancyworlds.commands.FancyCMD;
 import com.fancyinnovations.fancyworlds.main.FancyWorldsPlugin;
+import com.fancyinnovations.fancyworlds.utils.FancyContext;
 import de.oliver.fancylib.VersionConfig;
 import de.oliver.fancylib.versionFetcher.VersionFetcher;
 import org.apache.maven.artifact.versioning.ComparableVersion;
@@ -10,7 +10,7 @@ import revxrsal.commands.annotation.Description;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 import revxrsal.commands.bukkit.annotation.CommandPermission;
 
-public class FWVersionCMD extends FancyCMD {
+public class FWVersionCMD extends FancyContext {
 
     public static final FWVersionCMD INSTANCE = new FWVersionCMD();
 

@@ -24,6 +24,10 @@ public interface FWorld {
 
     void setSettings(FWorldSettings settings);
 
+    boolean isWorldLoaded();
+
+    boolean isWorldOnDisk();
+
     World getBukkitWorld();
 
 }

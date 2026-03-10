@@ -2,6 +2,7 @@ package com.fancyinnovations.fancyworlds.worlds;
 
 import com.fancyinnovations.fancyworlds.api.worlds.FWorld;
 import com.fancyinnovations.fancyworlds.api.worlds.FWorldSettings;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.jetbrains.annotations.NotNull;
@@ -86,6 +87,18 @@ public class FWorldImpl implements FWorld {
     @Override
     public void setSettings(FWorldSettings settings) {
         this.settings = settings;
+    }
+
+    @Override
+    public boolean isWorldLoaded() {
+        return bukkitWorld != null;
+    }
+
+    @Override
+    public boolean isWorldOnDisk() {
+        return Bukkit.getWorldContainer().toPath()
+                .resolve(name).toFile()
+                .exists();
     }
 
     @Override

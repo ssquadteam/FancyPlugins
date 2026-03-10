@@ -1,7 +1,7 @@
 package com.fancyinnovations.fancyworlds.commands.fancyworlds;
 
 import com.fancyinnovations.fancydialogs.api.dialogs.ConfirmationDialog;
-import com.fancyinnovations.fancyworlds.commands.FancyCMD;
+import com.fancyinnovations.fancyworlds.utils.FancyContext;
 import de.oliver.fancyanalytics.logger.LogLevel;
 import de.oliver.fancylib.translations.message.SimpleMessage;
 import revxrsal.commands.annotation.Command;
@@ -9,7 +9,7 @@ import revxrsal.commands.annotation.Description;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 import revxrsal.commands.bukkit.annotation.CommandPermission;
 
-public class FWConfigCMD extends FancyCMD {
+public class FWConfigCMD extends FancyContext {
 
     public static final FWConfigCMD INSTANCE = new FWConfigCMD();
 

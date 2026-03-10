@@ -40,7 +40,7 @@ public class FancyWorldsConfigImpl implements FancyWorldsConfig {
                 LANGUAGE_PATH,
                 "The language for the plugin.",
                 false,
-                "en",
+                "default",
                 false,
                 String.class
         ));
