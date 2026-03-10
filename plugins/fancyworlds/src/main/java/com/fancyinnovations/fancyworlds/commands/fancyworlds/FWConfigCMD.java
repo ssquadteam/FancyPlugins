@@ -19,7 +19,7 @@ public class FWConfigCMD extends FancyCMD {
     public void configReload(
             final BukkitCommandActor actor
     ) {
-        if (isFancyDialogsEnabled && actor.isPlayer()) {
+        if (actor.isPlayer()) {
             SimpleMessage question = (SimpleMessage) translator.translate("commands.fancyworlds.config.reload.confirmation");
             new ConfirmationDialog(question.getMessage())
                     .withTitle("Confirm reload")

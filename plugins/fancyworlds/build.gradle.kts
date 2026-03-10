@@ -62,7 +62,7 @@ paper {
     version = getFWVersion()
     description = "Simple, lightweight and fast world management plugin"
     apiVersion = "1.21"
-    load = BukkitPluginDescription.PluginLoadOrder.POSTWORLD
+    load = BukkitPluginDescription.PluginLoadOrder.STARTUP
     serverDependencies {
         register("FancyDialogs") {
             required = true
@@ -76,9 +76,10 @@ tasks {
         minecraftVersion("1.21.11")
 
         downloadPlugins {
+            modrinth("fancydialogs", "1.1.2")
+
             modrinth("fancynpcs", "2.9.2")
             modrinth("fancyholograms", "2.9.1")
-            modrinth("fancydialogs", "1.1.2")
 //            hangar("ViaVersion", "5.3.2")
 //            hangar("ViaBackwards", "5.3.2")
 //            hangar("PlaceholderAPI", "2.11.6")

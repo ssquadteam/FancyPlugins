@@ -127,11 +127,20 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
                     """);
         }
 
-        if (!Bukkit.getPluginManager().isPluginEnabled("FancyDialogs")) {
-            fancyLogger.error("FancyDialogs plugin is not installed or not enabled. Please install and enable FancyDialogs to use FancyWorlds.");
-            Bukkit.getPluginManager().disablePlugin(this);
-            return;
-        }
+        Bukkit.getScheduler().runTaskLaterAsynchronously(INSTANCE, () -> {
+            if (!Bukkit.getPluginManager().isPluginEnabled("FancyDialogs")) {
+                fancyLogger.error("""
+                        
+                        --------------------------------------------------
+                        The FancyDialogs plugin is required for FancyWorlds to work properly.
+                        Please install the FancyDialogs plugin and restart the server.
+                        You can download the plugin here: https://modrinth.com/plugin/fancydialogs/versions?c=release
+                        --------------------------------------------------
+                        """);
+                Bukkit.getPluginManager().disablePlugin(this);
+                return;
+            }
+        }, 20L * 20); // 20s
 
         registerCommands();
 
