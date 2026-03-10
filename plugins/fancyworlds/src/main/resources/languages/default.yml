@@ -2,5 +2,12 @@ language_name: default
 messages:
   commands:
     fancyworlds:
-      version: "You are running FancyWorlds {primaryColor}v{version}{secondaryColor}."
-      version_outdated: "You are running an outdated version of FancyWorlds. Please update to the latest version {primaryColor}v{latestVersion}{secondaryColor}({downloadURL})."
+      version:
+        current_version: "You are running FancyWorlds {primaryColor}v{version}{secondaryColor}."
+        version_outdated: "You are running an outdated version of FancyWorlds. Please update to the latest version {primaryColor}v{latestVersion}{secondaryColor}({downloadURL})."
+      config:
+        reload:
+          confirmation: "{warningColor}Are you sure you want to reload the configuration? This will apply any changes made to the config file."
+          success: "Configuration reloaded successfully."
+          cancelled: "Configuration reload cancelled."
+

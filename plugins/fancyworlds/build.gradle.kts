@@ -24,6 +24,7 @@ allprojects {
         maven(url = "https://repo.papermc.io/repository/maven-public/")
         maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 
+        maven(url = "https://maven.fancyspaces.net/fancyinnovations/releases")
         maven(url = "https://repo.fancyinnovations.com/snapshots")
         maven(url = "https://repo.fancyinnovations.com/releases")
         maven(url = "https://repo.lushplugins.org/releases")
@@ -44,6 +45,7 @@ dependencies {
     implementation("de.oliver.FancyAnalytics:mc-api:0.1.13")
     implementation("de.oliver.FancyAnalytics:logger:0.0.8")
 
+    compileOnly("de.oliver:FancyDialogs:1.1.2")
     compileOnly("org.lushplugins:ChatColorHandler:6.0.4")
     implementation("io.github.revxrsal:lamp.common:4.0.0-rc.12")
     implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.12")
@@ -60,10 +62,10 @@ paper {
     version = getFWVersion()
     description = "Simple, lightweight and fast world management plugin"
     apiVersion = "1.21"
-    load = BukkitPluginDescription.PluginLoadOrder.STARTUP
+    load = BukkitPluginDescription.PluginLoadOrder.POSTWORLD
     serverDependencies {
         register("FancyDialogs") {
-            required = false
+            required = true
             load = PaperPluginDescription.RelativeLoadOrder.BEFORE
         }
     }

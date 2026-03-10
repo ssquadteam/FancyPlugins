@@ -26,13 +26,13 @@ public class FWVersionCMD extends FancyCMD {
         ComparableVersion currentVersion = new ComparableVersion(versionConfig.getVersion());
         ComparableVersion newestVersion = versionFetcher.fetchNewestVersion();
 
-        translator.translate("commands.fancyworlds.version")
+        translator.translate("commands.fancyworlds.version.current_version")
                 .withPrefix()
                 .replace("version", versionConfig.getVersion())
                 .send(actor.sender());
 
         if (newestVersion != null && currentVersion.compareTo(newestVersion) < 0) {
-            translator.translate("commands.fancyworlds.version_outdated")
+            translator.translate("commands.fancyworlds.version.version_outdated")
                     .withPrefix()
                     .replace("version", versionConfig.getVersion())
                     .replace("latestVersion", newestVersion.toString())

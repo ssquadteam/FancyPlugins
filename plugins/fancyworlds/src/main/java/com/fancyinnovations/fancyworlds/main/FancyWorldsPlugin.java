@@ -4,6 +4,7 @@ import com.fancyinnovations.fancyworlds.api.FancyWorlds;
 import com.fancyinnovations.fancyworlds.api.FancyWorldsConfig;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
+import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWConfigCMD;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
 import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
 import com.fancyinnovations.fancyworlds.worlds.service.WorldServiceImpl;
@@ -21,6 +22,7 @@ import de.oliver.fancylib.translations.Translator;
 import de.oliver.fancylib.versionFetcher.FancySpacesVersionFetcher;
 import de.oliver.fancylib.versionFetcher.VersionFetcher;
 import org.apache.maven.artifact.versioning.ComparableVersion;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.Lamp;
 import revxrsal.commands.bukkit.BukkitLamp;
@@ -97,23 +99,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         versionConfig.load();
 
         // Translator
-        translator = new Translator(
-                new TextConfig(
-                        "#ffcc24", // color to highlight important information
-                        "gray", // text color for regular messages
-                        "#81E366",
-                        "#E3CA66",
-                        "#E36666",
-                        "<color:#ba8813>[</color><gradient:#ffae00:#fffb00:#ffae00>FancyWorlds</gradient><color:#ba8813>]</color> <gray>"
-                )
-        );
-
-        translator.loadLanguages(getDataFolder().getAbsolutePath());
-        Language selectedLanguage = translator.getLanguages().stream()
-                .filter(language -> language.getLanguageName().equals(fancyWorldsConfig.getLanguage()))
-                .findFirst()
-                .orElse(translator.getFallbackLanguage());
-        translator.setSelectedLanguage(selectedLanguage);
+        registerTranslator();
 
         // Services
         worldStorage = new FakeWorldStorage();
@@ -139,6 +125,12 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
                     Read more about the risks of using a development build here: https://fancyinnovations.com/docs/general/development-guidelines/versioning#build
                     --------------------------------------------------
                     """);
+        }
+
+        if (!Bukkit.getPluginManager().isPluginEnabled("FancyDialogs")) {
+            fancyLogger.error("FancyDialogs plugin is not installed or not enabled. Please install and enable FancyDialogs to use FancyWorlds.");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
         }
 
         registerCommands();
@@ -174,9 +166,30 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
         // fancyworlds commands
         lamp.register(FWVersionCMD.INSTANCE);
+        lamp.register(FWConfigCMD.INSTANCE);
 
         // world commands
 //        lamp.register(TraitCMD.INSTANCE);
+    }
+
+    public void registerTranslator() {
+        translator = new Translator(
+                new TextConfig(
+                        "#ffcc24", // color to highlight important information
+                        "gray", // text color for regular messages
+                        "#81E366",
+                        "#E3CA66",
+                        "#E36666",
+                        "<color:#ba8813>[</color><gradient:#ffae00:#fffb00:#ffae00>FancyWorlds</gradient><color:#ba8813>]</color> <gray>"
+                )
+        );
+
+        translator.loadLanguages(getDataFolder().getAbsolutePath());
+        Language selectedLanguage = translator.getLanguages().stream()
+                .filter(language -> language.getLanguageName().equals(fancyWorldsConfig.getLanguage()))
+                .findFirst()
+                .orElse(translator.getFallbackLanguage());
+        translator.setSelectedLanguage(selectedLanguage);
     }
 
     private void checkForNewerVersion() {
