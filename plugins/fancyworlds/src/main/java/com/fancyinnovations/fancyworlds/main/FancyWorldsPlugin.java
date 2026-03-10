@@ -3,6 +3,7 @@ package com.fancyinnovations.fancyworlds.main;
 import com.fancyinnovations.fancyworlds.api.FancyWorlds;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
+import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
 import com.fancyinnovations.fancyworlds.worlds.service.WorldServiceImpl;
 import com.fancyinnovations.fancyworlds.worlds.storage.fake.FakeWorldStorage;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
@@ -12,6 +13,9 @@ import de.oliver.fancyanalytics.logger.appender.ConsoleAppender;
 import de.oliver.fancyanalytics.logger.appender.JsonAppender;
 import de.oliver.fancylib.logging.PluginMiddleware;
 import org.bukkit.plugin.java.JavaPlugin;
+import revxrsal.commands.Lamp;
+import revxrsal.commands.bukkit.BukkitLamp;
+import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -67,6 +71,8 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     public void onEnable() {
         fancyLogger.info("Enabling FancyWorlds version %s...".formatted(getDescription().getVersion()));
 
+        registerCommands();
+
         fancyLogger.info("Successfully enabled FancyWorlds version %s".formatted(getDescription().getVersion()));
     }
 
@@ -75,6 +81,32 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         fancyLogger.info("Disabling FancyWorlds version %s...".formatted(getDescription().getVersion()));
 
         fancyLogger.info("Successfully disabled FancyWorlds version %s".formatted(getDescription().getVersion()));
+    }
+
+    private void registerCommands() {
+        Lamp.Builder<BukkitCommandActor> lampBuilder = BukkitLamp
+                .builder(this);
+
+        // parameter types
+//        lampBuilder.parameterTypes(builder -> {
+//            builder.addParameterType(Hologram.class, HologramCommandType.INSTANCE);
+//            builder.addParameterType(HologramTraitRegistry.TraitInfo.class, TraitCommandType.INSTANCE);
+//            builder.addParameterType(de.oliver.fancylib.colors.GlowingColor.class, GlowingColorCommandType.INSTANCE);
+//        });
+
+        // exception handlers
+//        lampBuilder
+//                .exceptionHandler(HologramCommandType.INSTANCE)
+//                .exceptionHandler(TraitCommandType.INSTANCE)
+//                .exceptionHandler(GlowingColorCommandType.INSTANCE);
+
+        Lamp<BukkitCommandActor> lamp = lampBuilder.build();
+
+        // fancyworlds commands
+        lamp.register(FWVersionCMD.INSTANCE);
+
+        // world commands
+//        lamp.register(TraitCMD.INSTANCE);
     }
 
     @Override
