@@ -2,6 +2,7 @@ package com.fancyinnovations.fancyworlds.api;
 
 import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
+import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -12,6 +13,9 @@ public interface FancyWorlds {
         return (FancyWorlds) plugin;
     }
 
+    ExtendedFancyLogger getFancyLogger();
+
+    FancyWorldsConfig getFancyWorldsConfig();
 
     WorldStorage getWorldStorage();
 

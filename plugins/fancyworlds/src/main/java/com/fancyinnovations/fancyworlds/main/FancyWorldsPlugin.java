@@ -1,9 +1,11 @@
 package com.fancyinnovations.fancyworlds.main;
 
 import com.fancyinnovations.fancyworlds.api.FancyWorlds;
+import com.fancyinnovations.fancyworlds.api.FancyWorldsConfig;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
+import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
 import com.fancyinnovations.fancyworlds.worlds.service.WorldServiceImpl;
 import com.fancyinnovations.fancyworlds.worlds.storage.fake.FakeWorldStorage;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
@@ -26,6 +28,8 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
     private static FancyWorldsPlugin INSTANCE;
     private final ExtendedFancyLogger fancyLogger;
+
+    private FancyWorldsConfigImpl fancyWorldsConfig;
 
     private WorldStorage worldStorage;
     private WorldService worldService;
@@ -60,6 +64,19 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     @Override
     public void onLoad() {
         fancyLogger.info("Loading FancyWorlds version %s...".formatted(getDescription().getVersion()));
+
+        fancyWorldsConfig = new FancyWorldsConfigImpl();
+        fancyWorldsConfig.init();
+        fancyWorldsConfig.reload();
+
+        LogLevel logLevel;
+        try {
+            logLevel = LogLevel.valueOf(fancyWorldsConfig.getLogLevel());
+        } catch (IllegalArgumentException e) {
+            logLevel = LogLevel.INFO;
+        }
+        fancyLogger.setCurrentLevel(logLevel);
+//        IFancySitula.LOGGER.setCurrentLevel(logLevel);
 
         worldStorage = new FakeWorldStorage();
         worldService = new WorldServiceImpl(worldStorage);
@@ -107,6 +124,16 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
         // world commands
 //        lamp.register(TraitCMD.INSTANCE);
+    }
+
+    @Override
+    public ExtendedFancyLogger getFancyLogger() {
+        return fancyLogger;
+    }
+
+    @Override
+    public FancyWorldsConfig getFancyWorldsConfig() {
+        return fancyWorldsConfig;
     }
 
     @Override
