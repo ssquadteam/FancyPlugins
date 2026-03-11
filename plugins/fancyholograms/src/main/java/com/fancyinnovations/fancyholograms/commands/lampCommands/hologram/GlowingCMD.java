@@ -61,10 +61,12 @@ public final class GlowingCMD {
         // Send success message
         if (newColor == GlowingColor.DISABLED) {
             translator.translate("commands.hologram.edit.glowing.disabled")
+                    .withPrefix()
                     .replace("hologram", hologram.getData().getName())
                     .send(actor.sender());
         } else {
             translator.translate("commands.hologram.edit.glowing.enabled")
+                    .withPrefix()
                     .replace("hologram", hologram.getData().getName())
                     .replace("color", ((SimpleMessage) translator.translate(newColor.getTranslationKey())).getMessage())
                     .send(actor.sender());
@@ -102,6 +104,7 @@ public final class GlowingCMD {
             }
 
             translator.translate("commands.hologram.edit.glowing.disabled")
+                    .withPrefix()
                     .replace("hologram", hologram.getData().getName())
                     .send(actor.sender());
         } else {
@@ -123,6 +126,7 @@ public final class GlowingCMD {
             }
 
             translator.translate("commands.hologram.edit.glowing.color_set")
+                    .withPrefix()
                     .replace("hologram", hologram.getData().getName())
                     .replace("color", ((SimpleMessage) translator.translate(color.getTranslationKey())).getMessage())
                     .send(actor.sender());

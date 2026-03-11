@@ -43,6 +43,7 @@ public final class MoveUpCMD {
 
         if (line < 2 || line > text.size()) {
             translator.translate("commands.hologram.edit.lines.line_number_out_of_bounds")
+                    .withPrefix()
                     .replace("line", String.valueOf(line))
                     .replace("min", "2")
                     .replace("max", String.valueOf(text.size()))
@@ -70,6 +71,7 @@ public final class MoveUpCMD {
         }
 
         translator.translate("commands.hologram.edit.lines.move_success")
+                .withPrefix()
                 .replace("line", String.valueOf(line))
                 .replace("position", String.valueOf(line - 1))
                 .send(actor.sender());

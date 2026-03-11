@@ -44,6 +44,7 @@ public final class SwapLinesCMD {
 
         if (line1 < 1 || line1 > text.size()) {
             translator.translate("commands.hologram.edit.lines.line_number_out_of_bounds")
+                    .withPrefix()
                     .replace("line", String.valueOf(line1))
                     .replace("min", "1")
                     .replace("max", String.valueOf(text.size()))
@@ -53,6 +54,7 @@ public final class SwapLinesCMD {
 
         if (line2 < 1 || line2 > text.size()) {
             translator.translate("commands.hologram.edit.lines.line_number_out_of_bounds")
+                    .withPrefix()
                     .replace("line", String.valueOf(line2))
                     .replace("min", "1")
                     .replace("max", String.valueOf(text.size()))
@@ -62,6 +64,7 @@ public final class SwapLinesCMD {
 
         if (line1 == line2) {
             translator.translate("commands.hologram.edit.lines.cannot_swap_same_line")
+                    .withPrefix()
                     .replace("line", String.valueOf(line1))
                     .send(actor.sender());
             return;
@@ -87,6 +90,7 @@ public final class SwapLinesCMD {
         }
 
         translator.translate("commands.hologram.edit.lines.swap_success")
+                .withPrefix()
                 .replace("line1", String.valueOf(line1))
                 .replace("line2", String.valueOf(line2))
                 .send(actor.sender());

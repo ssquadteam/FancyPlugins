@@ -138,7 +138,16 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
 
         configuration = new FHConfiguration();
 
-        translator = new Translator(new TextConfig("#32e347", "#35ad1d", "#81E366", "#E3CA66", "#E36666", ""));
+        translator = new Translator(
+                new TextConfig(
+                        "#ffcc24", // color to highlight important information
+                        "gray", // text color for regular messages
+                        "#81E366",
+                        "#E3CA66",
+                        "#E36666",
+                        "<color:#ba8813>[</color><gradient:#ffae00:#fffb00:#ffae00>FancyHolograms</gradient><color:#ba8813>]</color> <gray>"
+                )
+        );
     }
 
     public static @NotNull FancyHologramsPlugin get() {
@@ -308,7 +317,8 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
         lampBuilder
                 .exceptionHandler(HologramCommandType.INSTANCE)
                 .exceptionHandler(TraitCommandType.INSTANCE)
-                .exceptionHandler(GlowingColorCommandType.INSTANCE);
+                .exceptionHandler(GlowingColorCommandType.INSTANCE)
+                .exceptionHandler(HologramTypeCondition.INSTANCE);
 
         Lamp<BukkitCommandActor> lamp = lampBuilder.build();
 
