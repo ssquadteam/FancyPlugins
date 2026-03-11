@@ -11,77 +11,18 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MojangService {
 
     private static final String MANIFEST_URL = "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json";
+    private static final long CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 hours
 
     private final Strata strata;
     private final HttpClient http;
 
-    private PistonVersionManifestV2 cachedManifest;
-    private Map<String, PistonVersionDetails> cachedVersionDetails;
-
     public MojangService(Strata strata) {
         this.strata = strata;
         this.http = HttpClient.newHttpClient();
-        this.cachedManifest = null;
-        this.cachedVersionDetails = new ConcurrentHashMap<>();
-    }
-
-    public void loadCache() {
-        Path cachePath = strata.getCacheDir().toPath();
-
-        Path versionManifestPath = cachePath.resolve("piston/version_manifest_v2.json");
-        if (Files.exists(versionManifestPath)) {
-            try {
-                cachedManifest = Strata.GSON.fromJson(
-                        Files.readString(versionManifestPath),
-                        PistonVersionManifestV2.class
-                );
-
-                strata.getLogger().info("Loaded cached version manifest v2 from disk");
-            } catch (IOException e) {
-                strata.getLogger().error(
-                        "Failed to load cached version manifest v2 from disk",
-                        StringProperty.of("path", versionManifestPath.toString()),
-                        ThrowableProperty.of(e)
-                );
-            }
-        }
-
-        Path versionsPath = cachePath.resolve("piston/versions");
-        if (Files.exists(versionsPath) && Files.isDirectory(versionsPath)) {
-            try {
-                Files.list(versionsPath)
-                        .filter(Files::isRegularFile)
-                        .forEach(path -> {
-                            try {
-                                PistonVersionDetails details = Strata.GSON.fromJson(
-                                        Files.readString(path),
-                                        PistonVersionDetails.class
-                                );
-                                cachedVersionDetails.put(details.id(), details);
-                            } catch (IOException e) {
-                                strata.getLogger().error(
-                                        "Failed to load cached version details from disk",
-                                        StringProperty.of("path", path.toString()),
-                                        ThrowableProperty.of(e)
-                                );
-                            }
-                        });
-            } catch (IOException e) {
-                strata.getLogger().error(
-                        "Failed to list cached version details from disk",
-                        StringProperty.of("path", versionsPath.toString()),
-                        ThrowableProperty.of(e)
-                );
-            }
-
-            strata.getLogger().info("Loaded cached version details from disk: " + cachedVersionDetails.size() + " versions");
-        }
     }
 
     public PistonVersionDetails getVersion(String version) {
@@ -193,9 +134,25 @@ public class MojangService {
     }
 
     private PistonVersionManifestV2 fetchPistonVersionManifest() {
-        if (cachedManifest != null) {
-            return cachedManifest;
+        // check cache first
+        Path manifestCachePath = strata.getCacheDir().toPath().resolve("piston/version_manifest_v2.json");
+        if (Files.exists(manifestCachePath)) {
+
+            try {
+                long lastModified = Files.getLastModifiedTime(manifestCachePath).toMillis();
+                if (System.currentTimeMillis() - lastModified < CACHE_EXPIRATION_MS) { // cache is still valid
+                    return Strata.GSON.fromJson(Files.readString(manifestCachePath), PistonVersionManifestV2.class);
+                }
+            } catch (IOException e) {
+                strata.getLogger().error(
+                        "Failed to read cached version manifest v2 from disk",
+                        StringProperty.of("path", manifestCachePath.toString()),
+                        ThrowableProperty.of(e)
+                );
+            }
         }
+
+        // if cache is not valid or doesn't exist, fetch from Mojang
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(MANIFEST_URL))
@@ -215,7 +172,6 @@ public class MojangService {
 
         PistonVersionManifestV2 manifest = Strata.GSON.fromJson(response.body(), PistonVersionManifestV2.class);
 
-        cachedManifest = manifest;
         try {
             Files.createDirectories(strata.getCacheDir().toPath().resolve("piston"));
             Files.writeString(strata.getCacheDir().toPath().resolve("piston/version_manifest_v2.json"), response.body());
@@ -237,9 +193,25 @@ public class MojangService {
     }
 
     private PistonVersionDetails fetchPistonVersionDetails(PistonVersionManifestV2.Version version) {
-        if (cachedVersionDetails.containsKey(version.id())) {
-            return cachedVersionDetails.get(version.id());
+        // check cache first
+        Path versionCachePath = strata.getCacheDir().toPath().resolve("piston/versions/" + version.id() + ".json");
+        if (Files.exists(versionCachePath)) {
+            try {
+                long lastModified = Files.getLastModifiedTime(versionCachePath).toMillis();
+                if (System.currentTimeMillis() - lastModified < CACHE_EXPIRATION_MS) { // cache is still valid
+                    return Strata.GSON.fromJson(Files.readString(versionCachePath), PistonVersionDetails.class);
+                }
+            } catch (IOException e) {
+                strata.getLogger().error(
+                        "Failed to read cached version details from disk",
+                        StringProperty.of("version", version.id()),
+                        StringProperty.of("path", versionCachePath.toString()),
+                        ThrowableProperty.of(e)
+                );
+            }
         }
+
+        // if cache is not valid or doesn't exist, fetch from Mojang
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(version.url()))
@@ -260,7 +232,6 @@ public class MojangService {
 
         PistonVersionDetails details = Strata.GSON.fromJson(response.body(), PistonVersionDetails.class);
 
-        cachedVersionDetails.put(version.id(), details);
         try {
             Files.createDirectories(strata.getCacheDir().toPath().resolve("piston/versions"));
             Files.writeString(strata.getCacheDir().toPath().resolve("piston/versions/" + version.id() + ".json"), response.body());
