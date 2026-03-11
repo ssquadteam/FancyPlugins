@@ -50,8 +50,8 @@ dependencies {
     implementation("de.oliver.FancyAnalytics:mc-api:0.1.13")
     implementation("de.oliver.FancyAnalytics:logger:0.0.8")
 
-    implementation("io.github.revxrsal:lamp.common:4.0.0-rc.12")
-    implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.12")
+    implementation("io.github.revxrsal:lamp.common:4.0.0-rc.16")
+    implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.16")
     compileOnly(project(":plugins:fancynpcs:fn-api"))
     compileOnly("org.lushplugins:ChatColorHandler:6.0.4")
     compileOnly("com.viaversion:viaversion-api:5.7.1")
