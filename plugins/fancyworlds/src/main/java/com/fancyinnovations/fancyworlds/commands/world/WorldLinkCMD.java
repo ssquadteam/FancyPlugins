@@ -24,36 +24,36 @@ public class WorldLinkCMD extends FancyContext {
     @Command("world link")
     @Description("Links an existing world to FancyWorlds, allowing you to manage it with the plugin")
     @CommandPermission("fancyworlds.commands.world.link")
-    public void version(
+    public void link(
             final BukkitCommandActor actor,
-            final @SuggestWith(LinkableWorldsSuggestionProvider.class) World bukkitWorld
+            final @SuggestWith(LinkableWorldsSuggestionProvider.class) World world
     ) {
         WorldService service = WorldService.get();
 
-        FWorldImpl fworld = (FWorldImpl) service.getWorldByName(bukkitWorld.getName());
+        FWorldImpl fworld = (FWorldImpl) service.getWorldByName(world.getName());
         if (fworld != null) {
             translator.translate("commands.world.link.already_linked")
                     .withPrefix()
-                    .replace("worldName", bukkitWorld.getName())
+                    .replace("worldName", world.getName())
                     .send(actor.sender());
             return;
         }
 
         fworld = new FWorldImpl(
-                bukkitWorld.getUID(),
-                bukkitWorld.getName(),
-                bukkitWorld.getSeed(),
-                bukkitWorld.getEnvironment(),
+                world.getUID(),
+                world.getName(),
+                world.getSeed(),
+                world.getEnvironment(),
                 null,
-                bukkitWorld.canGenerateStructures(),
+                world.canGenerateStructures(),
                 new FWorldSettingsImpl()
         );
-        fworld.setBukkitWorld(bukkitWorld);
+        fworld.setBukkitWorld(world);
         service.registerWorld(fworld);
 
         translator.translate("commands.world.link.success")
                 .withPrefix()
-                .replace("worldName", bukkitWorld.getName())
+                .replace("worldName", world.getName())
                 .send(actor.sender());
     }
 

@@ -7,10 +7,9 @@ import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWConfigCMD;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
+import com.fancyinnovations.fancyworlds.commands.other.SeedCMD;
 import com.fancyinnovations.fancyworlds.commands.types.FWorldCommandType;
-import com.fancyinnovations.fancyworlds.commands.world.WorldLinkCMD;
-import com.fancyinnovations.fancyworlds.commands.world.WorldListCMD;
-import com.fancyinnovations.fancyworlds.commands.world.WorldUnlinkCMD;
+import com.fancyinnovations.fancyworlds.commands.world.*;
 import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
 import com.fancyinnovations.fancyworlds.listeners.WorldLoadListener;
 import com.fancyinnovations.fancyworlds.listeners.WorldUnloadListener;
@@ -182,9 +181,17 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         lamp.register(FWConfigCMD.INSTANCE);
 
         // world commands
+        lamp.register(WorldHelpCMD.INSTANCE);
         lamp.register(WorldListCMD.INSTANCE);
         lamp.register(WorldLinkCMD.INSTANCE);
         lamp.register(WorldUnlinkCMD.INSTANCE);
+        lamp.register(WorldCreateCMD.INSTANCE);
+        lamp.register(WorldTeleportCMD.INSTANCE);
+        lamp.register(WorldLoadCMD.INSTANCE);
+        lamp.register(WorldUnloadCMD.INSTANCE);
+
+        // Other
+        lamp.register(SeedCMD.INSTANCE);
     }
 
     private void registerListeners() {

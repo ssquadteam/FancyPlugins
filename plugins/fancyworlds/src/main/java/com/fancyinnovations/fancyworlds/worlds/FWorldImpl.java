@@ -2,9 +2,10 @@ package com.fancyinnovations.fancyworlds.worlds;
 
 import com.fancyinnovations.fancyworlds.api.worlds.FWorld;
 import com.fancyinnovations.fancyworlds.api.worlds.FWorldSettings;
-import org.bukkit.Bukkit;
+import com.fancyinnovations.fancyworlds.utils.WorldFileUtils;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -96,9 +97,7 @@ public class FWorldImpl implements FWorld {
 
     @Override
     public boolean isWorldOnDisk() {
-        return Bukkit.getWorldContainer().toPath()
-                .resolve(name).toFile()
-                .exists();
+        return WorldFileUtils.isWorldOnDisk(name);
     }
 
     @Override
@@ -116,6 +115,17 @@ public class FWorldImpl implements FWorld {
         creator.environment(environment);
         creator.generator(generator);
         creator.generateStructures(generateStructures);
+
+        if (generator.equalsIgnoreCase("flat")) {
+            creator.type(WorldType.FLAT);
+        } else if (generator.equalsIgnoreCase("amplified")) {
+            creator.type(WorldType.AMPLIFIED);
+        } else if (generator.equalsIgnoreCase("large_biomes")) {
+            creator.type(WorldType.LARGE_BIOMES);
+        } else {
+            creator.type(WorldType.NORMAL);
+        }
+
         return creator;
     }
 }

@@ -15,7 +15,7 @@ public class WorldUnlinkCMD extends FancyContext {
     @Command("world unlink")
     @Description("Unlinks a world from FancyWorlds, removing it from the plugin's management. The world will not be deleted and will still exist on the server, but it will no longer be managed by FancyWorlds.")
     @CommandPermission("fancyworlds.commands.world.unlink")
-    public void version(
+    public void unlink(
             final BukkitCommandActor actor,
             final FWorld world
     ) {
