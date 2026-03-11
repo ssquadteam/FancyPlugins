@@ -47,8 +47,6 @@ public class Strata {
 
     public void init() {
         logger.info("Initializing Strata...");
-
-        mojangService.loadCache();
     }
 
     public ExtendedFancyLogger getLogger() {

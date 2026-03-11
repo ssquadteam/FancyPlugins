@@ -13,7 +13,7 @@ public class Main {
         strata.getExtractorService().extractServerBundle(latest.id());
         strata.getDecompilerService().decompile(
                 strata.getExtractorService().getServerJarPath(latest.id()),
-                "tools/strata/strata-sources/" + latest.id()
+                "tools/strata/strata-sources/" + latest.id() + "/src/main/java"
         );
     }
 
