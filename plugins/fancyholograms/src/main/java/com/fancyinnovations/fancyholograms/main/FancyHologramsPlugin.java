@@ -54,6 +54,7 @@ import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.geysermc.geyser.api.GeyserApi;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.Lamp;
@@ -71,7 +72,7 @@ import java.util.function.Function;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
-public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolograms {
+public class FancyHologramsPlugin extends JavaPlugin implements FancyHolograms {
 
     private static @Nullable FancyHologramsPlugin INSTANCE;
 
@@ -345,8 +346,10 @@ public final class FancyHologramsPlugin extends JavaPlugin implements FancyHolog
             getServer().getPluginManager().registerEvents(new NpcListener(this), this);
         }
 
-        if (configuration.isHologramsForBedrockPlayersEnabled() && PluginUtils.isFloodgateEnabled()) {
+        if (PluginUtils.isFloodgateEnabled()) {
+            FancyHologramsGeyserPlugin geyserPlugin = new FancyHologramsGeyserPlugin();
             getServer().getPluginManager().registerEvents(new BedrockPlayerListener(), this);
+            GeyserApi.api().eventBus().register(geyserPlugin, new BedrockPlayerListener());
         }
     }
 
