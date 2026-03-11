@@ -46,6 +46,7 @@ public final class NpcConvertCMD {
     public void onCitizens(final CommandSender sender) {
         if (Bukkit.getPluginManager().getPlugin("Citizens") == null) {
             translator.translate("npcconvert_plugin_not_found")
+                    .withPrefix()
                     .replace("source_plugin", "Citizens")
                     .send(sender);
             return;
@@ -160,6 +161,7 @@ public final class NpcConvertCMD {
 
         if (convertedCount == 0) {
             translator.translate("npcconvert_no_npcs_found")
+                    .withPrefix()
                     .replace("source_plugin", "Citizens")
                     .send(sender);
             return;
@@ -171,6 +173,7 @@ public final class NpcConvertCMD {
         FancyNpcs.getInstance().getFancyAnalytics().sendEvent(event);
 
         translator.translate("npcconvert_success")
+                .withPrefix()
                 .replace("source_plugin", "Citizens")
                 .replace("converted_count", String.valueOf(convertedCount))
                 .send(sender);

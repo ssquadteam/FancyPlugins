@@ -217,7 +217,14 @@ public class FancyNpcs extends JavaPlugin implements FancyNpcsPlugin {
         skinManager = new SkinManagerImpl(new UUIDFileCache(), new SkinCacheFile(), new SkinCacheMemory(), MojangQueue.get(), MineSkinQueue.get());
         OldSkinCacheMigrator.migrate();
 
-        textConfig = new TextConfig("#E33239", "#AD1D23", "#81E366", "#E3CA66", "#E36666", "");
+        textConfig = new TextConfig(
+                "#ffcc24", // color to highlight important information
+                "gray", // text color for regular messages
+                "#81E366",
+                "#E3CA66",
+                "#E36666",
+                "<color:#ba8813>[</color><gradient:#ffae00:#fffb00:#ffae00>FancyNpcs</gradient><color:#ba8813>]</color> <gray>"
+        );
         translator = new Translator(textConfig);
         translator.loadLanguages(getDataFolder().getAbsolutePath());
         final Language selectedLanguage = translator.getLanguages().stream()
