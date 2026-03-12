@@ -13,9 +13,14 @@ public class Main {
         strata.getExtractorService().extractServerBundle(latest.id());
         strata.getDecompilerService().decompile(
                 strata.getExtractorService().getServerJarPath(latest.id()),
-                "tools/strata/strata-cache/decompiled/" + latest.id()
+                latest.id()
         );
-        strata.getWorkspaceService().copyDecompiledSources("tools/strata/strata-cache/decompiled/" + latest.id(), "tools/strata/strata-sources/" + latest.id() + "/src/main/java");
+
+        String gitDir = "tools/strata/strata-sources/" + latest.id() + "/src/main/java";
+        strata.getWorkspaceService().initGitDirectory(gitDir);
+
+        strata.getWorkspaceService().copyDecompiledSources(latest.id(), gitDir);
+        strata.getWorkspaceService().gitCommit(gitDir, "Add decompiled sources");
     }
 
 }

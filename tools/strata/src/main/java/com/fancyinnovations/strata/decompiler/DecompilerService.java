@@ -8,6 +8,7 @@ import org.jetbrains.java.decompiler.main.decompiler.DirectoryResultSaver;
 import org.jetbrains.java.decompiler.main.extern.IFernflowerLogger;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class DecompilerService {
 
@@ -17,12 +18,15 @@ public class DecompilerService {
         this.strata = strata;
     }
 
-    public void decompile(String inputJarPath, String outputDirPath) {
+    public void decompile(String inputJarPath, String versionID) {
         File inputFile = new File(inputJarPath);
         if (!inputFile.exists()) {
             strata.getLogger().error("Input JAR file does not exist: " + inputJarPath);
             return;
         }
+
+        Path cacheDir = strata.getCacheDir().toPath();
+        String outputDirPath = cacheDir.resolve("decompiled").resolve(versionID).toString();
 
         File outputDir = new File(outputDirPath);
         if (outputDir.exists()) {
