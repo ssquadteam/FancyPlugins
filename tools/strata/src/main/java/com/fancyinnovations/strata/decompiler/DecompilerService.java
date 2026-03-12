@@ -8,7 +8,6 @@ import org.jetbrains.java.decompiler.main.decompiler.DirectoryResultSaver;
 import org.jetbrains.java.decompiler.main.extern.IFernflowerLogger;
 
 import java.io.File;
-import java.nio.file.Files;
 
 public class DecompilerService {
 
@@ -27,50 +26,72 @@ public class DecompilerService {
 
         File outputDir = new File(outputDirPath);
         if (outputDir.exists()) {
-            try {
-                Files.walk(outputDir.toPath())
-                        .map(java.nio.file.Path::toFile)
-                        .forEach(File::delete);
-                outputDir.delete();
-            } catch (Exception e) {
-                strata.getLogger().error("Failed to clear existing output directory: " + outputDirPath, ThrowableProperty.of(e));
-                return;
-            }
+            strata.getLogger().warn("Output directory already exists. Skipping decompilation.");
+            return;
         }
+
+        DecompilerLogger decompilerLogger = new DecompilerLogger();
+        decompilerLogger.setSeverity(IFernflowerLogger.Severity.WARN);
 
         Decompiler decompiler = Decompiler.builder()
                 .inputs(inputFile)
                 .output(new DirectoryResultSaver(outputDir))
-                .logger(new IFernflowerLogger() {
-                    @Override
-                    public void writeMessage(String s, Severity severity) {
-                        LogLevel logLevel = switch (severity) {
-                            case TRACE -> LogLevel.DEBUG;
-                            case INFO -> LogLevel.INFO;
-                            case WARN -> LogLevel.WARN;
-                            case ERROR -> LogLevel.ERROR;
-                        };
-
-                        strata.getLogger().log(logLevel, s);
-                    }
-
-                    @Override
-                    public void writeMessage(String s, Severity severity, Throwable throwable) {
-                        LogLevel logLevel = switch (severity) {
-                            case TRACE -> LogLevel.DEBUG;
-                            case INFO -> LogLevel.INFO;
-                            case WARN -> LogLevel.WARN;
-                            case ERROR -> LogLevel.ERROR;
-                        };
-
-                        strata.getLogger().log(logLevel, s, ThrowableProperty.of(throwable));
-                    }
-                })
+                .option("--synthetic-not-set", "true")
+                .option("--ternary-constant-simplification", "true")
+                .option("--include-runtime", "current")
+                .option("--decompile-complex-constant-dynamic", "true")
+                .option("--indent-string", "    ")
+                .option("--decompile-inner", "true")
+                .option("--remove-bridge", "true")
+                .option("--decompile-generics", "true")
+                .option("--ascii-strings", "false")
+                .option("--remove-synthetic", "true")
+                .option("--include-classpath", "true")
+                .option("--inline-simple-lambdas", "true")
+                .option("--ignore-invalid-bytecode", "false")
+                .option("--bytecode-source-mapping", "true")
+                .option("--dump-code-lines", "true")
+                .option("--override-annotation", "false")
+                .option("--skip-extra-files", "true")
+                .logger(decompilerLogger)
                 .build();
 
         decompiler.decompile();
 
         strata.getLogger().info("Decompilation completed. Output directory: " + outputDirPath);
+    }
+
+    class DecompilerLogger extends IFernflowerLogger {
+
+        public DecompilerLogger() {
+            super();
+
+            setSeverity(Severity.WARN);
+        }
+
+        @Override
+        public void writeMessage(String s, Severity severity) {
+            LogLevel logLevel = switch (severity) {
+                case TRACE -> LogLevel.DEBUG;
+                case INFO -> LogLevel.INFO;
+                case WARN -> LogLevel.WARN;
+                case ERROR -> LogLevel.ERROR;
+            };
+
+            strata.getLogger().log(logLevel, s);
+        }
+
+        @Override
+        public void writeMessage(String s, Severity severity, Throwable throwable) {
+            LogLevel logLevel = switch (severity) {
+                case TRACE -> LogLevel.DEBUG;
+                case INFO -> LogLevel.INFO;
+                case WARN -> LogLevel.WARN;
+                case ERROR -> LogLevel.ERROR;
+            };
+
+            strata.getLogger().log(logLevel, s, ThrowableProperty.of(throwable));
+        }
     }
 
 }
