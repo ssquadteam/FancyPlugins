@@ -91,6 +91,45 @@ public class WorkspaceService {
         strata.getLogger().info("Copying decompiled sources completed");
     }
 
+    public void copyDataAndAssets(String versionID, String targetDir) {
+        Path cacheDir = strata.getCacheDir().toPath();
+        Path sourceDir = cacheDir.resolve("decompiled").resolve(versionID);
+
+        // Copy data and assets directories
+        try {
+            Files.walk(sourceDir)
+                    .forEach(path -> {
+                                if (Files.isDirectory(path)) {
+                                    return; // Skip directories
+                                }
+                                if (!path.toString().contains(versionID + "/data") && !path.toString().contains(versionID + "/assets") && !path.toString().contains(versionID + "/version.json") && !path.toString().contains(versionID + "/flightrecorder-config.jfc")) {
+                                    return; // Skip non-data/assets files
+                                }
+
+                                Path targetPath = Paths.get(targetDir).resolve(sourceDir.relativize(path));
+                                try {
+                                    Files.createDirectories(targetPath.getParent());
+                                    Files.copy(path, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                                    strata.getLogger().debug("Copy: " + path + " -> " + targetPath);
+                                } catch (Exception e) {
+                                    strata.getLogger().error(
+                                            "Failed to copy file: " + path,
+                                            ThrowableProperty.of(e)
+                                    );
+                                }
+                            }
+                    );
+        } catch (Exception e) {
+            strata.getLogger().error(
+                    "Failed to copy data and assets from " + sourceDir + " to " + targetDir,
+                    ThrowableProperty.of(e)
+            );
+            return;
+        }
+
+        strata.getLogger().info("Copying data and assets completed");
+    }
+
     public void initGitDirectory(String gitDir) {
         // check if .git exists in the target directory, if not create it and run git init
         if (Files.exists(Paths.get(gitDir, ".git"))) {

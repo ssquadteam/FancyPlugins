@@ -16,13 +16,13 @@ repositories {
 }
 
 dependencies {
-    compileOnly(fileTree("../../strata-cache/server-libraries/libraries-26.1-pre-1") {
+    implementation(fileTree("../../strata-cache/server-libraries/libraries-26.1-pre-1") {
         include("**/*.jar")
     })
 
-    compileOnly("org.jetbrains:annotations:24.0.1")
-    compileOnly("com.google.code.findbugs:jsr305:3.0.2")
-    compileOnly("org.checkerframework:checker-qual:3.49.0")
+    implementation("org.jetbrains:annotations:24.0.1")
+    implementation("com.google.code.findbugs:jsr305:3.0.2")
+    implementation("org.checkerframework:checker-qual:3.49.0")
 }
 
 tasks {

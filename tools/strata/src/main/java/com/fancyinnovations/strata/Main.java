@@ -21,6 +21,7 @@ public class Main {
         strata.getWorkspaceService().initGitDirectory(gitDir);
 
         strata.getWorkspaceService().copyDecompiledSources(latest.id(), gitDir);
+        strata.getWorkspaceService().copyDataAndAssets(latest.id(), "tools/strata/strata-sources/" + latest.id() + "/src/main/resources");
         strata.getWorkspaceService().gitCommit(gitDir, "Add decompiled sources");
         strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.DECOMPILED_SOURCES_TAG);
     }

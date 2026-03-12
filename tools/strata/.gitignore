@@ -1,2 +1,3 @@
 strata-cache
 strata-sources/**/src
+strata-sources/**/runServer
