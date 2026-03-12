@@ -3,7 +3,7 @@
     <option name="MAIN_CLASS_NAME" value="net.minecraft.server.Main" />
     <module name="minecraft-plugins.tools.strata.minecraft-source.main" />
     <option name="PROGRAM_PARAMETERS" value="--nogui" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools/strata/minecraft-source/runServer" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools/strata/run-server" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="net.minecraft.server.*" />

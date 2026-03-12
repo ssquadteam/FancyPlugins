@@ -33,14 +33,13 @@ tasks {
     }
 
     shadowJar {
+        archiveFileName.set("minecraft-server.jar")
         archiveClassifier.set("")
     }
 
     compileJava {
-        options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
+        options.encoding = Charsets.UTF_8.name()
 
-        // Set the release flag. This configures what version bytecode the compiler will emit, as well as what JDK APIs are usable.
-        // See https://openjdk.java.net/jeps/247 for more information.
         options.release.set(25)
         options.compilerArgs.addAll(listOf("-Xmaxerrs", "10000"))
     }
@@ -51,9 +50,9 @@ tasks {
     }
 
     javadoc {
-        options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
+        options.encoding = Charsets.UTF_8.name()
     }
     processResources {
-        filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
+        filteringCharset = Charsets.UTF_8.name()
     }
 }
