@@ -1,0 +1,25 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/attribute/modifier/FloatModifier.java b/net/minecraft/world/attribute/modifier/FloatModifier.java
+index eb11deee2b8db08ec4ac96d14cfaa8542efb403d..05a7bddf22bff5ddeb3048a1c4acf7e89476478b 100644
+--- a/net/minecraft/world/attribute/modifier/FloatModifier.java
++++ b/net/minecraft/world/attribute/modifier/FloatModifier.java
+@@ -21,11 +21,11 @@ public interface FloatModifier<Argument> extends AttributeModifier<Float, Argume
+          return (alpha, from, to) -> new FloatWithAlpha(Mth.lerp(alpha, from.value(), to.value()), Mth.lerp(alpha, from.alpha(), to.alpha()));
+       }
+    };
+-   FloatModifier<Float> ADD = Float::sum;
++   FloatModifier<Float> ADD = (Simple) Float::sum;
+    FloatModifier<Float> SUBTRACT = (FloatModifier.Simple)(a, b) -> a - b;
+    FloatModifier<Float> MULTIPLY = (FloatModifier.Simple)(a, b) -> a * b;
+-   FloatModifier<Float> MINIMUM = Math::min;
+-   FloatModifier<Float> MAXIMUM = Math::max;
++   FloatModifier<Float> MINIMUM = (Simple) Math::min;
++   FloatModifier<Float> MAXIMUM = (Simple) Math::max;
+ 
+    @FunctionalInterface
+    public interface Simple extends FloatModifier<Float> {

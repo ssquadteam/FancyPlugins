@@ -19,7 +19,7 @@ find "$REAL_PATCH_DIR" -name '*.patch' | sort | while read -r patch; do
 
 done
 
-git -C "$SOURCE_DIR" commit -am "Apply file patches"
+git -C "$SOURCE_DIR" commit --author="Strata <strata@fancyinnovations.com>" -am "Apply file patches"
 git -C "$SOURCE_DIR" tag -f strata/file-patches
 
 echo "All patches applied."

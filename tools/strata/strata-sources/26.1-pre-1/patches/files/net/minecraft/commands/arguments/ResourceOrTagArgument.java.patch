@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/commands/arguments/ResourceOrTagArgument.java b/net/minecraft/commands/arguments/ResourceOrTagArgument.java
+index 8dfdb200fc9ed0bcf070a5d9f42ee80823220083..c3b16bd7a9757db38badbec3d98d676ebf6e3da1 100644
+--- a/net/minecraft/commands/arguments/ResourceOrTagArgument.java
++++ b/net/minecraft/commands/arguments/ResourceOrTagArgument.java
+@@ -143,7 +143,7 @@ public class ResourceOrTagArgument<T> implements ArgumentType<ResourceOrTagArgum
+ 
+       @Override
+       public <E> Optional<ResourceOrTagArgument.Result<E>> cast(final ResourceKey<? extends Registry<E>> registryKey) {
+-         return this.value.key().isFor(registryKey) ? Optional.of(this) : Optional.empty();
++         return this.value.key().isFor(registryKey) ? Optional.of((ResourceOrTagArgument.Result<E>)this) : Optional.empty();
+       }
+ 
+       public boolean test(final Holder<T> holder) {
+@@ -172,7 +172,7 @@ public class ResourceOrTagArgument<T> implements ArgumentType<ResourceOrTagArgum
+ 
+       @Override
+       public <E> Optional<ResourceOrTagArgument.Result<E>> cast(final ResourceKey<? extends Registry<E>> registryKey) {
+-         return this.tag.key().isFor(registryKey) ? Optional.of(this) : Optional.empty();
++         return this.tag.key().isFor(registryKey) ? Optional.of((ResourceOrTagArgument.Result<E>)this) : Optional.empty();
+       }
+ 
+       public boolean test(final Holder<T> holder) {

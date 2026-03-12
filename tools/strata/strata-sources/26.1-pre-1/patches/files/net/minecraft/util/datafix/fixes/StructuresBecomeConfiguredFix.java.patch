@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix.java b/net/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix.java
+index e7d29e1a4d85cbb55f4b24078e955fed23f78a2f..9c61f24d898dba1f902edb1076dc6aa38ea41ce5 100644
+--- a/net/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix.java
++++ b/net/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix.java
+@@ -24,7 +24,7 @@ import org.slf4j.Logger;
+ 
+ public class StructuresBecomeConfiguredFix extends DataFix {
+    private static final Logger LOGGER = LogUtils.getLogger();
+-   private static final Map<String, StructuresBecomeConfiguredFix.Conversion> CONVERSION_MAP = ImmutableMap.builder()
++   private static final Map<String, StructuresBecomeConfiguredFix.Conversion> CONVERSION_MAP = ImmutableMap.<String, StructuresBecomeConfiguredFix.Conversion>builder()
+       .put(
+          "mineshaft",
+          StructuresBecomeConfiguredFix.Conversion.biomeMapped(
+@@ -218,7 +218,7 @@ public class StructuresBecomeConfiguredFix extends DataFix {
+          Builder<String, String> builder = ImmutableMap.builder();
+ 
+          for (Entry<List<String>, String> entry : packed.entrySet()) {
+-            ((List)entry.getKey()).forEach(k -> builder.put(k, (String)entry.getValue()));
++            (entry.getKey()).forEach(k -> builder.put(k, (String)entry.getValue()));
+          }
+ 
+          return builder.build();

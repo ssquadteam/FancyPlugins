@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/SortedArraySet.java b/net/minecraft/util/SortedArraySet.java
+index 0d7d3a9345ff55e3e502db4e4ccd444e6ee72152..bd14b6af9597820076ce0a2eed7186b81b64a860 100644
+--- a/net/minecraft/util/SortedArraySet.java
++++ b/net/minecraft/util/SortedArraySet.java
+@@ -29,7 +29,7 @@ public class SortedArraySet<T> extends AbstractSet<T> {
+    }
+ 
+    public static <T extends Comparable<T>> SortedArraySet<T> create(final int initialCapacity) {
+-      return new SortedArraySet<>(initialCapacity, Comparator.naturalOrder());
++      return new SortedArraySet<T>(initialCapacity, Comparator.naturalOrder());
+    }
+ 
+    public static <T> SortedArraySet<T> create(final Comparator<T> comparator) {

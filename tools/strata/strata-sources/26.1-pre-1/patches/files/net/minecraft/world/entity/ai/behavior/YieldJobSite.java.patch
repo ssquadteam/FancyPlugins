@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/ai/behavior/YieldJobSite.java b/net/minecraft/world/entity/ai/behavior/YieldJobSite.java
+index 415f2d1e45e043d185bd210eecb6d9455ad9c5c6..4c5a05307270fe51b0a22a2444a36aed86b57881 100644
+--- a/net/minecraft/world/entity/ai/behavior/YieldJobSite.java
++++ b/net/minecraft/world/entity/ai/behavior/YieldJobSite.java
+@@ -37,7 +37,7 @@ public class YieldJobSite {
+                      if (poiType.isEmpty()) {
+                         return true;
+                      } else {
+-                        i.<List>get(nearestEntities)
++                        i.<List<LivingEntity>>get(nearestEntities)
+                            .stream()
+                            .filter(v -> v instanceof Villager && v != body)
+                            .map(v -> (Villager)v)

@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/EntityPufferfishRenameFix.java b/net/minecraft/util/datafix/fixes/EntityPufferfishRenameFix.java
+index 597f573a0443dd1bd2a83e2465839847ab6dc650..1438545d404aa3b37a63c26b5b60bab1996a2ce7 100644
+--- a/net/minecraft/util/datafix/fixes/EntityPufferfishRenameFix.java
++++ b/net/minecraft/util/datafix/fixes/EntityPufferfishRenameFix.java
+@@ -6,7 +6,7 @@ import java.util.Map;
+ import java.util.Objects;
+ 
+ public class EntityPufferfishRenameFix extends SimplestEntityRenameFix {
+-   public static final Map<String, String> RENAMED_IDS = ImmutableMap.builder()
++   public static final Map<String, String> RENAMED_IDS = ImmutableMap.<String, String>builder()
+       .put("minecraft:puffer_fish_spawn_egg", "minecraft:pufferfish_spawn_egg")
+       .build();
+ 

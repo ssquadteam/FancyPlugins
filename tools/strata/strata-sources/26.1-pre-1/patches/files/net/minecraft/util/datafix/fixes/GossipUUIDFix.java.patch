@@ -1,0 +1,23 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/GossipUUIDFix.java b/net/minecraft/util/datafix/fixes/GossipUUIDFix.java
+index 41621035586e8beb5c20778c37def776c97330cd..5497520d3a83bddb25c7e69d1d3264d3a475ae92 100644
+--- a/net/minecraft/util/datafix/fixes/GossipUUIDFix.java
++++ b/net/minecraft/util/datafix/fixes/GossipUUIDFix.java
+@@ -17,10 +17,10 @@ public class GossipUUIDFix extends NamedEntityFix {
+          DSL.remainderFinder(),
+          tag -> tag.update(
+             "Gossips",
+-            gossips -> (Dynamic)DataFixUtils.orElse(
++            gossips -> DataFixUtils.orElse(
+                gossips.asStreamOpt()
+                   .result()
+-                  .map(s -> s.map(gossip -> (Dynamic)AbstractUUIDFix.replaceUUIDLeastMost(gossip, "Target", "Target").orElse(gossip)))
++                  .map(s -> s.map(gossip -> AbstractUUIDFix.replaceUUIDLeastMost(gossip, "Target", "Target").orElse(gossip)))
+                   .map(gossips::createList),
+                gossips
+             )

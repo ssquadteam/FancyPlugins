@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/monster/breeze/BreezeAi.java b/net/minecraft/world/entity/monster/breeze/BreezeAi.java
+index c305597502060835bad0d59cdeec0a7103e8cbb8..40486277cc9a9673d058cc69b2e488d3aac3c1a4 100644
+--- a/net/minecraft/world/entity/monster/breeze/BreezeAi.java
++++ b/net/minecraft/world/entity/monster/breeze/BreezeAi.java
+@@ -38,7 +38,7 @@ public class BreezeAi {
+    }
+ 
+    private static ActivityData<Breeze> initCoreActivity() {
+-      return ActivityData.create(Activity.CORE, 0, ImmutableList.of(new Swim(0.8F), new LookAtTargetSink(45, 90)));
++      return ActivityData.create(Activity.CORE, 0, ImmutableList.of(new Swim<>(0.8F), new LookAtTargetSink(45, 90)));
+    }
+ 
+    private static ActivityData<Breeze> initIdleActivity() {

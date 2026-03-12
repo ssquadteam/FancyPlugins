@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/ParticleUnflatteningFix.java b/net/minecraft/util/datafix/fixes/ParticleUnflatteningFix.java
+index ee068e016a2db206214ce82e8159b53457f16975..aa83f55776db8e1e1710ad56e98a44bc36a542e3 100644
+--- a/net/minecraft/util/datafix/fixes/ParticleUnflatteningFix.java
++++ b/net/minecraft/util/datafix/fixes/ParticleUnflatteningFix.java
+@@ -190,7 +190,7 @@ public class ParticleUnflatteningFix extends DataFix {
+          float destZ = (float)reader.readDouble();
+          reader.expect(' ');
+          int arrivalInTicks = reader.readInt();
+-         Dynamic<T> blockPos = result.createIntList(IntStream.of(new int[]{Mth.floor(destX), Mth.floor(destY), Mth.floor(destZ)}));
++         Dynamic<T> blockPos = (Dynamic<T>)result.createIntList(IntStream.of(Mth.floor(destX), Mth.floor(destY), Mth.floor(destZ)));
+          Dynamic<T> positionSource = result.createMap(
+             Map.of(result.createString("type"), result.createString("minecraft:block"), result.createString("pos"), blockPos)
+          );

@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/animal/armadillo/ArmadilloAi.java b/net/minecraft/world/entity/animal/armadillo/ArmadilloAi.java
+index 149809e89658ae8c21e960c83dfe4b4fbfcc720b..f05d9267afe784e576e293ae58a5c7382761417c 100644
+--- a/net/minecraft/world/entity/animal/armadillo/ArmadilloAi.java
++++ b/net/minecraft/world/entity/animal/armadillo/ArmadilloAi.java
+@@ -64,7 +64,7 @@ public class ArmadilloAi {
+          Activity.CORE,
+          0,
+          ImmutableList.of(
+-            new Swim(0.8F),
++            new Swim<>(0.8F),
+             new ArmadilloAi.ArmadilloPanic(2.0F),
+             new LookAtTargetSink(45, 90),
+             new MoveToTargetSink() {

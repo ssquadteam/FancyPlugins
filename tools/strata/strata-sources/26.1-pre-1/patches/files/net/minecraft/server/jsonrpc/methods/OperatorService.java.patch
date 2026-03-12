@@ -1,11 +1,11 @@
-From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
-From: Oliver <oschi1303@gmail.com>
-Date: Thu, 12 Mar 2026 16:39:22 +0100
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
 Subject: [PATCH] Apply file patches
 
 
 diff --git a/net/minecraft/server/jsonrpc/methods/OperatorService.java b/net/minecraft/server/jsonrpc/methods/OperatorService.java
-index 03c8e2a65f8b7210e4a2582b51a06a0698cff151..38588742dfe8ac9d7a1f8f0b6455768935515057 100644
+index 03c8e2a65f8b7210e4a2582b51a06a0698cff151..9575c4d1523057e59e008552011ba8b3ec282f56 100644
 --- a/net/minecraft/server/jsonrpc/methods/OperatorService.java
 +++ b/net/minecraft/server/jsonrpc/methods/OperatorService.java
 @@ -31,7 +31,7 @@ public class OperatorService {
@@ -26,3 +26,12 @@ index 03c8e2a65f8b7210e4a2582b51a06a0698cff151..38588742dfe8ac9d7a1f8f0b64557689
           op.ifPresent(
              operator -> minecraftApi.operatorListService().op(operator.user(), operator.permissionLevel(), operator.bypassesPlayerLimit(), clientInfo)
           );
+@@ -68,7 +68,7 @@ public class OperatorService {
+                .thenApply(user -> user.map(nameAndId -> new OperatorService.Op(nameAndId, operator.permissionLevel(), operator.bypassesPlayerLimit())))
+          )
+          .toList();
+-      Set<OperatorService.Op> finalOperators = (Set<OperatorService.Op>)((List)Util.sequence(fetch).join())
++      Set<OperatorService.Op> finalOperators = (Set<OperatorService.Op>)(Util.sequence(fetch).join())
+          .stream()
+          .flatMap(Optional::stream)
+          .collect(Collectors.toSet());

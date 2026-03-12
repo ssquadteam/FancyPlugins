@@ -1,0 +1,21 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/SimplestEntityRenameFix.java b/net/minecraft/util/datafix/fixes/SimplestEntityRenameFix.java
+index 53dfb5da5a921360fac8a3eea7b489295d0c25b1..2579a66e74ac74e248656a34e971399cbe584317 100644
+--- a/net/minecraft/util/datafix/fixes/SimplestEntityRenameFix.java
++++ b/net/minecraft/util/datafix/fixes/SimplestEntityRenameFix.java
+@@ -20,8 +20,8 @@ public abstract class SimplestEntityRenameFix extends DataFix {
+    }
+ 
+    public TypeRewriteRule makeRule() {
+-      TaggedChoiceType<String> oldType = this.getInputSchema().findChoiceType(References.ENTITY);
+-      TaggedChoiceType<String> newType = this.getOutputSchema().findChoiceType(References.ENTITY);
++      TaggedChoiceType<String> oldType = (TaggedChoiceType<String>)this.getInputSchema().findChoiceType(References.ENTITY);
++      TaggedChoiceType<String> newType = (TaggedChoiceType<String>)this.getOutputSchema().findChoiceType(References.ENTITY);
+       Type<Pair<String, String>> entityNameType = DSL.named(References.ENTITY_NAME.typeName(), NamespacedSchema.namespacedString());
+       if (!Objects.equals(this.getOutputSchema().getType(References.ENTITY_NAME), entityNameType)) {
+          throw new IllegalStateException("Entity name type is not what was expected.");

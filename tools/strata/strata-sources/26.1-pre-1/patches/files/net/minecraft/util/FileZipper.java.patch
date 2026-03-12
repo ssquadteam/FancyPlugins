@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/FileZipper.java b/net/minecraft/util/FileZipper.java
+index 54bbd5b7ff5cc95c539504efe69c7631dc753feb..93bfb3fb05112cc0c1e47d618ede245f8e58a536 100644
+--- a/net/minecraft/util/FileZipper.java
++++ b/net/minecraft/util/FileZipper.java
+@@ -67,7 +67,7 @@ public class FileZipper implements Closeable {
+             Stream<Path> sourceFiles = Files.find(path, Integer.MAX_VALUE, (p, a) -> a.isRegularFile(), new FileVisitOption[0]);
+ 
+             try {
+-               for (Path sourceFile : (List)sourceFiles.collect(Collectors.toList())) {
++               for (Path sourceFile : sourceFiles.collect(Collectors.toList())) {
+                   Path targetFile = root.resolve(path.relativize(sourceFile).toString());
+                   Files.createDirectories(targetFile.getParent());
+                   Files.copy(sourceFile, targetFile);

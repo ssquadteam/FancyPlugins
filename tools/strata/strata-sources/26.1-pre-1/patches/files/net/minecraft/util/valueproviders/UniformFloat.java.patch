@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/valueproviders/UniformFloat.java b/net/minecraft/util/valueproviders/UniformFloat.java
+index 9ac33cce1e14ab63f4079dd80085579c6ccebb09..3f0506911bda2c6745317032c71205d55a3d8749 100644
+--- a/net/minecraft/util/valueproviders/UniformFloat.java
++++ b/net/minecraft/util/valueproviders/UniformFloat.java
+@@ -8,7 +8,7 @@ import net.minecraft.util.Mth;
+ import net.minecraft.util.RandomSource;
+ 
+ public record UniformFloat(float min, float max) implements FloatProvider {
+-   public static final MapCodec<UniformFloat> MAP_CODEC = RecordCodecBuilder.mapCodec(
++   public static final MapCodec<UniformFloat> MAP_CODEC = RecordCodecBuilder.<UniformFloat>mapCodec(
+          i -> i.group(Codec.FLOAT.fieldOf("min_inclusive").forGetter(UniformFloat::min), Codec.FLOAT.fieldOf("max_exclusive").forGetter(UniformFloat::max))
+             .apply(i, UniformFloat::new)
+       )

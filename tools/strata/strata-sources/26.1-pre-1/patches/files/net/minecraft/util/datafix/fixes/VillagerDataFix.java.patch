@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/VillagerDataFix.java b/net/minecraft/util/datafix/fixes/VillagerDataFix.java
+index 7464ef97461384016a1f06bc42023aa58f2742a6..f6d8d569507d5e37ca236b46890506d1f6621208 100644
+--- a/net/minecraft/util/datafix/fixes/VillagerDataFix.java
++++ b/net/minecraft/util/datafix/fixes/VillagerDataFix.java
+@@ -14,7 +14,7 @@ public class VillagerDataFix extends NamedEntityFix {
+ 
+    @Override
+    protected Typed<?> fix(final Typed<?> entity) {
+-      Dynamic<?> remainder = (Dynamic<?>)entity.get(DSL.remainderFinder());
++      Dynamic<?> remainder = entity.get(DSL.remainderFinder());
+       return entity.set(
+          DSL.remainderFinder(),
+          remainder.remove("Profession")
+@@ -29,7 +29,7 @@ public class VillagerDataFix extends NamedEntityFix {
+                      remainder.createString("profession"),
+                      remainder.createString(upgradeData(remainder.get("Profession").asInt(0), remainder.get("Career").asInt(0))),
+                      remainder.createString("level"),
+-                     (Dynamic)DataFixUtils.orElse(remainder.get("CareerLevel").result(), remainder.createInt(1))
++                     DataFixUtils.orElse(remainder.get("CareerLevel").result(), remainder.createInt(1))
+                   )
+                )
+             )

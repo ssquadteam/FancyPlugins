@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/schemas/V705.java b/net/minecraft/util/datafix/schemas/V705.java
+index cd22ed18970d1553106664067049c2bf9b0b5a94..568851b62f8c9216ce4462e9a8a6467996b6163a 100644
+--- a/net/minecraft/util/datafix/schemas/V705.java
++++ b/net/minecraft/util/datafix/schemas/V705.java
+@@ -13,7 +13,7 @@ import java.util.function.Supplier;
+ import net.minecraft.util.datafix.fixes.References;
+ 
+ public class V705 extends NamespacedSchema {
+-   private static final Map<String, String> ITEM_TO_ENTITY = ImmutableMap.builder()
++   private static final Map<String, String> ITEM_TO_ENTITY = ImmutableMap.<String, String>builder()
+       .put("minecraft:armor_stand", "minecraft:armor_stand")
+       .put("minecraft:painting", "minecraft:painting")
+       .put("minecraft:armadillo_spawn_egg", "minecraft:armadillo")
+@@ -124,7 +124,7 @@ public class V705 extends NamespacedSchema {
+       .build();
+    protected static final HookFunction ADD_NAMES = new HookFunction() {
+       public <T> T apply(final DynamicOps<T> ops, final T value) {
+-         return V99.addNames(new Dynamic(ops, value), V704.ITEM_TO_BLOCKENTITY, V705.ITEM_TO_ENTITY);
++         return V99.addNames(new Dynamic<>(ops, value), V704.ITEM_TO_BLOCKENTITY, V705.ITEM_TO_ENTITY);
+       }
+    };
+ 

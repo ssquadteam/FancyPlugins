@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/packs/repository/BuiltInPackSource.java b/net/minecraft/server/packs/repository/BuiltInPackSource.java
+index 6ad826e7ebfa8c21df6f800c7d1d3d851c8f5bbd..d6fd987836ade1c2651a0bec2e55e3f72915c12d 100644
+--- a/net/minecraft/server/packs/repository/BuiltInPackSource.java
++++ b/net/minecraft/server/packs/repository/BuiltInPackSource.java
+@@ -77,7 +77,7 @@ public abstract class BuiltInPackSource implements RepositorySource {
+             FolderRepositorySource.discoverPacks(
+                targetDir,
+                this.validator,
+-               (path, resources) -> discoveredPacks.accept(pathToId(path), (Function)id -> this.createBuiltinPack(id, resources, this.getPackTitle(id)))
++               (path, resources) -> discoveredPacks.accept(pathToId(path), id -> this.createBuiltinPack(id, resources, this.getPackTitle(id)))
+             );
+          } catch (IOException var4) {
+             LOGGER.warn("Failed to discover packs in {}", targetDir, var4);

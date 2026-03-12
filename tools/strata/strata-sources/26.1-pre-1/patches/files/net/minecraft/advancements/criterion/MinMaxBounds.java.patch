@@ -1,11 +1,11 @@
-From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
-From: Oliver <oschi1303@gmail.com>
-Date: Thu, 12 Mar 2026 16:39:22 +0100
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
 Subject: [PATCH] Apply file patches
 
 
 diff --git a/net/minecraft/advancements/criterion/MinMaxBounds.java b/net/minecraft/advancements/criterion/MinMaxBounds.java
-index 711664299914e0a7d946578657073dc94dd080e2..64a9d9f389557eb8c32fc3b93fcb4d40533bc8a9 100644
+index 711664299914e0a7d946578657073dc94dd080e2..a278e9497cf87b5d188ec76589019a64356d5200 100644
 --- a/net/minecraft/advancements/criterion/MinMaxBounds.java
 +++ b/net/minecraft/advancements/criterion/MinMaxBounds.java
 @@ -63,9 +63,9 @@ public interface MinMaxBounds<T extends Number & Comparable<T>> {
@@ -20,6 +20,15 @@ index 711664299914e0a7d946578657073dc94dd080e2..64a9d9f389557eb8c32fc3b93fcb4d40
           }
        }
  
+@@ -76,7 +76,7 @@ public interface MinMaxBounds<T extends Number & Comparable<T>> {
+       }
+ 
+       public static <T extends Number & Comparable<T>> MinMaxBounds.Bounds<T> any() {
+-         return new MinMaxBounds.Bounds<>(Optional.empty(), Optional.empty());
++         return new MinMaxBounds.Bounds<T>(Optional.empty(), Optional.empty());
+       }
+ 
+       public static <T extends Number & Comparable<T>> MinMaxBounds.Bounds<T> exactly(final T value) {
 @@ -108,9 +108,9 @@ public interface MinMaxBounds<T extends Number & Comparable<T>> {
                 )
                 .apply(i, MinMaxBounds.Bounds::new)
