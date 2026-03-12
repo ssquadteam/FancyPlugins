@@ -1,6 +1,7 @@
 package com.fancyinnovations.strata;
 
 import com.fancyinnovations.strata.mojang.PistonVersionDetails;
+import com.fancyinnovations.strata.workspace.WorkspaceService;
 
 public class Main {
 
@@ -21,6 +22,7 @@ public class Main {
 
         strata.getWorkspaceService().copyDecompiledSources(latest.id(), gitDir);
         strata.getWorkspaceService().gitCommit(gitDir, "Add decompiled sources");
+        strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.DECOMPILED_SOURCES_TAG);
     }
 
 }

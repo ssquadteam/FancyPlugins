@@ -11,8 +11,10 @@ import java.nio.file.StandardCopyOption;
 
 public class WorkspaceService {
 
-    private static final String INITIAL_TAG = "strata/initial";
-    private static final String AUTHOR = "Strata <strata@fancyinnovations.com>";
+    public static final String INITIAL_TAG = "strata/initial";
+    public static final String DECOMPILED_SOURCES_TAG = "strata/decompiled-sources";
+    public static final String FILE_PATCHES_TAG = "strata/file-patches";
+    public static final String AUTHOR = "Strata <strata@fancyinnovations.com>";
 
     private final Strata strata;
 
@@ -118,29 +120,7 @@ public class WorkspaceService {
         gitCommit(gitDir, "Initial commit");
 
         // create initial tag
-        try {
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                    "git",
-                    "tag",
-                    INITIAL_TAG
-            );
-            processBuilder.directory(new File(gitDir));
-            processBuilder.redirectErrorStream(true);
-            processBuilder.redirectOutput(ProcessBuilder.Redirect.DISCARD);
-
-            Process process = processBuilder.start();
-            int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                strata.getLogger().info("Created initial tag: " + INITIAL_TAG);
-            } else {
-                strata.getLogger().error("Failed to create initial tag: " + INITIAL_TAG + " (exit code: " + exitCode + ")");
-            }
-        } catch (Exception e) {
-            strata.getLogger().error(
-                    "Failed to create initial tag: " + INITIAL_TAG,
-                    ThrowableProperty.of(e)
-            );
-        }
+        gitTag(gitDir, INITIAL_TAG);
     }
 
     public void gitCommit(String gitDir, String message) {
@@ -183,6 +163,59 @@ public class WorkspaceService {
         } catch (Exception e) {
             strata.getLogger().error(
                     "Failed to run git commit in: " + gitDir,
+                    ThrowableProperty.of(e)
+            );
+        }
+    }
+
+    public void gitTag(String gitDir, String tagName) {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder(
+                    "git",
+                    "tag",
+                    tagName
+            );
+            processBuilder.directory(new File(gitDir));
+            processBuilder.redirectErrorStream(true);
+            processBuilder.redirectOutput(ProcessBuilder.Redirect.DISCARD);
+
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                strata.getLogger().info("Created tag: " + tagName);
+            } else {
+                strata.getLogger().error("Failed to create tag: " + tagName + " (exit code: " + exitCode + ")");
+            }
+        } catch (Exception e) {
+            strata.getLogger().error(
+                    "Failed to create tag: " + tagName,
+                    ThrowableProperty.of(e)
+            );
+        }
+    }
+
+    public void gitResetHard(String gitDir, String tagName) {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder(
+                    "git",
+                    "reset",
+                    "--hard",
+                    tagName
+            );
+            processBuilder.directory(new File(gitDir));
+            processBuilder.redirectErrorStream(true);
+            processBuilder.redirectOutput(ProcessBuilder.Redirect.DISCARD);
+
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                strata.getLogger().info("Reset to tag: " + tagName);
+            } else {
+                strata.getLogger().error("Failed to reset to tag: " + tagName + " (exit code: " + exitCode + ")");
+            }
+        } catch (Exception e) {
+            strata.getLogger().error(
+                    "Failed to reset to tag: " + tagName,
                     ThrowableProperty.of(e)
             );
         }
