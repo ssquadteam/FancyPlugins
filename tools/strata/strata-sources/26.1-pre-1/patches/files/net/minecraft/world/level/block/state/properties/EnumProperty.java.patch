@@ -1,0 +1,28 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/block/state/properties/EnumProperty.java b/net/minecraft/world/level/block/state/properties/EnumProperty.java
+index f741300d261a10b87d1c754cab6b97ee25f43089..6f97cfe798a29cc525a77961a1a2bd3e8a06735b 100644
+--- a/net/minecraft/world/level/block/state/properties/EnumProperty.java
++++ b/net/minecraft/world/level/block/state/properties/EnumProperty.java
+@@ -46,7 +46,7 @@ public final class EnumProperty<T extends Enum<T> & StringRepresentable> extends
+ 
+    @Override
+    public Optional<T> getValue(final String name) {
+-      return Optional.ofNullable((Enum)this.names.get(name));
++      return Optional.ofNullable(this.names.get(name));
+    }
+ 
+    public String getName(final T value) {
+@@ -77,7 +77,7 @@ public final class EnumProperty<T extends Enum<T> & StringRepresentable> extends
+    }
+ 
+    public static <T extends Enum<T> & StringRepresentable> EnumProperty<T> create(final String name, final Class<T> clazz, final Predicate<T> filter) {
+-      return create(name, clazz, (List<T>)Arrays.stream((Enum[])clazz.getEnumConstants()).filter(filter).collect(Collectors.toList()));
++      return create(name, clazz, (List<T>)Arrays.stream(clazz.getEnumConstants()).filter(filter).collect(Collectors.toList()));
+    }
+ 
+    @SafeVarargs

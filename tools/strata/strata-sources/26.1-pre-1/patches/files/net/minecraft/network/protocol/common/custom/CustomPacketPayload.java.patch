@@ -1,0 +1,28 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/protocol/common/custom/CustomPacketPayload.java b/net/minecraft/network/protocol/common/custom/CustomPacketPayload.java
+index 5ae3756d1cfe8cd3a3a6fe0572ffb5aa102fdd6e..c445f54335894a29f2d570e38813cc61604882ba 100644
+--- a/net/minecraft/network/protocol/common/custom/CustomPacketPayload.java
++++ b/net/minecraft/network/protocol/common/custom/CustomPacketPayload.java
+@@ -24,7 +24,7 @@ public interface CustomPacketPayload {
+    static <B extends FriendlyByteBuf> StreamCodec<B, CustomPacketPayload> codec(
+       final CustomPacketPayload.FallbackProvider<B> fallback, final List<CustomPacketPayload.TypeAndCodec<? super B, ?>> types
+    ) {
+-      final Map<Identifier, StreamCodec<? super B, ? extends CustomPacketPayload>> idToType = (Map<Identifier, StreamCodec<? super B, ? extends CustomPacketPayload>>)types.stream()
++      final Map<Identifier, StreamCodec<? super B, ? extends CustomPacketPayload>> idToType = types.stream()
+          .collect(Collectors.toUnmodifiableMap(t -> t.type().id(), CustomPacketPayload.TypeAndCodec::codec));
+       return new StreamCodec<B, CustomPacketPayload>() {
+          private StreamCodec<? super B, ? extends CustomPacketPayload> findCodec(final Identifier typeId) {
+@@ -34,7 +34,7 @@ public interface CustomPacketPayload {
+ 
+          private <T extends CustomPacketPayload> void writeCap(final B output, final CustomPacketPayload.Type<T> type, final CustomPacketPayload payload) {
+             output.writeIdentifier(type.id());
+-            StreamCodec<B, T> codec = this.findCodec(type.id);
++            StreamCodec<B, T> codec = (StreamCodec<B, T>) this.findCodec(type.id);
+             codec.encode(output, (T)payload);
+          }
+ 

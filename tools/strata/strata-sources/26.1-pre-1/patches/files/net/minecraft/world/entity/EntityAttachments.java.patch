@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/EntityAttachments.java b/net/minecraft/world/entity/EntityAttachments.java
+index 5bd1bdf698c512e53b6230642c1c666884c93de3..f02e90ceb67170dbab9120f8122b2a096e7e2746 100644
+--- a/net/minecraft/world/entity/EntityAttachments.java
++++ b/net/minecraft/world/entity/EntityAttachments.java
+@@ -28,7 +28,7 @@ public class EntityAttachments {
+       return new EntityAttachments(Util.makeEnumMap(EntityAttachment.class, attachment -> {
+          List<Vec3> list = new ArrayList();
+ 
+-         for (Vec3 vec3 : (List)this.attachments.get(attachment)) {
++         for (Vec3 vec3 : this.attachments.get(attachment)) {
+             list.add(vec3.multiply(x, y, z));
+          }
+ 

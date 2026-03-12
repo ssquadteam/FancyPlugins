@@ -1,0 +1,33 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/protocol/BundlerInfo.java b/net/minecraft/network/protocol/BundlerInfo.java
+index 3a57783dc042c4378ade067995543408f5613178..1054811e63a3b4cf95e43e49e5569889082eda62 100644
+--- a/net/minecraft/network/protocol/BundlerInfo.java
++++ b/net/minecraft/network/protocol/BundlerInfo.java
+@@ -30,12 +30,7 @@ public interface BundlerInfo {
+          @Override
+          public BundlerInfo.@Nullable Bundler startPacketBundling(final Packet<?> packet) {
+             return packet == delimiterPacket ? new BundlerInfo.Bundler() {
+-               private final List<Packet<? super T>> bundlePackets;
+-
+-               {
+-                  Objects.requireNonNull(<VAR_NAMELESS_ENCLOSURE>);
+-                  this.bundlePackets = new ArrayList();
+-               }
++               private final List<Packet<? super T>> bundlePackets = new ArrayList<>();
+ 
+                @Override
+                public @Nullable Packet<?> addPacket(final Packet<?> packet) {
+@@ -44,7 +39,7 @@ public interface BundlerInfo {
+                   } else if (this.bundlePackets.size() >= 4096) {
+                      throw new IllegalStateException("Too many packets in a bundle");
+                   } else {
+-                     this.bundlePackets.add(packet);
++                     this.bundlePackets.add((Packet<? super T>) packet);
+                      return null;
+                   }
+                }

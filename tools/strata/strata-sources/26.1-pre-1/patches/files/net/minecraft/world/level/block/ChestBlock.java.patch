@@ -1,0 +1,20 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/block/ChestBlock.java b/net/minecraft/world/level/block/ChestBlock.java
+index fa0c1ac9a9d967810909d5c7a0055b42cca18db0..7f4379c915113eb5e5e076e4eaad8daf93136b96 100644
+--- a/net/minecraft/world/level/block/ChestBlock.java
++++ b/net/minecraft/world/level/block/ChestBlock.java
+@@ -94,9 +94,6 @@ public class ChestBlock extends AbstractChestBlock<ChestBlockEntity> implements
+       public Optional<MenuProvider> acceptDouble(final ChestBlockEntity first, final ChestBlockEntity second) {
+          final Container container = new CompoundContainer(first, second);
+          return Optional.of(new MenuProvider() {
+-            {
+-               Objects.requireNonNull(<VAR_NAMELESS_ENCLOSURE>);
+-            }
+ 
+             @Override
+             public @Nullable AbstractContainerMenu createMenu(final int containerId, final Inventory inventory, final Player player) {

@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/network/PlayerChunkSender.java b/net/minecraft/server/network/PlayerChunkSender.java
+index 04ecdbc994f2a416a2033a584e5deb2f048190ce..ca89376fec694656a2bd521ed0edd7c37240336e 100644
+--- a/net/minecraft/server/network/PlayerChunkSender.java
++++ b/net/minecraft/server/network/PlayerChunkSender.java
+@@ -87,7 +87,7 @@ public class PlayerChunkSender {
+       int maxBatchSize = Mth.floor(this.batchQuota);
+       List<LevelChunk> chunks;
+       if (!this.memoryConnection && this.pendingChunks.size() > maxBatchSize) {
+-         chunks = ((List)this.pendingChunks.stream().collect(Comparators.least(maxBatchSize, Comparator.comparingInt(playerPos::distanceSquared))))
++         chunks = (this.pendingChunks.stream().collect(Comparators.least(maxBatchSize, Comparator.comparingInt(playerPos::distanceSquared))))
+             .stream()
+             .mapToLong(Long::longValue)
+             .mapToObj(chunkMap::getChunkToSend)

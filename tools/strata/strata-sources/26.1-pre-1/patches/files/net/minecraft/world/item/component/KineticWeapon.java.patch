@@ -1,0 +1,32 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/item/component/KineticWeapon.java b/net/minecraft/world/item/component/KineticWeapon.java
+index 48ed5d858bd6363d2d2594ea44b163cbb3225a45..2a9ad9383a71844411293e2376ba50c7338d277c 100644
+--- a/net/minecraft/world/item/component/KineticWeapon.java
++++ b/net/minecraft/world/item/component/KineticWeapon.java
+@@ -6,6 +6,8 @@ import io.netty.buffer.ByteBuf;
+ import java.util.Collection;
+ import java.util.List;
+ import java.util.Optional;
++import java.util.function.Function;
++
+ import net.minecraft.advancements.CriteriaTriggers;
+ import net.minecraft.core.Holder;
+ import net.minecraft.network.RegistryFriendlyByteBuf;
+@@ -106,10 +108,10 @@ public record KineticWeapon(
+          double baseMobDamage = livingEntity.getAttributeBaseValue(Attributes.ATTACK_DAMAGE);
+          boolean affected = false;
+ 
+-         for (EntityHitResult hitResult : (Collection)ProjectileUtil.getHitEntitiesAlong(
++         for (EntityHitResult hitResult : ProjectileUtil.getHitEntitiesAlong(
+                livingEntity, attackRange, e -> PiercingWeapon.canHitEntity(livingEntity, e), ClipContext.Block.COLLIDER
+             )
+-            .map(a -> List.of(), e -> e)) {
++            .map(a -> List.<EntityHitResult>of(), Function.identity())) {
+             Entity otherEntity = hitResult.getEntity();
+             if (otherEntity instanceof EnderDragonPart dragonPart) {
+                otherEntity = dragonPart.parentMob;

@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/animal/golem/CopperGolem.java b/net/minecraft/world/entity/animal/golem/CopperGolem.java
+index 8bdeec71bbc219a3512cb5ba844a16ebb387a0e8..bdc5c319699222eedbb29cbe679fea212a8314fe 100644
+--- a/net/minecraft/world/entity/animal/golem/CopperGolem.java
++++ b/net/minecraft/world/entity/animal/golem/CopperGolem.java
+@@ -153,7 +153,7 @@ public class CopperGolem extends AbstractGolem implements ContainerUser, Shearab
+ 
+    @Override
+    public Brain<CopperGolem> getBrain() {
+-      return super.getBrain();
++      return (Brain<CopperGolem>) super.getBrain();
+    }
+ 
+    @Override

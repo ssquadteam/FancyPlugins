@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/ai/village/poi/PoiManager.java b/net/minecraft/world/entity/ai/village/poi/PoiManager.java
+index 2dfc26a522accd6c70ceb252292ff291a85fa32b..996fd30ecdd82a288fe7c8c83bc17ccc9e6196d4 100644
+--- a/net/minecraft/world/entity/ai/village/poi/PoiManager.java
++++ b/net/minecraft/world/entity/ai/village/poi/PoiManager.java
+@@ -285,7 +285,7 @@ public class PoiManager extends SectionStorage<PoiSection, PoiSection.Packed> {
+             ChunkPos.containing(center), Math.floorDiv(radius, 16), this.levelHeightAccessor.getMinSectionY(), this.levelHeightAccessor.getMaxSectionY()
+          )
+          .map(pos -> Pair.of(pos, this.getOrLoad(pos.asLong())))
+-         .filter(poiSection -> !(Boolean)((Optional)poiSection.getSecond()).map(PoiSection::isValid).orElse(false))
++         .filter(poiSection -> !(Boolean)(poiSection.getSecond()).map(PoiSection::isValid).orElse(false))
+          .map(p -> ((SectionPos)p.getFirst()).chunk())
+          .filter(pos -> this.loadedChunks.add(pos.pack()))
+          .forEach(pos -> reader.getChunk(pos.x(), pos.z(), ChunkStatus.EMPTY));

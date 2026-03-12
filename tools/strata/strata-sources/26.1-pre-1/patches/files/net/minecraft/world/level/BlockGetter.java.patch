@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/BlockGetter.java b/net/minecraft/world/level/BlockGetter.java
+index dc35bf2678b6c3e5fcfa3140655eb85bf468e96a..838d2df6128c5aa928371eea4fafb432c7352eed 100644
+--- a/net/minecraft/world/level/BlockGetter.java
++++ b/net/minecraft/world/level/BlockGetter.java
+@@ -26,7 +26,7 @@ public interface BlockGetter extends LevelHeightAccessor {
+ 
+    default <T extends BlockEntity> Optional<T> getBlockEntity(final BlockPos pos, final BlockEntityType<T> type) {
+       BlockEntity blockEntity = this.getBlockEntity(pos);
+-      return blockEntity != null && blockEntity.getType() == type ? Optional.of(blockEntity) : Optional.empty();
++      return blockEntity != null && blockEntity.getType() == type ? Optional.of((T)blockEntity) : Optional.empty();
+    }
+ 
+    BlockState getBlockState(final BlockPos pos);

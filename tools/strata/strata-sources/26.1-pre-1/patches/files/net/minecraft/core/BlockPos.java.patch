@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/BlockPos.java b/net/minecraft/core/BlockPos.java
+index 5675d493c5a1e3c30f4fd7e51bb0b8efca2b762f..9a4910bd404e2c80c870eb36e4a6229459222075 100644
+--- a/net/minecraft/core/BlockPos.java
++++ b/net/minecraft/core/BlockPos.java
+@@ -492,7 +492,7 @@ public class BlockPos extends Vec3i {
+                }
+ 
+                if (depth < maxDepth) {
+-                  neighbourProvider.accept(currentPos, (Consumer)pos -> nodes.add(Pair.of(pos, depth + 1)));
++                  neighbourProvider.accept(currentPos, pos -> nodes.add(Pair.of(pos, depth + 1)));
+                }
+             }
+          }

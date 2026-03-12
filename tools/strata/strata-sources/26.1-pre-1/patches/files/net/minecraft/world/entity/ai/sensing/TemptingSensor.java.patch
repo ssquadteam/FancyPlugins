@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/ai/sensing/TemptingSensor.java b/net/minecraft/world/entity/ai/sensing/TemptingSensor.java
+index 3ebd6f71a0d3ebc8853378e3a232cf7796286aa8..00e1a2ad4dc0358fc3babd78d86e4013d9f40ba1 100644
+--- a/net/minecraft/world/entity/ai/sensing/TemptingSensor.java
++++ b/net/minecraft/world/entity/ai/sensing/TemptingSensor.java
+@@ -37,7 +37,7 @@ public class TemptingSensor extends Sensor<PathfinderMob> {
+    protected void doTick(final ServerLevel level, final PathfinderMob body) {
+       Brain<?> brain = body.getBrain();
+       TargetingConditions targeting = TEMPT_TARGETING.copy().range((float)body.getAttributeValue(Attributes.TEMPT_RANGE));
+-      List<Player> players = (List<Player>)level.players()
++      List<Player> players = level.players()
+          .stream()
+          .filter(EntitySelector.NO_SPECTATORS)
+          .filter(playerx -> targeting.test(level, body, playerx))

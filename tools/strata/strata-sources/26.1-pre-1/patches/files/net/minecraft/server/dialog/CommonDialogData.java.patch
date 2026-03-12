@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/dialog/CommonDialogData.java b/net/minecraft/server/dialog/CommonDialogData.java
+index 26ca65ce4f6e5a271a0ab5c38beed81fe1c543d8..c261867c575b7a6efdf6aa58a2408e2860b486c0 100644
+--- a/net/minecraft/server/dialog/CommonDialogData.java
++++ b/net/minecraft/server/dialog/CommonDialogData.java
+@@ -19,7 +19,7 @@ public record CommonDialogData(
+    List<DialogBody> body,
+    List<Input> inputs
+ ) {
+-   public static final MapCodec<CommonDialogData> MAP_CODEC = RecordCodecBuilder.mapCodec(
++   public static final MapCodec<CommonDialogData> MAP_CODEC = RecordCodecBuilder.<CommonDialogData>mapCodec(
+          i -> i.group(
+                ComponentSerialization.CODEC.fieldOf("title").forGetter(CommonDialogData::title),
+                ComponentSerialization.CODEC.optionalFieldOf("external_title").forGetter(CommonDialogData::externalTitle),

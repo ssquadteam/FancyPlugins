@@ -1,0 +1,21 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/ClassInstanceMultiMap.java b/net/minecraft/util/ClassInstanceMultiMap.java
+index b482df0bb9e3dab4cc7ed5bedcd4d51d3689680f..31ec40b12602750378e2afb04c33b255cbf65e94 100644
+--- a/net/minecraft/util/ClassInstanceMultiMap.java
++++ b/net/minecraft/util/ClassInstanceMultiMap.java
+@@ -56,8 +56,8 @@ public class ClassInstanceMultiMap<T> extends AbstractCollection<T> {
+          throw new IllegalArgumentException("Don't know how to search for " + index);
+       } else {
+          List<? extends T> instances = (List<? extends T>)this.byClass
+-            .computeIfAbsent(index, k -> (List)this.allInstances.stream().filter(k::isInstance).collect(Util.toMutableList()));
+-         return Collections.unmodifiableCollection(instances);
++            .computeIfAbsent(index, k -> this.allInstances.stream().filter(k::isInstance).collect(Util.toMutableList()));
++         return (Collection<S>)Collections.unmodifiableCollection(instances);
+       }
+    }
+ 

@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/EntityVariantFix.java b/net/minecraft/util/datafix/fixes/EntityVariantFix.java
+index 79eaf52e102d4ead7849a6fa14026c71a8688301..c835887e6ef52903221aa90efc023a2f966e7792 100644
+--- a/net/minecraft/util/datafix/fixes/EntityVariantFix.java
++++ b/net/minecraft/util/datafix/fixes/EntityVariantFix.java
+@@ -32,7 +32,7 @@ public class EntityVariantFix extends NamedEntityFix {
+    ) {
+       return input.map(v -> {
+          DynamicOps<T> ops = input.getOps();
+-         Function<T, T> liftedFunction = value -> ((Dynamic)function.apply(new Dynamic(ops, value))).getValue();
++         Function<T, T> liftedFunction = value -> (function.apply(new Dynamic<>(ops, value))).getValue();
+          return ops.get(v, oldKey).map(fieldValue -> ops.set(v, newKey, liftedFunction.apply(fieldValue))).result().orElse(v);
+       });
+    }

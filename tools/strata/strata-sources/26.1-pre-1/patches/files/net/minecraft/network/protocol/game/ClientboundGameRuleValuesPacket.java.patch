@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/protocol/game/ClientboundGameRuleValuesPacket.java b/net/minecraft/network/protocol/game/ClientboundGameRuleValuesPacket.java
+index 723707c02ed710d9ec7813892296630e032f72b5..d3c3cdff1911b54b6724fd60a2907a999c3ab53e 100644
+--- a/net/minecraft/network/protocol/game/ClientboundGameRuleValuesPacket.java
++++ b/net/minecraft/network/protocol/game/ClientboundGameRuleValuesPacket.java
+@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceKey;
+ import net.minecraft.world.level.gamerules.GameRule;
+ 
+ public record ClientboundGameRuleValuesPacket(Map<ResourceKey<GameRule<?>>, String> values) implements Packet<ClientGamePacketListener> {
+-   public static final StreamCodec<FriendlyByteBuf, ClientboundGameRuleValuesPacket> STREAM_CODEC = ByteBufCodecs.map(
++   public static final StreamCodec<FriendlyByteBuf, ClientboundGameRuleValuesPacket> STREAM_CODEC = ByteBufCodecs.<FriendlyByteBuf, ResourceKey<GameRule<?>>, String, Map<ResourceKey<GameRule<?>>, String>>map(
+          HashMap::new, ResourceKey.streamCodec(Registries.GAME_RULE), ByteBufCodecs.STRING_UTF8
+       )
+       .map(ClientboundGameRuleValuesPacket::new, ClientboundGameRuleValuesPacket::values);

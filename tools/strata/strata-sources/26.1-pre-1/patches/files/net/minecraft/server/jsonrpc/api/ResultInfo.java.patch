@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/jsonrpc/api/ResultInfo.java b/net/minecraft/server/jsonrpc/api/ResultInfo.java
+index 8ad79132d9c388684e9775837a283411cb6648f7..3ed9116261abf68874f91b035d2556656ba91561 100644
+--- a/net/minecraft/server/jsonrpc/api/ResultInfo.java
++++ b/net/minecraft/server/jsonrpc/api/ResultInfo.java
+@@ -6,7 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
+ public record ResultInfo<Result>(String name, Schema<Result> schema) {
+    public static <Result> Codec<ResultInfo<Result>> typedCodec() {
+       return RecordCodecBuilder.create(
+-         i -> i.group(Codec.STRING.fieldOf("name").forGetter(ResultInfo::name), Schema.typedCodec().fieldOf("schema").forGetter(ResultInfo::schema))
++              i -> i.group(Codec.STRING.fieldOf("name").forGetter(ResultInfo::name), Schema.<Result>typedCodec().fieldOf("schema").forGetter(ResultInfo::schema))
+             .apply(i, ResultInfo::new)
+       );
+    }

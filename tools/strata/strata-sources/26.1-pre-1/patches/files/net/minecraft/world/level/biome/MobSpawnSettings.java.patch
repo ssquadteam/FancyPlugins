@@ -1,0 +1,32 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/biome/MobSpawnSettings.java b/net/minecraft/world/level/biome/MobSpawnSettings.java
+index 12d700c1f95517f1ce768fbf9dfc562af17143b0..87a6dbd57fc077d7cbf9f22342e1e4a479ff51cc 100644
+--- a/net/minecraft/world/level/biome/MobSpawnSettings.java
++++ b/net/minecraft/world/level/biome/MobSpawnSettings.java
+@@ -91,10 +91,10 @@ public class MobSpawnSettings {
+       public MobSpawnSettings build() {
+          return new MobSpawnSettings(
+             this.creatureGenerationProbability,
+-            (Map<MobCategory, WeightedList<MobSpawnSettings.SpawnerData>>)this.spawners
++            this.spawners
+                .entrySet()
+                .stream()
+-               .collect(ImmutableMap.toImmutableMap(Entry::getKey, e -> ((WeightedList.Builder)e.getValue()).build())),
++               .collect(ImmutableMap.toImmutableMap(Entry::getKey, e -> (e.getValue()).build())),
+             ImmutableMap.copyOf(this.mobSpawnCosts)
+          );
+       }
+@@ -108,7 +108,7 @@ public class MobSpawnSettings {
+    }
+ 
+    public record SpawnerData(EntityType<?> type, int minCount, int maxCount) {
+-      public static final MapCodec<MobSpawnSettings.SpawnerData> CODEC = RecordCodecBuilder.mapCodec(
++      public static final MapCodec<MobSpawnSettings.SpawnerData> CODEC = RecordCodecBuilder.<MobSpawnSettings.SpawnerData>mapCodec(
+             i -> i.group(
+                   BuiltInRegistries.ENTITY_TYPE.byNameCodec().fieldOf("type").forGetter(d -> d.type),
+                   ExtraCodecs.POSITIVE_INT.fieldOf("minCount").forGetter(e -> e.minCount),

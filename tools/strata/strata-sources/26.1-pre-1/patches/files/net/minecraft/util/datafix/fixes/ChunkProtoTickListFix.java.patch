@@ -1,0 +1,28 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java b/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java
+index cda045edeadcd1ebe6962db638947eecf93ba2b1..ec13c44d898f90bd2c6b83cc16e56423d443be8d 100644
+--- a/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java
++++ b/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java
+@@ -134,7 +134,7 @@ public class ChunkProtoTickListFix extends DataFix {
+          Supplier<ChunkProtoTickListFix.PoorMansPalettedContainer> container = (Supplier<ChunkProtoTickListFix.PoorMansPalettedContainer>)palettedContainers.get(
+             sectionY
+          );
+-         Stream<? extends Dynamic<?>> newTickListForSection = ((Dynamic)ticksPerSection.get(sectionYIndex))
++         Stream<? extends Dynamic<?>> newTickListForSection = (ticksPerSection.get(sectionYIndex))
+             .asStream()
+             .mapToInt(pos -> pos.asShort((short)-1))
+             .filter(pos -> pos > 0)
+@@ -182,7 +182,7 @@ public class ChunkProtoTickListFix extends DataFix {
+          container != null ? ((ChunkProtoTickListFix.PoorMansPalettedContainer)container.get()).get(relativeX, relativeY, relativeZ) : null
+       );
+       return tag.createMap(
+-         ImmutableMap.builder()
++              ImmutableMap.<Dynamic<?>, Dynamic<?>>builder()
+             .put(tag.createString("i"), tag.createString(type))
+             .put(tag.createString("x"), tag.createInt(sectionX * 16 + relativeX))
+             .put(tag.createString("y"), tag.createInt(sectionY * 16 + relativeY))

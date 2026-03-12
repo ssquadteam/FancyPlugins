@@ -1,0 +1,21 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/EntityRenameFix.java b/net/minecraft/util/datafix/fixes/EntityRenameFix.java
+index 50e9200e054db1b15b99f191997e7c10f1bf83a2..3204a55f21765693d2bc530ce1a08465268fcd3e 100644
+--- a/net/minecraft/util/datafix/fixes/EntityRenameFix.java
++++ b/net/minecraft/util/datafix/fixes/EntityRenameFix.java
+@@ -22,8 +22,8 @@ public abstract class EntityRenameFix extends DataFix {
+    }
+ 
+    public TypeRewriteRule makeRule() {
+-      TaggedChoiceType<String> oldType = this.getInputSchema().findChoiceType(References.ENTITY);
+-      TaggedChoiceType<String> newType = this.getOutputSchema().findChoiceType(References.ENTITY);
++      TaggedChoiceType<String> oldType = (TaggedChoiceType<String>) this.getInputSchema().findChoiceType(References.ENTITY);
++      TaggedChoiceType<String> newType = (TaggedChoiceType<String>) this.getOutputSchema().findChoiceType(References.ENTITY);
+       Function<String, Type<?>> patchedInputTypes = Util.memoize((Function<String, Type<?>>)(name -> {
+          Type<?> type = (Type<?>)oldType.types().get(name);
+          return ExtraDataFixUtils.patchSubType(type, oldType, newType);

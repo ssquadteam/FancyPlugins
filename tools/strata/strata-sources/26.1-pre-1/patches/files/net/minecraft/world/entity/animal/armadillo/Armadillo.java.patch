@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/animal/armadillo/Armadillo.java b/net/minecraft/world/entity/animal/armadillo/Armadillo.java
+index 0e0b8b3a7e07322f95a6abb2f0d713ab5c074ab2..e4637332363efb71f2842f51b0ba6c0e3db413a4 100644
+--- a/net/minecraft/world/entity/animal/armadillo/Armadillo.java
++++ b/net/minecraft/world/entity/animal/armadillo/Armadillo.java
+@@ -131,7 +131,7 @@ public class Armadillo extends Animal {
+ 
+    @Override
+    public Brain<Armadillo> getBrain() {
+-      return super.getBrain();
++      return (Brain<Armadillo>) super.getBrain();
+    }
+ 
+    @Override

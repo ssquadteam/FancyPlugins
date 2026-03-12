@@ -1,0 +1,24 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/level/ServerPlayer.java b/net/minecraft/server/level/ServerPlayer.java
+index 28ec6ddd4113a7a73b82f8b59fc7d3754f7687d9..d665e2fd91864acfea7ccb0d88cd59b0e81311c4 100644
+--- a/net/minecraft/server/level/ServerPlayer.java
++++ b/net/minecraft/server/level/ServerPlayer.java
+@@ -281,12 +281,7 @@ public class ServerPlayer extends Player {
+             .maximumSize(256L)
+             .build(
+                new CacheLoader<TypedDataComponent<?>, Integer>() {
+-                  private final DynamicOps<HashCode> registryHashOps;
+-
+-                  {
+-                     Objects.requireNonNull(<VAR_NAMELESS_ENCLOSURE>);
+-                     this.registryHashOps = ServerPlayer.this.registryAccess().createSerializationContext(HashOps.CRC32C_INSTANCE);
+-                  }
++                  private final DynamicOps<HashCode> registryHashOps = ServerPlayer.this.registryAccess().createSerializationContext(HashOps.CRC32C_INSTANCE);
+ 
+                   public Integer load(final TypedDataComponent<?> component) {
+                      return ((HashCode)component.encodeValue(this.registryHashOps)

@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/gameevent/EntityPositionSource.java b/net/minecraft/world/level/gameevent/EntityPositionSource.java
+index ba413eeec26e166cb6ff6967788fae35398095f3..8b992f2499fdb49e49d4720509d32b6d99967c1d 100644
+--- a/net/minecraft/world/level/gameevent/EntityPositionSource.java
++++ b/net/minecraft/world/level/gameevent/EntityPositionSource.java
+@@ -53,7 +53,7 @@ public class EntityPositionSource implements PositionSource {
+    }
+ 
+    private void resolveEntity(final Level level) {
+-      ((Optional)this.entityOrUuidOrId
++      (this.entityOrUuidOrId
+             .map(
+                Optional::of,
+                uuidOrId -> Optional.ofNullable(

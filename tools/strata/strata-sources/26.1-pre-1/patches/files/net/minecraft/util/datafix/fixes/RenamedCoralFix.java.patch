@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/RenamedCoralFix.java b/net/minecraft/util/datafix/fixes/RenamedCoralFix.java
+index 324c9dfb43aa0c2b7fa3b26f493810144ba3a852..2cfcad6c7b073088b19f5e34bb7c5a4cd998e5a5 100644
+--- a/net/minecraft/util/datafix/fixes/RenamedCoralFix.java
++++ b/net/minecraft/util/datafix/fixes/RenamedCoralFix.java
+@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
+ import java.util.Map;
+ 
+ public class RenamedCoralFix {
+-   public static final Map<String, String> RENAMED_IDS = ImmutableMap.builder()
++   public static final Map<String, String> RENAMED_IDS = ImmutableMap.<String, String>builder()
+       .put("minecraft:blue_coral", "minecraft:tube_coral_block")
+       .put("minecraft:pink_coral", "minecraft:brain_coral_block")
+       .put("minecraft:purple_coral", "minecraft:bubble_coral_block")

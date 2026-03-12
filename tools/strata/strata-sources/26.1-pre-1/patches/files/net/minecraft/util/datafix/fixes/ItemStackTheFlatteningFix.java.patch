@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/ItemStackTheFlatteningFix.java b/net/minecraft/util/datafix/fixes/ItemStackTheFlatteningFix.java
+index 5a97b0899446f68bde84533936cc277368202c7a..47667a37e2e42e4036b840577f7f5beb57009813 100644
+--- a/net/minecraft/util/datafix/fixes/ItemStackTheFlatteningFix.java
++++ b/net/minecraft/util/datafix/fixes/ItemStackTheFlatteningFix.java
+@@ -20,7 +20,7 @@ import net.minecraft.util.datafix.schemas.NamespacedSchema;
+ import org.jspecify.annotations.Nullable;
+ 
+ public class ItemStackTheFlatteningFix extends DataFix {
+-   private static final Map<String, String> MAP = (Map<String, String>)DataFixUtils.make(Maps.newHashMap(), map -> {
++   private static final Map<String, String> MAP = DataFixUtils.make(Maps.newHashMap(), map -> {
+       map.put("minecraft:stone.0", "minecraft:stone");
+       map.put("minecraft:stone.1", "minecraft:granite");
+       map.put("minecraft:stone.2", "minecraft:polished_granite");

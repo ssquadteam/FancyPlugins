@@ -1,0 +1,28 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/jsonrpc/methods/OperatorService.java b/net/minecraft/server/jsonrpc/methods/OperatorService.java
+index 03c8e2a65f8b7210e4a2582b51a06a0698cff151..38588742dfe8ac9d7a1f8f0b6455768935515057 100644
+--- a/net/minecraft/server/jsonrpc/methods/OperatorService.java
++++ b/net/minecraft/server/jsonrpc/methods/OperatorService.java
+@@ -31,7 +31,7 @@ public class OperatorService {
+          .map(playerDto -> minecraftApi.playerListService().getUser(playerDto.id(), playerDto.name()))
+          .toList();
+ 
+-      for (Optional<NameAndId> user : (List)Util.sequence(fetch).join()) {
++      for (Optional<NameAndId> user : Util.sequence(fetch).join()) {
+          user.ifPresent(nameAndId -> minecraftApi.operatorListService().deop(nameAndId, clientInfo));
+       }
+ 
+@@ -49,7 +49,7 @@ public class OperatorService {
+          )
+          .toList();
+ 
+-      for (Optional<OperatorService.Op> op : (List)Util.sequence(fetch).join()) {
++      for (Optional<OperatorService.Op> op : Util.sequence(fetch).join()) {
+          op.ifPresent(
+             operator -> minecraftApi.operatorListService().op(operator.user(), operator.permissionLevel(), operator.bypassesPlayerLimit(), clientInfo)
+          );

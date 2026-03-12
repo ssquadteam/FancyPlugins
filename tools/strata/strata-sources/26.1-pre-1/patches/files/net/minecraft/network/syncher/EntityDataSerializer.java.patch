@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/syncher/EntityDataSerializer.java b/net/minecraft/network/syncher/EntityDataSerializer.java
+index 4ddbd8c6131d93d93ca3cc20a351f2abc34e1b13..f52d1f28001e5008a25909ca23de85569003d880 100644
+--- a/net/minecraft/network/syncher/EntityDataSerializer.java
++++ b/net/minecraft/network/syncher/EntityDataSerializer.java
+@@ -13,7 +13,7 @@ public interface EntityDataSerializer<T> {
+    T copy(T value);
+ 
+    static <T> EntityDataSerializer<T> forValueType(final StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
+-      return () -> codec;
++      return (ForValueType<T>) () -> codec;
+    }
+ 
+    public interface ForValueType<T> extends EntityDataSerializer<T> {

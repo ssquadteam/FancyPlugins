@@ -1,0 +1,27 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/locale/Language.java b/net/minecraft/locale/Language.java
+index 90859de61bdbc955fa58743272f446bd1f2c4fdc..eb86233db2de6f28ab99ffd15828e88931893823 100644
+--- a/net/minecraft/locale/Language.java
++++ b/net/minecraft/locale/Language.java
+@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
+ import net.minecraft.network.chat.FormattedText;
+ import net.minecraft.network.chat.Style;
+ import net.minecraft.util.FormattedCharSequence;
++import net.minecraft.util.FormattedCharSink;
+ import net.minecraft.util.GsonHelper;
+ import net.minecraft.util.StringDecomposer;
+ import org.slf4j.Logger;
+@@ -57,7 +58,7 @@ public abstract class Language {
+          @Override
+          public FormattedCharSequence getVisualOrder(final FormattedText logicalOrderText) {
+             return outputx -> logicalOrderText.visit(
+-                  (style, contents) -> StringDecomposer.iterateFormatted(contents, style, output) ? Optional.empty() : FormattedText.STOP_ITERATION,
++                  (style, contents) -> StringDecomposer.iterateFormatted(contents, style, (FormattedCharSink) output) ? Optional.empty() : FormattedText.STOP_ITERATION,
+                   Style.EMPTY
+                )
+                .isPresent();

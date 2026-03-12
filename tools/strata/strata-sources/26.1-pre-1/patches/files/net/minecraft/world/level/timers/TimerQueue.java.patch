@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/timers/TimerQueue.java b/net/minecraft/world/level/timers/TimerQueue.java
+index 599d2dacb2ae323acf40707c906c85431a4fdd38..f8f0beb556ef9a086cb57b6391a8a710c21ad7de 100644
+--- a/net/minecraft/world/level/timers/TimerQueue.java
++++ b/net/minecraft/world/level/timers/TimerQueue.java
+@@ -34,7 +34,7 @@ public class TimerQueue<T> extends SavedData {
+    }
+ 
+    private static <T> Comparator<TimerQueue.Event<T>> createComparator() {
+-      return Comparator.comparingLong(l -> l.triggerTime).thenComparing(l -> l.sequentialId);
++      return Comparator.<TimerQueue.Event<T>>comparingLong(l -> l.triggerTime).thenComparing(l -> l.sequentialId);
+    }
+ 
+    public TimerQueue(final TimerQueue.Packed<T> packedEvents) {

@@ -1,0 +1,24 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/HolderLookup.java b/net/minecraft/core/HolderLookup.java
+index a53875a623679586d658123642b636eed53b93be..777c12bd110757c099704c132783b67bc8f18b6e 100644
+--- a/net/minecraft/core/HolderLookup.java
++++ b/net/minecraft/core/HolderLookup.java
+@@ -42,11 +42,11 @@ public interface HolderLookup<T> extends HolderGetter<T> {
+       }
+ 
+       default <V> RegistryOps<V> createSerializationContext(final DynamicOps<V> parent) {
+-         return RegistryOps.create((DynamicOps<T>)parent, this);
++         return RegistryOps.create(parent, this);
+       }
+ 
+       static HolderLookup.Provider create(final Stream<HolderLookup.RegistryLookup<?>> lookups) {
+-         final Map<ResourceKey<? extends Registry<?>>, HolderLookup.RegistryLookup<?>> map = (Map<ResourceKey<? extends Registry<?>>, HolderLookup.RegistryLookup<?>>)lookups.collect(
++         final Map<ResourceKey<? extends Registry<?>>, HolderLookup.RegistryLookup<?>> map = lookups.collect(
+             Collectors.toUnmodifiableMap(HolderLookup.RegistryLookup::key, e -> e)
+          );
+          return new HolderLookup.Provider() {

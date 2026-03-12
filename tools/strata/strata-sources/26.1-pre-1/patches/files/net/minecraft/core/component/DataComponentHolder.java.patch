@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/component/DataComponentHolder.java b/net/minecraft/core/component/DataComponentHolder.java
+index 7b61df4c1e68ef0bc714340a047a2ef5580b7d6b..cb939f99d1db5367379bbd146758ca65cde56cf5 100644
+--- a/net/minecraft/core/component/DataComponentHolder.java
++++ b/net/minecraft/core/component/DataComponentHolder.java
+@@ -12,7 +12,7 @@ public interface DataComponentHolder extends DataComponentGetter {
+    }
+ 
+    default <T> Stream<T> getAllOfType(final Class<? extends T> valueClass) {
+-      return this.getComponents().stream().map(TypedDataComponent::value).filter(value -> valueClass.isAssignableFrom(value.getClass())).map(value -> value);
++      return this.getComponents().stream().map(TypedDataComponent::value).filter(value -> valueClass.isAssignableFrom(value.getClass())).map(value -> (T)value);
+    }
+ 
+    @Override

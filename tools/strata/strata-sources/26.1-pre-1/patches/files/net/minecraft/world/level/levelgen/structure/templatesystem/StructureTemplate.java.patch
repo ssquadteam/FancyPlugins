@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate.java b/net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate.java
+index 8db52740b83662bcea8ec84113222cc94da15a5f..093f3ccd5618647e842f9a95044e0772d7227898 100644
+--- a/net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate.java
++++ b/net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate.java
+@@ -158,7 +158,7 @@ public class StructureTemplate {
+       final List<StructureTemplate.StructureBlockInfo> blockEntitiesList,
+       final List<StructureTemplate.StructureBlockInfo> otherBlocksList
+    ) {
+-      Comparator<StructureTemplate.StructureBlockInfo> comparator = Comparator.comparingInt(o -> o.pos.getY())
++      Comparator<StructureTemplate.StructureBlockInfo> comparator = Comparator.<StructureTemplate.StructureBlockInfo>comparingInt(o -> o.pos.getY())
+          .thenComparingInt(o -> o.pos.getX())
+          .thenComparingInt(o -> o.pos.getZ());
+       fullBlockList.sort(comparator);

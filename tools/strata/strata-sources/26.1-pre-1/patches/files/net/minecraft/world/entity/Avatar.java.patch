@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/Avatar.java b/net/minecraft/world/entity/Avatar.java
+index 7028d95d864a350e69355a2424ee1968e87c546c..20a8daf11145d67001b60e35a85d45b58c9a50e1 100644
+--- a/net/minecraft/world/entity/Avatar.java
++++ b/net/minecraft/world/entity/Avatar.java
+@@ -21,7 +21,7 @@ public abstract class Avatar extends LivingEntity {
+    protected static final EntityDimensions STANDING_DIMENSIONS = EntityDimensions.scalable(0.6F, 1.8F)
+       .withEyeHeight(1.62F)
+       .withAttachments(EntityAttachments.builder().attach(EntityAttachment.VEHICLE, DEFAULT_VEHICLE_ATTACHMENT));
+-   protected static final Map<Pose, EntityDimensions> POSES = ImmutableMap.builder()
++   protected static final Map<Pose, EntityDimensions> POSES = ImmutableMap.<Pose, EntityDimensions>builder()
+       .put(Pose.STANDING, STANDING_DIMENSIONS)
+       .put(Pose.SLEEPING, SLEEPING_DIMENSIONS)
+       .put(Pose.FALL_FLYING, EntityDimensions.scalable(0.6F, 0.6F).withEyeHeight(0.4F))

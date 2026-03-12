@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/block/entity/TestInstanceBlockEntity.java b/net/minecraft/world/level/block/entity/TestInstanceBlockEntity.java
+index 1327611b3caae72a56864bd67d9c194540b95a16..6af8eae3c4d47192fd28645ab77fa003c8467e7b 100644
+--- a/net/minecraft/world/level/block/entity/TestInstanceBlockEntity.java
++++ b/net/minecraft/world/level/block/entity/TestInstanceBlockEntity.java
+@@ -109,7 +109,7 @@ public class TestInstanceBlockEntity extends BlockEntity implements BoundingBoxR
+    }
+ 
+    public Component getTestName() {
+-      return (Component)this.test().map(key -> Component.literal(key.identifier().toString())).orElse(INVALID_TEST_NAME);
++      return this.test().<Component>map(key -> Component.literal(key.identifier().toString())).orElse(INVALID_TEST_NAME);
+    }
+ 
+    private Optional<Holder.Reference<GameTestInstance>> getTestHolder() {

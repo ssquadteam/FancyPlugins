@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/tags/TagKey.java b/net/minecraft/tags/TagKey.java
+index bed3716b80e05a37ad77121dbea273e761168cd2..de2ddd80b6c13a2b5ff0c0d01a677d54d03cfbee 100644
+--- a/net/minecraft/tags/TagKey.java
++++ b/net/minecraft/tags/TagKey.java
+@@ -45,7 +45,7 @@ public record TagKey<T>(ResourceKey<? extends Registry<T>> registry, Identifier
+    }
+ 
+    public <E> Optional<TagKey<E>> cast(final ResourceKey<? extends Registry<E>> registry) {
+-      return this.isFor(registry) ? Optional.of(this) : Optional.empty();
++      return this.isFor(registry) ? Optional.of((TagKey<E>) this) : Optional.empty();
+    }
+ 
+    public String toString() {

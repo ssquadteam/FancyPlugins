@@ -1,0 +1,28 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/Registry.java b/net/minecraft/core/Registry.java
+index b242b408ef6d7b741253f2f19ce636671f09d300..f0582bf12346cf294692ddbbfbc50953def7be40 100644
+--- a/net/minecraft/core/Registry.java
++++ b/net/minecraft/core/Registry.java
+@@ -38,7 +38,7 @@ public interface Registry<T> extends IdMap<T>, Keyable, HolderLookup.RegistryLoo
+    private Codec<Holder.Reference<T>> referenceHolderWithLifecycle() {
+       Codec<Holder.Reference<T>> referenceCodec = Identifier.CODEC
+          .comapFlatMap(
+-            name -> (DataResult)this.get(name)
++            name -> this.get(name)
+                .map(DataResult::success)
+                .orElseGet(() -> DataResult.error(() -> "Unknown registry key in " + this.key() + ": " + name)),
+             holder -> holder.key().identifier()
+@@ -163,7 +163,7 @@ public interface Registry<T> extends IdMap<T>, Keyable, HolderLookup.RegistryLoo
+          }
+ 
+          public Iterator<Holder<T>> iterator() {
+-            return Registry.this.listElements().map(e -> e).iterator();
++            return Registry.this.listElements().map(e -> (Holder<T>)e).iterator();
+          }
+       };
+    }

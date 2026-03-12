@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/item/crafting/RecipeMap.java b/net/minecraft/world/item/crafting/RecipeMap.java
+index 22b52b60abe7e6305b05afee3840002090c1140b..2a91c2729ec70f1beafc607e6592dba110ee98fc 100644
+--- a/net/minecraft/world/item/crafting/RecipeMap.java
++++ b/net/minecraft/world/item/crafting/RecipeMap.java
+@@ -34,7 +34,7 @@ public class RecipeMap {
+    }
+ 
+    public <I extends RecipeInput, T extends Recipe<I>> Collection<RecipeHolder<T>> byType(final RecipeType<T> type) {
+-      return this.byType.get(type);
++      return (Collection) this.byType.get(type);
+    }
+ 
+    public Collection<RecipeHolder<?>> values() {

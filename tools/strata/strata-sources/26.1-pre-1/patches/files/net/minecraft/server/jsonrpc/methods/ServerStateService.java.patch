@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/jsonrpc/methods/ServerStateService.java b/net/minecraft/server/jsonrpc/methods/ServerStateService.java
+index 856fdd38fef87a8f75051ad479c8551e977af588..9dc6c9680ba5f9437cdd109b3bd9bf5f11d9ccf2 100644
+--- a/net/minecraft/server/jsonrpc/methods/ServerStateService.java
++++ b/net/minecraft/server/jsonrpc/methods/ServerStateService.java
+@@ -37,7 +37,7 @@ public class ServerStateService {
+                return false;
+             }
+ 
+-            for (PlayerDto playerDto : (List)systemMessage.receivingPlayers().get()) {
++            for (PlayerDto playerDto : systemMessage.receivingPlayers().get()) {
+                ServerPlayer player;
+                if (playerDto.id().isPresent()) {
+                   player = minecraftApi.playerListService().getPlayer((UUID)playerDto.id().get());

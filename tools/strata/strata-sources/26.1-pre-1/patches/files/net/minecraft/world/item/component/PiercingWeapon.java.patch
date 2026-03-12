@@ -1,0 +1,31 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/item/component/PiercingWeapon.java b/net/minecraft/world/item/component/PiercingWeapon.java
+index 2b16299a2bea7475b5a22e5f67665a70506ac7cb..780e84a531798deea0930604259fa2500cbb2437 100644
+--- a/net/minecraft/world/item/component/PiercingWeapon.java
++++ b/net/minecraft/world/item/component/PiercingWeapon.java
+@@ -5,6 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
+ import java.util.Collection;
+ import java.util.List;
+ import java.util.Optional;
++import java.util.function.Function;
++
+ import net.minecraft.core.Holder;
+ import net.minecraft.network.RegistryFriendlyByteBuf;
+ import net.minecraft.network.codec.ByteBufCodecs;
+@@ -72,10 +74,7 @@ public record PiercingWeapon(boolean dealsKnockback, boolean dismounts, Optional
+       AttackRange attackRange = attacker.getAttackRangeWith(weaponItem);
+       boolean hitSomething = false;
+ 
+-      for (EntityHitResult hitResult : (Collection)ProjectileUtil.getHitEntitiesAlong(
+-            attacker, attackRange, e1 -> canHitEntity(attacker, e1), ClipContext.Block.COLLIDER
+-         )
+-         .map(a -> List.of(), e -> e)) {
++      for (EntityHitResult hitResult : ProjectileUtil.getHitEntitiesAlong(attacker, attackRange, e1 -> canHitEntity(attacker, e1), ClipContext.Block.COLLIDER).map(a -> List.<EntityHitResult>of(), Function.identity())) {
+          hitSomething |= attacker.stabAttack(hand, hitResult.getEntity(), damage, true, this.dealsKnockback, this.dismounts);
+       }
+ 

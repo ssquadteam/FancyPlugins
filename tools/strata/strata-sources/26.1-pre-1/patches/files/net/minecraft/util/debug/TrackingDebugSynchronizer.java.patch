@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/debug/TrackingDebugSynchronizer.java b/net/minecraft/util/debug/TrackingDebugSynchronizer.java
+index cfab89558dd7b70a7b8c342237521d361d6ff972..2a717877cd7d32767423e6ef71d6603fa538e0b3 100644
+--- a/net/minecraft/util/debug/TrackingDebugSynchronizer.java
++++ b/net/minecraft/util/debug/TrackingDebugSynchronizer.java
+@@ -218,7 +218,7 @@ public abstract class TrackingDebugSynchronizer<T> {
+          }
+ 
+          for (Entry<BlockPos, TrackingDebugSynchronizer.ValueSource<T>> entry : this.blockEntitySources.entrySet()) {
+-            T lastValue = ((TrackingDebugSynchronizer.ValueSource)entry.getValue()).lastSyncedValue;
++            T lastValue = (entry.getValue()).lastSyncedValue;
+             if (lastValue != null) {
+                BlockPos blockPos = (BlockPos)entry.getKey();
+                if (chunkPos.contains(blockPos)) {

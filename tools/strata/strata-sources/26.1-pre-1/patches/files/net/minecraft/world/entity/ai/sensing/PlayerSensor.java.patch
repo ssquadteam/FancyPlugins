@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/ai/sensing/PlayerSensor.java b/net/minecraft/world/entity/ai/sensing/PlayerSensor.java
+index 86c9e18667542ad0c01a6af5bfc0fabadcb1fc9e..6d03ac184f447d2eba6c21aed9fdfd70ce7ca850 100644
+--- a/net/minecraft/world/entity/ai/sensing/PlayerSensor.java
++++ b/net/minecraft/world/entity/ai/sensing/PlayerSensor.java
+@@ -26,7 +26,7 @@ public class PlayerSensor extends Sensor<LivingEntity> {
+ 
+    @Override
+    protected void doTick(final ServerLevel level, final LivingEntity body) {
+-      List<Player> players = (List<Player>)level.players()
++      List<Player> players = level.players()
+          .stream()
+          .filter(EntitySelector.NO_SPECTATORS)
+          .filter(player -> body.closerThan(player, this.getFollowDistance(body)))

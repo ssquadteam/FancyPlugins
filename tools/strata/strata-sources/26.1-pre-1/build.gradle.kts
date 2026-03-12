@@ -42,6 +42,7 @@ tasks {
         // Set the release flag. This configures what version bytecode the compiler will emit, as well as what JDK APIs are usable.
         // See https://openjdk.java.net/jeps/247 for more information.
         options.release.set(25)
+        options.compilerArgs.addAll(listOf("-Xmaxerrs", "10000"))
     }
 
     java {

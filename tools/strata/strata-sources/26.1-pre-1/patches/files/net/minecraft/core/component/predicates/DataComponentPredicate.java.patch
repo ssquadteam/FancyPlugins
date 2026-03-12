@@ -1,0 +1,21 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/component/predicates/DataComponentPredicate.java b/net/minecraft/core/component/predicates/DataComponentPredicate.java
+index f4188943e4e8f94a5eb2c9532bcca16dc50dd9cd..cd4cb51f6a9564600e80ea0d6c08a0646592f462 100644
+--- a/net/minecraft/core/component/predicates/DataComponentPredicate.java
++++ b/net/minecraft/core/component/predicates/DataComponentPredicate.java
+@@ -25,8 +25,8 @@ public interface DataComponentPredicate {
+          ByteBufCodecs.list(64)
+       )
+       .map(
+-         singles -> (Map)singles.stream().collect(Collectors.toMap(DataComponentPredicate.Single::type, DataComponentPredicate.Single::predicate)),
+-         map -> map.entrySet().stream().map(DataComponentPredicate.Single::fromEntry).toList()
++         singles -> singles.stream().collect(Collectors.toMap(DataComponentPredicate.Single::type, DataComponentPredicate.Single::predicate)),
++              map -> map.entrySet().stream().<DataComponentPredicate.Single<?>>map(DataComponentPredicate.Single::fromEntry).toList()
+       );
+ 
+    static MapCodec<DataComponentPredicate.Single<?>> singleCodec(final String name) {

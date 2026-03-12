@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/monster/piglin/Piglin.java b/net/minecraft/world/entity/monster/piglin/Piglin.java
+index 53a79f8376749abbee8cf9e2db43e19d63be4c03..7e388f8d645c391e436b57d5150c34efb3feb300 100644
+--- a/net/minecraft/world/entity/monster/piglin/Piglin.java
++++ b/net/minecraft/world/entity/monster/piglin/Piglin.java
+@@ -217,7 +217,7 @@ public class Piglin extends AbstractPiglin implements CrossbowAttackMob, Invento
+ 
+    @Override
+    public Brain<Piglin> getBrain() {
+-      return super.getBrain();
++      return (Brain<Piglin>) super.getBrain();
+    }
+ 
+    @Override

@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/packs/metadata/MetadataSectionType.java b/net/minecraft/server/packs/metadata/MetadataSectionType.java
+index 0abb3c4318e925e00c1d803f5e47b5b7c09fefad..fe737588759e9beed43776704d8035464b2629f8 100644
+--- a/net/minecraft/server/packs/metadata/MetadataSectionType.java
++++ b/net/minecraft/server/packs/metadata/MetadataSectionType.java
+@@ -10,7 +10,7 @@ public record MetadataSectionType<T>(String name, Codec<T> codec) {
+ 
+    public record WithValue<T>(MetadataSectionType<T> type, T value) {
+       public <U> Optional<U> unwrapToType(final MetadataSectionType<U> type) {
+-         return type == this.type ? Optional.of(this.value) : Optional.empty();
++         return type == this.type ? Optional.of((U)this.value) : Optional.empty();
+       }
+    }
+ }

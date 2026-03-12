@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/biome/FeatureSorter.java b/net/minecraft/world/level/biome/FeatureSorter.java
+index d73a1934ad623852df27e612e227fa96aad70f14..20aa79e4cd681d925570c85b7e4ed389583d9399 100644
+--- a/net/minecraft/world/level/biome/FeatureSorter.java
++++ b/net/minecraft/world/level/biome/FeatureSorter.java
+@@ -44,7 +44,7 @@ public class FeatureSorter {
+          maxStep = Math.max(maxStep, featuresForStep.size());
+ 
+          for (int i = 0; i < featuresForStep.size(); i++) {
+-            for (Holder<PlacedFeature> featureSupplier : (HolderSet)featuresForStep.get(i)) {
++            for (Holder<PlacedFeature> featureSupplier : featuresForStep.get(i)) {
+                PlacedFeature feature = featureSupplier.value();
+                featureList.add(new FeatureData(featureIndex.computeIfAbsent(feature, f -> nextFeatureIndex.getAndIncrement()), i, feature));
+             }

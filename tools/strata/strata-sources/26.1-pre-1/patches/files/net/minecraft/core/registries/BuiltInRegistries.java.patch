@@ -1,0 +1,21 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/registries/BuiltInRegistries.java b/net/minecraft/core/registries/BuiltInRegistries.java
+index 6e28adee48600325a2600c93ebe618a847b6c3ab..2939fe91605880be316e4c1a039d90212c75635c 100644
+--- a/net/minecraft/core/registries/BuiltInRegistries.java
++++ b/net/minecraft/core/registries/BuiltInRegistries.java
+@@ -387,8 +387,8 @@ public class BuiltInRegistries {
+    ) {
+       Bootstrap.checkBootstrapCalled(() -> "registry " + name.identifier());
+       Identifier key = name.identifier();
+-      LOADERS.put(key, (Supplier)() -> loader.run(registry));
+-      WRITABLE_REGISTRY.register((ResourceKey<WritableRegistry<?>>)name, registry, RegistrationInfo.BUILT_IN);
++      LOADERS.put(key, () -> loader.run(registry));
++      WRITABLE_REGISTRY.register((ResourceKey<WritableRegistry<?>>) name, registry, RegistrationInfo.BUILT_IN);
+       return registry;
+    }
+ 

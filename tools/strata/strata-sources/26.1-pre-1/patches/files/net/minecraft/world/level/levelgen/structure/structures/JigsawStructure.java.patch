@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/levelgen/structure/structures/JigsawStructure.java b/net/minecraft/world/level/levelgen/structure/structures/JigsawStructure.java
+index 7dd9b847662c9c2b3cad4da699b7e86129651733..f645f4ceef69a02b6ffecac83bf31fa33f30a090 100644
+--- a/net/minecraft/world/level/levelgen/structure/structures/JigsawStructure.java
++++ b/net/minecraft/world/level/levelgen/structure/structures/JigsawStructure.java
+@@ -33,7 +33,7 @@ public final class JigsawStructure extends Structure {
+    public static final int MAX_TOTAL_STRUCTURE_RANGE = 128;
+    public static final int MIN_DEPTH = 0;
+    public static final int MAX_DEPTH = 20;
+-   public static final MapCodec<JigsawStructure> CODEC = RecordCodecBuilder.mapCodec(
++   public static final MapCodec<JigsawStructure> CODEC = RecordCodecBuilder.<JigsawStructure>mapCodec(
+          i -> i.group(
+                settingsCodec(i),
+                StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(j -> j.startPool),

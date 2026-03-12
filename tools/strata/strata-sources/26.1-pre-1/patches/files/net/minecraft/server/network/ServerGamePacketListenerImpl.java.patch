@@ -1,0 +1,19 @@
+From a80189141e4208c1ff8d8f37141f9c0d774a16d8 Mon Sep 17 00:00:00 2001
+From: Oliver <oschi1303@gmail.com>
+Date: Thu, 12 Mar 2026 16:39:22 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+index f9b93b15e92b3099deff646a2b95cd56d80a2682..56131ba5fa9081f23d30219f3f407ef29c22426a 100644
+--- a/net/minecraft/server/network/ServerGamePacketListenerImpl.java
++++ b/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+@@ -1004,7 +1004,7 @@ public class ServerGamePacketListenerImpl
+       if (carried.has(DataComponents.WRITABLE_BOOK_CONTENT)) {
+          ItemStack writtenBook = carried.transmuteCopy(Items.WRITTEN_BOOK);
+          writtenBook.remove(DataComponents.WRITABLE_BOOK_CONTENT);
+-         List<Filterable<Component>> pages = contents.stream().map(page -> this.filterableFromOutgoing(page).map(Component::literal)).toList();
++         List<Filterable<Component>> pages = contents.stream().map(page -> this.filterableFromOutgoing(page).<Component>map(Component::literal)).toList();
+          writtenBook.set(
+             DataComponents.WRITTEN_BOOK_CONTENT, new WrittenBookContent(this.filterableFromOutgoing(title), this.player.getPlainTextName(), 0, pages, true)
+          );
