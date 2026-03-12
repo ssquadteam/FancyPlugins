@@ -3,6 +3,9 @@
 Strata is a tool to download and view the Minecraft server source code.
 You can also apply patches to the source code and try to compile it.
 
+This tool is inspired by [PaperMC's](https://github.com/PaperMC) build tools. 
+It's not recommended to actually use Strata, it's more of a learning and experimental project.
+
 ## Patch system
 
 ### File patches

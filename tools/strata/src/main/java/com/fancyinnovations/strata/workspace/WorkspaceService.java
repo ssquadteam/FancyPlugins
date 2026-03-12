@@ -173,6 +173,7 @@ public class WorkspaceService {
             ProcessBuilder processBuilder = new ProcessBuilder(
                     "git",
                     "tag",
+                    "-f",
                     tagName
             );
             processBuilder.directory(new File(gitDir));
