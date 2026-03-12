@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="26.1-pre-1"
-PATCH_DIR="../strata-sources/${VERSION}/patches/features"
-SOURCE_DIR="../strata-sources/${VERSION}/src/main/java"
+PATCH_DIR="../minecraft-source/patches/features"
+SOURCE_DIR="../minecraft-source/src/main/java"
 
 # remove old patches
 find "$PATCH_DIR" -name '*.patch' -delete

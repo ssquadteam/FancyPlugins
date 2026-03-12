@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="runStrataServer" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="net.minecraft.server.Main" />
-    <module name="minecraft-plugins.tools.strata.strata-sources.26.1-pre-1.main" />
+    <module name="minecraft-plugins.tools.strata.minecraft-source.main" />
     <option name="PROGRAM_PARAMETERS" value="--nogui" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools/strata/strata-sources/26.1-pre-1/runServer" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools/strata/minecraft-source/runServer" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="net.minecraft.server.*" />

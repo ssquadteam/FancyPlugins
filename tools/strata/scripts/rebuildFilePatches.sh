@@ -2,8 +2,8 @@
 set -euo pipefail
 
 VERSION="26.1-pre-1"
-PATCH_DIR="../strata-sources/${VERSION}/patches/files"
-SOURCE_DIR="../strata-sources/${VERSION}/src/main/java"
+PATCH_DIR="../minecraft-source/patches/files"
+SOURCE_DIR="../minecraft-source/src/main/java"
 
 echo "Rebuilding file patches from ..."
 

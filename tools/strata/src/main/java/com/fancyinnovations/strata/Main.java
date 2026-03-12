@@ -2,6 +2,7 @@ package com.fancyinnovations.strata;
 
 import com.fancyinnovations.strata.mojang.PistonVersionDetails;
 import com.fancyinnovations.strata.workspace.WorkspaceService;
+import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 
 public class Main {
 
@@ -17,11 +18,20 @@ public class Main {
                 latest.id()
         );
 
-        String gitDir = "tools/strata/strata-sources/" + latest.id() + "/src/main/java";
+        String gitDir = "tools/strata/minecraft-source/src/main/java";
         strata.getWorkspaceService().initGitDirectory(gitDir);
 
+        try {
+            Thread.sleep(1000); // Sleep for a short time to ensure the file system is ready
+        } catch (InterruptedException e) {
+            strata.getLogger().error(
+                    "Interrupted while waiting for file system to be ready",
+                    ThrowableProperty.of(e)
+            );
+        }
+
         strata.getWorkspaceService().copyDecompiledSources(latest.id(), gitDir);
-        strata.getWorkspaceService().copyDataAndAssets(latest.id(), "tools/strata/strata-sources/" + latest.id() + "/src/main/resources");
+        strata.getWorkspaceService().copyDataAndAssets(latest.id(), "tools/strata/minecraft-source/src/main/resources");
         strata.getWorkspaceService().gitCommit(gitDir, "Add decompiled sources");
         strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.DECOMPILED_SOURCES_TAG);
     }

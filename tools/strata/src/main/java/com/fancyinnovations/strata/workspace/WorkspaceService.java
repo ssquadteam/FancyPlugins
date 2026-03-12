@@ -131,6 +131,20 @@ public class WorkspaceService {
     }
 
     public void initGitDirectory(String gitDir) {
+        // check if the target directory exists, if not create it
+        if (!Files.exists(Paths.get(gitDir))) {
+            try {
+                Files.createDirectories(Paths.get(gitDir));
+                strata.getLogger().info("Created target directory: " + gitDir);
+            } catch (Exception e) {
+                strata.getLogger().error(
+                        "Failed to create target directory: " + gitDir,
+                        ThrowableProperty.of(e)
+                );
+                return;
+            }
+        }
+
         // check if .git exists in the target directory, if not create it and run git init
         if (Files.exists(Paths.get(gitDir, ".git"))) {
             strata.getLogger().info("Git repository already initialized in: " + gitDir);

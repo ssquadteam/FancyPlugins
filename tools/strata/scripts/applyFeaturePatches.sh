@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="26.1-pre-1"
-PATCH_DIR="../strata-sources/${VERSION}/patches/features"
+PATCH_DIR="../minecraft-source/patches/features"
 REAL_PATCH_DIR="$(realpath "$PATCH_DIR")"
-SOURCE_DIR="../strata-sources/${VERSION}/src/main/java"
+SOURCE_DIR="../minecraft-source/src/main/java"
 REAL_SOURCE_DIR="$(realpath "$SOURCE_DIR")"
 
 echo "Applying feature patches ..."

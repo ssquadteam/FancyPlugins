@@ -52,11 +52,6 @@ include(":libraries:packets:implementations:26_1")
 
 
 include(":tools:strata")
-file("tools/strata/strata-sources").listFiles()?.forEach { ver ->
-    if (ver.resolve("build.gradle.kts").exists()) {
-        include(":tools:strata:strata-sources:${ver.name}")
-    }
-}
-
+include(":tools:strata:minecraft-source")
 
 include(":tools:quick-e2e")
