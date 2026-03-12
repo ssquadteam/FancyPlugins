@@ -11,8 +11,11 @@ echo "Applying file patches ..."
 git -C "$SOURCE_DIR" reset --hard strata/decompiled-sources > /dev/null
 
 find "$REAL_PATCH_DIR" -name '*.patch' | sort | while read -r patch; do
-    echo "Applying: $(basename "$patch")"
-    git -C "$SOURCE_DIR" apply --3way "$patch" > /dev/null
+    if ! git -C "$SOURCE_DIR" apply --3way "$patch" > /dev/null 2>&1; then
+        echo "Failed to apply patch: $(basename "$patch")"
+    else
+        echo "Applied patch: $(basename "$patch")"
+    fi
 
 done
 

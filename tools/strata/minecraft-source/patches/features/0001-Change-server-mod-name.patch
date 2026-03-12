@@ -1,4 +1,4 @@
-From 33d397b38fbc5a25c525f67604152f9aac050e7f Mon Sep 17 00:00:00 2001
+From 3d610142ab5b1a7dad3b6d4cc94e483ddc7c988e Mon Sep 17 00:00:00 2001
 From: Oliver <oschi1303@gmail.com>
 Date: Thu, 12 Mar 2026 20:13:41 +0100
 Subject: Change server mod name
@@ -8,7 +8,7 @@ Subject: Change server mod name
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/net/minecraft/server/MinecraftServer.java b/net/minecraft/server/MinecraftServer.java
-index 81678f9..b1fcd14 100644
+index 265c2b6..8619aef 100644
 --- a/net/minecraft/server/MinecraftServer.java
 +++ b/net/minecraft/server/MinecraftServer.java
 @@ -1231,7 +1231,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
@@ -16,7 +16,7 @@ index 81678f9..b1fcd14 100644
  
     public String getServerModName() {
 -      return "vanilla";
-+      return "strata";
++      return "strata"; // strata: branding
     }
  
     public ServerClockManager clockManager() {
