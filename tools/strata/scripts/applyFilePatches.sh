@@ -3,23 +3,21 @@ set -euo pipefail
 
 VERSION="26.1-pre-1"
 PATCH_DIR="../strata-sources/${VERSION}/patches/files"
-SOURCE_DIR="../strata-sources/${VERSION}/src/main/java"
-
-echo "Applying patches from $PATCH_DIR"
-echo "Source repo: $SOURCE_DIR"
-
 REAL_PATCH_DIR="$(realpath "$PATCH_DIR")"
+SOURCE_DIR="../strata-sources/${VERSION}/src/main/java"
 REAL_SOURCE_DIR="$(realpath "$SOURCE_DIR")"
 
-git -C "$SOURCE_DIR" reset --hard strata/decompiled-sources
+echo "Applying file patches ..."
+
+git -C "$SOURCE_DIR" reset --hard strata/decompiled-sources > /dev/null
 
 find "$REAL_PATCH_DIR" -name '*.patch' | sort | while read -r patch; do
-    echo "Applying $patch"
-    git -C "$SOURCE_DIR" apply --3way "$patch"
+    echo "Applying: $(basename "$patch")"
+    git -C "$SOURCE_DIR" apply --3way "$patch" > /dev/null
 
 done
 
-git -C "$SOURCE_DIR" commit --author="Strata <strata@fancyinnovations.com>" -am "Apply file patches"
-git -C "$SOURCE_DIR" tag -f strata/file-patches
+git -C "$SOURCE_DIR" commit --author="Strata <strata@fancyinnovations.com>" -am "Apply file patches" > /dev/null
+git -C "$SOURCE_DIR" tag -f strata/file-patches > /dev/null
 
-echo "All patches applied."
+echo "Successfully applied all file patches"
