@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/jsonrpc/api/ParamInfo.java b/net/minecraft/server/jsonrpc/api/ParamInfo.java
+index a4e791a69dbf0b50498da3b7564e08ead506f1c7..e6191480440393c48f8faf95d4109f97a0505938 100644
+--- a/net/minecraft/server/jsonrpc/api/ParamInfo.java
++++ b/net/minecraft/server/jsonrpc/api/ParamInfo.java
+@@ -13,7 +13,7 @@ public record ParamInfo<Param>(String name, Schema<Param> schema, boolean requir
+       return RecordCodecBuilder.mapCodec(
+          i -> i.group(
+                Codec.STRING.fieldOf("name").forGetter(ParamInfo::name),
+-               Schema.typedCodec().fieldOf("schema").forGetter(ParamInfo::schema),
++               Schema.<Param>typedCodec().fieldOf("schema").forGetter(ParamInfo::schema),
+                Codec.BOOL.fieldOf("required").forGetter(ParamInfo::required)
+             )
+             .apply(i, ParamInfo::new)

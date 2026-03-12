@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/debug/DebugSubscription.java b/net/minecraft/util/debug/DebugSubscription.java
+index 0400c05eec78f1c7816daf6a5cb8faceb1ae2462..2666080acb602d27f4a2f1472ed490b280b4118b 100644
+--- a/net/minecraft/util/debug/DebugSubscription.java
++++ b/net/minecraft/util/debug/DebugSubscription.java
+@@ -53,7 +53,7 @@ public class DebugSubscription<T> {
+          .dispatch(DebugSubscription.Event::subscription, DebugSubscription.Event::streamCodec);
+ 
+       private static <T> StreamCodec<? super RegistryFriendlyByteBuf, DebugSubscription.Event<T>> streamCodec(final DebugSubscription<T> subscription) {
+-         return ((StreamCodec)Objects.requireNonNull(subscription.valueStreamCodec))
++         return (Objects.requireNonNull(subscription.valueStreamCodec))
+             .map(value -> new DebugSubscription.Event<>(subscription, (T)value), DebugSubscription.Event::value);
+       }
+    }
+@@ -63,7 +63,7 @@ public class DebugSubscription<T> {
+          .dispatch(DebugSubscription.Update::subscription, DebugSubscription.Update::streamCodec);
+ 
+       private static <T> StreamCodec<? super RegistryFriendlyByteBuf, DebugSubscription.Update<T>> streamCodec(final DebugSubscription<T> subscription) {
+-         return ByteBufCodecs.optional((StreamCodec)Objects.requireNonNull(subscription.valueStreamCodec))
++         return ByteBufCodecs.optional(Objects.requireNonNull(subscription.valueStreamCodec))
+             .map(value -> new DebugSubscription.Update<>(subscription, value), DebugSubscription.Update::value);
+       }
+    }

@@ -1,0 +1,37 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/EntityBlockStateFix.java b/net/minecraft/util/datafix/fixes/EntityBlockStateFix.java
+index 987fb8dbc6417b0116e41946d6b3337c7f50a966..0a7f9d73d1ce105db7ec63129f6c145de37f49c4 100644
+--- a/net/minecraft/util/datafix/fixes/EntityBlockStateFix.java
++++ b/net/minecraft/util/datafix/fixes/EntityBlockStateFix.java
+@@ -18,7 +18,7 @@ import java.util.function.Function;
+ import net.minecraft.util.datafix.schemas.NamespacedSchema;
+ 
+ public class EntityBlockStateFix extends DataFix {
+-   private static final Map<String, Integer> MAP = (Map<String, Integer>)DataFixUtils.make(Maps.newHashMap(), map -> {
++   private static final Map<String, Integer> MAP = DataFixUtils.make(Maps.newHashMap(), map -> {
+       map.put("minecraft:air", 0);
+       map.put("minecraft:stone", 1);
+       map.put("minecraft:grass", 2);
+@@ -326,7 +326,7 @@ public class EntityBlockStateFix extends DataFix {
+       );
+       Dynamic<?> tag = (Dynamic<?>)input.get(DSL.remainderFinder());
+       return input.update(oldType.finder(), newType, tile -> {
+-         int block = (Integer)tile.map(l -> (Integer)((Either)l.getSecond()).map(l2 -> l2, EntityBlockStateFix::getBlockId), r -> {
++         int block = (Integer)tile.map(l -> (Integer)(l.getSecond()).map(l2 -> l2, EntityBlockStateFix::getBlockId), r -> {
+             Optional<Number> tileID = tag.get("TileID").asNumber().result();
+             return (Integer)tileID.map(Number::intValue).orElseGet(() -> tag.get("Tile").asByte((byte)0) & 0xFF);
+          });
+@@ -342,7 +342,7 @@ public class EntityBlockStateFix extends DataFix {
+       Type<Pair<String, Dynamic<?>>> newType = DSL.field(newFieldName, DSL.named(References.BLOCK_STATE.typeName(), DSL.remainderType()));
+       Dynamic<?> tag = (Dynamic<?>)input.getOrCreate(DSL.remainderFinder());
+       return input.update(oldType.finder(), newType, tile -> {
+-         int block = (Integer)((Either)tile.getSecond()).map(l -> l, EntityBlockStateFix::getBlockId);
++         int block = (Integer)(tile.getSecond()).map(l -> l, EntityBlockStateFix::getBlockId);
+          int data = tag.get(dataName).asInt(0) & 15;
+          return Pair.of(References.BLOCK_STATE.typeName(), BlockStateData.getTag(block << 4 | data));
+       }).set(DSL.remainderFinder(), tag.remove(dataName));

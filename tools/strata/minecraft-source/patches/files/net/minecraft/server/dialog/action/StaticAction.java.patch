@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/dialog/action/StaticAction.java b/net/minecraft/server/dialog/action/StaticAction.java
+index 13100537f17e41e4b61c4f8f6985bd0d91f67a83..3935f39e813a48320520d664d3d42a0dc9492d65 100644
+--- a/net/minecraft/server/dialog/action/StaticAction.java
++++ b/net/minecraft/server/dialog/action/StaticAction.java
+@@ -14,7 +14,7 @@ public record StaticAction(ClickEvent value) implements Action {
+ 
+       for (ClickEvent.Action action : (ClickEvent.Action[])ClickEvent.Action.class.getEnumConstants()) {
+          if (action.isAllowedFromServer()) {
+-            MapCodec<ClickEvent> mapCodec = action.valueCodec();
++            MapCodec<ClickEvent> mapCodec = (MapCodec<ClickEvent>) action.valueCodec();
+             result.put(action, mapCodec.xmap(StaticAction::new, StaticAction::value));
+          }
+       }

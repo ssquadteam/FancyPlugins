@@ -1,0 +1,45 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/protocol/common/ClientboundCustomPayloadPacket.java b/net/minecraft/network/protocol/common/ClientboundCustomPayloadPacket.java
+index 67de8aab2b9d8b64d9d401304ecb48091b08d8a3..8fdb350aa76f3c5e44406b2dde012e97cc9e8aff 100644
+--- a/net/minecraft/network/protocol/common/ClientboundCustomPayloadPacket.java
++++ b/net/minecraft/network/protocol/common/ClientboundCustomPayloadPacket.java
+@@ -15,24 +15,22 @@ import net.minecraft.util.Util;
+ public record ClientboundCustomPayloadPacket(CustomPacketPayload payload) implements Packet<ClientCommonPacketListener> {
+    private static final int MAX_PAYLOAD_SIZE = 1048576;
+    public static final StreamCodec<RegistryFriendlyByteBuf, ClientboundCustomPayloadPacket> GAMEPLAY_STREAM_CODEC = CustomPacketPayload.<RegistryFriendlyByteBuf>codec(
+-         id -> DiscardedPayload.codec(id, 1048576),
+-         Util.make(
+-            Lists.newArrayList(new CustomPacketPayload.TypeAndCodec[]{new CustomPacketPayload.TypeAndCodec<>(BrandPayload.TYPE, BrandPayload.STREAM_CODEC)}),
+-            types -> {}
+-         )
+-      )
+-      .map(ClientboundCustomPayloadPacket::new, ClientboundCustomPayloadPacket::payload);
++                   id -> DiscardedPayload.codec(id, 1048576),
++                   Util.make(Lists.newArrayList(new CustomPacketPayload.TypeAndCodec<>(BrandPayload.TYPE, BrandPayload.STREAM_CODEC)), types -> {})
++           )
++           .map(ClientboundCustomPayloadPacket::new, ClientboundCustomPayloadPacket::payload);
+    public static final StreamCodec<FriendlyByteBuf, ClientboundCustomPayloadPacket> CONFIG_STREAM_CODEC = CustomPacketPayload.<FriendlyByteBuf>codec(
+-         id -> DiscardedPayload.codec(id, 1048576), List.of(new CustomPacketPayload.TypeAndCodec<>(BrandPayload.TYPE, BrandPayload.STREAM_CODEC))
+-      )
+-      .map(ClientboundCustomPayloadPacket::new, ClientboundCustomPayloadPacket::payload);
++                   id -> DiscardedPayload.codec(id, 1048576), List.of(new CustomPacketPayload.TypeAndCodec<>(BrandPayload.TYPE, BrandPayload.STREAM_CODEC))
++           )
++           .map(ClientboundCustomPayloadPacket::new, ClientboundCustomPayloadPacket::payload);
+ 
+    @Override
+    public PacketType<ClientboundCustomPayloadPacket> type() {
+       return CommonPacketTypes.CLIENTBOUND_CUSTOM_PAYLOAD;
+    }
+ 
++   @Override
+    public void handle(final ClientCommonPacketListener listener) {
+       listener.handleCustomPayload(this);
+    }
+-}
++}
+\ No newline at end of file

@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/item/trading/VillagerTrade.java b/net/minecraft/world/item/trading/VillagerTrade.java
+index b3dc107a4ef19d1dd259c32ef181d0a29195035f..a8cd679bbd4bdabe6ed88777334c9e6420868032 100644
+--- a/net/minecraft/world/item/trading/VillagerTrade.java
++++ b/net/minecraft/world/item/trading/VillagerTrade.java
+@@ -25,7 +25,7 @@ import net.minecraft.world.level.storage.loot.providers.number.NumberProviders;
+ import org.jspecify.annotations.Nullable;
+ 
+ public class VillagerTrade implements Validatable {
+-   public static final Codec<VillagerTrade> CODEC = RecordCodecBuilder.create(
++   public static final Codec<VillagerTrade> CODEC = RecordCodecBuilder.<VillagerTrade>create(
+          i -> i.group(
+                TradeCost.CODEC.fieldOf("wants").forGetter(villagerTrade -> villagerTrade.wants),
+                TradeCost.CODEC.optionalFieldOf("additional_wants").forGetter(villagerTrade -> villagerTrade.additionalWants),

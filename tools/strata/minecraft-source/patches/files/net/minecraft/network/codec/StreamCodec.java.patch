@@ -1,0 +1,26 @@
+From 3c6f08e7956da53675466961c5ef88a9fb9427ad Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 19:14:37 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/codec/StreamCodec.java b/net/minecraft/network/codec/StreamCodec.java
+index 747260e9ea2e784b03f4d9d80e16e53647e86c1d..15bffa83ac3f662a190c37710bb70d7d754a73d2 100644
+--- a/net/minecraft/network/codec/StreamCodec.java
++++ b/net/minecraft/network/codec/StreamCodec.java
+@@ -627,13 +627,13 @@ public interface StreamCodec<B, V> extends StreamEncoder<B, V>, StreamDecoder<B,
+ 
+          @Override
+          public void encode(final B output, final T value) {
+-            ((StreamCodec)this.inner.get()).encode(output, (V)value);
++            this.inner.get().encode(output, value);
+          }
+       };
+    }
+ 
+    default <S extends B> StreamCodec<S, V> cast() {
+-      return this;
++      return (StreamCodec<S, V>) this;
+    }
+ 
+    @FunctionalInterface

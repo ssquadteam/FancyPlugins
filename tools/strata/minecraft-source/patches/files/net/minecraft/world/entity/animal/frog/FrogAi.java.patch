@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/animal/frog/FrogAi.java b/net/minecraft/world/entity/animal/frog/FrogAi.java
+index 9eff6321fdc040a77eb160c2970815503ceba17f..0373f15609778e770fff589bb566ed3adecd50d8 100644
+--- a/net/minecraft/world/entity/animal/frog/FrogAi.java
++++ b/net/minecraft/world/entity/animal/frog/FrogAi.java
+@@ -73,7 +73,7 @@ public class FrogAi {
+          Activity.CORE,
+          0,
+          ImmutableList.of(
+-            new AnimalPanic(2.0F),
++            new AnimalPanic<>(2.0F),
+             new LookAtTargetSink(45, 90),
+             new MoveToTargetSink(),
+             new CountDownCooldownTicks(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
+@@ -173,7 +173,7 @@ public class FrogAi {
+             Pair.of(0, new LongJumpMidJump(TIME_BETWEEN_LONG_JUMPS, SoundEvents.FROG_STEP)),
+             Pair.of(
+                1,
+-               new LongJumpToPreferredBlock(
++               new LongJumpToPreferredBlock<>(
+                   TIME_BETWEEN_LONG_JUMPS,
+                   2,
+                   4,

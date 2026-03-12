@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/item/crafting/SelectableRecipe.java b/net/minecraft/world/item/crafting/SelectableRecipe.java
+index 14e709de66e08cd8c03ed6d784bc2ba04afbd995..e2a7bcfd3ba1c40b8fc967d7d6a6fee3fc1eaed3 100644
+--- a/net/minecraft/world/item/crafting/SelectableRecipe.java
++++ b/net/minecraft/world/item/crafting/SelectableRecipe.java
+@@ -34,7 +34,7 @@ public record SelectableRecipe<T extends Recipe<?>>(SlotDisplay optionDisplay, O
+ 
+       public static <T extends Recipe<?>> StreamCodec<RegistryFriendlyByteBuf, SelectableRecipe.SingleInputSet<T>> noRecipeCodec() {
+          return StreamCodec.composite(
+-            SelectableRecipe.SingleInputEntry.noRecipeCodec().apply(ByteBufCodecs.list()),
++            SelectableRecipe.SingleInputEntry.<T>noRecipeCodec().apply(ByteBufCodecs.list()),
+             SelectableRecipe.SingleInputSet::entries,
+             SelectableRecipe.SingleInputSet::new
+          );

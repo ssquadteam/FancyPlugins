@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/attribute/AttributeType.java b/net/minecraft/world/attribute/AttributeType.java
+index 550d04dc4a31d59d237f3862c10a8c5161d13b52..97d0b3d53ccf52455ac2d3877db942184e5b8af1 100644
+--- a/net/minecraft/world/attribute/AttributeType.java
++++ b/net/minecraft/world/attribute/AttributeType.java
+@@ -58,7 +58,7 @@ public record AttributeType<Value>(
+    private static <Value> Codec<AttributeModifier<Value, ?>> createModifierCodec(
+       final Map<AttributeModifier.OperationId, AttributeModifier<Value, ?>> modifiers
+    ) {
+-      ImmutableBiMap<AttributeModifier.OperationId, AttributeModifier<Value, ?>> modifierLookup = ImmutableBiMap.builder()
++      ImmutableBiMap<AttributeModifier.OperationId, AttributeModifier<Value, ?>> modifierLookup = ImmutableBiMap.<AttributeModifier.OperationId, AttributeModifier<Value, ?>>builder()
+          .put(AttributeModifier.OperationId.OVERRIDE, AttributeModifier.override())
+          .putAll(modifiers)
+          .buildOrThrow();

@@ -1,0 +1,31 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/commands/ExecuteCommand.java b/net/minecraft/server/commands/ExecuteCommand.java
+index 9250f8305dec71196f0ef5a764b4797f36ebd7cc..ca65348f2469ded82ac83b6adc58c8b9adc88fec 100644
+--- a/net/minecraft/server/commands/ExecuteCommand.java
++++ b/net/minecraft/server/commands/ExecuteCommand.java
+@@ -1053,9 +1053,9 @@ public class ExecuteCommand {
+       return context -> {
+          CommandSourceStack source = (CommandSourceStack)context.getSource();
+          Entity entity = source.getEntity();
+-         return (Collection)(entity == null
++         return (entity == null
+             ? List.of()
+-            : (Collection)((Optional)unpacker.apply(entity)).filter(e -> !e.isRemoved()).map(e -> List.of(source.withEntity(e))).orElse(List.of()));
++            : (unpacker.apply(entity)).filter(e -> !e.isRemoved()).map(e -> List.of(source.withEntity(e))).orElse(List.of()));
+       };
+    }
+ 
+@@ -1063,7 +1063,7 @@ public class ExecuteCommand {
+       return context -> {
+          CommandSourceStack source = (CommandSourceStack)context.getSource();
+          Entity entity = source.getEntity();
+-         return entity == null ? List.of() : ((Stream)unpacker.apply(entity)).filter(e -> !e.isRemoved()).map(source::withEntity).toList();
++         return entity == null ? List.of() : (unpacker.apply(entity)).filter(e -> !e.isRemoved()).map(source::withEntity).toList();
+       };
+    }
+ 

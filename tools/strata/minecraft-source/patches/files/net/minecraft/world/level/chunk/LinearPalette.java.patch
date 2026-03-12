@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/chunk/LinearPalette.java b/net/minecraft/world/level/chunk/LinearPalette.java
+index b12f3c6b38adc04c8f0285eec798099295e8fc72..e104c4450bee3cdc617731e36064094ccb85aaa1 100644
+--- a/net/minecraft/world/level/chunk/LinearPalette.java
++++ b/net/minecraft/world/level/chunk/LinearPalette.java
+@@ -35,7 +35,7 @@ public class LinearPalette<T> implements Palette<T> {
+    }
+ 
+    public static <A> Palette<A> create(final int bits, final List<A> paletteEntries) {
+-      return new LinearPalette(bits, (List<T>)paletteEntries);
++      return new LinearPalette<>(bits, paletteEntries);
+    }
+ 
+    @Override

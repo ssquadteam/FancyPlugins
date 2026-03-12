@@ -1,0 +1,22 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/block/ChiseledBookShelfBlock.java b/net/minecraft/world/level/block/ChiseledBookShelfBlock.java
+index bab0f516c4afca2d934321e2722b21dce53ef0b2..20ddac5b0754a823a31b8661b8768ae3c8ae48b4 100644
+--- a/net/minecraft/world/level/block/ChiseledBookShelfBlock.java
++++ b/net/minecraft/world/level/block/ChiseledBookShelfBlock.java
+@@ -156,10 +156,8 @@ public class ChiseledBookShelfBlock extends BaseEntityBlock implements Selectabl
+    @Override
+    protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
+       builder.add(FACING);
+-      List var10000 = SLOT_OCCUPIED_PROPERTIES;
+       Objects.requireNonNull(builder);
+-      StateDefinition.Builder var2 = builder;
+-      var10000.forEach(xva$0 -> var2.add(xva$0));
++      SLOT_OCCUPIED_PROPERTIES.forEach(property -> builder.add(property));
+    }
+ 
+    @Override

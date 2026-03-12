@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/valueproviders/TrapezoidFloat.java b/net/minecraft/util/valueproviders/TrapezoidFloat.java
+index 1090ed79f9a586c2355ebcd65404b408d7fab961..1d2d6bdd5141dd1d7de632aa2d4ef77a6128cd3f 100644
+--- a/net/minecraft/util/valueproviders/TrapezoidFloat.java
++++ b/net/minecraft/util/valueproviders/TrapezoidFloat.java
+@@ -7,7 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
+ import net.minecraft.util.RandomSource;
+ 
+ public record TrapezoidFloat(float min, float max, float plateau) implements FloatProvider {
+-   public static final MapCodec<TrapezoidFloat> MAP_CODEC = RecordCodecBuilder.mapCodec(
++   public static final MapCodec<TrapezoidFloat> MAP_CODEC = RecordCodecBuilder.<TrapezoidFloat>mapCodec(
+          i -> i.group(
+                Codec.FLOAT.fieldOf("min").forGetter(TrapezoidFloat::min),
+                Codec.FLOAT.fieldOf("max").forGetter(TrapezoidFloat::max),

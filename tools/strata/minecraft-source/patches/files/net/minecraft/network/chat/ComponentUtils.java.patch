@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/chat/ComponentUtils.java b/net/minecraft/network/chat/ComponentUtils.java
+index 849844f224cbef37d584088e55d7a1bc83218fa4..8d61b2b27e978c15e44a2652f3c48e5baf02b4a0 100644
+--- a/net/minecraft/network/chat/ComponentUtils.java
++++ b/net/minecraft/network/chat/ComponentUtils.java
+@@ -86,7 +86,7 @@ public class ComponentUtils {
+       if (values.isEmpty()) {
+          return CommonComponents.EMPTY;
+       } else if (values.size() == 1) {
+-         return (Component)formatter.apply((Comparable)values.iterator().next());
++         return (Component)formatter.apply(values.iterator().next());
+       } else {
+          List<T> sorted = Lists.newArrayList(values);
+          sorted.sort(Comparable::compareTo);

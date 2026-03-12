@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/ai/sensing/GolemSensor.java b/net/minecraft/world/entity/ai/sensing/GolemSensor.java
+index ddbeeb9074e14e80234bf5b1cb8882db3a17988f..a87a88ca36bd6697a4122072b7cb1e56bd364bff 100644
+--- a/net/minecraft/world/entity/ai/sensing/GolemSensor.java
++++ b/net/minecraft/world/entity/ai/sensing/GolemSensor.java
+@@ -33,7 +33,7 @@ public class GolemSensor extends Sensor<LivingEntity> {
+    public static void checkForNearbyGolem(final LivingEntity body) {
+       Optional<List<LivingEntity>> livingEntitiesMemory = body.getBrain().getMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES);
+       if (!livingEntitiesMemory.isEmpty()) {
+-         boolean golemPresent = ((List)livingEntitiesMemory.get()).stream().anyMatch(entity -> entity.is(EntityType.IRON_GOLEM));
++         boolean golemPresent = (livingEntitiesMemory.get()).stream().anyMatch(entity -> entity.is(EntityType.IRON_GOLEM));
+          if (golemPresent) {
+             golemDetected(body);
+          }

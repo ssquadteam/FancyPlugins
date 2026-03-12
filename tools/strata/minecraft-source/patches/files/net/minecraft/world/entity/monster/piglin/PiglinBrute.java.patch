@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/monster/piglin/PiglinBrute.java b/net/minecraft/world/entity/monster/piglin/PiglinBrute.java
+index 0f5478b0afea28132dbe28f7319ef62da17a9e15..ecea563033b968ab082143c43c228bd79de9609d 100644
+--- a/net/minecraft/world/entity/monster/piglin/PiglinBrute.java
++++ b/net/minecraft/world/entity/monster/piglin/PiglinBrute.java
+@@ -75,7 +75,7 @@ public class PiglinBrute extends AbstractPiglin {
+ 
+    @Override
+    public Brain<PiglinBrute> getBrain() {
+-      return super.getBrain();
++      return (Brain<PiglinBrute>) super.getBrain();
+    }
+ 
+    @Override

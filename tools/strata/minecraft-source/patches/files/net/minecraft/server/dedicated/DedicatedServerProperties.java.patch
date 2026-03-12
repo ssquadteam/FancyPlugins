@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/dedicated/DedicatedServerProperties.java b/net/minecraft/server/dedicated/DedicatedServerProperties.java
+index 7f768a2cd9b0550cf9400acec6fdd8f50990cb37..096751234a24240a6adce1f79a13b0e6b92ffbcc 100644
+--- a/net/minecraft/server/dedicated/DedicatedServerProperties.java
++++ b/net/minecraft/server/dedicated/DedicatedServerProperties.java
+@@ -261,7 +261,7 @@ public class DedicatedServerProperties extends Settings<DedicatedServerPropertie
+             .orElseThrow(() -> new IllegalStateException("Invalid datapack contents: can't find default preset"));
+          Holder<WorldPreset> worldPreset = (Holder<WorldPreset>)Optional.ofNullable(Identifier.tryParse(this.levelType))
+             .map(id -> ResourceKey.create(Registries.WORLD_PRESET, id))
+-            .or(() -> Optional.ofNullable((ResourceKey)LEGACY_PRESET_NAMES.get(this.levelType)))
++            .or(() -> Optional.ofNullable(LEGACY_PRESET_NAMES.get(this.levelType)))
+             .flatMap(worldPresets::get)
+             .orElseGet(() -> {
+                DedicatedServerProperties.LOGGER.warn("Failed to parse level-type {}, defaulting to {}", this.levelType, defaultHolder.key().identifier());
+@@ -271,7 +271,7 @@ public class DedicatedServerProperties extends Settings<DedicatedServerPropertie
+          if (worldPreset.is(WorldPresets.FLAT)) {
+             RegistryOps<JsonElement> ops = registries.createSerializationContext(JsonOps.INSTANCE);
+             Optional<FlatLevelGeneratorSettings> parsedSettings = FlatLevelGeneratorSettings.CODEC
+-               .parse(new Dynamic(ops, this.generatorSettings()))
++               .parse(new Dynamic<>(ops, this.generatorSettings()))
+                .resultOrPartial(DedicatedServerProperties.LOGGER::error);
+             if (parsedSettings.isPresent()) {
+                return worldDimensions.replaceOverworldGenerator(registries, new FlatLevelSource((FlatLevelGeneratorSettings)parsedSettings.get()));

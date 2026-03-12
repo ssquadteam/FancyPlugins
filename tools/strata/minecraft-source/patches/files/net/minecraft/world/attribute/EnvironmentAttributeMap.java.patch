@@ -1,0 +1,34 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/attribute/EnvironmentAttributeMap.java b/net/minecraft/world/attribute/EnvironmentAttributeMap.java
+index c4ba9e3103b5c335448f905ead41165523a1aaea..418f09c5c544940f6801598e420150dd981d330e 100644
+--- a/net/minecraft/world/attribute/EnvironmentAttributeMap.java
++++ b/net/minecraft/world/attribute/EnvironmentAttributeMap.java
+@@ -18,7 +18,7 @@ import org.jspecify.annotations.Nullable;
+ public final class EnvironmentAttributeMap {
+    public static final EnvironmentAttributeMap EMPTY = new EnvironmentAttributeMap(Map.of());
+    public static final Codec<EnvironmentAttributeMap> CODEC = Codec.lazyInitialized(
+-      () -> Codec.dispatchedMap(EnvironmentAttributes.CODEC, Util.memoize(EnvironmentAttributeMap.Entry::createCodec))
++           () -> Codec.dispatchedMap(EnvironmentAttributes.CODEC, Util.memoize((java.util.function.Function<EnvironmentAttribute<?>, Codec<? extends Entry<?, ?>>>) EnvironmentAttributeMap.Entry::createCodec))
+          .xmap(EnvironmentAttributeMap::new, v -> v.entries)
+    );
+    public static final Codec<EnvironmentAttributeMap> NETWORK_CODEC = CODEC.xmap(
+@@ -107,11 +107,11 @@ public final class EnvironmentAttributeMap {
+       private static <Value> Codec<EnvironmentAttributeMap.Entry<Value, ?>> createCodec(final EnvironmentAttribute<Value> attribute) {
+          Codec<EnvironmentAttributeMap.Entry<Value, ?>> fullCodec = attribute.type()
+             .modifierCodec()
+-            .dispatch("modifier", EnvironmentAttributeMap.Entry::modifier, Util.memoize((Function)(modifier -> createFullCodec(attribute, modifier))));
++            .dispatch("modifier", EnvironmentAttributeMap.Entry::modifier, Util.memoize((modifier -> createFullCodec(attribute, modifier))));
+          return Codec.either(attribute.valueCodec(), fullCodec)
+             .xmap(
+-               either -> (EnvironmentAttributeMap.Entry)either.map(value -> new EnvironmentAttributeMap.Entry<>(value, AttributeModifier.override()), e -> e),
+-               entry -> entry.modifier == AttributeModifier.override() ? Either.left(entry.argument()) : Either.right(entry)
++               either -> either.map(value -> new EnvironmentAttributeMap.Entry<>(value, AttributeModifier.override()), e -> e),
++               entry -> entry.modifier == AttributeModifier.override() ? Either.left((Value)entry.argument()) : Either.right(entry)
+             );
+       }
+ 

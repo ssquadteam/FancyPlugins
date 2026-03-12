@@ -1,0 +1,18 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/component/DataComponents.java b/net/minecraft/core/component/DataComponents.java
+index 384c2ab0619005c4f69814e6d40d8d030f43e4d1..79ac0a74c01dbb8af86bec88ccbfee15e4290c0a 100644
+--- a/net/minecraft/core/component/DataComponents.java
++++ b/net/minecraft/core/component/DataComponents.java
+@@ -430,6 +430,6 @@ public class DataComponents {
+    }
+ 
+    private static <T> DataComponentType<T> register(final String id, final UnaryOperator<DataComponentType.Builder<T>> builder) {
+-      return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, id, ((DataComponentType.Builder)builder.apply(DataComponentType.builder())).build());
++      return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, id, (builder.apply(DataComponentType.builder())).build());
+    }
+ }

@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/storage/SavedDataStorage.java b/net/minecraft/world/level/storage/SavedDataStorage.java
+index c7969b730adf86708dfdee417c6f1d0a5c32683f..4449511349f28e3adc8dae6fc38e0ef02398f8e3 100644
+--- a/net/minecraft/world/level/storage/SavedDataStorage.java
++++ b/net/minecraft/world/level/storage/SavedDataStorage.java
+@@ -245,7 +245,7 @@ public class SavedDataStorage implements AutoCloseable {
+    private <T extends SavedData> CompoundTag encodeUnchecked(final SavedDataType<T> type, final SavedData data, final RegistryOps<Tag> ops) {
+       Codec<T> codec = type.codec();
+       CompoundTag tag = new CompoundTag();
+-      tag.put("data", (Tag)codec.encodeStart(ops, data).getOrThrow());
++      tag.put("data", (Tag)codec.encodeStart(ops, (T) data).getOrThrow());
+       NbtUtils.addCurrentDataVersion(tag);
+       return tag;
+    }

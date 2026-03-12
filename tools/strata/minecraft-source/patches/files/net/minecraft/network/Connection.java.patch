@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/Connection.java b/net/minecraft/network/Connection.java
+index 79abf811089ad4c0a993ee5ebf2ebf814b5eeb46..6e12272af6829f537933f05072bb71990a2e31db 100644
+--- a/net/minecraft/network/Connection.java
++++ b/net/minecraft/network/Connection.java
+@@ -280,7 +280,7 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
+          this.flushQueue();
+          this.sendPacket(packet, listener, flush);
+       } else {
+-         this.pendingActions.add((Consumer)connection -> connection.sendPacket(packet, listener, flush));
++         this.pendingActions.add(connection -> connection.sendPacket(packet, listener, flush));
+       }
+    }
+ 

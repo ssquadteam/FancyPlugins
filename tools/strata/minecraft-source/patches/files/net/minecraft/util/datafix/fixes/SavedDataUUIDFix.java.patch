@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/datafix/fixes/SavedDataUUIDFix.java b/net/minecraft/util/datafix/fixes/SavedDataUUIDFix.java
+index 063062ed675e8d116cb9afd6f49922a0626bb82b..e26ecad7b05c68970598ce4b351e63dc4ceb2b1f 100644
+--- a/net/minecraft/util/datafix/fixes/SavedDataUUIDFix.java
++++ b/net/minecraft/util/datafix/fixes/SavedDataUUIDFix.java
+@@ -30,7 +30,7 @@ public class SavedDataUUIDFix extends AbstractUUIDFix {
+                            raid -> raid.update(
+                               "HeroesOfTheVillage",
+                               heros -> heros.createList(
+-                                 heros.asStream().map(hero -> (Dynamic)createUUIDFromLongs(hero, "UUIDMost", "UUIDLeast").orElseGet(() -> {
++                                 heros.asStream().map(hero -> createUUIDFromLongs(hero, "UUIDMost", "UUIDLeast").orElseGet(() -> {
+                                     LOGGER.warn("HeroesOfTheVillage contained invalid UUIDs.");
+                                     return hero;
+                                  }))

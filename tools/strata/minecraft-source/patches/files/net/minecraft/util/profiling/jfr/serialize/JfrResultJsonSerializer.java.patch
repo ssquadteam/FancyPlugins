@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/profiling/jfr/serialize/JfrResultJsonSerializer.java b/net/minecraft/util/profiling/jfr/serialize/JfrResultJsonSerializer.java
+index 5dbf63d3bc057c2957fbdc19caabd70f3645c564..8417de03d7f6384c7ffd10478c2b36ea89eaa6d2 100644
+--- a/net/minecraft/util/profiling/jfr/serialize/JfrResultJsonSerializer.java
++++ b/net/minecraft/util/profiling/jfr/serialize/JfrResultJsonSerializer.java
+@@ -98,7 +98,7 @@ public class JfrResultJsonSerializer {
+          TimedStatSummary<StructureGenStat> summary = (TimedStatSummary<StructureGenStat>)optionalSummary.get();
+          JsonArray structureJsonArray = new JsonArray();
+          root.add("structure", structureJsonArray);
+-         ((Map)structureGenStats.stream().collect(Collectors.groupingBy(StructureGenStat::structureName)))
++         (structureGenStats.stream().collect(Collectors.groupingBy(StructureGenStat::structureName)))
+             .forEach(
+                (structureName, timedStat) -> {
+                   Optional<TimedStatSummary<StructureGenStat>> optionalStatSummary = TimedStatSummary.summary(timedStat);

@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/animal/frog/Frog.java b/net/minecraft/world/entity/animal/frog/Frog.java
+index 3455c9e4e0374fa72dc2858e0b608565bdf0dedd..da68aefa1266e5441cc9cd14d2cf7681ffdd761e 100644
+--- a/net/minecraft/world/entity/animal/frog/Frog.java
++++ b/net/minecraft/world/entity/animal/frog/Frog.java
+@@ -98,7 +98,7 @@ public class Frog extends Animal {
+ 
+    @Override
+    public Brain<Frog> getBrain() {
+-      return super.getBrain();
++      return (Brain<Frog>) super.getBrain();
+    }
+ 
+    @Override

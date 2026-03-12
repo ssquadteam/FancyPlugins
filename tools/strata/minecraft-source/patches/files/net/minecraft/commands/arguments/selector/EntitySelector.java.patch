@@ -1,0 +1,29 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/commands/arguments/selector/EntitySelector.java b/net/minecraft/commands/arguments/selector/EntitySelector.java
+index 6f8f844017b16b4517aa1bb2c70c2cd36f861b89..d329216513f62d4e9bd371af9bdbcc90e5269c69 100644
+--- a/net/minecraft/commands/arguments/selector/EntitySelector.java
++++ b/net/minecraft/commands/arguments/selector/EntitySelector.java
+@@ -253,15 +253,15 @@ public class EntitySelector {
+          List<Predicate<Entity>> predicates = new ObjectArrayList(this.contextFreePredicates.size() + extraCount);
+          predicates.addAll(this.contextFreePredicates);
+          if (filterFeatures) {
+-            predicates.add((Predicate)e -> e.getType().isEnabled(enabledFeatures));
++            predicates.add(e -> e.getType().isEnabled(enabledFeatures));
+          }
+ 
+          if (filterAabb) {
+-            predicates.add((Predicate)e -> absoluteAabb.intersects(e.getBoundingBox()));
++            predicates.add(e -> absoluteAabb.intersects(e.getBoundingBox()));
+          }
+ 
+          if (filterRange) {
+-            predicates.add((Predicate)e -> this.range.matchesSqr(e.distanceToSqr(pos)));
++            predicates.add(e -> this.range.matchesSqr(e.distanceToSqr(pos)));
+          }
+ 
+          completePredicates = predicates;

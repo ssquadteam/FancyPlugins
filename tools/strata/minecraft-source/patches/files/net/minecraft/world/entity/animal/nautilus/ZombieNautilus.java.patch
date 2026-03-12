@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/animal/nautilus/ZombieNautilus.java b/net/minecraft/world/entity/animal/nautilus/ZombieNautilus.java
+index 0b88bba01ff840b68aa89ca486b2f7f9e4287b70..c2db8f9ef89a392fe404809a58862f693879f5ee 100644
+--- a/net/minecraft/world/entity/animal/nautilus/ZombieNautilus.java
++++ b/net/minecraft/world/entity/animal/nautilus/ZombieNautilus.java
+@@ -68,7 +68,7 @@ public class ZombieNautilus extends AbstractNautilus {
+ 
+    @Override
+    public Brain<ZombieNautilus> getBrain() {
+-      return super.getBrain();
++      return (Brain<ZombieNautilus>) super.getBrain();
+    }
+ 
+    @Override

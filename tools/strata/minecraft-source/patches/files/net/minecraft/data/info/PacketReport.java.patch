@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/data/info/PacketReport.java b/net/minecraft/data/info/PacketReport.java
+index cc2b7fe52a32a1c312e371e61d28ea2d9ec7a8ab..c6b5ee2f6212e3c2d767ade053dfc3455c041e4b 100644
+--- a/net/minecraft/data/info/PacketReport.java
++++ b/net/minecraft/data/info/PacketReport.java
+@@ -32,7 +32,7 @@ public class PacketReport implements DataProvider {
+ 
+    private JsonElement serializePackets() {
+       JsonObject protocols = new JsonObject();
+-      ((Map)Stream.of(
++      (Stream.of(
+                HandshakeProtocols.SERVERBOUND_TEMPLATE,
+                StatusProtocols.CLIENTBOUND_TEMPLATE,
+                StatusProtocols.SERVERBOUND_TEMPLATE,

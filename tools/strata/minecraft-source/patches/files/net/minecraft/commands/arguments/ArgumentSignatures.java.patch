@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/commands/arguments/ArgumentSignatures.java b/net/minecraft/commands/arguments/ArgumentSignatures.java
+index e16b853bcf9d556ab5da40a5efd822a26dbcb3ed..92feb0280041a96f25f6a7e5c199440d00f63e3d 100644
+--- a/net/minecraft/commands/arguments/ArgumentSignatures.java
++++ b/net/minecraft/commands/arguments/ArgumentSignatures.java
+@@ -14,7 +14,7 @@ public record ArgumentSignatures(List<ArgumentSignatures.Entry> entries) {
+    private static final int MAX_ARGUMENT_NAME_LENGTH = 16;
+ 
+    public ArgumentSignatures(final FriendlyByteBuf input) {
+-      this(input.readCollection(FriendlyByteBuf.limitValue(ArrayList::new, 8), ArgumentSignatures.Entry::new));
++      this(input.readCollection(FriendlyByteBuf.<List<ArgumentSignatures.Entry>>limitValue(ArrayList::new, 8), ArgumentSignatures.Entry::new));
+    }
+ 
+    public void write(final FriendlyByteBuf output) {

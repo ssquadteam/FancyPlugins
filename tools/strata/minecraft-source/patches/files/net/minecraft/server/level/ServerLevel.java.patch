@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/level/ServerLevel.java b/net/minecraft/server/level/ServerLevel.java
+index 61c74de52a341eab9fd0a5fc5523eff307d90381..98191a065165bd25fd6f32a6f2984d53c1abcea3 100644
+--- a/net/minecraft/server/level/ServerLevel.java
++++ b/net/minecraft/server/level/ServerLevel.java
+@@ -478,7 +478,7 @@ public class ServerLevel extends Level implements WorldGenLevel, ServerEntityGet
+ 
+    private void wakeUpAllPlayers() {
+       this.sleepStatus.removeAllSleepers();
+-      ((List)this.players.stream().filter(LivingEntity::isSleeping).collect(Collectors.toList())).forEach(player -> player.stopSleepInBed(false, false));
++      (this.players.stream().filter(LivingEntity::isSleeping).collect(Collectors.toList())).forEach(player -> player.stopSleepInBed(false, false));
+    }
+ 
+    public void tickChunk(final LevelChunk chunk, final int tickSpeed) {

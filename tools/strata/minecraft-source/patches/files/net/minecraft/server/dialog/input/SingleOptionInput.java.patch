@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/dialog/input/SingleOptionInput.java b/net/minecraft/server/dialog/input/SingleOptionInput.java
+index 2916564cfc3ed2f18b7573d07dbf366851ab9917..96b2e7bb3444d15a8cbe241a4e413ffe24948147 100644
+--- a/net/minecraft/server/dialog/input/SingleOptionInput.java
++++ b/net/minecraft/server/dialog/input/SingleOptionInput.java
+@@ -12,7 +12,7 @@ import net.minecraft.server.dialog.Dialog;
+ import net.minecraft.util.ExtraCodecs;
+ 
+ public record SingleOptionInput(int width, List<SingleOptionInput.Entry> entries, Component label, boolean labelVisible) implements InputControl {
+-   public static final MapCodec<SingleOptionInput> MAP_CODEC = RecordCodecBuilder.mapCodec(
++   public static final MapCodec<SingleOptionInput> MAP_CODEC = RecordCodecBuilder.<SingleOptionInput>mapCodec(
+          i -> i.group(
+                Dialog.WIDTH_CODEC.optionalFieldOf("width", 200).forGetter(SingleOptionInput::width),
+                ExtraCodecs.nonEmptyList(SingleOptionInput.Entry.CODEC.listOf()).fieldOf("options").forGetter(SingleOptionInput::entries),

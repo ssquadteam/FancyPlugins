@@ -1,0 +1,26 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/protocol/common/ServerboundCustomPayloadPacket.java b/net/minecraft/network/protocol/common/ServerboundCustomPayloadPacket.java
+index 2352b87eae67d2b72700f27984b4d7e73e7ead9d..59c4f1b0c3c85b34b7d505fc4a8b7bb6d7d84519 100644
+--- a/net/minecraft/network/protocol/common/ServerboundCustomPayloadPacket.java
++++ b/net/minecraft/network/protocol/common/ServerboundCustomPayloadPacket.java
+@@ -14,10 +14,11 @@ public record ServerboundCustomPayloadPacket(CustomPacketPayload payload) implem
+    private static final int MAX_PAYLOAD_SIZE = 32767;
+    public static final StreamCodec<FriendlyByteBuf, ServerboundCustomPayloadPacket> STREAM_CODEC = CustomPacketPayload.<FriendlyByteBuf>codec(
+          id -> DiscardedPayload.codec(id, 32767),
+-         Util.make(
+-            Lists.newArrayList(new CustomPacketPayload.TypeAndCodec[]{new CustomPacketPayload.TypeAndCodec<>(BrandPayload.TYPE, BrandPayload.STREAM_CODEC)}),
+-            types -> {}
+-         )
++                   Util.make(
++                           Lists.newArrayList(
++                                   new CustomPacketPayload.TypeAndCodec<>(BrandPayload.TYPE, BrandPayload.STREAM_CODEC)),
++                           types -> {}
++                   )
+       )
+       .map(ServerboundCustomPayloadPacket::new, ServerboundCustomPayloadPacket::payload);
+ 

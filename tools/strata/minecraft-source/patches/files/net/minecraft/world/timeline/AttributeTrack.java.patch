@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/timeline/AttributeTrack.java b/net/minecraft/world/timeline/AttributeTrack.java
+index 9f49c6f80aa280b3e86cdfaf505da96140e24f56..fb47975051088232ca040798576d679ce519fa84 100644
+--- a/net/minecraft/world/timeline/AttributeTrack.java
++++ b/net/minecraft/world/timeline/AttributeTrack.java
+@@ -16,7 +16,7 @@ import net.minecraft.world.clock.WorldClock;
+ public record AttributeTrack<Value, Argument>(AttributeModifier<Value, Argument> modifier, KeyframeTrack<Argument> argumentTrack) {
+    public static <Value> Codec<AttributeTrack<Value, ?>> createCodec(final EnvironmentAttribute<Value> attribute) {
+       MapCodec<AttributeModifier<Value, ?>> modifierCodec = attribute.type().modifierCodec().optionalFieldOf("modifier", AttributeModifier.override());
+-      return modifierCodec.dispatch(AttributeTrack::modifier, Util.memoize((Function)(modifier -> createCodecWithModifier(attribute, modifier))));
++      return modifierCodec.dispatch(AttributeTrack::modifier, Util.memoize(modifier -> createCodecWithModifier(attribute, (AttributeModifier<Value, ?>)modifier)));
+    }
+ 
+    private static <Value, Argument> MapCodec<AttributeTrack<Value, Argument>> createCodecWithModifier(

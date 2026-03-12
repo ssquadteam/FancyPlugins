@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/biome/BiomeGenerationSettings.java b/net/minecraft/world/level/biome/BiomeGenerationSettings.java
+index 13594aac5f02dbb94eedc76402ec7969b39c873c..dffdb0f1561ddb30e6e4ff0fe1b5851d91adeff9 100644
+--- a/net/minecraft/world/level/biome/BiomeGenerationSettings.java
++++ b/net/minecraft/world/level/biome/BiomeGenerationSettings.java
+@@ -116,7 +116,7 @@ public class BiomeGenerationSettings {
+       public BiomeGenerationSettings build() {
+          return new BiomeGenerationSettings(
+             HolderSet.direct(this.carvers),
+-            (List<HolderSet<PlacedFeature>>)this.features.stream().map(HolderSet::direct).collect(ImmutableList.toImmutableList())
++            this.features.stream().map(HolderSet::direct).collect(ImmutableList.toImmutableList())
+          );
+       }
+    }

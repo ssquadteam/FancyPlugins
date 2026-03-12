@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/profiling/FilledProfileResults.java b/net/minecraft/util/profiling/FilledProfileResults.java
+index b46b833bdd3a68efc9b5763cc798ade4416dccfe..d57f4484aa21d60e549db5e4aae4423fe9b15a6a 100644
+--- a/net/minecraft/util/profiling/FilledProfileResults.java
++++ b/net/minecraft/util/profiling/FilledProfileResults.java
+@@ -47,7 +47,7 @@ public class FilledProfileResults implements ProfileResults {
+       }
+    };
+    private static final Splitter SPLITTER = Splitter.on('\u001e');
+-   private static final Comparator<Entry<String, FilledProfileResults.CounterCollector>> COUNTER_ENTRY_COMPARATOR = Entry.comparingByValue(
++   private static final Comparator<Entry<String, FilledProfileResults.CounterCollector>> COUNTER_ENTRY_COMPARATOR = Entry.<String, FilledProfileResults.CounterCollector>comparingByValue(
+          Comparator.comparingLong(c -> c.totalValue)
+       )
+       .reversed();

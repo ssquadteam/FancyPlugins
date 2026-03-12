@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/component/DataComponentInitializers.java b/net/minecraft/core/component/DataComponentInitializers.java
+index c4ae3ac0c0f32e8bbe69af13a8f5e46c86299664..d086409575eef89ed3066c7bb66e895debf7f7f0 100644
+--- a/net/minecraft/core/component/DataComponentInitializers.java
++++ b/net/minecraft/core/component/DataComponentInitializers.java
+@@ -35,7 +35,7 @@ public class DataComponentInitializers {
+       final Map<ResourceKey<? extends Registry<?>>, DataComponentInitializers.PendingComponentBuilders<?>> buildersByRegistry,
+       final ResourceKey<? extends Registry<? extends T>> registryKey
+    ) {
+-      buildersByRegistry.put(registryKey, new DataComponentInitializers.PendingComponentBuilders<>(registryKey, new HashMap()));
++      buildersByRegistry.put(registryKey, new DataComponentInitializers.PendingComponentBuilders<>((ResourceKey<? extends Registry<T>>)registryKey, new HashMap<>()));
+    }
+ 
+    private static <T> void addBuilder(
+@@ -53,7 +53,7 @@ public class DataComponentInitializers {
+       Map<ResourceKey<? extends Registry<?>>, DataComponentInitializers.PendingComponentBuilders<?>> buildersByRegistry = new HashMap();
+       context.listRegistryKeys().forEach(registryKey -> registryEmpty(buildersByRegistry, registryKey));
+       this.runInitializers(context).forEach((key, builder) -> addBuilder(buildersByRegistry, key, builder));
+-      return (List<DataComponentInitializers.PendingComponents<?>>)buildersByRegistry.values()
++      return buildersByRegistry.values()
+          .stream()
+          .map(elementBuilders -> createInitializerForRegistry(context, elementBuilders))
+          .collect(Collectors.toUnmodifiableList());

@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/util/ProblemReporter.java b/net/minecraft/util/ProblemReporter.java
+index 46018b260358fb59e78221c6b8c3c230de5fc455..004fbe58cc6e93b5f6de588a8cf8814dc0afa088 100644
+--- a/net/minecraft/util/ProblemReporter.java
++++ b/net/minecraft/util/ProblemReporter.java
+@@ -96,7 +96,7 @@ public interface ProblemReporter {
+                entry -> " at "
+                   + (String)entry.getKey()
+                   + ": "
+-                  + (String)((Collection)entry.getValue()).stream().map(ProblemReporter.Problem::description).collect(Collectors.joining("; "))
++                  + (String)(entry.getValue()).stream().map(ProblemReporter.Problem::description).collect(Collectors.joining("; "))
+             )
+             .collect(Collectors.joining("\n"));
+       }

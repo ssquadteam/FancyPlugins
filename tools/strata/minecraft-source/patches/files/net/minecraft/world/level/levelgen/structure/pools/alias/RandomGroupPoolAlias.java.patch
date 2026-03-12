@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/levelgen/structure/pools/alias/RandomGroupPoolAlias.java b/net/minecraft/world/level/levelgen/structure/pools/alias/RandomGroupPoolAlias.java
+index 1503fe0813ed0b2d92adb76ac9785b0786d4653b..1ab410c90dca32c9ae23adb7c9d79ac0bdb7fb61 100644
+--- a/net/minecraft/world/level/levelgen/structure/pools/alias/RandomGroupPoolAlias.java
++++ b/net/minecraft/world/level/levelgen/structure/pools/alias/RandomGroupPoolAlias.java
+@@ -26,7 +26,7 @@ public record RandomGroupPoolAlias(WeightedList<List<PoolAliasBinding>> groups)
+ 
+    @Override
+    public Stream<ResourceKey<StructureTemplatePool>> allTargets() {
+-      return this.groups.unwrap().stream().flatMap(weightedEntry -> ((List)weightedEntry.value()).stream()).flatMap(PoolAliasBinding::allTargets);
++      return this.groups.unwrap().stream().flatMap(weightedEntry -> (weightedEntry.value()).stream()).flatMap(PoolAliasBinding::allTargets);
+    }
+ 
+    @Override

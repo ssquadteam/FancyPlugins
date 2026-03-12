@@ -1,0 +1,28 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/jsonrpc/api/Schema.java b/net/minecraft/server/jsonrpc/api/Schema.java
+index 3c99dd76f4245a6d3d9a7d7cf4420d45a680b7fa..017ce8fdfe175b086b493278015c03b142eb49a9 100644
+--- a/net/minecraft/server/jsonrpc/api/Schema.java
++++ b/net/minecraft/server/jsonrpc/api/Schema.java
+@@ -34,7 +34,7 @@ import net.minecraft.world.level.gamerules.GameRuleType;
+ public record Schema<T>(
+    Optional<URI> reference, List<String> type, Optional<Schema<?>> items, Map<String, Schema<?>> properties, List<String> enumValues, Codec<T> codec
+ ) {
+-   public static final Codec<? extends Schema<?>> CODEC = Codec.recursive(
++   public static final Codec<? extends Schema<?>> CODEC = Codec.<Schema<?>>recursive(
+          "Schema",
+          subCodec -> RecordCodecBuilder.create(
+             i -> i.group(
+@@ -142,7 +142,7 @@ public record Schema<T>(
+          this.reference,
+          this.type,
+          this.items.map(Schema::info),
+-         (Map<String, Schema<?>>)this.properties.entrySet().stream().collect(Collectors.toMap(Entry::getKey, b -> ((Schema)b.getValue()).info())),
++         this.properties.entrySet().stream().collect(Collectors.toMap(Entry::getKey, b -> ((Schema)b.getValue()).info())),
+          this.enumValues,
+          this.codec
+       );

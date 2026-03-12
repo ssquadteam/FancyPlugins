@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/network/chat/LastSeenMessages.java b/net/minecraft/network/chat/LastSeenMessages.java
+index 5a1c29ed1f00d716913e697ff388b910c6e7438f..47e13e56a27fd7eed788bb1ba631af12dd67cea3 100644
+--- a/net/minecraft/network/chat/LastSeenMessages.java
++++ b/net/minecraft/network/chat/LastSeenMessages.java
+@@ -42,7 +42,7 @@ public record LastSeenMessages(List<MessageSignature> entries) {
+       public static final LastSeenMessages.Packed EMPTY = new LastSeenMessages.Packed(List.of());
+ 
+       public Packed(final FriendlyByteBuf input) {
+-         this(input.readCollection(FriendlyByteBuf.limitValue(ArrayList::new, 20), MessageSignature.Packed::read));
++         this(input.readCollection(FriendlyByteBuf.<List<MessageSignature.Packed>>limitValue(ArrayList::new, 20), MessageSignature.Packed::read));
+       }
+ 
+       public void write(final FriendlyByteBuf output) {

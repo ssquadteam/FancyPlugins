@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/animal/golem/CopperGolemAi.java b/net/minecraft/world/entity/animal/golem/CopperGolemAi.java
+index 3caf3cb1fabfe29de89bb176c586157b53ad7e43..3956bbadd4740687037a3f60cb954334b1e23d93 100644
+--- a/net/minecraft/world/entity/animal/golem/CopperGolemAi.java
++++ b/net/minecraft/world/entity/animal/golem/CopperGolemAi.java
+@@ -56,7 +56,7 @@ public class CopperGolemAi {
+          Activity.CORE,
+          0,
+          ImmutableList.of(
+-            new AnimalPanic(1.5F),
++            new AnimalPanic<>(1.5F),
+             new LookAtTargetSink(45, 90),
+             new MoveToTargetSink(),
+             InteractWithDoor.create(),

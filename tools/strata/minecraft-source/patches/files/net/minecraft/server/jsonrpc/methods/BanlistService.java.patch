@@ -1,0 +1,37 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/jsonrpc/methods/BanlistService.java b/net/minecraft/server/jsonrpc/methods/BanlistService.java
+index e5b8331adf2b932007da37211926c2a84f6842e3..fbc6bb5708f33b4604ee1609ab4739e5719522c4 100644
+--- a/net/minecraft/server/jsonrpc/methods/BanlistService.java
++++ b/net/minecraft/server/jsonrpc/methods/BanlistService.java
+@@ -39,7 +39,7 @@ public class BanlistService {
+          .map(banx -> minecraftApi.playerListService().getUser(banx.player().id(), banx.player().name()).thenApply(u -> u.map(banx::toUserBan)))
+          .toList();
+ 
+-      for (Optional<BanlistService.UserBan> ban : (List)Util.sequence(fetch).join()) {
++      for (Optional<BanlistService.UserBan> ban : Util.sequence(fetch).join()) {
+          if (!ban.isEmpty()) {
+             BanlistService.UserBan userBan = (BanlistService.UserBan)ban.get();
+             minecraftApi.banListService().addUserBan(userBan.toBanEntry(), clientInfo);
+@@ -63,7 +63,7 @@ public class BanlistService {
+          .map(playerDto -> minecraftApi.playerListService().getUser(playerDto.id(), playerDto.name()))
+          .toList();
+ 
+-      for (Optional<NameAndId> user : (List)Util.sequence(fetch).join()) {
++      for (Optional<NameAndId> user : Util.sequence(fetch).join()) {
+          if (!user.isEmpty()) {
+             minecraftApi.banListService().removeUserBan((NameAndId)user.get(), clientInfo);
+          }
+@@ -76,7 +76,7 @@ public class BanlistService {
+       List<CompletableFuture<Optional<BanlistService.UserBan>>> fetch = bans.stream()
+          .map(ban -> minecraftApi.playerListService().getUser(ban.player().id(), ban.player().name()).thenApply(u -> u.map(ban::toUserBan)))
+          .toList();
+-      Set<BanlistService.UserBan> finalAllowList = (Set<BanlistService.UserBan>)((List)Util.sequence(fetch).join())
++      Set<BanlistService.UserBan> finalAllowList = (Set<BanlistService.UserBan>)(Util.sequence(fetch).join())
+          .stream()
+          .flatMap(Optional::stream)
+          .collect(Collectors.toSet());

@@ -1,0 +1,37 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/core/component/TypedDataComponent.java b/net/minecraft/core/component/TypedDataComponent.java
+index fed78d97b0f03f0db5526838b45c9faee066fe58..0eb8fab63474b82a13e96b36bae68208fbe4f6b7 100644
+--- a/net/minecraft/core/component/TypedDataComponent.java
++++ b/net/minecraft/core/component/TypedDataComponent.java
+@@ -11,7 +11,7 @@ public record TypedDataComponent<T>(DataComponentType<T> type, T value) {
+    public static final StreamCodec<RegistryFriendlyByteBuf, TypedDataComponent<?>> STREAM_CODEC = new StreamCodec<RegistryFriendlyByteBuf, TypedDataComponent<?>>() {
+       public TypedDataComponent<?> decode(final RegistryFriendlyByteBuf input) {
+          DataComponentType<?> type = DataComponentType.STREAM_CODEC.decode(input);
+-         return decodeTyped(input, (DataComponentType<T>)type);
++         return decodeTyped(input, type);
+       }
+ 
+       private static <T> TypedDataComponent<T> decodeTyped(final RegistryFriendlyByteBuf input, final DataComponentType<T> type) {
+@@ -19,7 +19,7 @@ public record TypedDataComponent<T>(DataComponentType<T> type, T value) {
+       }
+ 
+       public void encode(final RegistryFriendlyByteBuf output, final TypedDataComponent<?> value) {
+-         encodeCap(output, (TypedDataComponent<T>)value);
++         encodeCap(output, value);
+       }
+ 
+       private static <T> void encodeCap(final RegistryFriendlyByteBuf output, final TypedDataComponent<T> component) {
+@@ -29,7 +29,7 @@ public record TypedDataComponent<T>(DataComponentType<T> type, T value) {
+    };
+ 
+    static TypedDataComponent<?> fromEntryUnchecked(final Entry<DataComponentType<?>, Object> entry) {
+-      return createUnchecked((DataComponentType<T>)entry.getKey(), entry.getValue());
++      return createUnchecked(entry.getKey(), entry.getValue());
+    }
+ 
+    public static <T> TypedDataComponent<T> createUnchecked(final DataComponentType<T> type, final Object value) {

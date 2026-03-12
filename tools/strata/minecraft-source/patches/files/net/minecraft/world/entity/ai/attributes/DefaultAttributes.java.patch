@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/entity/ai/attributes/DefaultAttributes.java b/net/minecraft/world/entity/ai/attributes/DefaultAttributes.java
+index f7b33269a69cf5efe576ac0288a1026dd35650ea..4925b2ca7eb5ee83c8c7dab40a811b3eb0b64394 100644
+--- a/net/minecraft/world/entity/ai/attributes/DefaultAttributes.java
++++ b/net/minecraft/world/entity/ai/attributes/DefaultAttributes.java
+@@ -91,7 +91,7 @@ import org.slf4j.Logger;
+ 
+ public class DefaultAttributes {
+    private static final Logger LOGGER = LogUtils.getLogger();
+-   private static final Map<EntityType<? extends LivingEntity>, AttributeSupplier> SUPPLIERS = ImmutableMap.builder()
++   private static final Map<EntityType<? extends LivingEntity>, AttributeSupplier> SUPPLIERS = ImmutableMap.<EntityType<? extends LivingEntity>, AttributeSupplier>builder()
+       .put(EntityType.ALLAY, Allay.createAttributes().build())
+       .put(EntityType.ARMADILLO, Armadillo.createAttributes().build())
+       .put(EntityType.ARMOR_STAND, ArmorStand.createAttributes().build())

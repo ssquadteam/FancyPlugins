@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/commands/synchronization/SuggestionProviders.java b/net/minecraft/commands/synchronization/SuggestionProviders.java
+index 136caccb80f0e49eddec2afefa84060dd95183b8..566ccc658d3c4b12061c822ae593d2b51707dda1 100644
+--- a/net/minecraft/commands/synchronization/SuggestionProviders.java
++++ b/net/minecraft/commands/synchronization/SuggestionProviders.java
+@@ -42,7 +42,7 @@ public class SuggestionProviders {
+       if (previous != null) {
+          throw new IllegalArgumentException("A command suggestion provider is already registered with the name '" + name + "'");
+       } else {
+-         return new SuggestionProviders.RegisteredSuggestion(name, provider);
++         return (SuggestionProvider<S>) new SuggestionProviders.RegisteredSuggestion(name, provider);
+       }
+    }
+ 

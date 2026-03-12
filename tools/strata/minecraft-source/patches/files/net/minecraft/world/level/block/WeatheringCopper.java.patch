@@ -1,0 +1,19 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/world/level/block/WeatheringCopper.java b/net/minecraft/world/level/block/WeatheringCopper.java
+index 99d669cf2a13e86fbe1327c6326e1eb935cb9f69..e68e4ec7cbfe3ecae54a3d9e7f447f17776819a6 100644
+--- a/net/minecraft/world/level/block/WeatheringCopper.java
++++ b/net/minecraft/world/level/block/WeatheringCopper.java
+@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
+ 
+ public interface WeatheringCopper extends ChangeOverTimeBlock<WeatheringCopper.WeatherState> {
+    Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(
+-      () -> ImmutableBiMap.builder()
++      () -> ImmutableBiMap.<Block, Block>builder()
+          .put(Blocks.COPPER_BLOCK, Blocks.EXPOSED_COPPER)
+          .put(Blocks.EXPOSED_COPPER, Blocks.WEATHERED_COPPER)
+          .put(Blocks.WEATHERED_COPPER, Blocks.OXIDIZED_COPPER)

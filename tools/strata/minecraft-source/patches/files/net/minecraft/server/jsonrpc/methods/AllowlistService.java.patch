@@ -1,0 +1,37 @@
+From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
+From: Strata <strata@fancyinnovations.com>
+Date: Thu, 12 Mar 2026 18:33:15 +0100
+Subject: [PATCH] Apply file patches
+
+
+diff --git a/net/minecraft/server/jsonrpc/methods/AllowlistService.java b/net/minecraft/server/jsonrpc/methods/AllowlistService.java
+index ae8ebba79be1f0af6b0507c06233eba10d679ca2..cbbe661ecc8e25bebd1aba3851b28ac59e8c2bcf 100644
+--- a/net/minecraft/server/jsonrpc/methods/AllowlistService.java
++++ b/net/minecraft/server/jsonrpc/methods/AllowlistService.java
+@@ -22,7 +22,7 @@ public class AllowlistService {
+          .map(playerDto -> minecraftApi.playerListService().getUser(playerDto.id(), playerDto.name()))
+          .toList();
+ 
+-      for (Optional<NameAndId> user : (List)Util.sequence(fetch).join()) {
++      for (Optional<NameAndId> user : Util.sequence(fetch).join()) {
+          user.ifPresent(nameAndId -> minecraftApi.allowListService().add(new UserWhiteListEntry(nameAndId), clientInfo));
+       }
+ 
+@@ -39,7 +39,7 @@ public class AllowlistService {
+          .map(playerDto -> minecraftApi.playerListService().getUser(playerDto.id(), playerDto.name()))
+          .toList();
+ 
+-      for (Optional<NameAndId> user : (List)Util.sequence(fetch).join()) {
++      for (Optional<NameAndId> user : Util.sequence(fetch).join()) {
+          user.ifPresent(nameAndId -> minecraftApi.allowListService().remove(nameAndId, clientInfo));
+       }
+ 
+@@ -51,7 +51,7 @@ public class AllowlistService {
+       List<CompletableFuture<Optional<NameAndId>>> fetch = playerDtos.stream()
+          .map(playerDto -> minecraftApi.playerListService().getUser(playerDto.id(), playerDto.name()))
+          .toList();
+-      Set<NameAndId> finalAllowList = (Set<NameAndId>)((List)Util.sequence(fetch).join()).stream().flatMap(Optional::stream).collect(Collectors.toSet());
++      Set<NameAndId> finalAllowList = (Util.sequence(fetch).join()).stream().flatMap(Optional::stream).collect(Collectors.toSet());
+       Set<NameAndId> currentAllowList = (Set<NameAndId>)minecraftApi.allowListService()
+          .getEntries()
+          .stream()
