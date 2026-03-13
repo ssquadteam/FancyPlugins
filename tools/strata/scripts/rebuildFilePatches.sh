@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="26.1-pre-1"
 PATCH_DIR="../minecraft-source/patches/files"
 SOURCE_DIR="../minecraft-source/src/main/java"
 
