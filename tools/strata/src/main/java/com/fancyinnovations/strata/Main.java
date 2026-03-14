@@ -6,6 +6,9 @@ import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 
 public class Main {
 
+    /**
+     *  For minecraft-source
+     */
     public static void main(String[] args) {
         Strata strata = new Strata("tools/strata/strata-cache");
         strata.init();
@@ -21,19 +24,44 @@ public class Main {
         String gitDir = "tools/strata/minecraft-source/src/main/java";
         strata.getWorkspaceService().initGitDirectory(gitDir);
 
-        try {
-            Thread.sleep(1000); // Sleep for a short time to ensure the file system is ready
-        } catch (InterruptedException e) {
-            strata.getLogger().error(
-                    "Interrupted while waiting for file system to be ready",
-                    ThrowableProperty.of(e)
-            );
-        }
+        sleep(1000);
 
         strata.getWorkspaceService().copyDecompiledSources(latest.id(), gitDir);
         strata.getWorkspaceService().copyDataAndAssets(latest.id(), "tools/strata/minecraft-source/src/main/resources");
         strata.getWorkspaceService().gitCommit(gitDir, "Add decompiled sources");
         strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.DECOMPILED_SOURCES_TAG);
+    }
+
+    /**
+     * For minecraft-diff
+     */
+    public static void main2(String[] args) {
+        Strata strata = new Strata("tools/strata/strata-cache");
+        strata.init();
+
+        String version = "26.1-pre-2";
+
+        PistonVersionDetails ver = strata.getMojangService().getVersion(version);
+        strata.getMojangService().downloadServerBundle(ver);
+        strata.getExtractorService().extractServerBundle(ver.id());
+        strata.getDecompilerService().decompile(
+                strata.getExtractorService().getServerJarPath(ver.id()),
+                ver.id()
+        );
+
+        String gitDir = "tools/strata/minecraft-diff/src";
+        strata.getWorkspaceService().copyDecompiledSources(ver.id(), gitDir);
+
+        sleep(1000);
+
+        strata.getWorkspaceService().gitCommit(gitDir, "Update to " + version);
+    }
+
+    private static void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+        }
     }
 
 }
