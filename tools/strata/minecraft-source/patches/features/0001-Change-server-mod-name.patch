@@ -1,7 +1,7 @@
-From 3d610142ab5b1a7dad3b6d4cc94e483ddc7c988e Mon Sep 17 00:00:00 2001
+From be20eb8d84a698559144d472eaf535aaf719aac3 Mon Sep 17 00:00:00 2001
 From: Oliver <oschi1303@gmail.com>
 Date: Thu, 12 Mar 2026 20:13:41 +0100
-Subject: Change server mod name
+Subject: [1/2] Change server mod name
 
 ---
  net/minecraft/server/MinecraftServer.java | 2 +-
