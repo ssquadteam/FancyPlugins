@@ -82,6 +82,11 @@ public class DecompilerService {
                 case ERROR -> LogLevel.ERROR;
             };
 
+            if (severity.ordinal() <= 1) {
+                // Don't log stack traces for INFO and TRACE messages
+                return;
+            }
+
             strata.getLogger().log(logLevel, s);
         }
 
@@ -93,6 +98,11 @@ public class DecompilerService {
                 case WARN -> LogLevel.WARN;
                 case ERROR -> LogLevel.ERROR;
             };
+
+            if (severity.ordinal() <= 1) {
+                // Don't log stack traces for INFO and TRACE messages
+                return;
+            }
 
             strata.getLogger().log(logLevel, s, ThrowableProperty.of(throwable));
         }
