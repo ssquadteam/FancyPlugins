@@ -30,6 +30,11 @@ messages:
           entry: "{secondaryColor} - {path}: {primaryColor}{value} {secondaryColor}(default: {default})"
 
     hologram:
+      create:
+        already_exists: "{errorColor}A hologram with the name {primaryColor}{name}{errorColor} already exists."
+        no_dot: "{errorColor}Hologram names cannot contain dots."
+        canceled: "{errorColor}Hologram creation canceled."
+        success: "Successfully created hologram {primaryColor}{name}{secondaryColor} of type {primaryColor}{type}{secondaryColor}."
       edit:
         lines:
           line_number_out_of_bounds: "{errorColor}Line number {primaryColor}{line}{errorColor} is out of bounds. Must be between {primaryColor}{min} {errorColor}and {primaryColor}{max}{errorColor}."
