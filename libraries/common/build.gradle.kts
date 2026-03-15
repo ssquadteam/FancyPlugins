@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     compileOnly("dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT")
-    compileOnly("de.oliver.FancyAnalytics:logger:0.0.8")
+    compileOnly("de.oliver.FancyAnalytics:logger:0.0.10")
 
     // database drivers
     compileOnly("org.xerial:sqlite-jdbc:3.51.2.0")

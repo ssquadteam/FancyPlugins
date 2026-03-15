@@ -11,7 +11,7 @@ dependencies {
 
     compileOnly(project(":libraries:common"))
     compileOnly(project(":libraries:jdb"))
-    compileOnly("de.oliver.FancyAnalytics:logger:0.0.8")
+    compileOnly("de.oliver.FancyAnalytics:logger:0.0.10")
 
     implementation("org.lushplugins:ChatColorHandler:6.0.4")
 }
