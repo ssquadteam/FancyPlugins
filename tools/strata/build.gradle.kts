@@ -1,11 +1,13 @@
 plugins {
     id("java")
     id("maven-publish")
+    id("java-gradle-plugin")
     id("com.gradleup.shadow")
 }
 
 group = "com.fancyinnovations"
 description = "Tool to decompile Minecraft's server code and extract the source code"
+version = getStrataVersion()
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
@@ -24,6 +26,17 @@ dependencies {
     implementation("com.google.code.gson:gson:2.13.2")
     implementation("de.oliver.FancyAnalytics:logger:0.0.8")
     implementation("org.jetbrains:annotations:26.1.0")
+}
+
+gradlePlugin {
+    plugins {
+        register("com.fancyinnovations.strata") {
+            id = "com.fancyinnovations.strata"
+            version = getStrataVersion()
+            description = "Gradle plugin for Strata"
+            implementationClass = "com.fancyinnovations.strata.plugin.StrataGradlePlugin"
+        }
+    }
 }
 
 tasks {
@@ -56,4 +69,8 @@ tasks {
     processResources {
         filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
     }
+}
+
+fun getStrataVersion(): String {
+    return file("VERSION").readText()
 }

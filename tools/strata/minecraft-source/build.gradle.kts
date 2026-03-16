@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("maven-publish")
     id("com.gradleup.shadow")
+    id("com.fancyinnovations.strata") version "0.0.1-LOCAL-SNAPSHOT"
 }
 
 group = "com.fancyinnovations"
