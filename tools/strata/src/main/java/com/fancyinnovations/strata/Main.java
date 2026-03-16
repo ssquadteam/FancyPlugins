@@ -10,26 +10,45 @@ public class Main {
      *  For minecraft-source
      */
     public static void main(String[] args) {
-        Strata strata = new Strata("tools/strata/strata-cache");
+        String cacheDir = "tools/strata/strata-cache";
+        Strata strata = new Strata(cacheDir);
         strata.init();
 
+        // Get the latest snapshot version and download it
         PistonVersionDetails latest = strata.getMojangService().getLatestSnapshot();
         strata.getMojangService().downloadServerBundle(latest);
         strata.getExtractorService().extractServerBundle(latest.id());
+
+        // Decompile
         strata.getDecompilerService().decompile(
                 strata.getExtractorService().getServerJarPath(latest.id()),
                 latest.id()
         );
 
+        // Setup git repo
         String gitDir = "tools/strata/minecraft-source/src/main/java";
         strata.getWorkspaceService().initGitDirectory(gitDir);
-
         sleep(1000);
 
+        // Add decompiled sources and resources
         strata.getWorkspaceService().copyDecompiledSources(latest.id(), gitDir);
         strata.getWorkspaceService().copyDataAndAssets(latest.id(), "tools/strata/minecraft-source/src/main/resources");
         strata.getWorkspaceService().gitCommit(gitDir, "Add decompiled sources");
         strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.DECOMPILED_SOURCES_TAG);
+        sleep(1000);
+
+        // Apply patches
+        strata.getPatcherService().applyFilePatches(cacheDir+"/decompiled/"+latest.id(), gitDir, "tools/strata/minecraft-source/patches/files", "tools/strata/minecraft-source/patches/rejected-files");
+        sleep(1000);
+        strata.getWorkspaceService().gitCommit(gitDir, "Apply file patches");
+        strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.FILE_PATCHES_TAG);
+        sleep(1000);
+
+        strata.getLogger().info("Done with setting up workspace for version " + latest.id());
+
+        // Rebuild patches
+        // TODO refactor to different task
+        // strata.getPatcherService().rebuildFilePatches(cacheDir+"/decompiled/"+latest.id(), gitDir, "tools/strata/minecraft-source/patches/files");
     }
 
     /**
