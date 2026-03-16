@@ -3,6 +3,7 @@ package com.fancyinnovations.strata;
 import com.fancyinnovations.strata.decompiler.DecompilerService;
 import com.fancyinnovations.strata.extractor.ExtractorService;
 import com.fancyinnovations.strata.mojang.MojangService;
+import com.fancyinnovations.strata.patcher.PatcherService;
 import com.fancyinnovations.strata.workspace.WorkspaceService;
 import com.google.gson.Gson;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
@@ -23,6 +24,7 @@ public class Strata {
     private final ExtractorService extractorService;
     private final DecompilerService decompilerService;
     private final WorkspaceService workspaceService;
+    private final PatcherService patcherService;
 
     public Strata(String cacheDirPath) {
         logger = new ExtendedFancyLogger(
@@ -46,6 +48,7 @@ public class Strata {
         extractorService = new ExtractorService(this);
         decompilerService = new DecompilerService(this);
         workspaceService = new WorkspaceService(this);
+        patcherService = new PatcherService(this);
     }
 
     public void init() {
@@ -74,5 +77,9 @@ public class Strata {
 
     public WorkspaceService getWorkspaceService() {
         return workspaceService;
+    }
+
+    public PatcherService getPatcherService() {
+        return patcherService;
     }
 }
