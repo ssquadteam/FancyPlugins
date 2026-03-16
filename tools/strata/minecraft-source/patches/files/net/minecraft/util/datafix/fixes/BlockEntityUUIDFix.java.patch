@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/BlockEntityUUIDFix.java b/net/minecraft/util/datafix/fixes/BlockEntityUUIDFix.java
-index 985e0abf852b137129c09e1bffde8cc5e7c36765..7fcf5f162f3b52303743bb511849e867f272df21 100644
 --- a/net/minecraft/util/datafix/fixes/BlockEntityUUIDFix.java
 +++ b/net/minecraft/util/datafix/fixes/BlockEntityUUIDFix.java
-@@ -17,12 +17,12 @@ public class BlockEntityUUIDFix extends AbstractUUIDFix {
+@@ -17,12 +_,12 @@
     }
  
     private Dynamic<?> updateSkull(final Dynamic<?> tag) {

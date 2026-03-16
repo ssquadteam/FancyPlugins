@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/DataFixers.java b/net/minecraft/util/datafix/DataFixers.java
-index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb77057db32163 100644
 --- a/net/minecraft/util/datafix/DataFixers.java
 +++ b/net/minecraft/util/datafix/DataFixers.java
-@@ -658,7 +658,7 @@ public class DataFixers {
+@@ -658,7 +_,7 @@
                 Type<?> entityType = this.getInputSchema().getType(References.ENTITY);
                 OpticFinder<String> idFinder = DSL.fieldFinder("id", NamespacedSchema.namespacedString());
                 OpticFinder<?> customNameFinder = entityType.findField("CustomName");
@@ -17,7 +9,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
                 return this.fixTypeEverywhereTyped(
                    "Command block minecart custom name fix",
                    entityType,
-@@ -887,7 +887,7 @@ public class DataFixers {
+@@ -887,7 +_,7 @@
              v2523,
              "Attribute renames",
              createRenamerNoNamespace(
@@ -26,7 +18,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
                    .put("generic.maxHealth", "minecraft:generic.max_health")
                    .put("Max Health", "minecraft:generic.max_health")
                    .put("zombie.spawnReinforcements", "minecraft:zombie.spawn_reinforcements")
-@@ -980,7 +980,7 @@ public class DataFixers {
+@@ -980,7 +_,7 @@
        fixerUpper.addFixer(new AddNewChoices(v2688, "Added Glow Squid", References.ENTITY));
        fixerUpper.addFixer(new AddNewChoices(v2688, "Added Glow Item Frame", References.ENTITY));
        Schema v2690 = fixerUpper.addSchema(2690, SAME_NAMESPACED);
@@ -35,7 +27,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
           .put("minecraft:weathered_copper_block", "minecraft:oxidized_copper_block")
           .put("minecraft:semi_weathered_copper_block", "minecraft:weathered_copper_block")
           .put("minecraft:lightly_weathered_copper_block", "minecraft:exposed_copper_block")
-@@ -1005,7 +1005,7 @@ public class DataFixers {
+@@ -1005,7 +_,7 @@
        fixerUpper.addFixer(ItemRenameFix.create(v2690, "Renamed copper block items to new oxidized terms", createRenamer(copperBlocksToRename)));
        fixerUpper.addFixer(BlockRenameFix.create(v2690, "Renamed copper blocks to new oxidized terms", createRenamer(copperBlocksToRename)));
        Schema v2691 = fixerUpper.addSchema(2691, SAME_NAMESPACED);
@@ -44,7 +36,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
           .put("minecraft:waxed_copper", "minecraft:waxed_copper_block")
           .put("minecraft:oxidized_copper_block", "minecraft:oxidized_copper")
           .put("minecraft:weathered_copper_block", "minecraft:weathered_copper")
-@@ -1016,7 +1016,7 @@ public class DataFixers {
+@@ -1016,7 +_,7 @@
        Schema v2693 = fixerUpper.addSchema(2693, SAME_NAMESPACED);
        fixerUpper.addFixer(new AddFlagIfNotPresentFix(v2693, References.WORLD_GEN_SETTINGS, "has_increased_height_already", false));
        Schema v2696 = fixerUpper.addSchema(2696, SAME_NAMESPACED);
@@ -53,7 +45,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
           .put("minecraft:grimstone", "minecraft:deepslate")
           .put("minecraft:grimstone_slab", "minecraft:cobbled_deepslate_slab")
           .put("minecraft:grimstone_stairs", "minecraft:cobbled_deepslate_stairs")
-@@ -1134,7 +1134,7 @@ public class DataFixers {
+@@ -1134,7 +_,7 @@
              "game_event_renames_3084",
              References.GAME_EVENT_NAME,
              createRenamer(
@@ -62,7 +54,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
                    .put("minecraft:block_press", "minecraft:block_activate")
                    .put("minecraft:block_switch", "minecraft:block_activate")
                    .put("minecraft:block_unpress", "minecraft:block_deactivate")
-@@ -1156,7 +1156,7 @@ public class DataFixers {
+@@ -1156,7 +_,7 @@
        );
        Schema v3086 = fixerUpper.addSchema(3086, SAME_NAMESPACED);
        fixerUpper.addFixer(
@@ -71,7 +63,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
              m.defaultReturnValue("minecraft:tabby");
              m.put(0, "minecraft:tabby");
              m.put(1, "minecraft:black");
-@@ -1171,7 +1171,7 @@ public class DataFixers {
+@@ -1171,7 +_,7 @@
              m.put(10, "minecraft:all_black");
           })::get)
        );
@@ -80,7 +72,7 @@ index a231f3500fec9f9bb29d2e746eb3bce6ccdb30d4..48b42774e8c545e08d4bc96a7cfb7705
           .put("textures/entity/cat/tabby.png", "minecraft:tabby")
           .put("textures/entity/cat/black.png", "minecraft:black")
           .put("textures/entity/cat/red.png", "minecraft:red")
-@@ -1191,7 +1191,7 @@ public class DataFixers {
+@@ -1191,7 +_,7 @@
        );
        Schema v3087 = fixerUpper.addSchema(3087, SAME_NAMESPACED);
        fixerUpper.addFixer(

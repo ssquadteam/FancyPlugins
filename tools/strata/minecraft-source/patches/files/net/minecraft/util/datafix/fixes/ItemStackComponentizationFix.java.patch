@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/ItemStackComponentizationFix.java b/net/minecraft/util/datafix/fixes/ItemStackComponentizationFix.java
-index b003f410828af01858914f3463e8a84b693c336f..15e440bd109ff12448aee252f2ad2bab6aeb3057 100644
 --- a/net/minecraft/util/datafix/fixes/ItemStackComponentizationFix.java
 +++ b/net/minecraft/util/datafix/fixes/ItemStackComponentizationFix.java
-@@ -383,9 +383,9 @@ public class ItemStackComponentizationFix extends DataFix {
+@@ -383,9 +_,9 @@
              .set(
                 "predicates",
                 dynamic.createList(
@@ -20,7 +12,7 @@ index b003f410828af01858914f3463e8a84b693c336f..15e440bd109ff12448aee252f2ad2bab
                 )
              );
           if (hideInTooltip) {
-@@ -690,7 +690,7 @@ public class ItemStackComponentizationFix extends DataFix {
+@@ -690,7 +_,7 @@
              properties.entrySet()
                 .stream()
                 .flatMap(

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/data/worldgen/TrialChambersStructurePools.java b/net/minecraft/data/worldgen/TrialChambersStructurePools.java
-index e1faa7c4388545116415f31c3a0e240ef1e93efa..48827054b75fb76eced51a1e5ab6eb6db052bf66 100644
 --- a/net/minecraft/data/worldgen/TrialChambersStructurePools.java
 +++ b/net/minecraft/data/worldgen/TrialChambersStructurePools.java
-@@ -17,7 +17,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
+@@ -17,7 +_,7 @@
  public class TrialChambersStructurePools {
     public static final ResourceKey<StructureTemplatePool> START = Pools.createKey("trial_chambers/chamber/end");
     public static final ResourceKey<StructureTemplatePool> HALLWAY_FALLBACK = Pools.createKey("trial_chambers/hallway/fallback");

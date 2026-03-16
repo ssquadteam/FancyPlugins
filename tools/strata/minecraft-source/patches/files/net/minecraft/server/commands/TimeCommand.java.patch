@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/commands/TimeCommand.java b/net/minecraft/server/commands/TimeCommand.java
-index 15d24443cc04f2892c2922d9a2e0bfcfc8e21bf8..7eb1ee8457902a9eddbaeb4518fb8c37d934c7f1 100644
 --- a/net/minecraft/server/commands/TimeCommand.java
 +++ b/net/minecraft/server/commands/TimeCommand.java
-@@ -45,7 +45,7 @@ public class TimeCommand {
+@@ -45,7 +_,7 @@
     private static final int MAX_CLOCK_RATE = 1000;
  
     public static void register(final CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext context) {

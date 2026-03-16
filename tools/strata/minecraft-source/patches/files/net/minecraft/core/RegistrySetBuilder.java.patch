@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/core/RegistrySetBuilder.java b/net/minecraft/core/RegistrySetBuilder.java
-index e492c6b682284a9d29449e3ad487b1ab16d9c395..94a5d9f8e5a53905bb3b5a38b53a5f6b84e70a30 100644
 --- a/net/minecraft/core/RegistrySetBuilder.java
 +++ b/net/minecraft/core/RegistrySetBuilder.java
-@@ -120,9 +120,6 @@ public class RegistrySetBuilder {
+@@ -120,9 +_,6 @@
           @Override
           public <V> RegistryOps<V> createSerializationContext(final DynamicOps<V> parent) {
              return RegistryOps.create(parent, new RegistryOps.RegistryInfoLookup() {
@@ -18,7 +10,7 @@ index e492c6b682284a9d29449e3ad487b1ab16d9c395..94a5d9f8e5a53905bb3b5a38b53a5f6b
  
                 @Override
                 public <T> Optional<RegistryOps.RegistryInfo<T>> lookup(final ResourceKey<? extends Registry<? extends T>> registryKey) {
-@@ -152,7 +149,7 @@ public class RegistrySetBuilder {
+@@ -152,7 +_,7 @@
     ) {
        RegistrySetBuilder.UniversalOwner fullPatchedOwner = new RegistrySetBuilder.UniversalOwner();
        MutableObject<HolderLookup.Provider> resultReference = new MutableObject();
@@ -27,7 +19,7 @@ index e492c6b682284a9d29449e3ad487b1ab16d9c395..94a5d9f8e5a53905bb3b5a38b53a5f6b
           .stream()
           .map(
              registryKey -> this.createLazyFullPatchedRegistries(
-@@ -399,7 +396,7 @@ public class RegistrySetBuilder {
+@@ -399,7 +_,7 @@
              if (key.isFor(this.key)) {
                 RegistrySetBuilder.RegisteredValue<T> value = (RegistrySetBuilder.RegisteredValue<T>)entry.getValue();
                 Holder.Reference<T> holder = (Holder.Reference<T>)state.lookup.holders.remove(key);
@@ -36,7 +28,7 @@ index e492c6b682284a9d29449e3ad487b1ab16d9c395..94a5d9f8e5a53905bb3b5a38b53a5f6b
                 iterator.remove();
              }
           }
-@@ -421,13 +418,13 @@ public class RegistrySetBuilder {
+@@ -421,13 +_,13 @@
        }
  
        private <T> Holder.Reference<T> getOrCreate(final ResourceKey<T> id) {

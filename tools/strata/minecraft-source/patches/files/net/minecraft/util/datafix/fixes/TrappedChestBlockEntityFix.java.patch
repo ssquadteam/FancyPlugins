@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/TrappedChestBlockEntityFix.java b/net/minecraft/util/datafix/fixes/TrappedChestBlockEntityFix.java
-index 98b726c0693cb20ba75a7fcc74bb630715bcdd4e..3208e463dab0b4307eac54dbee0f3eb124f41daa 100644
 --- a/net/minecraft/util/datafix/fixes/TrappedChestBlockEntityFix.java
 +++ b/net/minecraft/util/datafix/fixes/TrappedChestBlockEntityFix.java
-@@ -76,7 +76,7 @@ public class TrappedChestBlockEntityFix extends DataFix {
+@@ -76,7 +_,7 @@
                             Dynamic<?> levelTag = (Dynamic<?>)level.get(DSL.remainderFinder());
                             int chunkX = levelTag.get("xPos").asInt(0);
                             int chunkZ = levelTag.get("zPos").asInt(0);

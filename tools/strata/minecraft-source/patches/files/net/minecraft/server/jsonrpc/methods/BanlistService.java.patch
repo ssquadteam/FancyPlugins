@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/jsonrpc/methods/BanlistService.java b/net/minecraft/server/jsonrpc/methods/BanlistService.java
-index e5b8331adf2b932007da37211926c2a84f6842e3..fbc6bb5708f33b4604ee1609ab4739e5719522c4 100644
 --- a/net/minecraft/server/jsonrpc/methods/BanlistService.java
 +++ b/net/minecraft/server/jsonrpc/methods/BanlistService.java
-@@ -39,7 +39,7 @@ public class BanlistService {
+@@ -39,7 +_,7 @@
           .map(banx -> minecraftApi.playerListService().getUser(banx.player().id(), banx.player().name()).thenApply(u -> u.map(banx::toUserBan)))
           .toList();
  
@@ -17,7 +9,7 @@ index e5b8331adf2b932007da37211926c2a84f6842e3..fbc6bb5708f33b4604ee1609ab4739e5
           if (!ban.isEmpty()) {
              BanlistService.UserBan userBan = (BanlistService.UserBan)ban.get();
              minecraftApi.banListService().addUserBan(userBan.toBanEntry(), clientInfo);
-@@ -63,7 +63,7 @@ public class BanlistService {
+@@ -63,7 +_,7 @@
           .map(playerDto -> minecraftApi.playerListService().getUser(playerDto.id(), playerDto.name()))
           .toList();
  
@@ -26,7 +18,7 @@ index e5b8331adf2b932007da37211926c2a84f6842e3..fbc6bb5708f33b4604ee1609ab4739e5
           if (!user.isEmpty()) {
              minecraftApi.banListService().removeUserBan((NameAndId)user.get(), clientInfo);
           }
-@@ -76,7 +76,7 @@ public class BanlistService {
+@@ -76,7 +_,7 @@
        List<CompletableFuture<Optional<BanlistService.UserBan>>> fetch = bans.stream()
           .map(ban -> minecraftApi.playerListService().getUser(ban.player().id(), ban.player().name()).thenApply(u -> u.map(ban::toUserBan)))
           .toList();

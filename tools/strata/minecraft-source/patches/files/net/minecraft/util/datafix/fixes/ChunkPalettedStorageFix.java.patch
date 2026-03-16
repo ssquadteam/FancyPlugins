@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/ChunkPalettedStorageFix.java b/net/minecraft/util/datafix/fixes/ChunkPalettedStorageFix.java
-index 499c6cf10fd921bfbf81c1e0710cd6f5d27cd45b..d6ffcd29331b6f71017a046c5498c304f91d96d9 100644
 --- a/net/minecraft/util/datafix/fixes/ChunkPalettedStorageFix.java
 +++ b/net/minecraft/util/datafix/fixes/ChunkPalettedStorageFix.java
-@@ -195,7 +195,7 @@ public class ChunkPalettedStorageFix extends DataFix {
+@@ -195,7 +_,7 @@
        private static final Dynamic<?> UPPER_LARGE_FERN = ExtraDataFixUtils.blockState("minecraft:large_fern", Map.of("half", "upper"));
        private static final Dynamic<?> UPPER_ROSE_BUSH = ExtraDataFixUtils.blockState("minecraft:rose_bush", Map.of("half", "upper"));
        private static final Dynamic<?> UPPER_PEONY = ExtraDataFixUtils.blockState("minecraft:peony", Map.of("half", "upper"));
@@ -17,7 +9,7 @@ index 499c6cf10fd921bfbf81c1e0710cd6f5d27cd45b..d6ffcd29331b6f71017a046c5498c304
           map.put("minecraft:air0", ExtraDataFixUtils.blockState("minecraft:flower_pot"));
           map.put("minecraft:red_flower0", ExtraDataFixUtils.blockState("minecraft:potted_poppy"));
           map.put("minecraft:red_flower1", ExtraDataFixUtils.blockState("minecraft:potted_blue_orchid"));
-@@ -219,7 +219,7 @@ public class ChunkPalettedStorageFix extends DataFix {
+@@ -219,7 +_,7 @@
           map.put("minecraft:tallgrass2", ExtraDataFixUtils.blockState("minecraft:potted_fern"));
           map.put("minecraft:cactus0", ExtraDataFixUtils.blockState("minecraft:potted_cactus"));
        });
@@ -26,7 +18,7 @@ index 499c6cf10fd921bfbf81c1e0710cd6f5d27cd45b..d6ffcd29331b6f71017a046c5498c304
           mapSkull(map, 0, "skeleton", "skull");
           mapSkull(map, 1, "wither_skeleton", "skull");
           mapSkull(map, 2, "zombie", "head");
-@@ -227,7 +227,7 @@ public class ChunkPalettedStorageFix extends DataFix {
+@@ -227,7 +_,7 @@
           mapSkull(map, 4, "creeper", "head");
           mapSkull(map, 5, "dragon", "head");
        });
@@ -35,7 +27,7 @@ index 499c6cf10fd921bfbf81c1e0710cd6f5d27cd45b..d6ffcd29331b6f71017a046c5498c304
           mapDoor(map, "oak_door");
           mapDoor(map, "iron_door");
           mapDoor(map, "spruce_door");
-@@ -236,7 +236,7 @@ public class ChunkPalettedStorageFix extends DataFix {
+@@ -236,7 +_,7 @@
           mapDoor(map, "acacia_door");
           mapDoor(map, "dark_oak_door");
        });
@@ -44,7 +36,7 @@ index 499c6cf10fd921bfbf81c1e0710cd6f5d27cd45b..d6ffcd29331b6f71017a046c5498c304
           for (int i = 0; i < 26; i++) {
              map.put("true" + i, ExtraDataFixUtils.blockState("minecraft:note_block", Map.of("powered", "true", "note", String.valueOf(i))));
              map.put("false" + i, ExtraDataFixUtils.blockState("minecraft:note_block", Map.of("powered", "false", "note", String.valueOf(i))));
-@@ -260,7 +260,7 @@ public class ChunkPalettedStorageFix extends DataFix {
+@@ -260,7 +_,7 @@
           map.put(14, "red");
           map.put(15, "black");
        });
@@ -53,7 +45,7 @@ index 499c6cf10fd921bfbf81c1e0710cd6f5d27cd45b..d6ffcd29331b6f71017a046c5498c304
           Iterator i$ = DYE_COLOR_MAP.int2ObjectEntrySet().iterator();
  
           while (i$.hasNext()) {
-@@ -270,7 +270,7 @@ public class ChunkPalettedStorageFix extends DataFix {
+@@ -270,7 +_,7 @@
              }
           }
        });

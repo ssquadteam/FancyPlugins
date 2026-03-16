@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/level/block/WeatheringCopperBlocks.java b/net/minecraft/world/level/block/WeatheringCopperBlocks.java
-index fc3b09deec06061d68d9a5f600fda0848c282556..5cac8d1bb069b9c2a0f8e1f0378eec351784d470 100644
 --- a/net/minecraft/world/level/block/WeatheringCopperBlocks.java
 +++ b/net/minecraft/world/level/block/WeatheringCopperBlocks.java
-@@ -21,22 +21,22 @@ public record WeatheringCopperBlocks(
+@@ -21,22 +_,22 @@
        return new WeatheringCopperBlocks(
           (Block)register.apply(
              id,

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/animal/happyghast/HappyGhast.java b/net/minecraft/world/entity/animal/happyghast/HappyGhast.java
-index 27967b4b275433195853aa5474b4ec6b09c54d69..b33276d993f3568cf179a60b937ec76e4003b3ce 100644
 --- a/net/minecraft/world/entity/animal/happyghast/HappyGhast.java
 +++ b/net/minecraft/world/entity/animal/happyghast/HappyGhast.java
-@@ -385,7 +385,7 @@ public class HappyGhast extends Animal {
+@@ -385,7 +_,7 @@
  
     @Override
     public Brain<HappyGhast> getBrain() {

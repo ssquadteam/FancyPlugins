@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/level/ChunkResult.java b/net/minecraft/server/level/ChunkResult.java
-index 822da03c62e2c45918ecd90b623c816ace6909dd..b7b7cb15e5ba3d78d887f4d39ec83fda6f9009f2 100644
 --- a/net/minecraft/server/level/ChunkResult.java
 +++ b/net/minecraft/server/level/ChunkResult.java
-@@ -63,7 +63,7 @@ public interface ChunkResult<T> {
+@@ -63,7 +_,7 @@
  
        @Override
        public <E extends Throwable> T orElseThrow(final Supplier<E> exceptionSupplier) throws E {

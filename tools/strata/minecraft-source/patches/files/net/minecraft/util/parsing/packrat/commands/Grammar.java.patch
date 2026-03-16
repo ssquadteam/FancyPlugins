@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/parsing/packrat/commands/Grammar.java b/net/minecraft/util/parsing/packrat/commands/Grammar.java
-index 36592591876d0cfcddd8f8ca7f62898c6b5cc7e7..b857628aa6b505056fadadafa02a90637761c05e 100644
 --- a/net/minecraft/util/parsing/packrat/commands/Grammar.java
 +++ b/net/minecraft/util/parsing/packrat/commands/Grammar.java
-@@ -36,7 +36,7 @@ public record Grammar<T>(Dictionary<StringReader> rules, NamedRule<StringReader,
+@@ -36,7 +_,7 @@
           return (T)result.get();
        } else {
           List<ErrorEntry<StringReader>> errorEntries = errorCollector.entries();

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/commands/functions/MacroFunction.java b/net/minecraft/commands/functions/MacroFunction.java
-index 4a199f889941cb6e8337b8e32b1c665bec1ad302..02a91bcb147c4a427c792e84668325c066027bd4 100644
 --- a/net/minecraft/commands/functions/MacroFunction.java
 +++ b/net/minecraft/commands/functions/MacroFunction.java
-@@ -87,46 +87,11 @@ public class MacroFunction<T extends ExecutionCommandSource<T>> implements Comma
+@@ -87,46 +_,11 @@
        Objects.requireNonNull(tag);
  
        return switch (tag) {

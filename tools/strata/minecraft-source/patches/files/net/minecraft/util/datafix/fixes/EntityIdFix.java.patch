@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EntityIdFix.java b/net/minecraft/util/datafix/fixes/EntityIdFix.java
-index ebfb1a08f8a16ded5ecdef7573565cc606e1a51c..f0aabae546472cc431457e61156044a4c963b6b3 100644
 --- a/net/minecraft/util/datafix/fixes/EntityIdFix.java
 +++ b/net/minecraft/util/datafix/fixes/EntityIdFix.java
-@@ -10,7 +10,7 @@ import com.mojang.datafixers.types.templates.TaggedChoice.TaggedChoiceType;
+@@ -10,7 +_,7 @@
  import java.util.Map;
  
  public class EntityIdFix extends DataFix {
@@ -17,7 +9,7 @@ index ebfb1a08f8a16ded5ecdef7573565cc606e1a51c..f0aabae546472cc431457e61156044a4
        map.put("AreaEffectCloud", "minecraft:area_effect_cloud");
        map.put("ArmorStand", "minecraft:armor_stand");
        map.put("Arrow", "minecraft:arrow");
-@@ -93,8 +93,8 @@ public class EntityIdFix extends DataFix {
+@@ -93,8 +_,8 @@
     }
  
     public TypeRewriteRule makeRule() {

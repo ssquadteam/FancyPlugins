@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/packs/metadata/pack/PackFormat.java b/net/minecraft/server/packs/metadata/pack/PackFormat.java
-index a5f6cc3ceee167e84a16f13a9a4d5773ea66c1bd..c80ca6a5855cc23c9c54550a05baa5cbc8ba0c4c 100644
 --- a/net/minecraft/server/packs/metadata/pack/PackFormat.java
 +++ b/net/minecraft/server/packs/metadata/pack/PackFormat.java
-@@ -53,7 +53,7 @@ public record PackFormat(int major, int minor) implements Comparable<PackFormat>
+@@ -53,7 +_,7 @@
                 return DataResult.error(((Error)entryResult.error().get())::message);
              }
  
@@ -17,7 +9,7 @@ index a5f6cc3ceee167e84a16f13a9a4d5773ea66c1bd..c80ca6a5855cc23c9c54550a05baa5cb
           }
        }
  
-@@ -309,7 +309,7 @@ public record PackFormat(int major, int minor) implements Comparable<PackFormat>
+@@ -309,7 +_,7 @@
                 }
              }
  

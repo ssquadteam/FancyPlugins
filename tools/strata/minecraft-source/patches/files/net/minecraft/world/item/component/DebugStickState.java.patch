@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/item/component/DebugStickState.java b/net/minecraft/world/item/component/DebugStickState.java
-index 6be3ece79729e8dc09ed22e20200f6162a56d1f9..3430cffd411cc5e522c885ef528b3e58c7869052 100644
 --- a/net/minecraft/world/item/component/DebugStickState.java
 +++ b/net/minecraft/world/item/component/DebugStickState.java
-@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.properties.Property;
+@@ -11,7 +_,7 @@
  
  public record DebugStickState(Map<Holder<Block>, Property<?>> properties) {
     public static final DebugStickState EMPTY = new DebugStickState(Map.of());

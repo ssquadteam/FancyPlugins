@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/jsonrpc/IncomingRpcMethod.java b/net/minecraft/server/jsonrpc/IncomingRpcMethod.java
-index 6ddad66132dc46f3daa0d55a04593b6a563ffadf..ba25c6ace1221aff25d56d18eb5806bd7c64bfdf 100644
 --- a/net/minecraft/server/jsonrpc/IncomingRpcMethod.java
 +++ b/net/minecraft/server/jsonrpc/IncomingRpcMethod.java
-@@ -143,7 +143,7 @@ public interface IncomingRpcMethod<Params, Result> {
+@@ -143,7 +_,7 @@
                    paramsJsonElement = jsonArray.get(0);
                 }
  
@@ -17,7 +9,7 @@ index 6ddad66132dc46f3daa0d55a04593b6a563ffadf..ba25c6ace1221aff25d56d18eb5806bd
                    .schema()
                    .codec()
                    .parse(JsonOps.INSTANCE, paramsJsonElement)
-@@ -152,7 +152,7 @@ public interface IncomingRpcMethod<Params, Result> {
+@@ -152,7 +_,7 @@
                 if (this.info.result().isEmpty()) {
                    throw new IllegalStateException("No result codec defined");
                 } else {
@@ -26,7 +18,7 @@ index 6ddad66132dc46f3daa0d55a04593b6a563ffadf..ba25c6ace1221aff25d56d18eb5806bd
                       .schema()
                       .codec()
                       .encodeStart(JsonOps.INSTANCE, result)
-@@ -178,7 +178,7 @@ public interface IncomingRpcMethod<Params, Result> {
+@@ -178,7 +_,7 @@
                 if (this.info.result().isEmpty()) {
                    throw new IllegalStateException("No result codec defined");
                 } else {

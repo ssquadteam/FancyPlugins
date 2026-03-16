@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/level/biome/MobSpawnSettings.java b/net/minecraft/world/level/biome/MobSpawnSettings.java
-index 12d700c1f95517f1ce768fbf9dfc562af17143b0..87a6dbd57fc077d7cbf9f22342e1e4a479ff51cc 100644
 --- a/net/minecraft/world/level/biome/MobSpawnSettings.java
 +++ b/net/minecraft/world/level/biome/MobSpawnSettings.java
-@@ -91,10 +91,10 @@ public class MobSpawnSettings {
+@@ -91,10 +_,10 @@
        public MobSpawnSettings build() {
           return new MobSpawnSettings(
              this.creatureGenerationProbability,
@@ -21,7 +13,7 @@ index 12d700c1f95517f1ce768fbf9dfc562af17143b0..87a6dbd57fc077d7cbf9f22342e1e4a4
              ImmutableMap.copyOf(this.mobSpawnCosts)
           );
        }
-@@ -108,7 +108,7 @@ public class MobSpawnSettings {
+@@ -108,7 +_,7 @@
     }
  
     public record SpawnerData(EntityType<?> type, int minCount, int maxCount) {

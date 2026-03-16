@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EmptyItemInHotbarFix.java b/net/minecraft/util/datafix/fixes/EmptyItemInHotbarFix.java
-index 890bd9173dc984eb5c74bfe4afb0c34f29a8521a..58f644353b17118d824345517cf5843c7286a11f 100644
 --- a/net/minecraft/util/datafix/fixes/EmptyItemInHotbarFix.java
 +++ b/net/minecraft/util/datafix/fixes/EmptyItemInHotbarFix.java
-@@ -5,6 +5,7 @@ import com.mojang.datafixers.DataFix;
+@@ -5,6 +_,7 @@
  import com.mojang.datafixers.OpticFinder;
  import com.mojang.datafixers.TypeRewriteRule;
  import com.mojang.datafixers.schemas.Schema;
@@ -16,7 +8,7 @@ index 890bd9173dc984eb5c74bfe4afb0c34f29a8521a..58f644353b17118d824345517cf5843c
  import com.mojang.datafixers.util.Either;
  import com.mojang.datafixers.util.Pair;
  import com.mojang.datafixers.util.Unit;
-@@ -16,20 +17,18 @@ public class EmptyItemInHotbarFix extends DataFix {
+@@ -16,20 +_,18 @@
        super(outputSchema, false);
     }
  

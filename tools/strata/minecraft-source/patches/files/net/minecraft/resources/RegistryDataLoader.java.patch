@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/resources/RegistryDataLoader.java b/net/minecraft/resources/RegistryDataLoader.java
-index f8031539e7e4c63eadf418f3e2faa416376b0fff..85afa341c6c9ab7af0e56e44edf64ac2aee1c97d 100644
 --- a/net/minecraft/resources/RegistryDataLoader.java
 +++ b/net/minecraft/resources/RegistryDataLoader.java
-@@ -79,7 +79,7 @@ import org.slf4j.Logger;
+@@ -79,7 +_,7 @@
  
  public class RegistryDataLoader {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -17,7 +9,7 @@ index f8031539e7e4c63eadf418f3e2faa416376b0fff..85afa341c6c9ab7af0e56e44edf64ac2
     public static final List<RegistryDataLoader.RegistryData<?>> WORLDGEN_REGISTRIES = List.of(
        new RegistryDataLoader.RegistryData<>(Registries.DIMENSION_TYPE, DimensionType.DIRECT_CODEC),
        new RegistryDataLoader.RegistryData<>(Registries.BIOME, Biome.DIRECT_CODEC),
-@@ -201,7 +201,7 @@ public class RegistryDataLoader {
+@@ -201,7 +_,7 @@
        return CompletableFuture.supplyAsync(
              () -> {
                 Map<ResourceKey<?>, Exception> loadingErrors = new ConcurrentHashMap();
@@ -26,7 +18,7 @@ index f8031539e7e4c63eadf418f3e2faa416376b0fff..85afa341c6c9ab7af0e56e44edf64ac2
                    .map(r -> loaderFactory.create(r, loadingErrors))
                    .collect(Collectors.toUnmodifiableList());
                 RegistryOps.RegistryInfoLookup contextAndNewRegistries = createContext(contextRegistries, loadTasks);
-@@ -264,7 +264,7 @@ public class RegistryDataLoader {
+@@ -264,7 +_,7 @@
           );
        errorsByRegistry.entrySet().stream().sorted(Entry.comparingByKey()).forEach(registryEntry -> {
           errorPrinter.printf(Locale.ROOT, "> Errors in registry %s:%n", registryEntry.getKey());

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/debug/TrackingDebugSynchronizer.java b/net/minecraft/util/debug/TrackingDebugSynchronizer.java
-index cfab89558dd7b70a7b8c342237521d361d6ff972..2a717877cd7d32767423e6ef71d6603fa538e0b3 100644
 --- a/net/minecraft/util/debug/TrackingDebugSynchronizer.java
 +++ b/net/minecraft/util/debug/TrackingDebugSynchronizer.java
-@@ -218,7 +218,7 @@ public abstract class TrackingDebugSynchronizer<T> {
+@@ -218,7 +_,7 @@
           }
  
           for (Entry<BlockPos, TrackingDebugSynchronizer.ValueSource<T>> entry : this.blockEntitySources.entrySet()) {

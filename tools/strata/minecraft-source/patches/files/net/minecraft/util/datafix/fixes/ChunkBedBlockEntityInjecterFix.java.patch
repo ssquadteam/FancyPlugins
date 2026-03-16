@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/ChunkBedBlockEntityInjecterFix.java b/net/minecraft/util/datafix/fixes/ChunkBedBlockEntityInjecterFix.java
-index eb9f472fd6f8d592906650d63f81a352f22b6b61..11ce6e5d53635d5ddfbf9de3f82c1ec606bfd9f2 100644
 --- a/net/minecraft/util/datafix/fixes/ChunkBedBlockEntityInjecterFix.java
 +++ b/net/minecraft/util/datafix/fixes/ChunkBedBlockEntityInjecterFix.java
-@@ -11,6 +11,7 @@ import com.mojang.datafixers.Typed;
+@@ -11,6 +_,7 @@
  import com.mojang.datafixers.schemas.Schema;
  import com.mojang.datafixers.types.Type;
  import com.mojang.datafixers.types.templates.List.ListType;
@@ -16,7 +8,7 @@ index eb9f472fd6f8d592906650d63f81a352f22b6b61..11ce6e5d53635d5ddfbf9de3f82c1ec6
  import com.mojang.datafixers.util.Pair;
  import com.mojang.serialization.Dynamic;
  import java.util.List;
-@@ -40,8 +41,8 @@ public class ChunkBedBlockEntityInjecterFix extends DataFix {
+@@ -40,8 +_,8 @@
        return TypeRewriteRule.seq(
           this.fixTypeEverywhere(
              "InjectBedBlockEntityType",
@@ -27,7 +19,7 @@ index eb9f472fd6f8d592906650d63f81a352f22b6b61..11ce6e5d53635d5ddfbf9de3f82c1ec6
              ops -> v -> v
           ),
           this.fixTypeEverywhereTyped(
-@@ -77,7 +78,7 @@ public class ChunkBedBlockEntityInjecterFix extends DataFix {
+@@ -77,7 +_,7 @@
                          bedTag -> {
                             if (bedTag != null) {
                                tileEntities.add(

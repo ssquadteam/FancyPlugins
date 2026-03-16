@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/ai/memory/MemoryMap.java b/net/minecraft/world/entity/ai/memory/MemoryMap.java
-index 4df62a8ad8602626c683d801bb5c11d6fc860d5c..d4d1f918194b2c363b21a55d355d3f468a948752 100644
 --- a/net/minecraft/world/entity/ai/memory/MemoryMap.java
 +++ b/net/minecraft/world/entity/ai/memory/MemoryMap.java
-@@ -15,7 +15,7 @@ public final class MemoryMap implements Iterable<MemoryMap.Value<?>> {
+@@ -15,7 +_,7 @@
     private static final Codec<MemoryModuleType<?>> SERIALIZABLE_MEMORY_MODULE_CODEC = BuiltInRegistries.MEMORY_MODULE_TYPE
        .byNameCodec()
        .validate(type -> type.canSerialize() ? DataResult.success(type) : DataResult.error(() -> "Memory module " + type + " cannot be encoded"));
@@ -17,7 +9,7 @@ index 4df62a8ad8602626c683d801bb5c11d6fc860d5c..d4d1f918194b2c363b21a55d355d3f46
        .xmap(MemoryMap::new, m -> m.memories);
     public static final MemoryMap EMPTY = new MemoryMap(Map.of());
     private final Map<MemoryModuleType<?>, ExpirableValue<?>> memories;
-@@ -25,7 +25,7 @@ public final class MemoryMap implements Iterable<MemoryMap.Value<?>> {
+@@ -25,7 +_,7 @@
     }
  
     public static MemoryMap of(final Stream<MemoryMap.Value<?>> memories) {

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/inventory/AbstractContainerMenu.java b/net/minecraft/world/inventory/AbstractContainerMenu.java
-index 3b73ae5fc70bde4fe4f9428e211cc456c7a8cee2..39e30997ef71bd536e61c82c30665e9324306b53 100644
 --- a/net/minecraft/world/inventory/AbstractContainerMenu.java
 +++ b/net/minecraft/world/inventory/AbstractContainerMenu.java
-@@ -450,7 +450,7 @@ public abstract class AbstractContainerMenu {
+@@ -450,7 +_,7 @@
                       Optional<ItemStack> newCarried = slotx.tryRemove(amount, Integer.MAX_VALUE, player);
                       newCarried.ifPresent(itemsTaken -> {
                          this.setCarried(itemsTaken);
@@ -17,7 +9,7 @@ index 3b73ae5fc70bde4fe4f9428e211cc456c7a8cee2..39e30997ef71bd536e61c82c30665e93
                       });
                    } else if (slotx.mayPlace(carried)) {
                       if (ItemStack.isSameItemSameComponents(clicked, carried)) {
-@@ -464,7 +464,7 @@ public abstract class AbstractContainerMenu {
+@@ -464,7 +_,7 @@
                       Optional<ItemStack> newCarried = slotx.tryRemove(clicked.getCount(), carried.getMaxStackSize() - carried.getCount(), player);
                       newCarried.ifPresent(itemsTaken -> {
                          carried.grow(itemsTaken.getCount());

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/WorldGenSettingsFix.java b/net/minecraft/util/datafix/fixes/WorldGenSettingsFix.java
-index ff2154df94c0c3111724387d451fd467b103065c..b3dea907ae11a2c81cddec383ce105640dce32e3 100644
 --- a/net/minecraft/util/datafix/fixes/WorldGenSettingsFix.java
 +++ b/net/minecraft/util/datafix/fixes/WorldGenSettingsFix.java
-@@ -33,7 +33,7 @@ public class WorldGenSettingsFix extends DataFix {
+@@ -33,7 +_,7 @@
     private static final String END_CITY = "minecraft:endcity";
     private static final String WOODLAND_MANSION = "minecraft:mansion";
     private static final String OCEAN_MONUMENT = "minecraft:monument";
@@ -17,7 +9,7 @@ index ff2154df94c0c3111724387d451fd467b103065c..b3dea907ae11a2c81cddec383ce10564
        .put("minecraft:village", new WorldGenSettingsFix.StructureFeatureConfiguration(32, 8, 10387312))
        .put("minecraft:desert_pyramid", new WorldGenSettingsFix.StructureFeatureConfiguration(32, 8, 14357617))
        .put("minecraft:igloo", new WorldGenSettingsFix.StructureFeatureConfiguration(32, 8, 14357618))
-@@ -73,7 +73,7 @@ public class WorldGenSettingsFix extends DataFix {
+@@ -73,7 +_,7 @@
     }
  
     private static <T> Dynamic<T> vanillaBiomeSource(final Dynamic<T> input, final long seed, final boolean legacyBiomeInitLayer, final boolean largeBiomes) {
@@ -26,7 +18,7 @@ index ff2154df94c0c3111724387d451fd467b103065c..b3dea907ae11a2c81cddec383ce10564
           .put(input.createString("type"), input.createString("minecraft:vanilla_layered"))
           .put(input.createString("seed"), input.createLong(seed))
           .put(input.createString("large_biomes"), input.createBoolean(largeBiomes));
-@@ -115,7 +115,7 @@ public class WorldGenSettingsFix extends DataFix {
+@@ -115,7 +_,7 @@
                             input.createString("structures"),
                             input.createMap(structureBuilder),
                             input.createString("layers"),

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/animal/fox/Fox.java b/net/minecraft/world/entity/animal/fox/Fox.java
-index 5d19dca59c50d628fa052185053649c7cca9c33e..4faac61335e98b0c99adfa12dacc80ada04c1a85 100644
 --- a/net/minecraft/world/entity/animal/fox/Fox.java
 +++ b/net/minecraft/world/entity/animal/fox/Fox.java
-@@ -129,7 +129,7 @@ public class Fox extends Animal {
+@@ -129,7 +_,7 @@
     private static final Predicate<Entity> AVOID_PLAYERS = entity -> !entity.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity);
     private static final int MIN_TICKS_BEFORE_EAT = 600;
     private static final EntityDimensions BABY_DIMENSIONS = EntityType.FOX.getDimensions().scale(0.6F).withEyeHeight(0.2975F);
@@ -17,7 +9,7 @@ index 5d19dca59c50d628fa052185053649c7cca9c33e..4faac61335e98b0c99adfa12dacc80ad
     private static final boolean DEFAULT_SLEEPING = false;
     private static final boolean DEFAULT_SITTING = false;
     private static final boolean DEFAULT_CROUCHING = false;
-@@ -178,7 +178,7 @@ public class Fox extends Animal {
+@@ -178,7 +_,7 @@
        this.goalSelector.addGoal(3, new Fox.FoxBreedGoal(1.0));
        this.goalSelector
           .addGoal(
@@ -26,7 +18,7 @@ index 5d19dca59c50d628fa052185053649c7cca9c33e..4faac61335e98b0c99adfa12dacc80ad
           );
        this.goalSelector.addGoal(4, new AvoidEntityGoal(this, Wolf.class, 8.0F, 1.6, 1.4, entity -> !((Wolf)entity).isTame() && !this.isDefending()));
        this.goalSelector.addGoal(4, new AvoidEntityGoal(this, PolarBear.class, 8.0F, 1.6, 1.4, entity -> !this.isDefending()));
-@@ -438,7 +438,7 @@ public class Fox extends Animal {
+@@ -438,7 +_,7 @@
     protected void readAdditionalSaveData(final ValueInput input) {
        super.readAdditionalSaveData(input);
        this.clearTrusted();

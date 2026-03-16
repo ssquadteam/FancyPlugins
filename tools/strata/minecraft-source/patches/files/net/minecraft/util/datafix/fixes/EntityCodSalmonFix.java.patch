@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EntityCodSalmonFix.java b/net/minecraft/util/datafix/fixes/EntityCodSalmonFix.java
-index 38986a30a1daf4578d1916435e3cbbbf447e3791..b4c8dfb1276f7e3ef36b99cb42e936fdea7ba63a 100644
 --- a/net/minecraft/util/datafix/fixes/EntityCodSalmonFix.java
 +++ b/net/minecraft/util/datafix/fixes/EntityCodSalmonFix.java
-@@ -5,11 +5,11 @@ import com.mojang.datafixers.schemas.Schema;
+@@ -5,11 +_,11 @@
  import java.util.Map;
  
  public class EntityCodSalmonFix extends SimplestEntityRenameFix {

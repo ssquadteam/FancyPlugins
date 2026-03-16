@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/WrittenBookPagesStrictJsonFix.java b/net/minecraft/util/datafix/fixes/WrittenBookPagesStrictJsonFix.java
-index 25917b3428d701f79b645cc31d4c61cf9fbcceac..bbc33945fa8a5d995b8fc856b82231b72af2aa56 100644
 --- a/net/minecraft/util/datafix/fixes/WrittenBookPagesStrictJsonFix.java
 +++ b/net/minecraft/util/datafix/fixes/WrittenBookPagesStrictJsonFix.java
-@@ -15,7 +15,7 @@ public class WrittenBookPagesStrictJsonFix extends ItemStackTagFix {
+@@ -15,7 +_,7 @@
  
     @Override
     protected Typed<?> fixItemStackTag(final Typed<?> tag) {

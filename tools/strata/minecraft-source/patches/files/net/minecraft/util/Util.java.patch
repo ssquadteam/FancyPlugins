@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/Util.java b/net/minecraft/util/Util.java
-index 8c9233ce2f8b690b12d21c6474e4c2d44e95e527..69ee95019574018cf5bf3707d576204ceffb5e63 100644
 --- a/net/minecraft/util/Util.java
 +++ b/net/minecraft/util/Util.java
-@@ -612,7 +612,7 @@ public class Util {
+@@ -612,7 +_,7 @@
     public static <K extends Enum<K>, V> Map<K, V> makeEnumMap(final Class<K> keyType, final Function<K, V> function) {
        EnumMap<K, V> map = new EnumMap(keyType);
  
@@ -17,7 +9,7 @@ index 8c9233ce2f8b690b12d21c6474e4c2d44e95e527..69ee95019574018cf5bf3707d576204c
           map.put(key, function.apply(key));
        }
  
-@@ -667,7 +667,7 @@ public class Util {
+@@ -667,7 +_,7 @@
  
        for (int i = 0; i < futures.size(); i++) {
           int index = i;
@@ -26,7 +18,7 @@ index 8c9233ce2f8b690b12d21c6474e4c2d44e95e527..69ee95019574018cf5bf3707d576204c
              if (exception != null) {
                 failureHandler.accept(exception);
              } else {
-@@ -1132,19 +1132,19 @@ public class Util {
+@@ -1132,19 +_,19 @@
     }
  
     public static <T> List<T> copyAndAdd(final List<T> list, final T element) {

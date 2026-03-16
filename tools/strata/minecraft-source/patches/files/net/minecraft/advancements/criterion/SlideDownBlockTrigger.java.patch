@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/advancements/criterion/SlideDownBlockTrigger.java b/net/minecraft/advancements/criterion/SlideDownBlockTrigger.java
-index 8d7deb41d05fc24d22c327b3b6cdef5e94e6e0c8..3ccf2837d2eef4c80d82b13f99b3acd652fe8698 100644
 --- a/net/minecraft/advancements/criterion/SlideDownBlockTrigger.java
 +++ b/net/minecraft/advancements/criterion/SlideDownBlockTrigger.java
-@@ -24,7 +24,7 @@ public class SlideDownBlockTrigger extends SimpleCriterionTrigger<SlideDownBlock
+@@ -24,7 +_,7 @@
  
     public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<Holder<Block>> block, Optional<StatePropertiesPredicate> state)
        implements SimpleCriterionTrigger.SimpleInstance {
@@ -17,7 +9,7 @@ index 8d7deb41d05fc24d22c327b3b6cdef5e94e6e0c8..3ccf2837d2eef4c80d82b13f99b3acd6
              i -> i.group(
                    EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(SlideDownBlockTrigger.TriggerInstance::player),
                    BuiltInRegistries.BLOCK.holderByNameCodec().optionalFieldOf("block").forGetter(SlideDownBlockTrigger.TriggerInstance::block),
-@@ -35,10 +35,10 @@ public class SlideDownBlockTrigger extends SimpleCriterionTrigger<SlideDownBlock
+@@ -35,10 +_,10 @@
           .validate(SlideDownBlockTrigger.TriggerInstance::validate);
  
        private static DataResult<SlideDownBlockTrigger.TriggerInstance> validate(final SlideDownBlockTrigger.TriggerInstance trigger) {

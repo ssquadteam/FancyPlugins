@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/jsonrpc/api/MethodInfo.java b/net/minecraft/server/jsonrpc/api/MethodInfo.java
-index ab727221307ec286939c48505ae4f2671e9b2915..d56653980bb9a79a4491ca321900af848bf6a960 100644
 --- a/net/minecraft/server/jsonrpc/api/MethodInfo.java
 +++ b/net/minecraft/server/jsonrpc/api/MethodInfo.java
-@@ -22,17 +22,17 @@ public record MethodInfo<Params, Result>(String description, Optional<ParamInfo<
+@@ -22,17 +_,17 @@
     }
  
     private static <Params> Codec<Optional<ParamInfo<Params>>> paramsTypedCodec() {
@@ -33,7 +25,7 @@ index ab727221307ec286939c48505ae4f2671e9b2915..d56653980bb9a79a4491ca321900af84
        );
     }
  
-@@ -41,11 +41,14 @@ public record MethodInfo<Params, Result>(String description, Optional<ParamInfo<
+@@ -41,11 +_,14 @@
     }
  
     public record Named<Params, Result>(Identifier name, MethodInfo<Params, Result> contents) {

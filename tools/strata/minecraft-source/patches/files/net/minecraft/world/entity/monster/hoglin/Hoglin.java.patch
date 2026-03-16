@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/monster/hoglin/Hoglin.java b/net/minecraft/world/entity/monster/hoglin/Hoglin.java
-index 2e602758916ce6296bbc66278a850e39b108d069..62fd08a8d8c077d84c7e3d87dbfc4f55738b738f 100644
 --- a/net/minecraft/world/entity/monster/hoglin/Hoglin.java
 +++ b/net/minecraft/world/entity/monster/hoglin/Hoglin.java
-@@ -128,7 +128,7 @@ public class Hoglin extends Animal implements Enemy, HoglinBase {
+@@ -128,7 +_,7 @@
  
     @Override
     public Brain<Hoglin> getBrain() {

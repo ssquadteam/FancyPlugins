@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/monster/warden/WardenAi.java b/net/minecraft/world/entity/monster/warden/WardenAi.java
-index 75b813e17fd0a9aa92271b3880860e026595c9ce..15eb604d51c2e35aec288384aef1d7b86d3f492f 100644
 --- a/net/minecraft/world/entity/monster/warden/WardenAi.java
 +++ b/net/minecraft/world/entity/monster/warden/WardenAi.java
-@@ -82,18 +82,18 @@ public class WardenAi {
+@@ -82,18 +_,18 @@
  
     private static ActivityData<Warden> initCoreActivity() {
        return ActivityData.create(
@@ -30,7 +22,7 @@ index 75b813e17fd0a9aa92271b3880860e026595c9ce..15eb604d51c2e35aec288384aef1d7b8
           ImmutableSet.of(Pair.of(MemoryModuleType.ROAR_TARGET, MemoryStatus.VALUE_ABSENT), Pair.of(MemoryModuleType.DIG_COOLDOWN, MemoryStatus.VALUE_ABSENT))
        );
     }
-@@ -105,7 +105,7 @@ public class WardenAi {
+@@ -105,7 +_,7 @@
           ImmutableList.of(
              SetRoarTarget.create(Warden::getEntityAngryAt),
              TryToSniff.create(),
@@ -39,7 +31,7 @@ index 75b813e17fd0a9aa92271b3880860e026595c9ce..15eb604d51c2e35aec288384aef1d7b8
                 ImmutableMap.of(MemoryModuleType.IS_SNIFFING, MemoryStatus.VALUE_ABSENT),
                 ImmutableList.of(Pair.of(RandomStroll.stroll(0.5F), 2), Pair.of(new DoNothing(30, 60), 1))
              )
-@@ -124,7 +124,7 @@ public class WardenAi {
+@@ -124,7 +_,7 @@
  
     private static ActivityData<Warden> initSniffingActivity() {
        return ActivityData.create(

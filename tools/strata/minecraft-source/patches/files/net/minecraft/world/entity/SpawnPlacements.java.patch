@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/SpawnPlacements.java b/net/minecraft/world/entity/SpawnPlacements.java
-index 82ed6a1f475de5c45ebbd9beeb42e63defa0e35d..4a35cec96fdc2e0a8b809cbe10e40ebe682e75a1 100644
 --- a/net/minecraft/world/entity/SpawnPlacements.java
 +++ b/net/minecraft/world/entity/SpawnPlacements.java
-@@ -74,8 +74,8 @@ public class SpawnPlacements {
+@@ -74,8 +_,8 @@
     public static <T extends Entity> boolean checkSpawnRules(
        final EntityType<T> type, final ServerLevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random
     ) {

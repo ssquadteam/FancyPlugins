@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/resources/ResourceKey.java b/net/minecraft/resources/ResourceKey.java
-index 44f8c4d87840dac98402361b11d8e31fdddced71..3b072fe037d3def0108c8985069054b87f4ff1d0 100644
 --- a/net/minecraft/resources/ResourceKey.java
 +++ b/net/minecraft/resources/ResourceKey.java
-@@ -48,7 +48,7 @@ public class ResourceKey<T> {
+@@ -48,7 +_,7 @@
     }
  
     public <E> Optional<ResourceKey<E>> cast(final ResourceKey<? extends Registry<E>> registry) {

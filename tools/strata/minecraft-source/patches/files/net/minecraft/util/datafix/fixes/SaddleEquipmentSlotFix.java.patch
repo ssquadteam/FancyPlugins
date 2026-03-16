@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/SaddleEquipmentSlotFix.java b/net/minecraft/util/datafix/fixes/SaddleEquipmentSlotFix.java
-index 8f7648f5fc1e7bbdf3fcfa13c56131f67c6a60dd..816e93c3d46819b143b12e4598cc6db436ca5ca9 100644
 --- a/net/minecraft/util/datafix/fixes/SaddleEquipmentSlotFix.java
 +++ b/net/minecraft/util/datafix/fixes/SaddleEquipmentSlotFix.java
-@@ -35,7 +35,7 @@ public class SaddleEquipmentSlotFix extends DataFix {
+@@ -35,7 +_,7 @@
     }
  
     protected TypeRewriteRule makeRule() {

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/core/component/DataComponentPatch.java b/net/minecraft/core/component/DataComponentPatch.java
-index 1cdb1eb485825cf787058f2438c1dd32d827994b..5ef95e2d01294f6a2c59507f685be39c0cd6f7de 100644
 --- a/net/minecraft/core/component/DataComponentPatch.java
 +++ b/net/minecraft/core/component/DataComponentPatch.java
-@@ -22,15 +22,15 @@ import org.jspecify.annotations.Nullable;
+@@ -22,15 +_,15 @@
  
  public final class DataComponentPatch {
     public static final DataComponentPatch EMPTY = new DataComponentPatch(Reference2ObjectMaps.emptyMap());
@@ -27,7 +19,7 @@ index 1cdb1eb485825cf787058f2438c1dd32d827994b..5ef95e2d01294f6a2c59507f685be39c
                 if (key.removed()) {
                    map.put(key.type(), Optional.empty());
                 } else {
-@@ -41,14 +41,12 @@ public final class DataComponentPatch {
+@@ -41,14 +_,12 @@
              return new DataComponentPatch(map);
           }
        }, patch -> {

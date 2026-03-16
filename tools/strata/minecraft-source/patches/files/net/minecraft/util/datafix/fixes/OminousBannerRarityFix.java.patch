@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/OminousBannerRarityFix.java b/net/minecraft/util/datafix/fixes/OminousBannerRarityFix.java
-index bc749c828e1cafe5debd7f61507be5c79f1af3e6..8693f742bc3848bde76dce17b8909253cd680586 100644
 --- a/net/minecraft/util/datafix/fixes/OminousBannerRarityFix.java
 +++ b/net/minecraft/util/datafix/fixes/OminousBannerRarityFix.java
-@@ -27,7 +27,7 @@ public class OminousBannerRarityFix extends DataFix {
+@@ -27,7 +_,7 @@
        OpticFinder<?> blockEntityComponentsFieldFinder = blockEntityType.findField("components");
        OpticFinder<?> itemStackComponentsFieldFinder = itemStackType.findField("components");
        OpticFinder<?> itemNameFinder = blockEntityComponentsFieldFinder.type().findField("minecraft:item_name");

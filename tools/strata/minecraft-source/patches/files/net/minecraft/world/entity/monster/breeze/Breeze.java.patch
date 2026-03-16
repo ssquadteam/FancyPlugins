@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/monster/breeze/Breeze.java b/net/minecraft/world/entity/monster/breeze/Breeze.java
-index ced715a2c8e00d082299bdd9fcc458daf53d9ac5..047dda7b5f1e47ca25c900f364418f5f27a1f7ad 100644
 --- a/net/minecraft/world/entity/monster/breeze/Breeze.java
 +++ b/net/minecraft/world/entity/monster/breeze/Breeze.java
-@@ -80,7 +80,7 @@ public class Breeze extends Monster {
+@@ -80,7 +_,7 @@
  
     @Override
     public Brain<Breeze> getBrain() {

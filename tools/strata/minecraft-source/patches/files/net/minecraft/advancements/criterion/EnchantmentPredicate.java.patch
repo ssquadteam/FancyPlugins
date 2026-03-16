@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/advancements/criterion/EnchantmentPredicate.java b/net/minecraft/advancements/criterion/EnchantmentPredicate.java
-index 47507f48f0fcfe53005385ab78cfa2222c2afa4a..eff20d22a4b695a72fe1e2f29ad50d85004518f5 100644
 --- a/net/minecraft/advancements/criterion/EnchantmentPredicate.java
 +++ b/net/minecraft/advancements/criterion/EnchantmentPredicate.java
-@@ -30,7 +30,7 @@ public record EnchantmentPredicate(Optional<HolderSet<Enchantment>> enchantments
+@@ -30,7 +_,7 @@
  
     public boolean containedIn(final ItemEnchantments itemEnchantments) {
        if (this.enchantments.isPresent()) {

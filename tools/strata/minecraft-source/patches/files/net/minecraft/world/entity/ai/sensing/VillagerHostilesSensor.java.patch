@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/ai/sensing/VillagerHostilesSensor.java b/net/minecraft/world/entity/ai/sensing/VillagerHostilesSensor.java
-index d4cd017de19a93d5c4c5d2113dcf9c9d6e6274bd..7b392243e7ce54a20a435a0289fc7f3aa35876fc 100644
 --- a/net/minecraft/world/entity/ai/sensing/VillagerHostilesSensor.java
 +++ b/net/minecraft/world/entity/ai/sensing/VillagerHostilesSensor.java
-@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
+@@ -7,7 +_,7 @@
  import net.minecraft.world.entity.ai.memory.MemoryModuleType;
  
  public class VillagerHostilesSensor extends NearestVisibleLivingEntitySensor {

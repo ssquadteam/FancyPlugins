@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/ChestedHorsesInventoryZeroIndexingFix.java b/net/minecraft/util/datafix/fixes/ChestedHorsesInventoryZeroIndexingFix.java
-index 9cd993221e1ba0cd0a8a5ac02a0e40e28d1379f6..9ec8ee45c7339c42a9a681ea86784ed8c17b7694 100644
 --- a/net/minecraft/util/datafix/fixes/ChestedHorsesInventoryZeroIndexingFix.java
 +++ b/net/minecraft/util/datafix/fixes/ChestedHorsesInventoryZeroIndexingFix.java
-@@ -17,7 +17,7 @@ public class ChestedHorsesInventoryZeroIndexingFix extends DataFix {
+@@ -17,7 +_,7 @@
     }
  
     protected TypeRewriteRule makeRule() {

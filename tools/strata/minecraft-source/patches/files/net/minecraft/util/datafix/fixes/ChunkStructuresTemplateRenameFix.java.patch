@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/ChunkStructuresTemplateRenameFix.java b/net/minecraft/util/datafix/fixes/ChunkStructuresTemplateRenameFix.java
-index 11863785e18d040aa9b426ed63fa0a9b3a172432..de5edda9b85ad4d15be1c2397a31c746d617a108 100644
 --- a/net/minecraft/util/datafix/fixes/ChunkStructuresTemplateRenameFix.java
 +++ b/net/minecraft/util/datafix/fixes/ChunkStructuresTemplateRenameFix.java
-@@ -10,19 +10,19 @@ import com.mojang.datafixers.util.Pair;
+@@ -10,19 +_,19 @@
  import com.mojang.serialization.Dynamic;
  
  public class ChunkStructuresTemplateRenameFix extends DataFix {
@@ -31,7 +23,7 @@ index 11863785e18d040aa9b426ed63fa0a9b3a172432..de5edda9b85ad4d15be1c2397a31c746
                 .put("carpet_south", "carpet_south_1")
                 .put("carpet_west", "carpet_west_1")
                 .put("indoors_door", "indoors_door_1")
-@@ -34,7 +34,7 @@ public class ChunkStructuresTemplateRenameFix extends DataFix {
+@@ -34,7 +_,7 @@
           "Igloo",
           Pair.of(
              "Iglu",
@@ -40,7 +32,7 @@ index 11863785e18d040aa9b426ed63fa0a9b3a172432..de5edda9b85ad4d15be1c2397a31c746
                 .put("minecraft:igloo/igloo_bottom", "minecraft:igloo/bottom")
                 .put("minecraft:igloo/igloo_middle", "minecraft:igloo/middle")
                 .put("minecraft:igloo/igloo_top", "minecraft:igloo/top")
-@@ -45,7 +45,7 @@ public class ChunkStructuresTemplateRenameFix extends DataFix {
+@@ -45,7 +_,7 @@
           "Ocean_Ruin",
           Pair.of(
              "ORP",

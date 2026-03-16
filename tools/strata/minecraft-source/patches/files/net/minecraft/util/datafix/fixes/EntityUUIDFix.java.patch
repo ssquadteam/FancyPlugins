@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EntityUUIDFix.java b/net/minecraft/util/datafix/fixes/EntityUUIDFix.java
-index 54b248c33208ec5bd53a049b405b78dfa6e2febb..cfb0b9cabca46ac0ce3f364b91a01255df435b52 100644
 --- a/net/minecraft/util/datafix/fixes/EntityUUIDFix.java
 +++ b/net/minecraft/util/datafix/fixes/EntityUUIDFix.java
-@@ -101,7 +101,7 @@ public class EntityUUIDFix extends AbstractUUIDFix {
+@@ -101,7 +_,7 @@
     private static Dynamic<?> updateFox(final Dynamic<?> tag) {
        Optional<Dynamic<?>> trustedUUIDs = tag.get("TrustedUUIDs")
           .result()
@@ -17,7 +9,7 @@ index 54b248c33208ec5bd53a049b405b78dfa6e2febb..cfb0b9cabca46ac0ce3f364b91a01255
              LOGGER.warn("Trusted contained invalid data.");
              return uuidTag;
           }))));
-@@ -135,7 +135,7 @@ public class EntityUUIDFix extends AbstractUUIDFix {
+@@ -135,7 +_,7 @@
                    attribute -> attribute.update(
                       "Modifiers",
                       modifiers -> attribute.createList(

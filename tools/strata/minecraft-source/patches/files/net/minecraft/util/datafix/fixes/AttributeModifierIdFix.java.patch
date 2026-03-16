@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/AttributeModifierIdFix.java b/net/minecraft/util/datafix/fixes/AttributeModifierIdFix.java
-index 1de5411218be268f10c099bb7c30ef617beaeab5..2b9231755232df03822953cd9dd8a8bcf321ac9e 100644
 --- a/net/minecraft/util/datafix/fixes/AttributeModifierIdFix.java
 +++ b/net/minecraft/util/datafix/fixes/AttributeModifierIdFix.java
-@@ -18,7 +18,7 @@ import java.util.stream.Stream;
+@@ -18,7 +_,7 @@
  import org.jspecify.annotations.Nullable;
  
  public class AttributeModifierIdFix extends DataFix {

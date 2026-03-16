@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EquipmentFormatFix.java b/net/minecraft/util/datafix/fixes/EquipmentFormatFix.java
-index 99e93974aa10090ad807fd6758ab6ec7222af6d1..9c9be0ec20a47b13df9a2716061a88c65322f173 100644
 --- a/net/minecraft/util/datafix/fixes/EquipmentFormatFix.java
 +++ b/net/minecraft/util/datafix/fixes/EquipmentFormatFix.java
-@@ -74,12 +74,12 @@ public class EquipmentFormatFix extends DataFix {
+@@ -74,12 +_,12 @@
                 };
                 return namedOldEquipment -> {
                    String typeName = (String)namedOldEquipment.getFirst();
@@ -26,7 +18,7 @@ index 99e93974aa10090ad807fd6758ab6ec7222af6d1..9c9be0ec20a47b13df9a2716061a88c6
                    Either<ItemStackOld, Unit> feet = getItemFromList(0, armorItems, isPlaceholder);
                    Either<ItemStackOld, Unit> legs = getItemFromList(1, armorItems, isPlaceholder);
                    Either<ItemStackOld, Unit> chest = getItemFromList(2, armorItems, isPlaceholder);
-@@ -87,16 +87,33 @@ public class EquipmentFormatFix extends DataFix {
+@@ -87,16 +_,33 @@
                    Either<ItemStackOld, Unit> mainhand = getItemFromList(0, handItems, isPlaceholder);
                    Either<ItemStackOld, Unit> offhand = getItemFromList(1, handItems, isPlaceholder);
                    return areAllEmpty(body, saddle, feet, legs, chest, head, mainhand, offhand)

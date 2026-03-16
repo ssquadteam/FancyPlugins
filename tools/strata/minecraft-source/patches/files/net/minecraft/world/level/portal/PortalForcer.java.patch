@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/level/portal/PortalForcer.java b/net/minecraft/world/level/portal/PortalForcer.java
-index 4af42dfabce5f235cde575eced19c5deeef36544..5f1634d6f61d4ac98f06e72c22adc1a8c2eb2481 100644
 --- a/net/minecraft/world/level/portal/PortalForcer.java
 +++ b/net/minecraft/world/level/portal/PortalForcer.java
-@@ -11,6 +11,7 @@ import net.minecraft.util.Mth;
+@@ -11,6 +_,7 @@
  import net.minecraft.world.entity.ai.village.poi.PoiManager;
  import net.minecraft.world.entity.ai.village.poi.PoiRecord;
  import net.minecraft.world.entity.ai.village.poi.PoiTypes;
@@ -16,7 +8,7 @@ index 4af42dfabce5f235cde575eced19c5deeef36544..5f1634d6f61d4ac98f06e72c22adc1a8
  import net.minecraft.world.level.block.Blocks;
  import net.minecraft.world.level.block.NetherPortalBlock;
  import net.minecraft.world.level.block.state.BlockState;
-@@ -46,7 +47,7 @@ public class PortalForcer {
+@@ -46,7 +_,7 @@
           .map(PoiRecord::getPos)
           .filter(worldBorder::isWithinBounds)
           .filter(pos -> this.level.getBlockState(pos).hasProperty(BlockStateProperties.HORIZONTAL_AXIS))

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/item/enchantment/effects/SpawnParticlesEffect.java b/net/minecraft/world/item/enchantment/effects/SpawnParticlesEffect.java
-index 58097865d5f4ba7863e48cb60d92d7f2d47ec9db..40382157b0812c0d418e59392ab4602ce5fcfb49 100644
 --- a/net/minecraft/world/item/enchantment/effects/SpawnParticlesEffect.java
 +++ b/net/minecraft/world/item/enchantment/effects/SpawnParticlesEffect.java
-@@ -78,7 +78,7 @@ public record SpawnParticlesEffect(
+@@ -78,7 +_,7 @@
     }
  
     public record PositionSource(SpawnParticlesEffect.PositionSourceType type, float offset, float scale) {

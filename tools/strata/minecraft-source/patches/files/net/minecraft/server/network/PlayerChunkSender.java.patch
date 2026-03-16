@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/network/PlayerChunkSender.java b/net/minecraft/server/network/PlayerChunkSender.java
-index 04ecdbc994f2a416a2033a584e5deb2f048190ce..ca89376fec694656a2bd521ed0edd7c37240336e 100644
 --- a/net/minecraft/server/network/PlayerChunkSender.java
 +++ b/net/minecraft/server/network/PlayerChunkSender.java
-@@ -87,7 +87,7 @@ public class PlayerChunkSender {
+@@ -87,7 +_,7 @@
        int maxBatchSize = Mth.floor(this.batchQuota);
        List<LevelChunk> chunks;
        if (!this.memoryConnection && this.pendingChunks.size() > maxBatchSize) {

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/BlockEntityIdFix.java b/net/minecraft/util/datafix/fixes/BlockEntityIdFix.java
-index 60f3ea4779fdca0209ff30147f3b2f485f441aec..03d91fe0ac4a59800cb456391f31c20a1517882b 100644
 --- a/net/minecraft/util/datafix/fixes/BlockEntityIdFix.java
 +++ b/net/minecraft/util/datafix/fixes/BlockEntityIdFix.java
-@@ -10,7 +10,7 @@ import com.mojang.datafixers.types.templates.TaggedChoice.TaggedChoiceType;
+@@ -10,7 +_,7 @@
  import java.util.Map;
  
  public class BlockEntityIdFix extends DataFix {
@@ -17,7 +9,7 @@ index 60f3ea4779fdca0209ff30147f3b2f485f441aec..03d91fe0ac4a59800cb456391f31c20a
        map.put("Airportal", "minecraft:end_portal");
        map.put("Banner", "minecraft:banner");
        map.put("Beacon", "minecraft:beacon");
-@@ -43,8 +43,8 @@ public class BlockEntityIdFix extends DataFix {
+@@ -43,8 +_,8 @@
     public TypeRewriteRule makeRule() {
        Type<?> oldItemStackType = this.getInputSchema().getType(References.ITEM_STACK);
        Type<?> newItemStackType = this.getOutputSchema().getType(References.ITEM_STACK);

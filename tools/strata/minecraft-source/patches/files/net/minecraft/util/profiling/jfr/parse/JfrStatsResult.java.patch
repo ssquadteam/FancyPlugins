@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/profiling/jfr/parse/JfrStatsResult.java b/net/minecraft/util/profiling/jfr/parse/JfrStatsResult.java
-index 7d9119e2c908d45b3d6aa754cd7fb15daaef7315..6ac26a5f0e2835d197191cb0558aec120dc0de73 100644
 --- a/net/minecraft/util/profiling/jfr/parse/JfrStatsResult.java
 +++ b/net/minecraft/util/profiling/jfr/parse/JfrStatsResult.java
-@@ -44,16 +44,16 @@ public record JfrStatsResult(
+@@ -44,16 +_,16 @@
     List<StructureGenStat> structureGenStats
  ) {
     public List<Pair<ChunkStatus, TimedStatSummary<ChunkGenStat>>> chunkGenSummary() {

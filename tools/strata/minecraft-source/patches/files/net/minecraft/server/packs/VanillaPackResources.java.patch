@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/packs/VanillaPackResources.java b/net/minecraft/server/packs/VanillaPackResources.java
-index 7c011bcc7128a0967ee063b7844ec7bac4ea1ed6..c9b463acee6437873b97adb4eb6b1b23dd693daf 100644
 --- a/net/minecraft/server/packs/VanillaPackResources.java
 +++ b/net/minecraft/server/packs/VanillaPackResources.java
-@@ -63,7 +63,7 @@ public class VanillaPackResources implements PackResources {
+@@ -63,7 +_,7 @@
        FileUtil.decomposePath(resource.getPath()).ifSuccess(decomposedPath -> {
           String namespace = resource.getNamespace();
  
@@ -17,7 +9,7 @@ index 7c011bcc7128a0967ee063b7844ec7bac4ea1ed6..c9b463acee6437873b97adb4eb6b1b23
              Path namespacedPath = typePath.resolve(namespace);
              output.accept(FileUtil.resolvePath(namespacedPath, decomposedPath));
           }
-@@ -105,7 +105,7 @@ public class VanillaPackResources implements PackResources {
+@@ -105,7 +_,7 @@
        return (IoSupplier<InputStream>)FileUtil.decomposePath(location.getPath()).mapOrElse(decomposedPath -> {
           String namespace = location.getNamespace();
  

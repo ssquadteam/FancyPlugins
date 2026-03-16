@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder.java b/net/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder.java
-index cfc139f44ecbe5af208db25357425f4665965774..83c737b61f1645f5e21069c4a022745990297c9e 100644
 --- a/net/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder.java
 +++ b/net/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder.java
-@@ -216,9 +216,7 @@ public class BehaviorBuilder<E extends LivingEntity, M> implements App<BehaviorB
+@@ -216,9 +_,7 @@
        }
  
        public <T, R> BehaviorBuilder<E, R> map(final Function<? super T, ? extends R> func, final App<BehaviorBuilder.Mu<E>, T> ts) {
@@ -19,7 +11,7 @@ index cfc139f44ecbe5af208db25357425f4665965774..83c737b61f1645f5e21069c4a0227459
           return BehaviorBuilder.create(new BehaviorBuilder.TriggerWithResult<E, R>() {
              {
                 Objects.requireNonNull(Instance.this);
-@@ -249,8 +247,8 @@ public class BehaviorBuilder<E extends LivingEntity, M> implements App<BehaviorB
+@@ -249,8 +_,8 @@
        public <A, B, R> BehaviorBuilder<E, R> ap2(
           final App<BehaviorBuilder.Mu<E>, BiFunction<A, B, R>> func, final App<BehaviorBuilder.Mu<E>, A> a, final App<BehaviorBuilder.Mu<E>, B> b
        ) {
@@ -30,7 +22,7 @@ index cfc139f44ecbe5af208db25357425f4665965774..83c737b61f1645f5e21069c4a0227459
           final BehaviorBuilder.TriggerWithResult<E, BiFunction<A, B, R>> fTrigger = BehaviorBuilder.get(func);
           return BehaviorBuilder.create(new BehaviorBuilder.TriggerWithResult<E, R>() {
              {
-@@ -299,15 +297,9 @@ public class BehaviorBuilder<E extends LivingEntity, M> implements App<BehaviorB
+@@ -299,15 +_,9 @@
           final App<BehaviorBuilder.Mu<E>, T2> t2,
           final App<BehaviorBuilder.Mu<E>, T3> t3
        ) {
@@ -49,7 +41,7 @@ index cfc139f44ecbe5af208db25357425f4665965774..83c737b61f1645f5e21069c4a0227459
           final BehaviorBuilder.TriggerWithResult<E, Function3<T1, T2, T3, R>> fTrigger = BehaviorBuilder.get(func);
           return BehaviorBuilder.create(new BehaviorBuilder.TriggerWithResult<E, R>() {
              {
-@@ -363,18 +355,10 @@ public class BehaviorBuilder<E extends LivingEntity, M> implements App<BehaviorB
+@@ -363,18 +_,10 @@
           final App<BehaviorBuilder.Mu<E>, T3> t3,
           final App<BehaviorBuilder.Mu<E>, T4> t4
        ) {

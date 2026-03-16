@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/network/protocol/configuration/ClientboundUpdateEnabledFeaturesPacket.java b/net/minecraft/network/protocol/configuration/ClientboundUpdateEnabledFeaturesPacket.java
-index 129351d4358b9631de234c51605bddbebdc65226..2abb882c608d904bd51bdfc4dce41b6563512795 100644
 --- a/net/minecraft/network/protocol/configuration/ClientboundUpdateEnabledFeaturesPacket.java
 +++ b/net/minecraft/network/protocol/configuration/ClientboundUpdateEnabledFeaturesPacket.java
-@@ -14,7 +14,7 @@ public record ClientboundUpdateEnabledFeaturesPacket(Set<Identifier> features) i
+@@ -14,7 +_,7 @@
     );
  
     private ClientboundUpdateEnabledFeaturesPacket(final FriendlyByteBuf input) {

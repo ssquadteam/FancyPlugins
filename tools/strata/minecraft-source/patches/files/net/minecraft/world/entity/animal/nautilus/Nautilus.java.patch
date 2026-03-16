@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/animal/nautilus/Nautilus.java b/net/minecraft/world/entity/animal/nautilus/Nautilus.java
-index 5c2a37c8acb16a3abd5eb1613fabb8cd537e1f23..30ad503b397ab61d5553e2ff3b457b5a34f47ae0 100644
 --- a/net/minecraft/world/entity/animal/nautilus/Nautilus.java
 +++ b/net/minecraft/world/entity/animal/nautilus/Nautilus.java
-@@ -35,7 +35,7 @@ public class Nautilus extends AbstractNautilus {
+@@ -35,7 +_,7 @@
  
     @Override
     public Brain<Nautilus> getBrain() {

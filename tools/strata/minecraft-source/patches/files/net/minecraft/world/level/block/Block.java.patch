@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/level/block/Block.java b/net/minecraft/world/level/block/Block.java
-index 040e62c14396869629f5c2220c84640835a931c2..efd401102ed460909b51cbf5fe22c7132588d2a8 100644
 --- a/net/minecraft/world/level/block/Block.java
 +++ b/net/minecraft/world/level/block/Block.java
-@@ -581,7 +581,7 @@ public class Block extends BlockBehaviour implements ItemLike {
+@@ -581,7 +_,7 @@
     }
  
     protected Function<BlockState, VoxelShape> getShapeForEachState(final Function<BlockState, VoxelShape> shapeCalculator) {
@@ -17,7 +9,7 @@ index 040e62c14396869629f5c2220c84640835a931c2..efd401102ed460909b51cbf5fe22c713
     }
  
     protected Function<BlockState, VoxelShape> getShapeForEachState(
-@@ -604,7 +604,7 @@ public class Block extends BlockBehaviour implements ItemLike {
+@@ -604,7 +_,7 @@
     }
  
     private static <S extends StateHolder<?, S>, T extends Comparable<T>> S setValueHelper(final S state, final Property<T> property, final Object value) {

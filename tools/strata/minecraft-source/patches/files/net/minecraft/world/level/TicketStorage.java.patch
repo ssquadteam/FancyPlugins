@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/level/TicketStorage.java b/net/minecraft/world/level/TicketStorage.java
-index 9a1fa183c1c1caca9916f9cb1be67e1ed41bc64e..40360e13eab46695b9d86ac5c21573510f385fae 100644
 --- a/net/minecraft/world/level/TicketStorage.java
 +++ b/net/minecraft/world/level/TicketStorage.java
-@@ -90,7 +90,7 @@ public class TicketStorage extends SavedData {
+@@ -90,7 +_,7 @@
           Entry<List<Ticket>> entry = (Entry<List<Ticket>>)var2.next();
           ChunkPos chunkPos = ChunkPos.unpack(entry.getLongKey());
  
@@ -17,7 +9,7 @@ index 9a1fa183c1c1caca9916f9cb1be67e1ed41bc64e..40360e13eab46695b9d86ac5c2157351
              output.accept(chunkPos, ticket);
           }
        }
-@@ -102,7 +102,7 @@ public class TicketStorage extends SavedData {
+@@ -102,7 +_,7 @@
        while (var1.hasNext()) {
           Entry<List<Ticket>> entry = (Entry<List<Ticket>>)var1.next();
  
@@ -26,7 +18,7 @@ index 9a1fa183c1c1caca9916f9cb1be67e1ed41bc64e..40360e13eab46695b9d86ac5c2157351
              this.addTicket(entry.getLongKey(), ticket);
           }
        }
-@@ -376,7 +376,7 @@ public class TicketStorage extends SavedData {
+@@ -376,7 +_,7 @@
        while (var4.hasNext()) {
           Entry<List<Ticket>> entry = (Entry<List<Ticket>>)var4.next();
  
@@ -35,7 +27,7 @@ index 9a1fa183c1c1caca9916f9cb1be67e1ed41bc64e..40360e13eab46695b9d86ac5c2157351
              if (ticket.getType() == ticketType) {
                 affectedTickets.add(Pair.of(ticket, entry.getLongKey()));
              }
-@@ -408,7 +408,7 @@ public class TicketStorage extends SavedData {
+@@ -408,7 +_,7 @@
        while (var3.hasNext()) {
           Entry<List<Ticket>> entry = (Entry<List<Ticket>>)var3.next();
  

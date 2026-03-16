@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/animal/happyghast/HappyGhastAi.java b/net/minecraft/world/entity/animal/happyghast/HappyGhastAi.java
-index b0a805ea3934b8483ea7d30e482d52ddcda93ed2..3bb5afe7b8b331dd1e2272855dbd3519bc16d7b6 100644
 --- a/net/minecraft/world/entity/animal/happyghast/HappyGhastAi.java
 +++ b/net/minecraft/world/entity/animal/happyghast/HappyGhastAi.java
-@@ -36,8 +36,8 @@ public class HappyGhastAi {
+@@ -36,8 +_,8 @@
           Activity.CORE,
           0,
           ImmutableList.of(

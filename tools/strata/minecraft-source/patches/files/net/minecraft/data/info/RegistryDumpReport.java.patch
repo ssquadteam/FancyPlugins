@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/data/info/RegistryDumpReport.java b/net/minecraft/data/info/RegistryDumpReport.java
-index 4c020f15df15704bbe635d9575fdef5917e3a6df..ea502d1f2d38145e1af40ea9185a508d32154ac8 100644
 --- a/net/minecraft/data/info/RegistryDumpReport.java
 +++ b/net/minecraft/data/info/RegistryDumpReport.java
-@@ -34,7 +34,7 @@ public class RegistryDumpReport implements DataProvider {
+@@ -34,7 +_,7 @@
           result.addProperty("default", defaultKey.toString());
        }
  

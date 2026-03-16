@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/nbt/NbtUtils.java b/net/minecraft/nbt/NbtUtils.java
-index 3cd6eaac1eb27cfa91b6767da9d8538fa9295d60..3e7d5c954b97ddfaa8d31731304b98bef17ab753 100644
 --- a/net/minecraft/nbt/NbtUtils.java
 +++ b/net/minecraft/nbt/NbtUtils.java
-@@ -40,10 +40,10 @@ import org.jspecify.annotations.Nullable;
+@@ -40,10 +_,10 @@
  import org.slf4j.Logger;
  
  public final class NbtUtils {
@@ -21,7 +13,7 @@ index 3cd6eaac1eb27cfa91b6767da9d8538fa9295d60..3e7d5c954b97ddfaa8d31731304b98be
        .thenComparingDouble(list -> list.getDoubleOr(0, 0.0))
        .thenComparingDouble(list -> list.getDoubleOr(2, 0.0));
     private static final Codec<ResourceKey<Block>> BLOCK_NAME_CODEC = ResourceKey.codec(Registries.BLOCK);
-@@ -142,7 +142,7 @@ public final class NbtUtils {
+@@ -142,7 +_,7 @@
     ) {
        Optional<T> value = properties.getString(key).flatMap(property::getValue);
        if (value.isPresent()) {
@@ -30,7 +22,7 @@ index 3cd6eaac1eb27cfa91b6767da9d8538fa9295d60..3e7d5c954b97ddfaa8d31731304b98be
        } else {
           LOGGER.warn("Unable to read property: {} with value: {} for blockstate: {}", new Object[]{key, properties.get(key), tag});
           return result;
-@@ -415,7 +415,7 @@ public final class NbtUtils {
+@@ -415,7 +_,7 @@
     @VisibleForTesting
     static CompoundTag unpackStructureTemplate(final CompoundTag template) {
        ListTag packedPalette = template.getListOrEmpty("palette");

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/packs/resources/ResourceMetadata.java b/net/minecraft/server/packs/resources/ResourceMetadata.java
-index ad177e34473c300f29c70ed921fd592dcf932997..07247f657822b92eebbf98e94052ab2f8ba47a4e 100644
 --- a/net/minecraft/server/packs/resources/ResourceMetadata.java
 +++ b/net/minecraft/server/packs/resources/ResourceMetadata.java
-@@ -74,7 +74,7 @@ public interface ResourceMetadata {
+@@ -74,7 +_,7 @@
     }
  
     default List<MetadataSectionType.WithValue<?>> getTypedSections(final Collection<MetadataSectionType<?>> types) {
@@ -17,7 +9,7 @@ index ad177e34473c300f29c70ed921fd592dcf932997..07247f657822b92eebbf98e94052ab2f
           .map(this::getTypedSection)
           .flatMap(Optional::stream)
           .collect(Collectors.toUnmodifiableList());
-@@ -89,7 +89,7 @@ public interface ResourceMetadata {
+@@ -89,7 +_,7 @@
  
        @Override
        public <T> Optional<T> getSection(final MetadataSectionType<T> serializer) {

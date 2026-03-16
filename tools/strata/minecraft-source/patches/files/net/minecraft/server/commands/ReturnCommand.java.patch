@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/server/commands/ReturnCommand.java b/net/minecraft/server/commands/ReturnCommand.java
-index 27a654732ec1bc0098b37400ef137908d9c0655b..0abe710c1eb12459319df3d8d58dd89399988ccf 100644
 --- a/net/minecraft/server/commands/ReturnCommand.java
 +++ b/net/minecraft/server/commands/ReturnCommand.java
-@@ -19,11 +19,14 @@ import net.minecraft.commands.execution.tasks.FallthroughTask;
+@@ -19,11 +_,14 @@
  public class ReturnCommand {
     public static <T extends ExecutionCommandSource<T>> void register(final CommandDispatcher<T> dispatcher) {
        dispatcher.register(

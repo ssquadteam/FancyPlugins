@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/ai/behavior/InteractWith.java b/net/minecraft/world/entity/ai/behavior/InteractWith.java
-index 28d06a8ff682e798e0c8a2c7755af3a93fe9a85f..db658fab7239ffe2f031c383376a338b6a45a709 100644
 --- a/net/minecraft/world/entity/ai/behavior/InteractWith.java
 +++ b/net/minecraft/world/entity/ai/behavior/InteractWith.java
-@@ -30,7 +30,7 @@ public class InteractWith {
+@@ -30,7 +_,7 @@
        final int stopDistance
     ) {
        int interactionRangeSqr = interactionRange * interactionRange;
@@ -17,7 +9,7 @@ index 28d06a8ff682e798e0c8a2c7755af3a93fe9a85f..db658fab7239ffe2f031c383376a338b
        return BehaviorBuilder.create(
           i -> i.group(
                 i.registered(interactionTarget),
-@@ -43,7 +43,7 @@ public class InteractWith {
+@@ -43,7 +_,7 @@
                 if (selfFilter.test(body) && entities.contains(isTargetValid)) {
                    Optional<LivingEntity> closest = entities.findClosest(mob -> mob.distanceToSqr(body) <= interactionRangeSqr && isTargetValid.test(mob));
                    closest.ifPresent(mob -> {

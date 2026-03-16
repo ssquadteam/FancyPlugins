@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java b/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java
-index cda045edeadcd1ebe6962db638947eecf93ba2b1..ec13c44d898f90bd2c6b83cc16e56423d443be8d 100644
 --- a/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java
 +++ b/net/minecraft/util/datafix/fixes/ChunkProtoTickListFix.java
-@@ -134,7 +134,7 @@ public class ChunkProtoTickListFix extends DataFix {
+@@ -134,7 +_,7 @@
           Supplier<ChunkProtoTickListFix.PoorMansPalettedContainer> container = (Supplier<ChunkProtoTickListFix.PoorMansPalettedContainer>)palettedContainers.get(
              sectionY
           );
@@ -17,7 +9,7 @@ index cda045edeadcd1ebe6962db638947eecf93ba2b1..ec13c44d898f90bd2c6b83cc16e56423
              .asStream()
              .mapToInt(pos -> pos.asShort((short)-1))
              .filter(pos -> pos > 0)
-@@ -182,7 +182,7 @@ public class ChunkProtoTickListFix extends DataFix {
+@@ -182,7 +_,7 @@
           container != null ? ((ChunkProtoTickListFix.PoorMansPalettedContainer)container.get()).get(relativeX, relativeY, relativeZ) : null
        );
        return tag.createMap(

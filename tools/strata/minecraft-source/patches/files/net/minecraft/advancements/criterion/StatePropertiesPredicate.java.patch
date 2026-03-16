@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/advancements/criterion/StatePropertiesPredicate.java b/net/minecraft/advancements/criterion/StatePropertiesPredicate.java
-index 6e18be34816e9f44dc79d5ce19f9272a0f45afbc..490c516fcc10045edb3a4045c7649e31c7b6e6a3 100644
 --- a/net/minecraft/advancements/criterion/StatePropertiesPredicate.java
 +++ b/net/minecraft/advancements/criterion/StatePropertiesPredicate.java
-@@ -106,7 +106,7 @@ public record StatePropertiesPredicate(List<StatePropertiesPredicate.PropertyMat
+@@ -106,7 +_,7 @@
        public <T extends Comparable<T>> boolean match(final StateHolder<?, ?> state, final Property<T> property) {
           T actualValue = state.getValue(property);
           Optional<T> typedExpected = property.getValue(this.value);
@@ -17,7 +9,7 @@ index 6e18be34816e9f44dc79d5ce19f9272a0f45afbc..490c516fcc10045edb3a4045c7649e31
        }
     }
  
-@@ -151,14 +151,14 @@ public record StatePropertiesPredicate(List<StatePropertiesPredicate.PropertyMat
+@@ -151,14 +_,14 @@
           T value = state.getValue(property);
           if (this.minValue.isPresent()) {
              Optional<T> typedMinValue = property.getValue((String)this.minValue.get());

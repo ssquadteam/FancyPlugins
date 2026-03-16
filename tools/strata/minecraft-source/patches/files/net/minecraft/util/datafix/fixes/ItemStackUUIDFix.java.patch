@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/ItemStackUUIDFix.java b/net/minecraft/util/datafix/fixes/ItemStackUUIDFix.java
-index d2ee7065ecb308d104b1ecbd95272a64e2efeda0..b6263938b816e5b769ec82c549a7bd26be9d197b 100644
 --- a/net/minecraft/util/datafix/fixes/ItemStackUUIDFix.java
 +++ b/net/minecraft/util/datafix/fixes/ItemStackUUIDFix.java
-@@ -31,7 +31,7 @@ public class ItemStackUUIDFix extends AbstractUUIDFix {
+@@ -31,7 +_,7 @@
     private Dynamic<?> updateAttributeModifiers(final Dynamic<?> tag) {
        return tag.update(
           "AttributeModifiers",

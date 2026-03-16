@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/monster/piglin/PiglinAi.java b/net/minecraft/world/entity/monster/piglin/PiglinAi.java
-index 1ebe2954e369387d82fbe1031e659d68315749d5..5025c16d58f08b378e765a206326a65d2b3520a7 100644
 --- a/net/minecraft/world/entity/monster/piglin/PiglinAi.java
 +++ b/net/minecraft/world/entity/monster/piglin/PiglinAi.java
-@@ -59,6 +59,7 @@ import net.minecraft.world.entity.ai.behavior.StopAttackingIfTargetInvalid;
+@@ -59,6 +_,7 @@
  import net.minecraft.world.entity.ai.behavior.StopBeingAngryIfTargetDead;
  import net.minecraft.world.entity.ai.behavior.TriggerGate;
  import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
@@ -16,7 +8,7 @@ index 1ebe2954e369387d82fbe1031e659d68315749d5..5025c16d58f08b378e765a206326a65d
  import net.minecraft.world.entity.ai.memory.MemoryModuleType;
  import net.minecraft.world.entity.ai.sensing.Sensor;
  import net.minecraft.world.entity.ai.util.LandRandomPos;
-@@ -180,7 +181,7 @@ public class PiglinAi {
+@@ -180,7 +_,7 @@
              new SpearAttack(1.0, 1.0, 2.0F),
              new SpearRetreat(1.0),
              MeleeAttack.create(20),
@@ -25,7 +17,7 @@ index 1ebe2954e369387d82fbe1031e659d68315749d5..5025c16d58f08b378e765a206326a65d
              RememberIfHoglinWasKilled.create(),
              EraseMemoryIf.create(PiglinAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)
           ),
-@@ -200,7 +201,7 @@ public class PiglinAi {
+@@ -200,7 +_,7 @@
                 body -> body instanceof Piglin && !body.isDancing(), GoToTargetLocation.create(MemoryModuleType.CELEBRATE_LOCATION, 2, 1.0F)
              ),
              BehaviorBuilder.triggerIf(Piglin::isDancing, GoToTargetLocation.create(MemoryModuleType.CELEBRATE_LOCATION, 4, 0.6F)),
@@ -34,7 +26,7 @@ index 1ebe2954e369387d82fbe1031e659d68315749d5..5025c16d58f08b378e765a206326a65d
                 ImmutableList.of(
                    Pair.of(SetEntityLookTarget.create(EntityType.PIGLIN, 8.0F), 1),
                    Pair.of(RandomStroll.stroll(0.6F, 2, 1), 1),
-@@ -249,7 +250,7 @@ public class PiglinAi {
+@@ -249,7 +_,7 @@
              BehaviorBuilder.sequence(
                 BehaviorBuilder.triggerIf(Entity::isPassenger),
                 TriggerGate.triggerOneShuffled(
@@ -43,7 +35,7 @@ index 1ebe2954e369387d82fbe1031e659d68315749d5..5025c16d58f08b378e765a206326a65d
                 )
              ),
              DismountOrSkipMounting.create(8, PiglinAi::wantsToStopRiding)
-@@ -267,7 +268,7 @@ public class PiglinAi {
+@@ -267,7 +_,7 @@
     }
  
     private static RunOne<LivingEntity> createIdleLookBehaviors() {

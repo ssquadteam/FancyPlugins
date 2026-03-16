@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/entity/ai/sensing/SensorType.java b/net/minecraft/world/entity/ai/sensing/SensorType.java
-index 2e4f7e3c4bf731826278094e0a1593b102ffc6d0..0a36a345d2b0dfd13b6cfd9be2c560055061c4db 100644
 --- a/net/minecraft/world/entity/ai/sensing/SensorType.java
 +++ b/net/minecraft/world/entity/ai/sensing/SensorType.java
-@@ -24,7 +24,7 @@ public class SensorType<U extends Sensor<?>> {
+@@ -24,7 +_,7 @@
     public static final SensorType<SecondaryPoiSensor> SECONDARY_POIS = register("secondary_pois", SecondaryPoiSensor::new);
     public static final SensorType<GolemSensor> GOLEM_DETECTED = register("golem_detected", GolemSensor::new);
     public static final SensorType<MobSensor<Armadillo>> ARMADILLO_SCARE_DETECTED = register(

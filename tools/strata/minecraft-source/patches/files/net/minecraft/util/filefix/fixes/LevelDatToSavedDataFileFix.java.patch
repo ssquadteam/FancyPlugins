@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/filefix/fixes/LevelDatToSavedDataFileFix.java b/net/minecraft/util/filefix/fixes/LevelDatToSavedDataFileFix.java
-index aecf3a2997b28352239c652e572b9ad6416bc9f1..791d13358cca2712c70e0a00ff0bc400ab2fa6ac 100644
 --- a/net/minecraft/util/filefix/fixes/LevelDatToSavedDataFileFix.java
 +++ b/net/minecraft/util/filefix/fixes/LevelDatToSavedDataFileFix.java
-@@ -147,7 +147,7 @@ public class LevelDatToSavedDataFileFix extends FileFix {
+@@ -147,7 +_,7 @@
     private static void extractWorldBorderToFile(final FileAccess<? extends CompressedNbt> targetFile, final Dynamic<?> content, final double divider) {
        OptionalDynamic<?> worldBorderTagOpt = content.get("world_border");
        if (!worldBorderTagOpt.result().isEmpty()) {

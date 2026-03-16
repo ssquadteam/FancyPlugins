@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/valueproviders/ClampedNormalInt.java b/net/minecraft/util/valueproviders/ClampedNormalInt.java
-index cb16a4eb24e4faa845071eb55b5fd2e4dd729b8a..2516847c3423e8dbf900867934f0e7c61c0c0dc2 100644
 --- a/net/minecraft/util/valueproviders/ClampedNormalInt.java
 +++ b/net/minecraft/util/valueproviders/ClampedNormalInt.java
-@@ -8,7 +8,7 @@ import net.minecraft.util.Mth;
+@@ -8,7 +_,7 @@
  import net.minecraft.util.RandomSource;
  
  public record ClampedNormalInt(float mean, float deviation, int minInclusive, int maxInclusive) implements IntProvider {

@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EntityPaintingMotiveFix.java b/net/minecraft/util/datafix/fixes/EntityPaintingMotiveFix.java
-index 29427699e29df95d40035c1ab121a257213fdfa4..4a2cff84f9e44910f1b500786379b1707ab5347f 100644
 --- a/net/minecraft/util/datafix/fixes/EntityPaintingMotiveFix.java
 +++ b/net/minecraft/util/datafix/fixes/EntityPaintingMotiveFix.java
-@@ -12,7 +12,7 @@ import java.util.Optional;
+@@ -12,7 +_,7 @@
  import net.minecraft.util.datafix.schemas.NamespacedSchema;
  
  public class EntityPaintingMotiveFix extends NamedEntityFix {

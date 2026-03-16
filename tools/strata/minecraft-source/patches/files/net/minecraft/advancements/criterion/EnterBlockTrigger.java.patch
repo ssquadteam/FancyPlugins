@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/advancements/criterion/EnterBlockTrigger.java b/net/minecraft/advancements/criterion/EnterBlockTrigger.java
-index 85f7428f9e01162938ec9dfe36a017584f5355a3..de857a5b7808f4e51578758646210d18075c622d 100644
 --- a/net/minecraft/advancements/criterion/EnterBlockTrigger.java
 +++ b/net/minecraft/advancements/criterion/EnterBlockTrigger.java
-@@ -24,7 +24,7 @@ public class EnterBlockTrigger extends SimpleCriterionTrigger<EnterBlockTrigger.
+@@ -24,7 +_,7 @@
  
     public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<Holder<Block>> block, Optional<StatePropertiesPredicate> state)
        implements SimpleCriterionTrigger.SimpleInstance {
@@ -17,7 +9,7 @@ index 85f7428f9e01162938ec9dfe36a017584f5355a3..de857a5b7808f4e51578758646210d18
              i -> i.group(
                    EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(EnterBlockTrigger.TriggerInstance::player),
                    BuiltInRegistries.BLOCK.holderByNameCodec().optionalFieldOf("block").forGetter(EnterBlockTrigger.TriggerInstance::block),
-@@ -35,10 +35,10 @@ public class EnterBlockTrigger extends SimpleCriterionTrigger<EnterBlockTrigger.
+@@ -35,10 +_,10 @@
           .validate(EnterBlockTrigger.TriggerInstance::validate);
  
        private static DataResult<EnterBlockTrigger.TriggerInstance> validate(final EnterBlockTrigger.TriggerInstance trigger) {

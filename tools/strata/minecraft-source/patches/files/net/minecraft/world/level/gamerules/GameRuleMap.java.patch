@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/level/gamerules/GameRuleMap.java b/net/minecraft/world/level/gamerules/GameRuleMap.java
-index fffb1c2eb073feb9c5b7c5a9fb3841f3b705f449..fef5a3b78213ec626d4dfed1c15fe811676b5b9e 100644
 --- a/net/minecraft/world/level/gamerules/GameRuleMap.java
 +++ b/net/minecraft/world/level/gamerules/GameRuleMap.java
-@@ -16,7 +16,7 @@ import net.minecraft.world.level.saveddata.SavedDataType;
+@@ -16,7 +_,7 @@
  import org.jspecify.annotations.Nullable;
  
  public final class GameRuleMap extends SavedData {

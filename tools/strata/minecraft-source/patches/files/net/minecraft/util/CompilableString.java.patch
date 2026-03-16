@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/CompilableString.java b/net/minecraft/util/CompilableString.java
-index 5ad87a6c4045271e1aedb963e54e54e891668e0c..59588e3f45ce3ff45ee5a23945dda37433924d0e 100644
 --- a/net/minecraft/util/CompilableString.java
 +++ b/net/minecraft/util/CompilableString.java
-@@ -19,7 +19,7 @@ public class CompilableString<T> {
+@@ -19,7 +_,7 @@
     }
  
     public static <T> Codec<CompilableString<T>> codec(final Function<String, DataResult<T>> compiler) {

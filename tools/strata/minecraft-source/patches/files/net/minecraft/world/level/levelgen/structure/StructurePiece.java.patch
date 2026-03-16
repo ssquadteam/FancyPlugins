@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/world/level/levelgen/structure/StructurePiece.java b/net/minecraft/world/level/levelgen/structure/StructurePiece.java
-index c61334360186cd090102d24cd71784d0d9096114..3da8beba6d22affd1791d13b36a763414ad96ae5 100644
 --- a/net/minecraft/world/level/levelgen/structure/StructurePiece.java
 +++ b/net/minecraft/world/level/levelgen/structure/StructurePiece.java
-@@ -42,7 +42,7 @@ public abstract class StructurePiece {
+@@ -42,7 +_,7 @@
     private Rotation rotation;
     protected int genDepth;
     private final StructurePieceType type;

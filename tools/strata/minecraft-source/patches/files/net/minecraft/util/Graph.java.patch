@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/Graph.java b/net/minecraft/util/Graph.java
-index f908c7d6c5235a4aa0f841ae7839472c4055ae51..e1ead3b1932fa4c56f626db11e87d2a794a18080 100644
 --- a/net/minecraft/util/Graph.java
 +++ b/net/minecraft/util/Graph.java
-@@ -19,7 +19,7 @@ public final class Graph {
+@@ -19,7 +_,7 @@
        } else {
           currentlyVisiting.add(current);
  

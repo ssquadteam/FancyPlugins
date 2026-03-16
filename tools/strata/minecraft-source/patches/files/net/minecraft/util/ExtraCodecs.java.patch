@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/ExtraCodecs.java b/net/minecraft/util/ExtraCodecs.java
-index 4824187ad0b3705560daf8471409db617b3721cb..3db48a5780f26d54cf7be34af81c061d3257e812 100644
 --- a/net/minecraft/util/ExtraCodecs.java
 +++ b/net/minecraft/util/ExtraCodecs.java
-@@ -277,23 +277,23 @@ public class ExtraCodecs {
+@@ -277,23 +_,23 @@
        final Function<I, P> getMin,
        final Function<I, P> getMax
     ) {
@@ -43,7 +35,7 @@ index 4824187ad0b3705560daf8471409db617b3721cb..3db48a5780f26d54cf7be34af81c061d
     }
  
     public static <A> ResultFunction<A> orElsePartial(final A value) {
-@@ -317,7 +317,7 @@ public class ExtraCodecs {
+@@ -317,7 +_,7 @@
     public static <E> Codec<E> idResolverCodec(final ToIntFunction<E> toInt, final IntFunction<@Nullable E> fromInt, final int unknownId) {
        return Codec.INT
           .flatXmap(
@@ -52,7 +44,7 @@ index 4824187ad0b3705560daf8471409db617b3721cb..3db48a5780f26d54cf7be34af81c061d
                 .map(DataResult::success)
                 .orElseGet(() -> DataResult.error(() -> "Unknown element id: " + id)),
              e -> {
-@@ -576,7 +576,7 @@ public class ExtraCodecs {
+@@ -576,7 +_,7 @@
              T typeName = (T)input.get(typeKey);
              return typeName == null ? DataResult.error(() -> "Missing \"" + typeKey + "\" in: " + input) : typeCodec.decode(ops, typeName).flatMap(type -> {
                 T value = (T)Objects.requireNonNullElseGet(input.get(valueKey), ops::emptyMap);
@@ -61,7 +53,7 @@ index 4824187ad0b3705560daf8471409db617b3721cb..3db48a5780f26d54cf7be34af81c061d
              });
           }
  
-@@ -592,7 +592,7 @@ public class ExtraCodecs {
+@@ -592,7 +_,7 @@
           }
  
           private <T, V2 extends V> DataResult<T> encode(final Codec<V2> codec, final V input, final DynamicOps<T> ops) {
@@ -70,7 +62,7 @@ index 4824187ad0b3705560daf8471409db617b3721cb..3db48a5780f26d54cf7be34af81c061d
           }
        };
     }
-@@ -620,7 +620,7 @@ public class ExtraCodecs {
+@@ -620,7 +_,7 @@
     public static <E extends Enum<E>> Codec<E> legacyEnum(final Function<String, E> valueOf) {
        return Codec.STRING.comapFlatMap(key -> {
           try {

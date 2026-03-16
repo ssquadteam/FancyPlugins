@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EntityEquipmentToArmorAndHandFix.java b/net/minecraft/util/datafix/fixes/EntityEquipmentToArmorAndHandFix.java
-index 28d7aeeead6a9bf01dab635e4fca5aa8062207f6..bfc04d5b4afe8d8561ad5ad04d7cf7949417fc63 100644
 --- a/net/minecraft/util/datafix/fixes/EntityEquipmentToArmorAndHandFix.java
 +++ b/net/minecraft/util/datafix/fixes/EntityEquipmentToArmorAndHandFix.java
-@@ -54,7 +54,7 @@ public class EntityEquipmentToArmorAndHandFix extends DataFix {
+@@ -54,7 +_,7 @@
                 oldEquipmentType,
                 newEquipmentType,
                 ops -> {
@@ -17,7 +9,7 @@ index 28d7aeeead6a9bf01dab635e4fca5aa8062207f6..bfc04d5b4afe8d8561ad5ad04d7cf794
                          .result()
                          .orElseThrow(() -> new IllegalStateException("Could not parse newly created empty itemstack.")))
                       .getFirst();
-@@ -64,14 +64,14 @@ public class EntityEquipmentToArmorAndHandFix extends DataFix {
+@@ -64,14 +_,14 @@
                       Either<List<ItemStackNew>, Unit> handItems = Either.right(DSL.unit());
                       Either<List<ItemStackNew>, Unit> armorItems = Either.right(DSL.unit());
                       if (!items.isEmpty()) {
@@ -35,7 +27,7 @@ index 28d7aeeead6a9bf01dab635e4fca5aa8062207f6..bfc04d5b4afe8d8561ad5ad04d7cf794
                          }
  
                          armorItems = Either.left(armor);
-@@ -89,7 +89,7 @@ public class EntityEquipmentToArmorAndHandFix extends DataFix {
+@@ -89,7 +_,7 @@
        Optional<? extends Stream<? extends Dynamic<?>>> dropChances = tag.get("DropChances").asStreamOpt().result();
        tag = tag.remove("DropChances");
        if (dropChances.isPresent()) {

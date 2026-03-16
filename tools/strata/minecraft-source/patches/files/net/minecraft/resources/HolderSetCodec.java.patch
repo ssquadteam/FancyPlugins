@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/resources/HolderSetCodec.java b/net/minecraft/resources/HolderSetCodec.java
-index 6b5e0c2b2519e319fb42e39c136b6355ee392851..5b7ed1d7d6445b2c6c8574a3d0586384256fbe89 100644
 --- a/net/minecraft/resources/HolderSetCodec.java
 +++ b/net/minecraft/resources/HolderSetCodec.java
-@@ -49,7 +49,7 @@ public class HolderSetCodec<E> implements Codec<HolderSet<E>> {
+@@ -49,7 +_,7 @@
                 .decode(ops, input)
                 .flatMap(
                    p -> {
@@ -17,7 +9,7 @@ index 6b5e0c2b2519e319fb42e39c136b6355ee392851..5b7ed1d7d6445b2c6c8574a3d0586384
                          .map(tag -> lookupTag(registry, tag), values -> DataResult.success(HolderSet.direct(values)));
                       return result.map(holders -> Pair.of(holders, p.getSecond()));
                    }
-@@ -61,8 +61,8 @@ public class HolderSetCodec<E> implements Codec<HolderSet<E>> {
+@@ -61,8 +_,8 @@
     }
  
     private static <E> DataResult<HolderSet<E>> lookupTag(final HolderGetter<E> registry, final TagKey<E> key) {
@@ -28,7 +20,7 @@ index 6b5e0c2b2519e319fb42e39c136b6355ee392851..5b7ed1d7d6445b2c6c8574a3d0586384
           .orElseGet(() -> DataResult.error(() -> "Missing tag: '" + key.location() + "' in '" + key.registry().identifier() + "'"));
     }
  
-@@ -85,7 +85,7 @@ public class HolderSetCodec<E> implements Codec<HolderSet<E>> {
+@@ -85,7 +_,7 @@
        return this.elementCodec.listOf().decode(ops, input).flatMap(p -> {
           List<Holder.Direct<E>> directHolders = new ArrayList();
  

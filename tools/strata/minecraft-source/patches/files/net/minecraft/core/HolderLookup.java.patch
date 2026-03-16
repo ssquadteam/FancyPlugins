@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/core/HolderLookup.java b/net/minecraft/core/HolderLookup.java
-index a53875a623679586d658123642b636eed53b93be..777c12bd110757c099704c132783b67bc8f18b6e 100644
 --- a/net/minecraft/core/HolderLookup.java
 +++ b/net/minecraft/core/HolderLookup.java
-@@ -42,11 +42,11 @@ public interface HolderLookup<T> extends HolderGetter<T> {
+@@ -42,11 +_,11 @@
        }
  
        default <V> RegistryOps<V> createSerializationContext(final DynamicOps<V> parent) {

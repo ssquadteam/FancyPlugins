@@ -1,14 +1,6 @@
-From 4ae198aa20a8bea0d0555a1787f4d957ef55d2fb Mon Sep 17 00:00:00 2001
-From: Strata <strata@fancyinnovations.com>
-Date: Thu, 12 Mar 2026 18:33:15 +0100
-Subject: [PATCH] Apply file patches
-
-
-diff --git a/net/minecraft/util/datafix/fixes/EntityRenameFix.java b/net/minecraft/util/datafix/fixes/EntityRenameFix.java
-index 50e9200e054db1b15b99f191997e7c10f1bf83a2..3204a55f21765693d2bc530ce1a08465268fcd3e 100644
 --- a/net/minecraft/util/datafix/fixes/EntityRenameFix.java
 +++ b/net/minecraft/util/datafix/fixes/EntityRenameFix.java
-@@ -22,8 +22,8 @@ public abstract class EntityRenameFix extends DataFix {
+@@ -22,8 +_,8 @@
     }
  
     public TypeRewriteRule makeRule() {
