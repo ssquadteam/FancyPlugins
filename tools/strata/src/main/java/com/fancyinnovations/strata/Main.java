@@ -38,7 +38,8 @@ public class Main {
         sleep(1000);
 
         // Apply patches
-        strata.getPatcherService().applyFilePatches(cacheDir+"/decompiled/"+latest.id(), gitDir, "tools/strata/minecraft-source/patches/files", "tools/strata/minecraft-source/patches/rejected-files");
+        String patchesDir = "tools/strata/minecraft-source/patches";
+        strata.getPatcherService().applyFilePatches(cacheDir+"/decompiled/"+latest.id(), gitDir, patchesDir+"/files", patchesDir+"/rejected-files");
         sleep(1000);
         strata.getWorkspaceService().gitCommit(gitDir, "Apply file patches");
         strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.FILE_PATCHES_TAG);
@@ -48,7 +49,7 @@ public class Main {
 
         // Rebuild patches
         // TODO refactor to different task
-        // strata.getPatcherService().rebuildFilePatches(cacheDir+"/decompiled/"+latest.id(), gitDir, "tools/strata/minecraft-source/patches/files");
+        // strata.getPatcherService().rebuildFilePatches(cacheDir+"/decompiled/"+latest.id(), gitDir, patchesDir+"/files");
     }
 
     /**
