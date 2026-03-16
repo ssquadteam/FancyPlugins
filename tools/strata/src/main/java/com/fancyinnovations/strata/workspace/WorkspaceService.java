@@ -147,7 +147,8 @@ public class WorkspaceService {
 
         // check if .git exists in the target directory, if not create it and run git init
         if (Files.exists(Paths.get(gitDir, ".git"))) {
-            strata.getLogger().info("Git repository already initialized in: " + gitDir);
+            gitResetHard(gitDir, INITIAL_TAG);
+            strata.getLogger().info("Git repository already exists in: " + gitDir + ", reset to initial tag");
             return;
         }
 
