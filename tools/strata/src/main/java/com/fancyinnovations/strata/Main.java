@@ -59,7 +59,7 @@ public class Main {
         Strata strata = new Strata("tools/strata/strata-cache");
         strata.init();
 
-        String version = "26.1-pre-2";
+        String version = "26.1-pre-3";
 
         PistonVersionDetails ver = strata.getMojangService().getVersion(version);
         strata.getMojangService().downloadServerBundle(ver);

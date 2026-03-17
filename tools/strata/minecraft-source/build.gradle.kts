@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation(fileTree("../strata-cache/server-libraries/libraries-26.1-pre-2") {
+    implementation(fileTree("../strata-cache/server-libraries/libraries-26.1-pre-3") {
         include("**/*.jar")
     })
 
