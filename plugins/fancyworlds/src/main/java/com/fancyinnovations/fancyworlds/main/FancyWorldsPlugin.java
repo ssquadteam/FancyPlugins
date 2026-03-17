@@ -9,6 +9,7 @@ import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWConfigCMD;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
 import com.fancyinnovations.fancyworlds.commands.other.SeedCMD;
 import com.fancyinnovations.fancyworlds.commands.types.FWorldCommandType;
+import com.fancyinnovations.fancyworlds.commands.types.GameruleCommandType;
 import com.fancyinnovations.fancyworlds.commands.world.*;
 import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
 import com.fancyinnovations.fancyworlds.listeners.WorldLoadListener;
@@ -29,6 +30,7 @@ import de.oliver.fancylib.versionFetcher.FancySpacesVersionFetcher;
 import de.oliver.fancylib.versionFetcher.VersionFetcher;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.Lamp;
 import revxrsal.commands.bukkit.BukkitLamp;
@@ -169,10 +171,12 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         // parameter types
         lampBuilder.parameterTypes(builder -> {
             builder.addParameterType(FWorld.class, FWorldCommandType.INSTANCE);
+            builder.addParameterType(GameRule.class, GameruleCommandType.INSTANCE);
         });
 
         // exception handlers
         lampBuilder.exceptionHandler(FWorldCommandType.INSTANCE);
+        lampBuilder.exceptionHandler(GameruleCommandType.INSTANCE);
 
         Lamp<BukkitCommandActor> lamp = lampBuilder.build();
 
@@ -189,6 +193,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         lamp.register(WorldTeleportCMD.INSTANCE);
         lamp.register(WorldLoadCMD.INSTANCE);
         lamp.register(WorldUnloadCMD.INSTANCE);
+        lamp.register(WorldGamerulesCMD.INSTANCE);
 
         // Other
         lamp.register(SeedCMD.INSTANCE);

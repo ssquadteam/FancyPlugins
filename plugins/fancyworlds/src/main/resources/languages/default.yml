@@ -2,6 +2,7 @@ language_name: default
 messages:
   common:
     world_not_found: "{errorColor}Could not find world {primaryColor}{worldName}{errorColor}."
+    gamerule_not_found: "{errorColor}Gamerule {primaryColor}{gameruleName}{errorColor} does not exist."
     world_not_loaded: "{errorColor}World {primaryColor}{worldName}{errorColor} is not loaded. Load it using {primaryColor}/world load {worldName}{errorColor}."
   commands:
     fancyworlds:
@@ -51,5 +52,14 @@ messages:
         players_in_world: "{errorColor}Cannot unload world {primaryColor}{worldName}{errorColor} because there are players currently in it."
         teleporting_players: "Teleporting {playerCount} player(s) from world {primaryColor}{worldName}{errorColor} to {primaryColor}{fallbackWorld}{secondaryColor} ..."
         failed: "{errorColor}Failed to unload world {primaryColor}{worldName}{errorColor}."
+      gamerules:
+        list:
+          header: "Gamerules for world {primaryColor}{worldName}{secondaryColor}:"
+          entry: "{secondaryColor} - {primaryColor}{gamerule}: {value} {secondaryColor}(default: {defaultValue})"
+        set:
+          success: "Successfully set gamerule {primaryColor}{gameruleName}{secondaryColor} to {primaryColor}{value}{secondaryColor} in world {primaryColor}{worldName}{secondaryColor}."
+          invalid_gamerule: "{errorColor}Gamerule {primaryColor}{gameruleName}{errorColor} does not exist in world {primaryColor}{worldName}{errorColor}."
+          invalid_value: "{errorColor}Invalid value {primaryColor}{value}{errorColor} for gamerrule {primaryColor}{gamerule}{errorColor}. Expected type: {expectedType}."
+          failed: "{errorColor}Failed to set gamerule {primaryColor}{gameruleName}{errorColor} in world {primaryColor}{worldName}{errorColor}."
     seed:
       result: "Seed for world {primaryColor}{worldName}{secondaryColor} is {primaryColor}{seed}{secondaryColor}. <click:copy_to_clipboard:'{seed}'><i>(click to copy)</i></click>"
