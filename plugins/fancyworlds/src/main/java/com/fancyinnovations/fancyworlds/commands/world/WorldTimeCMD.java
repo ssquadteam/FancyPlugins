@@ -105,4 +105,44 @@ public class WorldTimeCMD extends FancyContext {
                 .replace("time", String.valueOf(currentTime))
                 .send(actor.sender());
     }
+
+    @Command("day")
+    @Description("Sets the time of the world to day")
+    @CommandPermission("fancyworlds.commands.world.time.set")
+    public void setDay(
+            BukkitCommandActor actor,
+            @Flag @Optional FWorld world
+    ) {
+        set(actor, "day", world);
+    }
+
+    @Command("noon")
+    @Description("Sets the time of the world to noon")
+    @CommandPermission("fancyworlds.commands.world.time.set")
+    public void setNoon(
+            BukkitCommandActor actor,
+            @Flag @Optional FWorld world
+    ) {
+        set(actor, "noon", world);
+    }
+
+    @Command("night")
+    @Description("Sets the time of the world to night")
+    @CommandPermission("fancyworlds.commands.world.time.set")
+    public void setNight(
+            BukkitCommandActor actor,
+            @Flag @Optional FWorld world
+    ) {
+        set(actor, "night", world);
+    }
+
+    @Command("midnight")
+    @Description("Sets the time of the world to midnight")
+    @CommandPermission("fancyworlds.commands.world.time.set")
+    public void setMidnight(
+            BukkitCommandActor actor,
+            @Flag @Optional FWorld world
+    ) {
+        set(actor, "midnight", world);
+    }
 }
