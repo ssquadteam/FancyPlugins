@@ -61,5 +61,10 @@ messages:
           invalid_gamerule: "{errorColor}Gamerule {primaryColor}{gameruleName}{errorColor} does not exist in world {primaryColor}{worldName}{errorColor}."
           invalid_value: "{errorColor}Invalid value {primaryColor}{value}{errorColor} for gamerrule {primaryColor}{gamerule}{errorColor}. Expected type: {expectedType}."
           failed: "{errorColor}Failed to set gamerule {primaryColor}{gameruleName}{errorColor} in world {primaryColor}{worldName}{errorColor}."
+      time:
+        current: "Current time in world {primaryColor}{worldName}{secondaryColor} is {primaryColor}{time}{secondaryColor}."
+        set:
+          success: "Successfully set time to {primaryColor}{time}{secondaryColor} in world {primaryColor}{worldName}{secondaryColor}."
+          invalid_time: "{errorColor}Invalid time {primaryColor}{time}{errorColor}. Expected format: number or <day|noon|night|midnight>."
     seed:
       result: "Seed for world {primaryColor}{worldName}{secondaryColor} is {primaryColor}{seed}{secondaryColor}. <click:copy_to_clipboard:'{seed}'><i>(click to copy)</i></click>"
