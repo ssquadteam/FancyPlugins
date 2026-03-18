@@ -66,5 +66,5 @@ messages:
         set:
           success: "Successfully set time to {primaryColor}{time}{secondaryColor} in world {primaryColor}{worldName}{secondaryColor}."
           invalid_time: "{errorColor}Invalid time {primaryColor}{time}{errorColor}. Expected format: number or <day|noon|night|midnight>."
-    seed:
-      result: "Seed for world {primaryColor}{worldName}{secondaryColor} is {primaryColor}{seed}{secondaryColor}. <click:copy_to_clipboard:'{seed}'><i>(click to copy)</i></click>"
+      seed:
+        result: "Seed for world {primaryColor}{worldName}{secondaryColor} is {primaryColor}{seed}{secondaryColor}. <click:copy_to_clipboard:'{seed}'><i>(click to copy)</i></click>"

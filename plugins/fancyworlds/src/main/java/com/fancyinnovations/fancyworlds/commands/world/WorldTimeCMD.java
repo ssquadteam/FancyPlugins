@@ -13,7 +13,7 @@ public class WorldTimeCMD extends FancyContext {
     public static final WorldTimeCMD INSTANCE = new WorldTimeCMD();
 
     @Command({"world time set", "time set"})
-    @Description("Shows all gamerules of the world")
+    @Description("Sets the time of the world. You can use 'day', 'noon', 'night', 'midnight' or a specific time value.")
     @CommandPermission("fancyworlds.commands.world.time.set")
     public void set(
             BukkitCommandActor actor,

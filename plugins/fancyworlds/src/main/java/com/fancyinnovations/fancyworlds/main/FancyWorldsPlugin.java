@@ -7,7 +7,7 @@ import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWConfigCMD;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
-import com.fancyinnovations.fancyworlds.commands.other.SeedCMD;
+import com.fancyinnovations.fancyworlds.commands.world.SeedCMD;
 import com.fancyinnovations.fancyworlds.commands.types.FWorldCommandType;
 import com.fancyinnovations.fancyworlds.commands.types.GameruleCommandType;
 import com.fancyinnovations.fancyworlds.commands.world.*;
