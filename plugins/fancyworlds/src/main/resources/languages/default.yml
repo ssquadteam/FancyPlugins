@@ -52,6 +52,12 @@ messages:
         players_in_world: "{errorColor}Cannot unload world {primaryColor}{worldName}{errorColor} because there are players currently in it."
         teleporting_players: "Teleporting {playerCount} player(s) from world {primaryColor}{worldName}{errorColor} to {primaryColor}{fallbackWorld}{secondaryColor} ..."
         failed: "{errorColor}Failed to unload world {primaryColor}{worldName}{errorColor}."
+      delete:
+        world_is_loaded: "{errorColor}Cannot delete world {primaryColor}{worldName}{errorColor} because it is currently loaded. Unload it first using {primaryColor}/world unload {worldName}{errorColor}."
+        confirmation: "{warningColor}Are you sure you want to permanently delete world {primaryColor}{worldName}{warningColor}? This action cannot be undone."
+        cancelled: "Deletion of world {primaryColor}{worldName}{secondaryColor} cancelled."
+        failed: "{errorColor}Failed to delete world {primaryColor}{worldName}{errorColor}."
+        success: "Successfully deleted world {primaryColor}{worldName}{secondaryColor}."
       gamerules:
         list:
           header: "Gamerules for world {primaryColor}{worldName}{secondaryColor}:"

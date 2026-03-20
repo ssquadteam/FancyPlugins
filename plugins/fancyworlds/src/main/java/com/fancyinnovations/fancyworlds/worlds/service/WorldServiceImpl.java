@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WorldServiceImpl implements WorldService {
 
     private final WorldStorage storage;
-    private final Map<UUID, FWorld> cacheByID;
+    private final Map<String, FWorld> cacheByID;
     private final Map<String, FWorld> cacheByName;
 
     public WorldServiceImpl(WorldStorage storage) {
@@ -22,7 +22,7 @@ public class WorldServiceImpl implements WorldService {
 
         Collection<FWorld> allWorlds = storage.getAllWorlds();
         for (FWorld w : allWorlds) {
-            this.cacheByID.put(w.getID(), w);
+            this.cacheByID.put(w.getID().toString(), w);
             this.cacheByName.put(w.getName(), w);
         }
     }
@@ -31,7 +31,7 @@ public class WorldServiceImpl implements WorldService {
     public void registerWorld(FWorld world) {
         this.storage.storeWorld(world);
 
-        this.cacheByID.put(world.getID(), world);
+        this.cacheByID.put(world.getID().toString(), world);
         this.cacheByName.put(world.getName(), world);
     }
 
@@ -39,7 +39,7 @@ public class WorldServiceImpl implements WorldService {
     public void unregisterWorld(FWorld world) {
         this.storage.deleteWorld(world.getID().toString());
 
-        this.cacheByID.remove(world.getID());
+        this.cacheByID.remove(world.getID().toString());
         this.cacheByName.remove(world.getName());
     }
 

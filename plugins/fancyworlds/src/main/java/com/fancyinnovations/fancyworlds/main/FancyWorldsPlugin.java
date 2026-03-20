@@ -7,7 +7,6 @@ import com.fancyinnovations.fancyworlds.api.worlds.WorldService;
 import com.fancyinnovations.fancyworlds.api.worlds.WorldStorage;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWConfigCMD;
 import com.fancyinnovations.fancyworlds.commands.fancyworlds.FWVersionCMD;
-import com.fancyinnovations.fancyworlds.commands.world.SeedCMD;
 import com.fancyinnovations.fancyworlds.commands.types.FWorldCommandType;
 import com.fancyinnovations.fancyworlds.commands.types.GameruleCommandType;
 import com.fancyinnovations.fancyworlds.commands.world.*;
@@ -192,6 +191,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         lamp.register(WorldCreateCMD.INSTANCE);
         lamp.register(WorldTeleportCMD.INSTANCE);
         lamp.register(WorldLoadCMD.INSTANCE);
+        lamp.register(WorldDeleteCMD.INSTANCE);
         lamp.register(WorldUnloadCMD.INSTANCE);
         lamp.register(WorldGamerulesCMD.INSTANCE);
         lamp.register(WorldTimeCMD.INSTANCE);
