@@ -14,6 +14,10 @@ messages:
           confirmation: "{warningColor}Are you sure you want to reload the configuration? This will apply any changes made to the config file."
           success: "Configuration reloaded successfully."
           cancelled: "Configuration reload cancelled."
+        show:
+          settings_header: "FancyWorlds settings:"
+          experimental_header: "FancyWorlds experimental features:"
+          entry: "{secondaryColor} - {path}: {primaryColor}{value} {secondaryColor}(default: {default})"
     world:
       help:
         header: "FancyWorlds Commands (Page {currentPage}/{totalPages}):"
