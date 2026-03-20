@@ -196,6 +196,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         lamp.register(WorldGamerulesCMD.INSTANCE);
         lamp.register(WorldTimeCMD.INSTANCE);
         lamp.register(WorldSetSpawnCMD.INSTANCE);
+        lamp.register(WorldDifficultyCMD.INSTANCE);
 
         // Other
         lamp.register(WorldSeedCMD.INSTANCE);
