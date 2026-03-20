@@ -74,3 +74,5 @@ messages:
           invalid_time: "{errorColor}Invalid time {primaryColor}{time}{errorColor}. Expected format: number or <day|noon|night|midnight>."
       seed:
         result: "Seed for world {primaryColor}{worldName}{secondaryColor} is {primaryColor}{seed}{secondaryColor}. <click:copy_to_clipboard:'{seed}'><i>(click to copy)</i></click>"
+      set_spawn:
+        success: "Successfully set spawn point for world {primaryColor}{worldName}{secondaryColor} to {location}."
