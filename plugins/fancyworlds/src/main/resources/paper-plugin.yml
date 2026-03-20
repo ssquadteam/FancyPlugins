@@ -8,7 +8,7 @@ website: "https://fancyinnovations.com/docs/minecraft-plugins/fancyworlds"
 authors:
   - "OliverSchlueter"
 api-version: "1.21"
-load: STARTUP
+load: POSTWORLD
 dependencies:
   server:
     FancyDialogs:

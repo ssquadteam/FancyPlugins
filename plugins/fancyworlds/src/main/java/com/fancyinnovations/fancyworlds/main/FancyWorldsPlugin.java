@@ -13,8 +13,9 @@ import com.fancyinnovations.fancyworlds.commands.world.*;
 import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
 import com.fancyinnovations.fancyworlds.listeners.WorldLoadListener;
 import com.fancyinnovations.fancyworlds.listeners.WorldUnloadListener;
+import com.fancyinnovations.fancyworlds.worlds.FWorldImpl;
 import com.fancyinnovations.fancyworlds.worlds.service.WorldServiceImpl;
-import com.fancyinnovations.fancyworlds.worlds.storage.fake.FakeWorldStorage;
+import com.fancyinnovations.fancyworlds.worlds.storage.json.JsonWorldStorage;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import de.oliver.fancyanalytics.logger.LogLevel;
 import de.oliver.fancyanalytics.logger.appender.Appender;
@@ -30,6 +31,7 @@ import de.oliver.fancylib.versionFetcher.VersionFetcher;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
+import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.Lamp;
 import revxrsal.commands.bukkit.BukkitLamp;
@@ -109,7 +111,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         registerTranslator();
 
         // Services
-        worldStorage = new FakeWorldStorage();
+        worldStorage = new JsonWorldStorage();
         worldService = new WorldServiceImpl(worldStorage);
 
         fancyLogger.info("Successfully loaded FancyWorlds version %s".formatted(getDescription().getVersion()));
@@ -148,6 +150,18 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
                 return;
             }
         }, 20L * 20); // 20s
+
+        for (FWorld world : worldService.getAllWorlds()) {
+            if (world.isWorldLoaded()) {
+                continue;
+            }
+
+            fancyLogger.info("Loading world %s...".formatted(world.getName()));
+
+            FWorldImpl impl = (FWorldImpl) world;
+            World bukkitWorld = impl.toWorldCreator().createWorld();
+            impl.setBukkitWorld(bukkitWorld);
+        }
 
         registerCommands();
 
