@@ -56,7 +56,6 @@ dependencies {
     compileOnly("org.lushplugins:ChatColorHandler:6.0.4")
     compileOnly("com.viaversion:viaversion-api:5.7.1")
     compileOnly("org.geysermc.floodgate:api:2.2.4-SNAPSHOT")
-    compileOnly("org.geysermc.geyser:api:2.9.0-SNAPSHOT")
 }
 
 paper {

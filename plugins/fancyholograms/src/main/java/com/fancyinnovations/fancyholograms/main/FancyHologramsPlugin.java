@@ -54,7 +54,6 @@ import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.geysermc.geyser.api.GeyserApi;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.Lamp;
@@ -339,7 +338,7 @@ public class FancyHologramsPlugin extends JavaPlugin implements FancyHolograms {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new WorldLoadedListener(), this);
 
-        if (Set.of("1.21.4", "1.21.5", "1.21.6").contains(Bukkit.getMinecraftVersion())) {
+        if (Set.of("1.21.4", "1.21.5", "1.21.6", "1.21.7", "1.21.8", "1.21.9", "1.21.10", "1.21.11", "26.1").contains(Bukkit.getMinecraftVersion())) {
             getServer().getPluginManager().registerEvents(new PlayerLoadedListener(), this);
         }
 
@@ -348,9 +347,7 @@ public class FancyHologramsPlugin extends JavaPlugin implements FancyHolograms {
         }
 
         if (PluginUtils.isFloodgateEnabled()) {
-            FancyHologramsGeyserPlugin geyserPlugin = new FancyHologramsGeyserPlugin();
             getServer().getPluginManager().registerEvents(new BedrockPlayerListener(), this);
-            GeyserApi.api().eventBus().register(geyserPlugin, new BedrockPlayerListener());
         }
     }
 
