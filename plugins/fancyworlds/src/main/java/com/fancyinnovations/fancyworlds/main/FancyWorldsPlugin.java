@@ -13,6 +13,7 @@ import com.fancyinnovations.fancyworlds.commands.world.*;
 import com.fancyinnovations.fancyworlds.config.FancyWorldsConfigImpl;
 import com.fancyinnovations.fancyworlds.listeners.WorldLoadListener;
 import com.fancyinnovations.fancyworlds.listeners.WorldUnloadListener;
+import com.fancyinnovations.fancyworlds.metrics.FWMetrics;
 import com.fancyinnovations.fancyworlds.worlds.FWorldImpl;
 import com.fancyinnovations.fancyworlds.worlds.service.WorldServiceImpl;
 import com.fancyinnovations.fancyworlds.worlds.storage.json.JsonWorldStorage;
@@ -54,6 +55,7 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
     private VersionFetcher versionFetcher;
     private VersionConfig versionConfig;
     private Translator translator;
+    private FWMetrics metrics;
 
     private WorldStorage worldStorage;
     private WorldService worldService;
@@ -109,6 +111,9 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
 
         // Translator
         registerTranslator();
+
+        // Metrics
+        metrics = new FWMetrics();
 
         // Services
         worldStorage = new JsonWorldStorage();
@@ -166,6 +171,9 @@ public class FancyWorldsPlugin extends JavaPlugin implements FancyWorlds {
         registerCommands();
 
         registerListeners();
+
+        metrics.register();
+        metrics.checkIfPluginVersionUpdated();
 
         fancyLogger.info("Successfully enabled FancyWorlds version %s".formatted(getDescription().getVersion()));
     }
