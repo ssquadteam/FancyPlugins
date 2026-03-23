@@ -2,14 +2,13 @@ package com.fancyinnovations.strata;
 
 import com.fancyinnovations.strata.mojang.PistonVersionDetails;
 import com.fancyinnovations.strata.workspace.WorkspaceService;
-import de.oliver.fancyanalytics.logger.properties.ThrowableProperty;
 
 public class Main {
 
     /**
-     *  For minecraft-source
+     * For minecraft-source
      */
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         String cacheDir = "tools/strata/strata-cache";
         Strata strata = new Strata(cacheDir);
         strata.init();
@@ -39,7 +38,7 @@ public class Main {
 
         // Apply patches
         String patchesDir = "tools/strata/minecraft-source/patches";
-        strata.getPatcherService().applyFilePatches(cacheDir+"/decompiled/"+latest.id(), gitDir, patchesDir+"/files", patchesDir+"/rejected-files");
+        strata.getPatcherService().applyFilePatches(cacheDir + "/decompiled/" + latest.id(), gitDir, patchesDir + "/files", patchesDir + "/rejected-files");
         sleep(1000);
         strata.getWorkspaceService().gitCommit(gitDir, "Apply file patches");
         strata.getWorkspaceService().gitTag(gitDir, WorkspaceService.FILE_PATCHES_TAG);
@@ -55,11 +54,11 @@ public class Main {
     /**
      * For minecraft-diff
      */
-    public static void main2(String[] args) {
+    public static void main(String[] args) {
         Strata strata = new Strata("tools/strata/strata-cache");
         strata.init();
 
-        String version = "26.1-pre-3";
+        String version = "26.1-rc-2";
 
         PistonVersionDetails ver = strata.getMojangService().getVersion(version);
         strata.getMojangService().downloadServerBundle(ver);
