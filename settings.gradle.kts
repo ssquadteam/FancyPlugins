@@ -57,8 +57,4 @@ include(":libraries:packets:implementations:1_21_9")
 include(":libraries:packets:implementations:1_21_11")
 include(":libraries:packets:implementations:26_1")
 
-
-include(":tools:strata")
-include(":tools:strata:minecraft-source")
-
 include(":tools:quick-e2e")
