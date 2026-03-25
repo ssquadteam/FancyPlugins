@@ -72,6 +72,7 @@ public final class HologramUpdateEvent extends HologramEvent {
     public enum HologramModification {
         TEXT,
         POSITION,
+        ROTATION,
         SCALE,
         TRANSLATION,
         BILLBOARD,

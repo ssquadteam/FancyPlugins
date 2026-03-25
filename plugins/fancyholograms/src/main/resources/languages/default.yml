@@ -41,6 +41,8 @@ messages:
           cannot_swap_same_line: "{errorColor}Cannot swap line {primaryColor}{line}{errorColor} with itself."
           move_success: "Successfully moved line {primaryColor}{line}{secondaryColor} to position {primaryColor}{position}{secondaryColor}."
           swap_success: "Successfully swapped line {primaryColor}{line1}{secondaryColor} with line {primaryColor}{line2}{secondaryColor}."
+        rotation:
+          changed: "Successfully changed the {primaryColor}{axis} {secondaryColor}rotation of hologram {primaryColor}{hologram}{secondaryColor} to {primaryColor}{angle}{secondaryColor} degrees."
         trait:
           not_found: "Could not find trait {primaryColor}{name}{secondaryColor}."
           attach:

@@ -2,6 +2,7 @@ package com.fancyinnovations.fancyholograms.hologram;
 
 import com.fancyinnovations.fancyholograms.api.FancyHolograms;
 import com.fancyinnovations.fancyholograms.api.data.HologramData;
+import com.fancyinnovations.fancyholograms.api.data.property.HologramRotation;
 import com.fancyinnovations.fancyholograms.api.events.HologramDespawnEvent;
 import com.fancyinnovations.fancyholograms.api.events.HologramSpawnEvent;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
@@ -10,8 +11,10 @@ import com.fancyinnovations.fancyholograms.util.PluginUtils;
 import com.viaversion.viaversion.api.Via;
 import de.oliver.fancysitula.api.entities.*;
 import de.oliver.fancysitula.factories.FancySitula;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.joml.AxisAngle4f;
 import org.joml.Quaternionf;
 
 public final class HologramImpl extends Hologram {
@@ -141,8 +144,14 @@ public final class HologramImpl extends Hologram {
         lastSyncTime = now;
 
         // location data
-        final var location = data.getLocation();
-        fsDisplay.setLocation(location);
+        final Location location = data.getLocation();
+        fsDisplay.setLocation(location.clone().setRotation(0, 0));
+
+        // set yaw and pitch
+        HologramRotation rot = new HologramRotation(location.getYaw() + 180, location.getPitch(), 0);
+        fsDisplay.setLeftRotation(rot.getQuaternion());
+
+        System.out.println(fsDisplay.getLeftRotation().toString());
 
         if (fsDisplay instanceof FS_TextDisplay textDisplay && data instanceof com.fancyinnovations.fancyholograms.api.data.TextHologramData textData) {
             // line width
@@ -196,8 +205,6 @@ public final class HologramImpl extends Hologram {
             // entity transformation
             fsDisplay.setTranslation(displayData.getTranslation());
             fsDisplay.setScale(displayData.getScale());
-            fsDisplay.setLeftRotation(new Quaternionf());
-            fsDisplay.setRightRotation(new Quaternionf());
 
             // entity shadow
             fsDisplay.setShadowRadius(displayData.getShadowRadius());
