@@ -111,9 +111,6 @@ jobs:
       - name: Modify gradlew permissions
         run: chmod +x ./gradlew
 
-      - name: Build strata
-        run: ./gradlew :tools:strata:shadowJar
-
       - name: Build quick-e2e
         run: ./gradlew :tools:quick-e2e:shadowJar
 
