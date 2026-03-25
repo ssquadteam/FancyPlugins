@@ -73,7 +73,7 @@ public class InfoCMD implements Subcommand {
             if (textData.getTextUpdateInterval() == -1) {
                 MessageHelper.info(player, "Update text interval: <gray>not updating");
             } else {
-                MessageHelper.info(player, "Update text interval: <gray>" + textData.getTextUpdateInterval() + " ticks");
+                MessageHelper.info(player, "Update text interval: <gray>" + textData.getTextUpdateInterval() + " millseconds");
             }
         } else if (data instanceof com.fancyinnovations.fancyholograms.api.data.BlockHologramData blockData) {
             MessageHelper.info(player, "Block: <gray>" + blockData.getBlock().name());
