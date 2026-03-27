@@ -11,6 +11,7 @@ import com.fancyinnovations.fancyholograms.commands.Subcommand;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
 import de.oliver.fancylib.MessageHelper;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.Player;
@@ -61,15 +62,19 @@ public class CreateCMD implements Subcommand {
             return false;
         }
 
+        Location loc = player.getLocation();
+        loc.setYaw(0);
+        loc.setPitch(0);
+
         DisplayHologramData displayData = null;
         switch (type) {
-            case TEXT -> displayData = new TextHologramData(name, player.getLocation());
+            case TEXT -> displayData = new TextHologramData(name, loc);
             case ITEM -> {
-                displayData = new ItemHologramData(name, player.getLocation());
+                displayData = new ItemHologramData(name, loc);
                 displayData.setBillboard(Display.Billboard.FIXED);
             }
             case BLOCK -> {
-                displayData = new BlockHologramData(name, player.getLocation());
+                displayData = new BlockHologramData(name, loc);
                 displayData.setBillboard(Display.Billboard.FIXED);
             }
         }

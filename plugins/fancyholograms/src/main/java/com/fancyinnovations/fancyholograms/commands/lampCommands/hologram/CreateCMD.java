@@ -51,6 +51,8 @@ public class CreateCMD {
         }
 
         Location loc = actor.requirePlayer().getLocation();
+        loc.setYaw(0);
+        loc.setPitch(0);
 
         DisplayHologramData displayData = null;
 
