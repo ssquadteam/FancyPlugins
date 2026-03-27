@@ -63,7 +63,7 @@ public class CreateCMD implements Subcommand {
         }
 
         Location loc = player.getLocation();
-        loc.setYaw(0);
+        loc.setYaw(180);
         loc.setPitch(0);
 
         DisplayHologramData displayData = null;

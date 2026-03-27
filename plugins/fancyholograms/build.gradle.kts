@@ -52,7 +52,7 @@ dependencies {
 
     implementation("io.github.revxrsal:lamp.common:4.0.0-rc.16")
     implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.16")
-    compileOnly(project(":plugins:fancynpcs:fn-api"))
+    compileOnly(project(":plugins:fancynpcs-v2:fn-v2-api"))
     compileOnly("org.lushplugins.chatcolorhandler:paper:8.1.0")
     compileOnly("com.viaversion:viaversion-api:5.7.1")
     compileOnly("org.geysermc.floodgate:api:2.2.4-SNAPSHOT")
@@ -104,7 +104,7 @@ tasks {
         minecraftVersion("1.21.11")
 
         downloadPlugins {
-            modrinth("fancynpcs", "2.7.0")
+            modrinth("fancynpcs", "2.9.2")
 //            hangar("ViaVersion", "5.3.2")
 //            hangar("ViaBackwards", "5.3.2")
             modrinth("multiverse-core", "5.5.2")

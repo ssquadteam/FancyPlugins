@@ -6,11 +6,11 @@ import com.fancyinnovations.fancyholograms.api.data.HologramData;
 import com.fancyinnovations.fancyholograms.api.data.TextHologramData;
 import com.fancyinnovations.fancyholograms.api.hologram.Hologram;
 import com.fancyinnovations.fancyholograms.main.FancyHologramsPlugin;
-import com.fancyinnovations.fancynpcs.api.FancyNpcsPlugin;
-import com.fancyinnovations.fancynpcs.api.Npc;
-import com.fancyinnovations.fancynpcs.api.NpcAttribute;
 import com.google.common.cache.CacheBuilder;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
+import de.oliver.fancynpcs.api.FancyNpcsPlugin;
+import de.oliver.fancynpcs.api.Npc;
+import de.oliver.fancynpcs.api.NpcAttribute;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -207,6 +207,8 @@ public class HologramControllerImpl implements HologramController {
         }
 
         Location location = npc.getData().getLocation().clone().add(0, (npc.getEyeHeight() * npcScale) + (0.5 * npcScale), 0);
+        location.setYaw(hologram.getData().getLocation().getYaw());
+        location.setPitch(hologram.getData().getLocation().getPitch());
 
         for (Map.Entry<NpcAttribute, String> entry : npc.getData().getAttributes().entrySet()) {
             NpcAttribute attribute = entry.getKey();
