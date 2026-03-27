@@ -76,7 +76,7 @@ public class WorldUnloadCMD extends FancyContext {
             translator.translate("commands.world.unload.teleporting_players")
                     .withPrefix()
                     .replace("worldName", world.getName())
-                    .replace("fallbackWorldName", fallbackWorld.getName())
+                    .replace("fallbackWorld", fallbackWorld.getName())
                     .replace("playerCount", String.valueOf(world.getBukkitWorld().getPlayerCount()))
                     .send(actor.sender());
 
