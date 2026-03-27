@@ -5,6 +5,8 @@ import com.google.common.io.ByteStreams;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import de.oliver.fancynpcs.api.actions.NpcAction;
 import de.oliver.fancynpcs.api.actions.executor.ActionExecutionContext;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.lushplugins.chatcolorhandler.common.parser.Parsers;
 import org.lushplugins.chatcolorhandler.paper.PaperColor;
@@ -27,11 +29,12 @@ public class PlayerCommandAsOpAction extends NpcAction {
             return;
         }
 
-        if (context.getPlayer() == null) {
+        Player player = context.getPlayer();
+        if (player == null) {
             return;
         }
 
-        String command = PaperColor.handler().translateRaw(value, context.getPlayer(), Parsers::placeholder);
+        String command = PaperColor.handler().translateRaw(value, player, Parsers::placeholder);
 
         if (command.toLowerCase().startsWith("server")) {
             String[] args = value.split(" ");
@@ -43,22 +46,23 @@ public class PlayerCommandAsOpAction extends NpcAction {
             ByteArrayDataOutput out = ByteStreams.newDataOutput();
             out.writeUTF("Connect");
             out.writeUTF(server);
-            context.getPlayer().sendPluginMessage(FancyNpcsPlugin.get().getPlugin(), "BungeeCord", out.toByteArray());
+            player.sendPluginMessage(FancyNpcsPlugin.get().getPlugin(), "BungeeCord", out.toByteArray());
             return;
         }
 
         FancyNpcsPlugin.get().getScheduler().runTask(
-                context.getPlayer().getLocation(),
+                player.getLocation(),
                 () -> {
-                    boolean wasOp = context.getPlayer().isOp();
+                    boolean wasOp = player.isOp();
 
-                    context.getPlayer().setOp(true);
+                    player.setOp(true);
                     try {
-                        context.getPlayer().chat("/" + command);
+                        player.chat("/" + command);
                     } catch (Exception e) {
                         FancyNpcsPlugin.get().getFancyLogger().warn("Failed to execute command: " + command);
                     } finally {
-                        context.getPlayer().setOp(wasOp);
+                        player.setOp(wasOp);
+                        FancyNpcsPlugin.get().getFancyLogger().debug("Reset OP status of player " + player.getName() + " to " + wasOp);
                     }
                 }
         );
